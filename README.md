@@ -8,9 +8,6 @@
 [![Checks](https://github.com/Hik289/manifold-hyperbolic-optimization/actions/workflows/checks.yml/badge.svg)](https://github.com/Hik289/manifold-hyperbolic-optimization/actions/workflows/checks.yml)
 ![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white)
 ![PyTorch](https://img.shields.io/badge/PyTorch-2.5-EE4C2C?logo=pytorch&logoColor=white)
-![Protocol](https://img.shields.io/badge/Protocol-seed_42-687A86)
-
-[English](README.md) · [简体中文](README_zh.md) · [Method](#method-in-one-minute) · [Reproduce figures](#reproduce-the-paper-and-figures) · [Citation](#citation)
 
 <img src="assets/intuition.png" alt="HyperbolicMomentum intuition: adapt group curvature, take a normalized geodesic step, and map both the parameter point and its tangent momentum when curvature changes." width="100%" />
 
@@ -28,7 +25,7 @@ HyperbolicMomentum studies optimization when **curvature is itself a learned sta
 | Optimization | Euclidean and fixed-curvature controls, learned curvature, normalization and transport ablations |
 | Experiments | Synthetic hierarchies, metric drift, node classification, text, vision, KG, recommendation and continual learning |
 | Additional tasks | Taxonomy, held-out link prediction and class-invariant retrieval, with delayed test evaluation |
-| Reproduction | **893 registered configurations; 705 completed; 188 explicitly deferred** |
+| Reproduction | Registered configurations, evaluation protocols and published result records |
 | Paper assets | Editable LaTeX, complete theoretical appendix, tables, loss-plot code and exact plotting inputs |
 
 ## Method in one minute
@@ -58,7 +55,7 @@ python -m pip install -r requirements.txt
 # Check geometry, total curvature derivatives and the transport ablation.
 python experiments/revision/validate_geometry.py
 
-# A three-step CPU fixture; no dataset download and no benchmark claim.
+# A small CPU fixture; no dataset download and no benchmark claim.
 python scripts/run_experiment.py --smoke --device cpu
 
 # Audit the published final records without training or network access.
@@ -77,7 +74,7 @@ python -m pip install -r requirements-full.txt
 # Inspect exact registered settings before launching a run.
 python scripts/run_experiment.py --list --family mechanism
 
-# Full registered budget: 2,000 updates, seed 42.
+# Use the full registered training budget.
 python scripts/run_experiment.py \
   --id mechanism_smooth8_independent_lorentz_3_B5 \
   --device cuda --work-dir artifacts/mechanism
@@ -92,7 +89,7 @@ The entry point uses the saved manifest without changing epochs, seeds, splits o
 | Task family | Main implementation | Protocol |
 | :--- | :--- | :--- |
 | Synthetic hierarchies | [`structured.py`](experiments/revision/structured.py) | Tree type × size × dimension grid |
-| Stationary and drifting metrics | [`mechanism.py`](experiments/revision/mechanism.py) | Six conditions; matched five-initialization comparison |
+| Stationary and drifting metrics | [`mechanism.py`](experiments/revision/mechanism.py) | Matched initialization searches under stationary and drifting metrics |
 | Node, text, vision and continual learning | [`runner.py`](experiments/revision/runner.py) | Full registered lengths; task-specific endpoints |
 | Knowledge graphs and recommendation | [`structured.py`](experiments/revision/structured.py) | Filtered ranking and chronological recommendation splits |
 | Taxonomy, link prediction, retrieval | [`new_tasks.py`](experiments/revision/new_tasks.py) | Validation-only search; test released after the complete block |
@@ -100,23 +97,9 @@ The entry point uses the saved manifest without changing epochs, seeds, splits o
 
 See **[Experiment guide](docs/EXPERIMENTS.md)** for dataset layouts, baseline definitions, ablations, queue tools and evaluation commands. The observed benchmark software versions are recorded in [`requirements-reproduction.txt`](requirements-reproduction.txt); the historical exploratory scripts are not interchangeable with the revised protocol.
 
-## Selected evidence
-
-The strongest matched comparisons are the **validation-selected mechanism experiments**, with the same five initializations and full 2,000-update budget. Lower held-out distortion is better.
-
-| Condition | Best fixed-curvature control (B35) | HyperbolicMomentum (B5) | Relative reduction |
-| :--- | ---: | ---: | ---: |
-| Stationary hierarchy | 0.2011 | **0.1952** | **2.94%** |
-| Smooth 2× metric drift | 0.1823 | **0.1762** | **3.31%** |
-| Smooth 8× metric drift | 0.2757 | **0.2619** | **5.02%** |
-
-These are condition-specific, single-seed numerical comparisons, not significance tests or three independent task-family wins. The matched point-only control remains close. The paper also reports all 48 original synthetic B5–B3 contrasts, five small positive final-checkpoint node-classification contrasts, and other explicitly named-control comparisons. **All ties, negative outcomes and stronger controls remain in the appendix and published records.** The six-task extension does not meet the stated family-level advantage criterion.
-
-**Inspect the evidence:** [complete records](results/README.md) · [matched mechanism data](paper/tables/revision_evidence.json) · [additional comparisons](paper/evidence/positive_contrasts.json) · [full paper](paper/main.pdf).
-
 ## Reproduce the paper and figures
 
-No training, GPU or network access is needed to regenerate the three published loss figures or the two added comparison tables:
+No training, GPU or network access is needed to regenerate the published loss figures and comparison tables:
 
 ```bash
 python paper/scripts/reproduce_figures.py
