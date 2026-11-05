@@ -273,8 +273,8 @@
     },
     {
       "path": "paper/scripts/reproduce_figures.py",
-      "sha256": "8d4688e7d13fcbd0c192aee145cedeaa35e34fd510be0fba01955505a94a98c9",
-      "unchanged_from_original": true
+      "sha256": "b9d64e61255c5ff44dd1fe3eb04d0205ae0f46cee6f92da1b00add2e3430be3a",
+      "unchanged_from_original": false
     },
     {
       "path": "paper/scripts/redesign_results.py",

@@ -3,7 +3,8 @@
 <h1>HyperbolicMomentum</h1>
 <p>Curvature-Adaptive Manifold Optimization</p>
 
-[![Checks](https://github.com/Hik289/manifold-hyperbolic-optimization/actions/workflows/checks.yml/badge.svg?style=flat-square)](https://github.com/Hik289/manifold-hyperbolic-optimization/actions/workflows/checks.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-15857B?style=flat-square)](LICENSE)
+![Python](https://img.shields.io/badge/Python-3.11-3776AB?style=flat-square&logo=python&logoColor=white)
 
 <br />
 
@@ -124,6 +125,8 @@ With TeX Live and `latexmk` installed:
 ```bash
 python paper/scripts/build_paper.py
 ```
+
+The repository distributes LaTeX sources and PNG figures. PDF outputs are generated locally and excluded from version control.
 
 For Overleaf, upload the contents of `paper/`, set `main.tex` as the main document, and select **pdfLaTeX**. The manuscript uses a local ICML 2027 draft wrapper derived from ICML 2026; [template provenance](paper/TEMPLATE_PROVENANCE.txt) documents its source and status.
 

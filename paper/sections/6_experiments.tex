@@ -17,7 +17,7 @@ Figure~\ref{fig:kg-loss} and Table~\ref{tab:kg-checkpoints} explain why the WN18
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\linewidth]{figures/fig_loss_historical_kg.pdf}
+\includegraphics[width=\linewidth]{figures/fig_loss_historical_kg}
 \caption{Historical WN18RR training loss at every retained checkpoint. B3 uses fixed curvature and B4 learns curvature. Ranking and curvature checkpoints appear in Table~\ref{tab:kg-checkpoints}.}
 \label{fig:kg-loss}
 \end{figure}
@@ -54,7 +54,7 @@ At the common initialization $K_0=1$, the completed $2\times$, $5\times$, and $8
 
 \begin{figure*}[t]
 \centering
-\includegraphics[width=\linewidth]{figures/fig_loss_smooth_drift.pdf}
+\includegraphics[width=\linewidth]{figures/fig_loss_smooth_drift}
 \caption{Complete training-loss trajectories under smooth distance drift: $2\times$, $5\times$, and $8\times$ from left to right. All methods share $K_0=1$ and run for 2000 updates. Each panel shows the logged mean squared relative-distance loss; validation distortion and B5 curvature states are tabulated in Table~\ref{tab:drift-states}. These curves are separate from the validation-selected initialization comparison.}
 \label{fig:loss-drift}
 \end{figure*}

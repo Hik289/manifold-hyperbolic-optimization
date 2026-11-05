@@ -22,6 +22,7 @@ __pycache__/
 *.key
 # Compilation and local packaging
 .latex-build/
+*.[pP][dD][fF]
 *.aux
 *.bbl.bak
 *.blg
@@ -35,6 +36,5 @@ __pycache__/
 *.synctex.gz
 *.toc
 deliverables/
-# Keep the compiled manuscript.
-!paper/main.pdf
+# Keep the bibliography for manuscript builds.
 !paper/main.bbl

@@ -1,7 +1,8 @@
 """Reproduce every figure included by main.tex using bundled logged losses.
 
 No GPU, network, training data, checkpoints, or external repository is required.
-The already generated PDFs are used by LaTeX; this script is optional on Overleaf.
+Bundled PNGs support LaTeX and Overleaf builds without running this script.
+PDF and PNG outputs can be regenerated locally; PDFs are excluded from Git.
 """
 import argparse
 import csv

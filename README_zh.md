@@ -3,6 +3,9 @@
 <h1>HyperbolicMomentum</h1>
 <p>曲率自适应流形优化</p>
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-15857B?style=flat-square)](LICENSE)
+![Python](https://img.shields.io/badge/Python-3.11-3776AB?style=flat-square&logo=python&logoColor=white)
+
 <img src="assets/intuition-readme.png" alt="方法示意：学习分组曲率，执行曲率归一化测地线更新，并在曲率变化时同步映射参数与切向动量。" width="100%" />
 
 <sub>可学习曲率 · 测地线更新 · 动量传输</sub>
@@ -107,6 +110,8 @@ python paper/scripts/reproduce_positive_tables.py
 ```bash
 python paper/scripts/build_paper.py
 ```
+
+仓库提供 LaTeX 源码与 PNG 图表，PDF 在本地生成，不纳入版本控制。
 
 上传 `paper/` 内容到 Overleaf，将 `main.tex` 设为主文件，编译器选择 **pdfLaTeX**。当前使用基于 ICML 2026 的本地 ICML 2027 草稿封装，[模板来源说明](paper/TEMPLATE_PROVENANCE.txt)记录其来源与状态。
 
