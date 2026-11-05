@@ -1,0 +1,108 @@
+{
+  "status": "complete",
+  "config": {
+    "family": "mechanism",
+    "dataset": "smooth8",
+    "model": "independent_lorentz",
+    "epochs": 2000,
+    "seed": 42,
+    "nodes_per_group": 250,
+    "dim": 3,
+    "branchings": [
+      2,
+      4,
+      8,
+      16
+    ],
+    "schedule": "smooth",
+    "scale_end": 8.0,
+    "lr": 100.0,
+    "rho": 0.01,
+    "beta": 0.98,
+    "priority": 3,
+    "method": "B3",
+    "id": "mechanism_smooth8_independent_lorentz_3_B3"
+  },
+  "epochs_completed": 2000,
+  "final": {
+    "epoch": 1999,
+    "train_loss": 0.5594109296798706,
+    "train_distortion": 0.7387659549713135,
+    "val_distortion": 0.7411291599273682,
+    "val_distortion_groups": [
+      0.7283845543861389,
+      0.7326774597167969,
+      0.7494747638702393,
+      0.7539799809455872
+    ],
+    "K": [
+      1.0000001192092896,
+      1.0000001192092896,
+      1.0000001192092896,
+      1.0000001192092896
+    ],
+    "scale": [
+      2.75,
+      4.5,
+      6.25,
+      8.0
+    ],
+    "curvature_gradient": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "normalized_constraint_fp64": 0.00245280696118233,
+    "parallel_transport_norm_error": 3.9994483813643456e-07,
+    "log_curvature_step": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "seconds": 179.3244734723121,
+    "peak_memory_mb": 10.276352,
+    "grad_norm": 0.00040891929529607296,
+    "momentum_norm": 0.0004145828715991229,
+    "exp_argument": 0.05493835359811783,
+    "radius_clipped_fraction": 1.0,
+    "manifold_residual": 0.0024412870407104492,
+    "tangent_residual": 5.960464477539063e-08,
+    "mean_radius": 4.041461944580078,
+    "test_distortion": 0.7411043643951416,
+    "test_distortion_groups": [
+      0.7260141968727112,
+      0.7358909845352173,
+      0.749796450138092,
+      0.7527157068252563
+    ],
+    "validation_auc": 0.5722514723092318,
+    "validation_auc_first_half": 0.4664935232102871,
+    "validation_auc_second_half": 0.6780094214081764,
+    "final_K_spread": 0.0,
+    "max_manifold_residual": 0.0026243925094604492,
+    "max_tangent_residual": 1.1920928955078125e-07
+  },
+  "protocol": {
+    "protocol": "sum of within-group relative squared-distance losses",
+    "total_nodes": 1000,
+    "groups": 4,
+    "dimension_per_group": 3,
+    "split_seed": 2042,
+    "pair_counts": {
+      "train": 24900,
+      "validation": 3112,
+      "test": 3113
+    },
+    "precision": "FP32",
+    "curvature_derivative": "total derivative through point homothety",
+    "curvature_interval": [
+      0.001,
+      5.0
+    ],
+    "canonical_radius_cap": 4.0,
+    "selection": "No outcome-based early stopping; report final test and complete validation AUC",
+    "role": "Synthetic mechanism diagnostic, separate from product-factor benchmarks"
+  }
+}

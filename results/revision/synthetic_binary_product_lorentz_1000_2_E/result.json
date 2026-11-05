@@ -1,0 +1,28 @@
+{
+  "status": "complete",
+  "config": {
+    "family": "synthetic",
+    "dataset": "binary",
+    "model": "product_lorentz",
+    "method": "E",
+    "epochs": 2000,
+    "seed": 42,
+    "nodes": 1000,
+    "dim": 2,
+    "lr": 10.0,
+    "id": "synthetic_binary_product_lorentz_1000_2_E"
+  },
+  "final": {
+    "epoch": 1999,
+    "train_loss": 0.2751641869544983,
+    "distortion_fixed_pairs": 0.4163694679737091,
+    "seconds": 36.129692792892456,
+    "K": [
+      1.0,
+      1.0
+    ],
+    "MAP": 0.03248589688156158,
+    "mean_rank": 141.72722722722722
+  },
+  "epochs_completed": 2000
+}

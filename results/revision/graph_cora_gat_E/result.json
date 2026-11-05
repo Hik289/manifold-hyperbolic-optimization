@@ -1,0 +1,41 @@
+{
+  "selected_epoch": 16,
+  "selected_test": {
+    "accuracy": 0.781000018119812,
+    "macro_f1": 0.7724134698115689
+  },
+  "status": "complete",
+  "config": {
+    "family": "graph",
+    "dataset": "cora",
+    "model": "gat",
+    "method": "E",
+    "epochs": 1000,
+    "seed": 42,
+    "id": "graph_cora_gat_E"
+  },
+  "final": {
+    "epoch": 999,
+    "task": 0,
+    "train_loss": 9.476823470322415e-05,
+    "seconds": 29.202990293502808,
+    "K": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "learning_rate": 0.1,
+    "curvature_learning_rate": 0.001,
+    "peak_memory_mb": 48.691712,
+    "val_accuracy": 0.6760000586509705,
+    "val_macro_f1": 0.6773415860435753,
+    "test_accuracy": 0.6660000085830688,
+    "test_macro_f1": 0.6821825037594248
+  },
+  "best_validation": 0.7760000228881836,
+  "epochs_completed": 1000
+}

@@ -1,0 +1,9 @@
+{
+  "family": "kg",
+  "dataset": "wn18rr",
+  "model": "lorentz_distance",
+  "method": "B3",
+  "epochs": 2000,
+  "seed": 42,
+  "id": "kg_wn18rr_lorentz_distance_B3"
+}

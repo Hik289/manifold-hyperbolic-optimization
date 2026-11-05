@@ -1,0 +1,35 @@
+{
+  "status": "complete",
+  "config": {
+    "family": "recommendation",
+    "dataset": "ml1m",
+    "model": "mf",
+    "method": "B35",
+    "epochs": 1000,
+    "seed": 42,
+    "id": "recommendation_ml1m_mf_B35"
+  },
+  "final": {
+    "epoch": 999,
+    "train_loss": 0.2683679836999747,
+    "seconds": 47567.43579077721,
+    "K": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "grad_norm": 7.511235889978707e-05,
+    "momentum_norm": 3.3509088098071516e-05,
+    "exp_argument": 3.894609471899457e-05,
+    "radius_clipped_fraction": 0.0,
+    "manifold_residual": 9.5367431640625e-07,
+    "tangent_residual": 1.1641532182693481e-10,
+    "mean_radius": 0.4619036316871643,
+    "val_recall20": 0.06721854304635762,
+    "val_ndcg20": 0.025738405009554793,
+    "test_recall20": 0.05496688741721854,
+    "test_ndcg20": 0.022069355853546798
+  },
+  "epochs_completed": 1000
+}

@@ -1,0 +1,25 @@
+\begin{table*}[t]
+\centering
+\caption{\textbf{HyperbolicMomentum update.} Each group has a dedicated Lorentz manifold. The main path updates the point and tangent momentum; the slower branch changes curvature and maps both states. The curvature derivative is total at fixed canonical point, as in Eq.~\eqref{eq:total-curv-gradient}.}
+\label{tab:method-overview}
+\footnotesize\setlength{\tabcolsep}{4.2pt}\renewcommand{\arraystretch}{1.12}
+\begin{tabularx}{\linewidth}{l l X}
+\toprule
+Stage & State or operation & Geometric role \\
+\midrule
+\multicolumn{3}{l}{\textit{Tangent-state and geodesic update}} \\
+Gradient & $\widehat g_{g,t}=\grad_{x_g}\mathcal J$ & Form a tangent direction at the current point. \\
+Momentum & $\widetilde m_{g,t}=\beta m_{g,t}+(1-\beta)\widehat g_{g,t}$ & Average directions in the same tangent space. \\
+\rowcolor{oursbg}
+Normalized step & $\eta^{\rm geo}_{g,t}=\eta_t/(1+\gamma\sqrt{K_{g,t}}\|\widetilde m_{g,t}\|)$ & Control the curvature--momentum scale. \\
+Geodesic move & $x_{g,t+1/2}=\Exp_{x_{g,t}}^{K_{g,t}}(-\eta^{\rm geo}_{g,t}\widetilde m_{g,t})$ & Move the point on its current manifold. \\
+Tangent transport & $m_{g,t+1/2}=\PT_{x_{g,t}\to x_{g,t+1/2}}^{K_{g,t}}\widetilde m_{g,t}$ & Carry memory to the new base point. \\
+\midrule
+\multicolumn{3}{l}{\textit{Slow curvature update and compatible joint-state map}} \\
+\rowcolor{oursbg}
+Learn curvature & $\widehat h_{g,t}=\partial_{c_g}F(q_t,u_t)$; Eq.~\eqref{eq:k-step-main} & Use the total derivative, with bounded log drift in implementation. \\
+\rowcolor{oursbg}
+Map joint state & $a_g=\sqrt{K_{g,t}/K_{g,t+1}}$; Eq.~\eqref{eq:xcurv-main} & Scale both point and momentum by $a_g$; restore tangency numerically. \\
+\bottomrule
+\end{tabularx}
+\end{table*}

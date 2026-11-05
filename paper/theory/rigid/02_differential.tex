@@ -1,0 +1,364 @@
+\subsection{Curvature derivatives and exact Jacobi operators}
+\label{app:rigid-differential}
+Holding $q$ fixed while changing $u$ moves the physical point $x=e^{-u/2}q$. The curvature derivative must therefore include the induced point displacement. We first compute this total derivative, including its higher-order terms, and then analyze how tangent and base-point perturbations pass through the exponential map.
+\begin{definition}[Euler operators]
+\begin{align}
+ \mathcal E_g&=x_g^\top\nabla_{x_g},&
+ \mathcal D_g&=\partial_{u_g}-\tfrac12\mathcal E_g,\\
+ X(q,u)_g&=e^{-u_g/2}q_g,&
+ [\mathcal D_g,\mathcal D_h]&=0.
+\end{align}
+\end{definition}
+\begin{proposition}[All-order curvature differentiation]
+For $\widetilde{\mathcal J}\in C^r$, $|\alpha|\le r$,
+\begin{align}\label{eq:total-curv-gradient}
+ \partial_{u_g}F
+ &=\partial_{u_g}\widetilde{\mathcal J}
+   -\tfrac12\nabla_{x_g}\widetilde{\mathcal J}^{\top}x_g,\\
+ \partial_u^\alpha F(q,u)
+ &=\left(\prod_g\mathcal D_g^{\alpha_g}\widetilde{\mathcal J}\right)(X(q,u),u),\\
+ D_u^jX[h^{(1)},\ldots,h^{(j)}]_g
+ &=(-\tfrac12)^j\left(\prod_{i=1}^jh_g^{(i)}\right)x_g.
+\end{align}
+In particular,
+\begin{align}
+ F_{u_gu_g}
+ &=\widetilde{\mathcal J}_{u_gu_g}
+ -x_g^\top\widetilde{\mathcal J}_{x_gu_g}
+ +\tfrac14x_g^\top\widetilde{\mathcal J}_{x_gx_g}x_g
+ +\tfrac14\widetilde{\mathcal J}_{x_g}^\top x_g,\\
+ F_{u_gu_h}
+ &=\widetilde{\mathcal J}_{u_gu_h}
+ -\tfrac12x_g^\top\widetilde{\mathcal J}_{x_gu_h}
+ -\tfrac12x_h^\top\widetilde{\mathcal J}_{x_hu_g}
+ +\tfrac14x_g^\top\widetilde{\mathcal J}_{x_gx_h}x_h
+ \quad(g\ne h).
+\end{align}
+\end{proposition}
+\begin{proof}
+For $h,k\in\mathbb R^G$, put $V_h=D_uX[h]$ and $W_{h,k}=D_u^2X[h,k]$.
+\begin{align}
+ D_uF[h]&=\widetilde{\mathcal J}_u[h]+\widetilde{\mathcal J}_x[V_h],\\
+ D_u^2F[h,k]
+ &=\widetilde{\mathcal J}_{uu}[h,k]
+ +\widetilde{\mathcal J}_{ux}[h,V_k]
+ +\widetilde{\mathcal J}_{xu}[V_h,k]\\
+ &\quad+\widetilde{\mathcal J}_{xx}[V_h,V_k]
+ +\widetilde{\mathcal J}_x[W_{h,k}],\\
+ \partial_{u_h}\bigl(\mathcal D_g\widetilde{\mathcal J}\bigr)(X(q,u),u)
+ &=(\mathcal D_h\mathcal D_g\widetilde{\mathcal J})(X(q,u),u).
+\end{align}
+Induction on $|\alpha|$ gives the stated identity.
+\end{proof}
+
+\begin{proposition}[Softplus coordinate and second-order remainder]
+\label{prop:softplus-rigid}
+\begin{align}
+ K(c)&=K_0+\log(1+e^c),&\psi(c)&=\log K(c),&s(c)&=(1+e^{-c})^{-1},\\
+ \psi'(c)&=s(c)/K(c),&
+ \psi''(c)&=\frac{s(c)(1-s(c))}{K(c)}-\frac{s(c)^2}{K(c)^2},\\
+ \partial_cF&=\psi'(c)\partial_uF,&
+ \partial_{cc}F&=\psi'(c)^2F_{uu}+\psi''(c)F_u.
+\end{align}
+If $c\in[c_-,c_+]$, $K(c)\in[K_-,K_+]$, then
+\begin{align}
+ b_-&:=\frac{s(c_-)^2}{K_+^2}
+ \le\psi'(c)^2\le\frac{s(c_+)^2}{K_-^2}=:b_+,\\
+ |\psi''(c)|&\le B_\psi:=\frac1{4K_-}+\frac1{K_-^2}.
+\end{align}
+For $c^+=c-\rho\psi'(c)\widehat b$,
+\begin{align}
+ u^+&=u-\rho\psi'(c)^2\widehat b+R_c,\\
+ |R_c|&\le\tfrac12B_\psi\rho^2\psi'(c)^2|\widehat b|^2.
+\end{align}
+\end{proposition}
+\begin{proof}
+\begin{align}
+ K'(c)&=s(c),&K''(c)&=s(c)(1-s(c)),\\
+ \psi(c+v)&=\psi(c)+\psi'(c)v+
+ v^2\int_0^1(1-r)\psi''(c+rv)\,dr.
+\end{align}
+The bounds apply on the full segment $[c,c+v]$.
+\end{proof}
+
+The softplus coordinate changes the effective curvature learning rate through $\psi'(c)^2$. The remainder is second order in the proposed coordinate step, but its cumulative contribution still has to be included in a finite-time budget. The next calculation isolates a different source of sensitivity: the transverse expansion of neighboring hyperbolic geodesics.
+
+The Jacobi equations below are the constant-curvature model equations underlying Rauch comparison; see \citet{lee2018riemannian}. Using their exact solutions, rather than replacing them immediately by a curvature-radius upper bound, will allow the normalization and exponential differentials to cancel quantitatively.
+
+\begin{lemma}[Jacobi initial-value equations]
+\label{lem:rigid-jacobi-ivp}
+For $\gamma(s)=\Exp_x^K(sv)$, $r=\|v\|$, $\lambda=\sqrt Kr$,
+\begin{align}
+ D_s^2J+R(J,\dot\gamma)\dot\gamma&=0,\\
+ D_s^2J_\parallel&=0,&D_s^2J_\perp-\lambda^2J_\perp&=0.
+\end{align}
+For parallel identification $P_s=P_{x\to\gamma(s)}^K$,
+\begin{align}
+ J(0)=0,\ D_sJ(0)=w
+ &\Longrightarrow
+ J(s)=P_s\left[sw_\parallel+\frac{\sinh(\lambda s)}\lambda w_\perp\right],\\
+ J(0)=a,\ D_sJ(0)=0
+ &\Longrightarrow
+ J(s)=P_s\left[a_\parallel+\cosh(\lambda s)a_\perp\right].
+\end{align}
+\end{lemma}
+\begin{proof}
+\begin{align}
+ R(J,\dot\gamma)\dot\gamma
+ &=-K(r^2J-\langle J,\dot\gamma\rangle\dot\gamma),\\
+ (P_s^{-1}J)_\parallel''&=0,&
+ (P_s^{-1}J)_\perp''&=\lambda^2(P_s^{-1}J)_\perp,\\
+ j_\parallel(s)&=a_\parallel+sb_\parallel,&
+ j_\perp(s)&=\cosh(\lambda s)a_\perp+
+ \lambda^{-1}\sinh(\lambda s)b_\perp.
+\end{align}
+\end{proof}
+
+\begin{lemma}[Exact exponential differential]
+\label{lem:exact-jacobi}
+For $s(z)=\sinh(z)/z$, $s(0)=1$,
+\begin{align}
+ D_v\Exp_x^K(v)&=P_1(\mathsf P_\parallel+s(\lambda)\mathsf P_\perp),\\
+ \sigma(D_v\Exp_x^K(v))&=\{1,s(\lambda),\ldots,s(\lambda)\},\\
+ \|D_v\Exp_x^K(v)\|_{\rm op}&=s(\lambda)\quad(d\ge2),\\
+ \kappa(D_v\Exp_x^K(v))&=s(\lambda)\quad(d\ge2),\\
+ \kappa(D_v\Exp_x^K(v))&=1\quad(d=1).
+\end{align}
+For a horizontal base-point variation,
+\begin{align}
+ D_x^{\rm hor}\Exp_x^K(v)
+ &=P_1(\mathsf P_\parallel+\cosh(\lambda)\mathsf P_\perp),\\
+ \|D_x^{\rm hor}\Exp_x^K(v)\|_{\rm op}&\le\cosh(\lambda).
+\end{align}
+\end{lemma}
+\begin{proof}
+\begin{align}
+ \|D_v\Exp_x^K(v)[w]\|^2
+ &=\|w_\parallel\|^2+s(\lambda)^2\|w_\perp\|^2,\\
+ \|D_x^{\rm hor}\Exp_x^K(v)[a]\|^2
+ &=\|a_\parallel\|^2+\cosh(\lambda)^2\|a_\perp\|^2.
+\end{align}
+\end{proof}
+
+\begin{corollary}[Finite velocity perturbations]
+For $v,w\in T_xH_K$, $\max(\|v\|,\|w\|)\le R$,
+\begin{align}\label{eq:velocity-lip}
+ d_K(\Exp_x^Kv,\Exp_x^Kw)
+ &\le s(\sqrt KR)\|v-w\|.
+\end{align}
+For $x,y$ joined by a geodesic and $\|v\|\le R$,
+\begin{align}
+ d_K(\Exp_x^Kv,\Exp_y^K(P_{x\to y}^Kv))
+ &\le\cosh(\sqrt KR)d_K(x,y).
+\end{align}
+\end{corollary}
+\begin{proof}
+\begin{align}
+ v_\theta&=(1-\theta)v+\theta w,&\|v_\theta\|&\le R,\\
+ d_K(\Exp_xv,\Exp_xw)
+ &\le\int_0^1\|D\Exp_x(v_\theta)[w-v]\|\,d\theta\\
+ &\le s(\sqrt KR)\|v-w\|.
+\end{align}
+For the second inequality, parallel transport $v$ along the base geodesic and integrate the horizontal differential.
+\end{proof}
+
+\begin{proposition}[Normalization differential]
+\label{prop:normalization-rigid}
+In an orthonormal tangent frame, let $N_\gamma(v)=v/(1+\gamma\|v\|)$, $\gamma>0$. For $v\ne0$, $e=v/\|v\|$,
+\begin{align}
+ DN_\gamma(v)
+ &=\frac1{1+\gamma\|v\|}(I-ee^\top)
+   +\frac1{(1+\gamma\|v\|)^2}ee^\top,\\
+ DN_\gamma(0)&=I,&\|DN_\gamma(v)\|_{\rm op}&\le1,\\
+ \|N_\gamma(v)-N_\gamma(w)\|&\le\|v-w\|,\\
+ \|N_\gamma(v)\|&\le\min(\|v\|,\gamma^{-1}),\\
+ \sqrt K\left\|\frac{-\eta m}{1+\gamma\sqrt K\|m\|}\right\|
+ &\le\eta/\gamma.\label{eq:step-cap}
+\end{align}
+If $a_-I\preceq A\preceq a_+I$ and $\|g\|\le G$,
+\begin{align}\label{eq:rigid-alignment}
+ \langle g,N_\gamma(Ag)\rangle
+ &\ge a\|g\|^2,&a&:=\frac{a_-}{1+\gamma a_+G},\\
+ \|N_\gamma(Ag)\|&\le a_+\|g\|.
+\end{align}
+For blockwise normalization the same inequalities hold when $A=\operatorname{diag}(A_j)$ respects those blocks.
+If each normalization block has a scalar preconditioner $A_j=a_jI$, the stronger uniform constant is
+\begin{align}\label{eq:sharp-scalar-alignment}
+ \langle g,N_\gamma(Ag)\rangle
+ &\ge a_{\rm sc}\|g\|^2,&
+ a_{\rm sc}&:=\frac{a_-}{1+\gamma a_-G}
+ \ge\frac{a_-}{1+\gamma a_+G}.
+\end{align}
+This constant is attained when $g$ has norm $G$ and is supported on a block with $a_j=a_-$.
+\end{proposition}
+\begin{proof}
+\begin{align}
+ D\left(\frac v{1+\gamma\|v\|}\right)[h]
+ &=\frac h{1+\gamma\|v\|}
+ -\frac{\gamma\langle v,h\rangle v}{\|v\|(1+\gamma\|v\|)^2},\\
+ \langle g,N_\gamma(Ag)\rangle
+ &=\frac{\langle g,Ag\rangle}{1+\gamma\|Ag\|}
+ \ge\frac{a_-\|g\|^2}{1+\gamma a_+G}.
+\end{align}
+For the scalar blocks,
+\begin{align}
+ \langle g,N_\gamma(Ag)\rangle
+ &=\sum_j\frac{a_j\|g_j\|^2}{1+\gamma a_j\|g_j\|}
+ \ge\sum_j\frac{a_j\|g_j\|^2}{1+\gamma a_jG}
+ \ge\frac{a_-}{1+\gamma a_-G}\sum_j\|g_j\|^2,
+\end{align}
+since $a\mapsto a/(1+\gamma aG)$ is increasing.
+\end{proof}
+
+\begin{proposition}[Baillon--Haddad structure of normalization]
+\label{prop:sharp-normalization-cocoercive}
+For $\gamma>0$, define the convex radial potential
+\begin{align}
+ V_\gamma(v)&=\frac{\gamma\|v\|-\log(1+\gamma\|v\|)}{\gamma^2},&
+ \nabla V_\gamma(v)&=N_\gamma(v).
+\end{align}
+Then normalization is firmly nonexpansive:
+\begin{align}\label{eq:sharp-cocoercivity}
+ \|N_\gamma(v)-N_\gamma(w)\|^2
+ &\le\langle N_\gamma(v)-N_\gamma(w),v-w\rangle,\\
+ \|v\|,\|w\|\le R
+ &\Longrightarrow
+ \langle N_\gamma(v)-N_\gamma(w),v-w\rangle
+ \ge\frac{\|v-w\|^2}{(1+\gamma R)^2}.
+\end{align}
+The same statements hold for a product of separately normalized blocks.
+\end{proposition}
+\begin{proof}
+The preceding differential gives $0\preceq\nabla^2V_\gamma\preceq I$. The Baillon--Haddad theorem \citep[Theorem~1.1]{bauschke2010baillon} therefore gives the first inequality. On the radius-$R$ ball, $\nabla^2V_\gamma\succeq(1+\gamma R)^{-2}I$; integration along the line segment gives the second. Sum the potentials for the blockwise statement.
+\end{proof}
+
+\begin{theorem}[Sharp sensitivity of a normalized geodesic step]
+\label{thm:sharp-normalized-exp}
+Fix $x\in H_K^d$, $d\ge2$, $\eta,\gamma>0$, and set
+\begin{align}
+ \mathcal S_x(m)&:=\Exp_x^K\!\left(\frac{-\eta m}{1+\gamma\sqrt K\|m\|}\right),&
+ \alpha&:=\eta/\gamma,\\
+ z&:=\frac{\gamma\sqrt K\|m\|}{1+\gamma\sqrt K\|m\|},&
+ \Lambda(\alpha)&:=\max_{0\le z\le1}(1-z)\frac{\sinh(\alpha z)}{\alpha z}.
+\end{align}
+Use the continuous extension at $z=0$. The radial and transverse singular values of $D_m\mathcal S_x$ are exactly
+\begin{align}\label{eq:sharp-step-singular-values}
+ \sigma_\parallel&=\eta(1-z)^2,&
+ \sigma_\perp&=\eta(1-z)\frac{\sinh(\alpha z)}{\alpha z}.
+\end{align}
+Consequently, the optimal global Lipschitz constant from the tangent metric to geodesic distance is $\eta\Lambda(\alpha)$, independently of $K$. In particular,
+\begin{align}
+ d_K(\mathcal S_x(m),\mathcal S_x(m'))
+ &\le\eta\|m-m'\|\qquad\text{if }\alpha\le\alpha_c,\label{eq:sharp-step-lipschitz}\\
+ \alpha_c&:=\inf_{\lambda>0}
+ \frac{\lambda\sinh\lambda}{\sinh\lambda-\lambda}
+ \ge\sqrt6.
+\end{align}
+For $d=1$, the optimal constant is $\eta$ for every $\alpha$.
+\end{theorem}
+\begin{proof}
+The radial and transverse eigenspaces of the normalization differential agree with those of the Jacobi operator. Their singular values therefore multiply exactly, giving Eq.~\eqref{eq:sharp-step-singular-values}. Integrating the differential along the segment from $m$ to $m'$ proves the global upper bound. Conversely, small increments in a maximizing transverse direction approach the differential norm, so the constant is optimal.
+
+Since the radial supremum is $\eta$ and the transverse factor equals one at $z=0$, $\Lambda(\alpha)=1$ precisely when
+\begin{align}
+ (1-\lambda/\alpha)\frac{\sinh\lambda}{\lambda}&\le1
+ \quad(0<\lambda<\alpha)\\
+ &\Longleftrightarrow\quad
+ \alpha\le\frac{\lambda\sinh\lambda}{\sinh\lambda-\lambda}
+ \quad(0<\lambda<\alpha).
+\end{align}
+The right-hand ratio is larger than $\lambda$. Thus taking its infimum over all positive $\lambda$ gives exactly the threshold $\alpha_c$.
+Euler's product for $\sinh$ \citep[Eq.~4.36.1]{nistDLMF} gives the explicit sufficient threshold:
+\begin{align}
+ \log\frac{\sinh t}{t}
+ &=\sum_{k\ge1}\log\left(1+\frac{t^2}{\pi^2k^2}\right)
+ \le\frac{t^2}{6},\\
+ \log\left[(1-z)\frac{\sinh(\alpha z)}{\alpha z}\right]
+ &\le\log(1-z)+\alpha^2z^2/6
+ \le-z+z^2\le0\qquad(\alpha^2\le6).
+\end{align}
+In dimension one only the radial singular value is present.
+\end{proof}
+
+The cancellation matters: multiplying a worst-case Jacobi expansion by a separate nonexpansiveness bound would give $\eta\sinh(\alpha)/\alpha$. Retaining their common radial variable gives the exact smaller factor $\eta\Lambda(\alpha)$, and in the stated regime removes this extra velocity-amplification factor entirely. Base-point sensitivity remains a separate issue in the coupled stability analysis.
+
+The normalization map is nonexpansive and caps step length, but its radial derivative is smaller than its transverse derivative. Thus its benefit is a bound on finite-displacement amplification, with a corresponding change in the descent scale. Because normalization is nonlinear, an unbiased tangent oracle does not in general remain unbiased after normalization; the following example and bias bound make this distinction explicit.
+
+\begin{proposition}[Normalization bias]
+\begin{align}
+ \Pr(\widehat g=2)&=1/3,&\Pr(\widehat g=-1)&=2/3,&\mathbb E\widehat g&=0,\\
+ \mathbb EN_\gamma(\widehat g)
+ &=\frac2{3(1+2\gamma)}-\frac2{3(1+\gamma)}
+ =\frac{-2\gamma}{3(1+2\gamma)(1+\gamma)}\ne0.
+\end{align}
+\end{proposition}
+
+\begin{proposition}[Optimal Lipschitz constant of the normalization Jacobian]
+\label{prop:sharp-normalization-jacobian}
+For $\gamma\ge0$,
+\begin{align}
+ \|DN_\gamma(v)-DN_\gamma(w)\|_{\rm op}&\le2\gamma\|v-w\|,\\
+ \|N_\gamma(v+\xi)-N_\gamma(v)-DN_\gamma(v)\xi\|
+ &\le\gamma\|\xi\|^2.
+\end{align}
+For $\gamma>0$, neither universal constant can be reduced.
+\end{proposition}
+\begin{proof}
+For $v\ne0$, put $r=\|v\|$, $e=v/r$, and $a(r)=(1+\gamma r)^{-1}$. For a unit vector $h$, let $t=\langle e,h\rangle^2$ and $c=(1-\gamma r)/(1+\gamma r)\in[-1,1]$.
+\begin{align}
+ \|D^2N_\gamma(v)[h,h]\|^2
+ &=\frac{\gamma^2}{(1+\gamma r)^4}
+ \bigl[(1+ct)^2+4t(1-t)\bigr]\\
+ &\le\frac{\gamma^2}{(1+\gamma r)^4}(1+6t-3t^2)
+ \le4\gamma^2.
+\end{align}
+Polarization of the symmetric bilinear map $B=D^2N_\gamma(v)$ yields, for unit $h,k$,
+\begin{align}
+ \|B[h,k]\|
+ &\le\tfrac14\bigl(\|B[h+k,h+k]\|+\|B[h-k,h-k]\|\bigr)\\
+ &\le\tfrac{2\gamma}{4}(\|h+k\|^2+\|h-k\|^2)=2\gamma.
+\end{align}
+Integrate along the segment from $v$ to $w$, splitting at zero if necessary; $DN_\gamma$ is continuous there. The Taylor remainder is then bounded by
+\begin{align}
+ \left\|\int_0^1[DN_\gamma(v+s\xi)-DN_\gamma(v)]\xi\,ds\right\|
+ &\le\int_0^12\gamma s\|\xi\|^2\,ds=\gamma\|\xi\|^2.
+\end{align}
+For a unit $e$, the limits
+\begin{align}
+ \lim_{r\downarrow0}\frac{\|DN_\gamma(re)-DN_\gamma(0)\|_{\rm op}}r&=2\gamma,\\
+ \lim_{r\downarrow0}\frac{\|N_\gamma(re)-re\|}{r^2}&=\gamma
+\end{align}
+prove optimality. The case $\gamma=0$ is immediate.
+\end{proof}
+
+\begin{corollary}[Conditional normalization bias]
+For predictable $v$ and $\mathbb E_t\xi=0$,
+\begin{align}
+ \|\mathbb E_tN_\gamma(v+\xi)-N_\gamma(v)\|
+ &\le\gamma\mathbb E_t\|\xi\|^2,\\
+ \mathbb E_t\|N_\gamma(v+\xi)-N_\gamma(v)\|^2
+ &\le\mathbb E_t\|\xi\|^2
+ -\mathbb E_t\|\xi-N_\gamma(v+\xi)+N_\gamma(v)\|^2
+ \le\mathbb E_t\|\xi\|^2.
+\end{align}
+In the current momentum update,
+\begin{align}
+ \bar p_t&=\beta P_{t-1}p_{t-1}+(1-\beta)A_tg_t,\\
+ \xi_t^p&=(1-\beta)A_t(\widehat g_t-g_t),\\
+ \|\mathbb E_tN_\gamma(p_t)-N_\gamma(\bar p_t)\|
+ &\le\frac{\gamma(1-\beta)^2a_+^2\sigma_q^2}{\mathfrak b_t}.
+\end{align}
+\end{corollary}
+\begin{proof}
+The linear Taylor term has conditional expectation $DN_\gamma(v)\mathbb E_t\xi=0$. Apply the optimal remainder bound. For the second moment, firm nonexpansiveness gives
+\begin{align}
+ \|N_\gamma(v+\xi)-N_\gamma(v)\|^2
+ +\|\xi-N_\gamma(v+\xi)+N_\gamma(v)\|^2\le\|\xi\|^2.
+\end{align}
+Taking conditional expectations retains the nonnegative damping term rather than discarding it.
+The bias constant is also optimal under conditional centering: in one dimension take $v=r>0$ and $\xi=\pm r^2$ with equal probabilities. Since $N_\gamma''(s)=-2\gamma/(1+\gamma s)^3$ for $s>0$, the centered second difference gives
+\begin{align}
+ \lim_{r\downarrow0}
+ \frac{|\mathbb E N_\gamma(r+\xi)-N_\gamma(r)|}{\mathbb E\xi^2}=\gamma.
+\end{align}
+\end{proof}

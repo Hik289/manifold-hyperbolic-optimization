@@ -1,0 +1,19 @@
+% WWW_REFERENCE_STYLE
+\begin{table}[!htbp]
+\centering
+\caption{\textbf{Available full-length endpoints.} MovieLens-1M product-distance MF, 1000 epochs. Final all-item user-macro scores after chronological splitting and observed-item masking. NDCG@20 is primary; Recall@20 is secondary. Both are percentages. 5/8 registered methods complete; all completed rows are shown. 3 methods are deferred by the budget amendment. Bold compares only the displayed completed rows, including rounded ties; B5 is shaded. Seed 42, fixed starting configuration, no equal-budget hyperparameter search.}
+\label{tab:revision-recommendation-audit}
+\footnotesize\setlength{\tabcolsep}{5pt}\renewcommand{\arraystretch}{1.12}
+\begin{tabular}{lrr}
+\toprule
+Method & NDCG@20 $\uparrow$ & Recall@20 $\uparrow$ \\
+\midrule
+E & \textbf{4.2943} & \textbf{11.5563} \\
+B3 & 2.2072 & 5.4967 \\
+\rowcolor{oursbg}
+B5 & 2.1560 & 5.5464 \\
+A5 & 2.1560 & 5.5464 \\
+B35 & 2.2069 & 5.4967 \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,9 @@
+{
+  "family": "graph",
+  "dataset": "pubmed",
+  "model": "sage",
+  "method": "B5",
+  "epochs": 1000,
+  "seed": 42,
+  "id": "graph_pubmed_sage_B5"
+}

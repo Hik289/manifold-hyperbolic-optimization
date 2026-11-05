@@ -1,0 +1,175 @@
+\subsection{Hessian spectra, profiling, and group heterogeneity}
+The geometric conditioning and representation capacity of curvature must be evaluated together. The squared-distance calculation gives an exact conditioning factor for a tractable class of objectives. Profiling then accounts for the movement of the representation optimum, and the group-gap calculation quantifies a possible approximation benefit under explicit separability assumptions.
+\begin{proposition}[Polar metric and distance Hessian]
+\label{prop:squared-hessian}
+For $r=d_K(x,y)$ and $h_y(x)=r^2/2$,
+\begin{align}
+ g_K&=dr^2+\frac{\sinh^2(\sqrt Kr)}K\,g_{\mathbb S^{d-1}},\\
+ \operatorname{Hess}r
+ &=\sqrt K\coth(\sqrt Kr)(g_K-dr\otimes dr),\\
+ \operatorname{Hess}h_y
+ &=dr\otimes dr+\sqrt Kr\coth(\sqrt Kr)(g_K-dr\otimes dr),\\
+ \sigma(\operatorname{Hess}h_y)
+ &=\{1,\sqrt Kr\coth(\sqrt Kr),\ldots,\sqrt Kr\coth(\sqrt Kr)\}.
+\end{align}
+If $d_K(x,y)\le D$,
+\begin{align}
+ I\preceq\operatorname{Hess}h_y\preceq\zeta_K(D)I,
+ \qquad\zeta_K(D):=\sqrt KD\coth(\sqrt KD).
+\end{align}
+\end{proposition}
+\begin{proof}
+Let $a(r)=\sinh(\sqrt Kr)/\sqrt K$ and $E$ be a unit angular vector.
+\begin{align}
+ g_K(E,E)&=1,&\nabla_E\partial_r&=\frac{a'(r)}{a(r)}E,\\
+ \operatorname{Hess}r(E,E)&=\frac{a'}a=\sqrt K\coth(\sqrt Kr),\\
+ \operatorname{Hess}r(\partial_r,\cdot)&=0,\\
+ \operatorname{Hess}(r^2/2)&=dr\otimes dr+r\operatorname{Hess}r,\\
+ \frac d{dz}(z\coth z)
+ &=\frac{\sinh z\cosh z-z}{\sinh^2z}\ge0,\\
+ \sinh z\cosh z-z&=\int_0^z2\sinh^2s\,ds\ge0,\\
+ z\coth z&=1+z^2/3-z^4/45+O(z^6).
+\end{align}
+\end{proof}
+
+\begin{corollary}[Fr\'echet-type objectives]
+For $f_K(x)=\mathbb E_y[d_K(x,y)^2/2]+R(x)$ with
+$\mu_RI\preceq\operatorname{Hess}R\preceq L_RI$ and
+$d_K(x,y)\le D$,
+\begin{align}
+ (1+\mu_R)I&\preceq\operatorname{Hess}f_K
+ \preceq(\zeta_K(D)+L_R)I,\\
+ \kappa(\operatorname{Hess}f_K)
+ &\le\frac{\zeta_K(D)+L_R}{1+\mu_R},\\
+ d_K(x,o_K),d_K(y,o_K)\le R&\Longrightarrow D\le2R.
+\end{align}
+\end{corollary}
+\begin{proof}
+\begin{align}
+ \operatorname{Hess}\mathbb E_yh_y
+ &=\mathbb E_y\operatorname{Hess}h_y,\\
+ d_K(x,y)&\le d_K(x,o_K)+d_K(o_K,y).
+\end{align}
+\end{proof}
+
+\begin{proposition}[Asymptotic growth matching]
+For $d>1$, $b>1$, $\Delta r>0$,
+\begin{align}
+ \operatorname{Area}_K(r)
+ &=\omega_{d-1}\left(\frac{\sinh(\sqrt Kr)}{\sqrt K}\right)^{d-1},\\
+ \lim_{r\to\infty}\frac1r\log\operatorname{Area}_K(r)
+ &=(d-1)\sqrt K,\\
+ \lim_{\ell\to\infty}\frac1{\ell\Delta r}\log b^\ell
+ &=\frac{\log b}{\Delta r},\\
+ (d-1)\sqrt{K_{\rm match}}=\frac{\log b}{\Delta r}
+ &\Longleftrightarrow
+ K_{\rm match}=\left(\frac{\log b}{(d-1)\Delta r}\right)^2.\label{eq:capacity-heuristic}
+\end{align}
+\end{proposition}
+\begin{proof}
+\begin{align}
+ \log\sinh z&=z-\log2+\log(1-e^{-2z}),\\
+ \frac{\log\operatorname{Area}_K(r)}r
+ &=\frac{\log\omega_{d-1}}r+
+ (d-1)\left[\sqrt K-\frac{\log(2\sqrt K)}r+
+ \frac{\log(1-e^{-2\sqrt Kr})}r\right].
+\end{align}
+\end{proof}
+
+Growth matching identifies an asymptotic capacity scale; it does not by itself minimize a finite-data training loss. To study the loss, we instead follow a locally regular branch of representation optima. The Schur complement below shows that allowing representations to readjust subtracts a positive semidefinite term from the curvature Hessian. Consequently, positive curvature-block curvature at fixed representations need not imply a convex profiled problem.
+
+\begin{assumption}[Profile regularity]
+For every $u$ in an open set, let
+\begin{align}
+ q^*(u)&\in\arg\min_qF(q,u),&
+ \operatorname{grad}_qF(q^*(u),u)&=0,\\
+ H_{qq}(u)&:=\operatorname{Hess}_{qq}F(q^*(u),u)\succeq\mu I,&\mu&>0,\\
+ \|H_{qu}(u)\|&\le B,&H_{uu}(u)&\succeq-L_{uu}I.
+\end{align}
+The branch $q^*$ is locally $C^1$ and $F$ is $C^2$.
+\end{assumption}
+\begin{proposition}[Implicit optimum derivative and Schur complement]
+\label{prop:rigid-profile}
+The envelope theorem \citep{milgrom2002envelope} and the implicit function theorem give, for $\phi(u)=F(q^*(u),u)$,
+\begin{align}
+ D_uq^*(u)&=-H_{qq}(u)^{-1}H_{qu}(u),\\
+ \|D_uq^*(u)\|&\le B/\mu,\\
+ \nabla\phi(u)&=\nabla_uF(q^*(u),u),\\
+ \nabla^2\phi(u)&=H_{uu}-H_{uq}H_{qq}^{-1}H_{qu},\\
+ \nabla^2\phi(u)&\succeq-(L_{uu}+B^2/\mu)I,\\
+ \nabla^2[\phi(u)+\lambda\|u-u_0\|^2]
+ &\succeq(2\lambda-L_{uu}-B^2/\mu)I.
+\end{align}
+\end{proposition}
+\begin{proof}
+At $q^*(u)$ choose normal coordinates in $q$ and differentiate
+$\operatorname{grad}_qF(q^*(u),u)=0$:
+\begin{align}
+ H_{qq}D_uq^*+H_{qu}&=0,\\
+ D\phi[h]&=F_q[D_uq^*h]+F_u[h]=F_u[h],\\
+ D^2\phi[h,h]
+ &=\langle h,H_{uu}h\rangle-
+ \langle H_{qu}h,H_{qq}^{-1}H_{qu}h\rangle\\
+ &\ge-L_{uu}\|h\|^2-\mu^{-1}B^2\|h\|^2.
+\end{align}
+\end{proof}
+
+\begin{proposition}[Sharp heterogeneity bounds by weighted projection]
+\label{prop:group-gap}
+Let $I$ be an interval, $w_g>0$, $\sum_gw_g=1$, and
+$0<\mu_g\le f_g''\le L_g$ on $I$, with $u_g^*\in I$ and $f_g'(u_g^*)=0$.
+Define
+\begin{align}
+ a_g&:=w_g\mu_g,&b_g&:=w_gL_g,\\
+ A&:=\sum_ga_g,&B&:=\sum_gb_g,\\
+ u_a&:=A^{-1}\sum_ga_gu_g^*,&u_b&:=B^{-1}\sum_gb_gu_g^*,\\
+ V_a&:=\sum_ga_g(u_g^*-u_a)^2,&V_b&:=\sum_gb_g(u_g^*-u_b)^2,\\
+ \Delta_{\rm grp}&:=\min_{u\in I}\sum_gw_gf_g(u)-\sum_gw_gf_g(u_g^*).
+\end{align}
+Then the sharp bounds are
+\begin{align}\label{eq:sharp-group-gap}
+ \tfrac12V_a&\le\Delta_{\rm grp}\le\tfrac12V_b,\\
+ V_a&=A^{-1}\sum_{g<h}a_ga_h(u_g^*-u_h^*)^2.
+\end{align}
+Writing $\bar u=\sum_gw_gu_g^*$ and $V_*=\sum_gw_g(u_g^*-\bar u)^2$ recovers
+\begin{align}
+ \tfrac12(\min_g\mu_g)V_*\le\tfrac12V_a
+ \le\Delta_{\rm grp}\le\tfrac12V_b\le\tfrac12(\max_gL_g)V_*.
+\end{align}
+Both endpoints are attained by admissible quadratic profiles; if $\mu_g=L_g$ for every group, the lower and upper bounds coincide exactly.
+\end{proposition}
+\begin{proof}
+Taylor's integral formula at $u_g^*$ gives
+\begin{align}
+ \tfrac12\mu_g(u-u_g^*)^2
+ &\le f_g(u)-f_g(u_g^*)\le\tfrac12L_g(u-u_g^*)^2.
+\end{align}
+The weighted projection identity yields
+\begin{align}
+ \sum_ga_g(u-u_g^*)^2&=A(u-u_a)^2+V_a,\\
+ AV_a&=A\sum_ga_g(u_g^*)^2-\left(\sum_ga_gu_g^*\right)^2
+ =\sum_{g<h}a_ga_h(u_g^*-u_h^*)^2.
+\end{align}
+Minimizing the lower quadratic and evaluating the upper quadratic at $u_b\in I$ prove Eq.~\eqref{eq:sharp-group-gap}. Finally,
+\begin{align}
+ V_a&=\min_u\sum_gw_g\mu_g(u-u_g^*)^2\ge(\min_g\mu_g)V_*,\\
+ V_b&\le\sum_gw_gL_g(\bar u-u_g^*)^2\le(\max_gL_g)V_*.
+\end{align}
+The profiles $f_g(u)=\mu_g(u-u_g^*)^2/2+c_g$ attain the lower endpoint; replacing $\mu_g$ by $L_g$ attains the upper endpoint.
+\end{proof}
+
+The bound is a weighted distance to the shared-curvature subspace. Keeping the individual Hessian bounds weights disagreement by each group's sensitivity, rather than charging every group the smallest $\mu_g$ or largest $L_g$. The pairwise formula shows which incompatible group preferences contribute to the approximation cost, and the quadratic equality cases establish exactly which constants are sharp.
+
+\begin{corollary}[Exact quadratic profile]
+For $f_g(u)=a_g(u-u_g^*)^2/2+c_g$, $a_g>0$,
+\begin{align}
+ u_{\rm shared}^*&=\frac{\sum_gw_ga_gu_g^*}{\sum_gw_ga_g},\\
+ \Delta_{\rm grp}&=\frac12\sum_gw_ga_g(u_g^*-u_{\rm shared}^*)^2.
+\end{align}
+\end{corollary}
+\begin{proof}
+\begin{align}
+ \frac d{du}\sum_gw_gf_g(u)&=u\sum_gw_ga_g-\sum_gw_ga_gu_g^*,\\
+ \frac {d^2}{du^2}\sum_gw_gf_g(u)&=\sum_gw_ga_g>0.
+\end{align}
+\end{proof}

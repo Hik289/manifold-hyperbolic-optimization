@@ -1,0 +1,23 @@
+{
+  "family": "mechanism",
+  "dataset": "static",
+  "model": "independent_lorentz",
+  "epochs": 2000,
+  "seed": 42,
+  "nodes_per_group": 250,
+  "dim": 3,
+  "branchings": [
+    2,
+    4,
+    8,
+    16
+  ],
+  "schedule": "static",
+  "scale_end": 1.0,
+  "lr": 100.0,
+  "rho": 0.01,
+  "beta": 0.98,
+  "priority": 0,
+  "method": "A5",
+  "id": "mechanism_static_independent_lorentz_3_A5"
+}

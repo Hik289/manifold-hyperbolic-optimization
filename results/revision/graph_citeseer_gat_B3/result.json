@@ -1,0 +1,47 @@
+{
+  "selected_epoch": 16,
+  "selected_test": {
+    "accuracy": 0.6540000438690186,
+    "macro_f1": 0.6126765558712971
+  },
+  "status": "complete",
+  "config": {
+    "family": "graph",
+    "dataset": "citeseer",
+    "model": "gat",
+    "method": "B3",
+    "epochs": 1000,
+    "seed": 42,
+    "id": "graph_citeseer_gat_B3"
+  },
+  "final": {
+    "epoch": 999,
+    "task": 0,
+    "train_loss": 0.006778480019420385,
+    "seconds": 83.15771842002869,
+    "K": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "learning_rate": 0.1,
+    "curvature_learning_rate": 0.001,
+    "peak_memory_mb": 88.595968,
+    "grad_norm": 0.0033511894289404154,
+    "momentum_norm": 0.0033837936352938414,
+    "exp_argument": 0.0003383793809916824,
+    "radius_clipped_fraction": 0.0,
+    "manifold_residual": 1.9073486328125e-06,
+    "tangent_residual": 7.450580596923828e-09,
+    "mean_radius": 2.3956735134124756,
+    "val_accuracy": 0.6360000371932983,
+    "val_macro_f1": 0.6085992207419655,
+    "test_accuracy": 0.6470000147819519,
+    "test_macro_f1": 0.6104156632616538
+  },
+  "best_validation": 0.6840000152587891,
+  "epochs_completed": 1000
+}

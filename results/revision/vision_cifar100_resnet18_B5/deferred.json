@@ -1,0 +1,9 @@
+{
+  "status": "deferred_scope",
+  "amendment_id": "2026-11-04-budget-reduction",
+  "changed_unix": 1793815473.5339818,
+  "not_started": false,
+  "reason": "Deferred by user-authorized compute-budget reduction; not a numerical failure or completed benchmark.",
+  "last_observed_epoch_zero_based": 419,
+  "registered_epochs": 1000
+}

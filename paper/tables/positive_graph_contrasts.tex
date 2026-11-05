@@ -1,0 +1,20 @@
+% WWW_REFERENCE_STYLE
+\begin{table*}[t]
+\centering
+\caption{\textbf{Positive final-checkpoint graph contrasts against B3.} These five rows are an outcome-selected subset of all 12 completed dataset--encoder pairs; the complete matrix is in Table~\ref{tab:revision-breadth}. Accuracy and differences are in percent and percentage points, respectively. All runs finish 1000 epochs, seed 42. $\Delta_{\rm val}$ separately compares test accuracy at checkpoints selected by validation accuracy; it is not used to choose the displayed endpoint. A dash denotes an unavailable selected-checkpoint record. Bold marks the best displayed final accuracy, including rounded ties, not significance or a family-level win.}
+\label{tab:positive-graph-contrasts}
+\footnotesize\setlength{\tabcolsep}{6pt}\renewcommand{\arraystretch}{1.12}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{lrrrrrr}
+\toprule
+Dataset / encoder & E & B3 & B5 & A5 & $\Delta_{\rm final}$ & $\Delta_{\rm val}$ \\
+\midrule
+ogbn-arxiv / GAT & \textbf{68.420} & 62.329 & \cellcolor{oursbg}62.406 & 62.447 & +0.076 & +0.076 \\
+ogbn-arxiv / GraphSAGE & \textbf{68.321} & 63.389 & \cellcolor{oursbg}63.667 & 63.502 & +0.278 & +0.276 \\
+Citeseer / GraphSAGE & 62.300 & 66.500 & \cellcolor{oursbg}\textbf{66.600} & \textbf{66.600} & +0.100 & -0.300 \\
+Cora / GCN & \textbf{77.800} & 77.100 & \cellcolor{oursbg}77.200 & 77.200 & +0.100 & -- \\
+PubMed / GraphSAGE & 74.200 & 75.100 & \cellcolor{oursbg}\textbf{75.200} & \textbf{75.200} & +0.100 & -0.100 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table*}

@@ -1,0 +1,9 @@
+{
+  "family": "text",
+  "dataset": "20news",
+  "model": "mlp",
+  "method": "B4",
+  "epochs": 1000,
+  "seed": 42,
+  "id": "text_20news_mlp_B4"
+}

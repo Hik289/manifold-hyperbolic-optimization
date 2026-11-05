@@ -1,0 +1,18 @@
+{
+  "source_files_preserved": 57,
+  "numerical_kernels_byte_identical": 7,
+  "completed_records": 705,
+  "deferred_records": 188,
+  "delayed_test_blocks": 6,
+  "cpu_geometry": "passed",
+  "unit_tests": 4,
+  "reference_environment_task_paths": "passed",
+  "delayed_test_leakage_checks": "passed",
+  "paper_pages": 81,
+  "paper_compilation": "passed",
+  "undefined_citations_or_overfull_boxes": 0,
+  "paper_loss_figures_reproduced": 3,
+  "comparison_tables_reproduced": 2,
+  "privacy_audit_findings": 0,
+  "public_commit_identity": "Hik289 <Hik289@users.noreply.github.com>"
+}

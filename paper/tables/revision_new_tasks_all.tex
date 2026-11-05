@@ -1,0 +1,21 @@
+% WWW_REFERENCE_STYLE
+\begin{table*}[t]
+\centering
+\footnotesize\setlength{\tabcolsep}{4.2pt}\renewcommand{\arraystretch}{1.12}
+\caption{Final-checkpoint test scores in percent; higher is better. Taxonomy: filtered query MAP; links: balanced-pair AP; retrieval: same-class Recall@1. Each method selects from six runs by final validation metric; all 30 configurations finish before any test evaluation. Matched A5 uses B5\textquotesingle s selected learning rate and initial curvature. Seed 42; 1000 epochs. Every completed task is retained, including ties and negative differences.}
+\label{tab:new-tasks-all}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{lrrrrrr}
+\toprule
+Task & E & B3 & B35 & B5 & A5 & Matched A5 \\
+\midrule
+WordNet mammals & 8.26 & 8.49 & 8.31 & \cellcolor{oursbg}8.29 & \textbf{8.96} & 8.38 \\
+Cora links & \textbf{93.46} & \textbf{93.46} & \textbf{93.46} & \cellcolor{oursbg}\textbf{93.46} & \textbf{93.46} & \textbf{93.46} \\
+Digits retrieval & 96.39 & 96.67 & 96.67 & \cellcolor{oursbg}\textbf{96.94} & \textbf{96.94} & \textbf{96.94} \\
+WordNet vehicles & 8.42 & 8.40 & 7.80 & \cellcolor{oursbg}\textbf{8.50} & 8.27 & 8.27 \\
+Citeseer links & 91.91 & 91.91 & \textbf{91.92} & \cellcolor{oursbg}\textbf{91.92} & \textbf{91.92} & \textbf{91.92} \\
+20News retrieval & 42.31 & \textbf{43.49} & \textbf{43.49} & \cellcolor{oursbg}\textbf{43.49} & 43.45 & 43.45 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table*}

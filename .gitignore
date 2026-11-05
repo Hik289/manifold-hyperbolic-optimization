@@ -1,0 +1,40 @@
+# Local environments and downloaded datasets
+.venv/
+venv/
+data/
+artifacts/
+runs/
+historical_runs/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.DS_Store
+# Runtime state and model weights
+*.pt
+*.pth
+*.ckpt
+*.log
+*.lock
+.env
+.env.*
+*.pem
+*.key
+# Compilation and local packaging
+.latex-build/
+*.aux
+*.bbl.bak
+*.blg
+*.lof
+*.lot
+*.nav
+*.snm
+*.fdb_latexmk
+*.fls
+*.out
+*.synctex.gz
+*.toc
+deliverables/
+# Keep the compiled manuscript.
+!paper/main.pdf
+!paper/main.bbl

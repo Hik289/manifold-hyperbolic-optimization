@@ -1,0 +1,6 @@
+* text=auto eol=lf
+*.png binary
+*.pdf binary
+# Exact byte hashes are part of the recorded figure provenance.
+*.csv -text
+*.jsonl -text

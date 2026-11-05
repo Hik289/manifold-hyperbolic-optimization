@@ -1,0 +1,40 @@
+{
+  "selected_epoch": 46,
+  "selected_test": {
+    "accuracy": 0.6330000162124634,
+    "macro_f1": 0.5996649002593016
+  },
+  "status": "complete",
+  "config": {
+    "family": "graph",
+    "dataset": "citeseer",
+    "model": "sage",
+    "method": "E",
+    "epochs": 1000,
+    "seed": 42,
+    "id": "graph_citeseer_sage_E"
+  },
+  "final": {
+    "epoch": 999,
+    "task": 0,
+    "train_loss": 4.815907959709875e-05,
+    "seconds": 12.927610397338867,
+    "K": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "learning_rate": 0.1,
+    "curvature_learning_rate": 0.001,
+    "peak_memory_mb": 307.608576,
+    "val_accuracy": 0.64000004529953,
+    "val_macro_f1": 0.60700397680559,
+    "test_accuracy": 0.6230000257492065,
+    "test_macro_f1": 0.5951201239893562
+  },
+  "best_validation": 0.6580000519752502,
+  "epochs_completed": 1000
+}

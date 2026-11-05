@@ -1,0 +1,37 @@
+{
+  "status": "complete",
+  "config": {
+    "family": "synthetic",
+    "dataset": "binary",
+    "model": "product_lorentz",
+    "method": "B4",
+    "epochs": 2000,
+    "seed": 42,
+    "nodes": 1000,
+    "dim": 20,
+    "lr": 10.0,
+    "id": "synthetic_binary_product_lorentz_1000_20_B4"
+  },
+  "final": {
+    "epoch": 1999,
+    "train_loss": 0.41637179255485535,
+    "distortion_fixed_pairs": 0.6116123795509338,
+    "seconds": 190.05377578735352,
+    "K": [
+      0.9786523580551147,
+      0.9772135019302368,
+      0.9779229164123535,
+      0.9767548441886902
+    ],
+    "grad_norm": 6.206233956618235e-05,
+    "momentum_norm": 6.206233956618235e-05,
+    "exp_argument": 0.0014936281368136406,
+    "radius_clipped_fraction": 0.0,
+    "manifold_residual": 7.748603820800781e-06,
+    "tangent_residual": 6.984919309616089e-10,
+    "mean_radius": 1.6616394519805908,
+    "MAP": 0.00834897662108737,
+    "mean_rank": 440.5865865865866
+  },
+  "epochs_completed": 2000
+}

@@ -1,0 +1,40 @@
+{
+  "status": "complete",
+  "config": {
+    "family": "graph",
+    "dataset": "cora",
+    "model": "gcn",
+    "method": "B5",
+    "epochs": 1000,
+    "seed": 42,
+    "id": "graph_cora_gcn_B5"
+  },
+  "final": {
+    "epoch": 999,
+    "task": 0,
+    "train_loss": 0.009259477257728577,
+    "seconds": 71.96577668190002,
+    "K": [
+      0.9899401664733887,
+      0.9900870323181152,
+      0.9898532629013062,
+      0.9897775053977966,
+      0.9899253845214844,
+      0.9901390075683594,
+      0.9904974102973938
+    ],
+    "grad_norm": 0.0036756268236786127,
+    "momentum_norm": 0.003714140271767974,
+    "exp_argument": 0.0003681811213027686,
+    "radius_clipped_fraction": 0.0,
+    "manifold_residual": 5.125999450683594e-06,
+    "tangent_residual": 1.4901161193847656e-08,
+    "mean_radius": 2.499945640563965,
+    "val_accuracy": 0.7760000228881836,
+    "val_macro_f1": 0.7563018896325439,
+    "test_accuracy": 0.7720000147819519,
+    "test_macro_f1": 0.7692187340011181
+  },
+  "best_validation": 0.7920000553131104,
+  "epochs_completed": 1000
+}

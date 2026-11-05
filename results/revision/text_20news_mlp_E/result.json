@@ -1,0 +1,54 @@
+{
+  "selected_epoch": 426,
+  "selected_test": {
+    "accuracy": 0.6147105693817139,
+    "macro_f1": 0.6075048689203137
+  },
+  "status": "complete",
+  "config": {
+    "family": "text",
+    "dataset": "20news",
+    "model": "mlp",
+    "method": "E",
+    "epochs": 1000,
+    "seed": 42,
+    "id": "text_20news_mlp_E"
+  },
+  "final": {
+    "epoch": 999,
+    "task": 0,
+    "train_loss": 0.08037860572680312,
+    "seconds": 1043.425687789917,
+    "K": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "learning_rate": 0.1,
+    "curvature_learning_rate": 0.001,
+    "peak_memory_mb": 114.203648,
+    "val_accuracy": 0.6943463087081909,
+    "val_macro_f1": 0.6910280163167773,
+    "test_accuracy": 0.6141794919967651,
+    "test_macro_f1": 0.6065582897730177
+  },
+  "best_validation": 0.7111307382583618,
+  "epochs_completed": 1000
+}

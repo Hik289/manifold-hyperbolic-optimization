@@ -1,0 +1,15 @@
+\section{Dataset and Metric Details}
+
+WN18RR and FB15k-237 are evaluated as link-prediction knowledge graph datasets using Lorentz distance scoring with negative sampling. The WN18RR main comparison uses dimension 20 and 2000 epochs. Because evaluation occurs every 25 epochs, last-5 and last-10 moving averages correspond to the final 125 and 250 epochs respectively. Synthetic hierarchy experiments use four groups unless otherwise stated, with the principal variable-branching setting using branchings $[2,4,6,8]$ and the heterogeneity stress test using branchings $[2,8,32,128]$.
+
+The primary WN18RR table in \texttt{tables/table1\_kg\_wn18rr.csv} records B3 last-5 MRR 0.1332, B4 last-5 MRR 0.1345, B3 last-5 Hits@10 0.3510, B4 last-5 Hits@10 0.3652, B3 loss 2.1274, B4 loss 2.0680, B4 $K_{\mathrm{mean}}=1.2563$, and B4 $K_{\mathrm{std}}=0.2948$. The corresponding relation-curvature table records the high-to-low WN18RR range $2.000$ to $1.0084$. The synthetic convergence table records the exact checkpoints listed in Table~\ref{tab:g8}.
+
+\section{Implementation Notes}
+
+The revision base methods use pure FP32 Lorentz operations with every-step projection back to the manifold and tangent space; A6 explicitly disables tangent projection. Historical implementation details vary by script, and the KG Adam protocol is described in Section~\ref{sec:experiments}. The optimizer applies log-curvature clipping and a finite $K_{\max}$ cap; WN18RR uses the boundary-like high-curvature regime near $K=2$, whereas synthetic runs often remain interior. B3 freezes every group at $K=1$, B4 learns one curvature per group or relation, and B5 additionally transports momentum across curvature changes only in grouped-manifold synthetic experiments.
+
+\section{Additional Ablation Tables}
+
+For the synthetic rho sweep at 1000 epochs, B3 has distortion 0.24440. B4 changes from 0.24427 at $\rho=10^{-3}$ to 0.23984 at $\rho=10^{-2}$ and 0.23570 at $\rho=10^{-1}$, while B4 loss changes from 0.13537 to 0.13452 and then 0.13689. B5 tracks B4 closely: 0.24387, 0.23948, and 0.23508 across the same rho values. For the lambda sweep, $\lambda\in\{0,10^{-5},10^{-4},10^{-3}\}$ leaves B4 at 0.24427 with $\Kstd=0.0077$, while the qualitative $\lambda=1.0$ 500-epoch run has distortion 0.30139 and $\Kstd=0.0019$.
+
+For the 2000-epoch synthetic main table, the base variable-branching runs end at last-valid distortions 0.22604 for B3, 0.22638 for B4, and 0.22642 for B5; these values are effectively tied and support the statement that the synthetic benefit is not a final-value win. In the convergence-tuned runs, B3 reaches 0.22641, B4 reaches 0.22569, and B5 reaches 0.22555 at epoch 1999. These small terminal differences are much smaller than the mid-training gap and should be interpreted together with the FP32 floor.

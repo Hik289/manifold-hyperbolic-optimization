@@ -1,0 +1,170 @@
+{
+  "dataset": "digits_retrieval",
+  "family": "retrieval",
+  "metric": "recall1",
+  "configs_completed": 30,
+  "created_unix": 1793640708.873525,
+  "selected": {
+    "E": {
+      "id": "new_retrieval_digits_retrieval_E_s5",
+      "val_score": 0.9749303621169917,
+      "config": {
+        "suite": "new_tasks_v1",
+        "family": "retrieval",
+        "dataset": "digits_retrieval",
+        "model": "product_proxy",
+        "method": "E",
+        "epochs": 1000,
+        "seed": 42,
+        "dim": 8,
+        "groups": 4,
+        "lr": 1.0,
+        "rho": 0.01,
+        "beta": 0.9,
+        "init_K": 1.0,
+        "point_decay": 0.01,
+        "search_slot": 5,
+        "search_budget": 6,
+        "priority": 2,
+        "eval_every": 25,
+        "selection_metric": "recall1",
+        "id": "new_retrieval_digits_retrieval_E_s5"
+      }
+    },
+    "B3": {
+      "id": "new_retrieval_digits_retrieval_B3_s0",
+      "val_score": 0.9721448467966574,
+      "config": {
+        "suite": "new_tasks_v1",
+        "family": "retrieval",
+        "dataset": "digits_retrieval",
+        "model": "product_proxy",
+        "method": "B3",
+        "epochs": 1000,
+        "seed": 42,
+        "dim": 8,
+        "groups": 4,
+        "lr": 0.1,
+        "rho": 0.01,
+        "beta": 0.9,
+        "init_K": 0.1,
+        "point_decay": 0.0,
+        "search_slot": 0,
+        "search_budget": 6,
+        "priority": 2,
+        "eval_every": 25,
+        "selection_metric": "recall1",
+        "id": "new_retrieval_digits_retrieval_B3_s0"
+      }
+    },
+    "B35": {
+      "id": "new_retrieval_digits_retrieval_B35_s0",
+      "val_score": 0.9721448467966574,
+      "config": {
+        "suite": "new_tasks_v1",
+        "family": "retrieval",
+        "dataset": "digits_retrieval",
+        "model": "product_proxy",
+        "method": "B35",
+        "epochs": 1000,
+        "seed": 42,
+        "dim": 8,
+        "groups": 4,
+        "lr": 0.1,
+        "rho": 0.01,
+        "beta": 0.9,
+        "init_K": 0.1,
+        "point_decay": 0.0,
+        "search_slot": 0,
+        "search_budget": 6,
+        "priority": 2,
+        "eval_every": 25,
+        "selection_metric": "recall1",
+        "id": "new_retrieval_digits_retrieval_B35_s0"
+      }
+    },
+    "B5": {
+      "id": "new_retrieval_digits_retrieval_B5_s0",
+      "val_score": 0.9721448467966574,
+      "config": {
+        "suite": "new_tasks_v1",
+        "family": "retrieval",
+        "dataset": "digits_retrieval",
+        "model": "product_proxy",
+        "method": "B5",
+        "epochs": 1000,
+        "seed": 42,
+        "dim": 8,
+        "groups": 4,
+        "lr": 0.1,
+        "rho": 0.01,
+        "beta": 0.9,
+        "init_K": 0.1,
+        "point_decay": 0.0,
+        "search_slot": 0,
+        "search_budget": 6,
+        "priority": 2,
+        "eval_every": 25,
+        "selection_metric": "recall1",
+        "id": "new_retrieval_digits_retrieval_B5_s0"
+      }
+    },
+    "A5": {
+      "id": "new_retrieval_digits_retrieval_A5_s0",
+      "val_score": 0.9721448467966574,
+      "config": {
+        "suite": "new_tasks_v1",
+        "family": "retrieval",
+        "dataset": "digits_retrieval",
+        "model": "product_proxy",
+        "method": "A5",
+        "epochs": 1000,
+        "seed": 42,
+        "dim": 8,
+        "groups": 4,
+        "lr": 0.1,
+        "rho": 0.01,
+        "beta": 0.9,
+        "init_K": 0.1,
+        "point_decay": 0.0,
+        "search_slot": 0,
+        "search_budget": 6,
+        "priority": 2,
+        "eval_every": 25,
+        "selection_metric": "recall1",
+        "id": "new_retrieval_digits_retrieval_A5_s0"
+      }
+    }
+  },
+  "test": {
+    "E": {
+      "recall1": 0.9638888888888889,
+      "ndcg10": 0.962623331654403
+    },
+    "B3": {
+      "recall1": 0.9666666666666667,
+      "ndcg10": 0.9592211574109064
+    },
+    "B35": {
+      "recall1": 0.9666666666666667,
+      "ndcg10": 0.9588491336959931
+    },
+    "B5": {
+      "recall1": 0.9694444444444444,
+      "ndcg10": 0.9595461429200238
+    },
+    "A5": {
+      "recall1": 0.9694444444444444,
+      "ndcg10": 0.9595321586355567
+    }
+  },
+  "matched_A5": {
+    "id": "new_retrieval_digits_retrieval_A5_s0",
+    "test": {
+      "recall1": 0.9694444444444444,
+      "ndcg10": 0.9595321586355567
+    }
+  },
+  "data_sha256": "a052cdcf16e4299ed35ed264fcbacc585f0c165fe039d6b304b4a0b485bd4b47",
+  "selection_scope": "Entire 30-run matrix completed before test release. No test-based hyperparameter choice. Exploratory single-seed extension; all task outcomes retained."
+}

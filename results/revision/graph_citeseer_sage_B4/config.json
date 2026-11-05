@@ -1,0 +1,9 @@
+{
+  "family": "graph",
+  "dataset": "citeseer",
+  "model": "sage",
+  "method": "B4",
+  "epochs": 1000,
+  "seed": 42,
+  "id": "graph_citeseer_sage_B4"
+}

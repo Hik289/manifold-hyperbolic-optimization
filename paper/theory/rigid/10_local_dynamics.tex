@@ -1,0 +1,294 @@
+\subsection{Local spectrum of the coupled momentum--curvature dynamics}
+\label{app:rigid-local-spectrum}
+Finite-time descent controls averaged stationarity but does not establish attraction to a particular critical point. We now examine the deterministic interior update near such a point. Its augmented Jacobian retains the mixed Hessian blocks, which determine whether representation and curvature updates stabilize or destabilize one another. The spectral calculation is followed by a quantitative nonlinear neighborhood argument.
+\begin{assumption}[Interior critical point]
+Let $(q_*,u_*)$ satisfy
+\begin{align}
+ \operatorname{grad}_qF(q_*,u_*)&=0,&\nabla_uF(q_*,u_*)&=0,\\
+ H&=\begin{pmatrix}H_{qq}&H_{qu}\\H_{uq}&H_{uu}\end{pmatrix},&
+ A_*&=A(u_*)\succ0.
+\end{align}
+Use normal coordinates $\xi$ centered at $q_*$ and the exact deterministic interior dynamics in Eq.~\eqref{eq:rigid-full-update}.
+\end{assumption}
+
+\begin{proposition}[Linearized augmented update]
+For the state $(\xi,u-u_*,m)$ with $m$ the carried canonical momentum,
+\begin{align}
+ \mathcal T(0,u_*,0)&=(0,u_*,0),&
+ \delta_\beta&=1-\beta,\\
+ D\mathcal T_*&=
+ \begin{pmatrix}
+ I-\eta\delta_\beta A_*H_{qq}&-\eta\delta_\beta A_*H_{qu}&-\eta\beta I\\
+ -\rho H_{uq}&I-\rho H_{uu}&0\\
+ \delta_\beta A_*H_{qq}&\delta_\beta A_*H_{qu}&\beta I
+ \end{pmatrix}.\label{eq:rigid-local-jacobian}
+\end{align}
+\end{proposition}
+\begin{proof}
+At the critical point,
+\begin{align}
+ \operatorname{grad}_qF(q,u)
+ &=H_{qq}\xi+H_{qu}(u-u_*)+o(\|\xi\|+\|u-u_*\|),\\
+ \nabla_uF(q,u)
+ &=H_{uq}\xi+H_{uu}(u-u_*)+o(\|\xi\|+\|u-u_*\|),\\
+ D[A(u)\operatorname{grad}_qF]_*&=A_*D\operatorname{grad}_qF,\\
+ N_\gamma(0)&=0,&DN_\gamma(0)&=I,\\
+ \bar m&=\beta m+\delta_\beta A_*[H_{qq}\xi+H_{qu}(u-u_*)]+o(\|\mathrm{state}\|),\\
+ \xi^+&=\xi-\eta\bar m+o(\|\mathrm{state}\|),\\
+ m^+&=\bar m+o(\|\mathrm{state}\|),\\
+ u^+-u_*&=(u-u_*)-\rho[H_{uq}\xi+H_{uu}(u-u_*)]+o(\|\mathrm{state}\|).
+\end{align}
+\end{proof}
+
+
+\begin{proposition}[Characteristic block polynomial]
+For $\zeta\ne0$, $\zeta\in\sigma(D\mathcal T_*)$ if and only if
+\begin{align}
+ \det\begin{pmatrix}
+ (\zeta-\beta)(\zeta-1)I+\eta\zeta\delta_\beta A_*H_{qq}&
+ \eta\zeta\delta_\beta A_*H_{qu}\\
+ \rho H_{uq}&(\zeta-1)I+\rho H_{uu}
+ \end{pmatrix}=0.
+\end{align}
+\end{proposition}
+\begin{proof}
+For an eigenvector $(\xi,v,m)$,
+\begin{align}
+ \zeta\xi&=\xi-\eta\zeta m,&
+ \zeta m&=\beta m+\delta_\beta A_*(H_{qq}\xi+H_{qu}v),\\
+ m&=\frac{1-\zeta}{\eta\zeta}\xi,\\
+ [(\zeta-\beta)(\zeta-1)I+\eta\zeta\delta_\beta A_*H_{qq}]\xi
+ &+\eta\zeta\delta_\beta A_*H_{qu}v=0,\\
+ \rho H_{uq}\xi+[(\zeta-1)I+\rho H_{uu}]v&=0.
+\end{align}
+Conversely, a nonzero solution $(\xi,v)$ of the last two equations determines $m$ by the third line.
+\end{proof}
+
+\begin{corollary}[Uncoupled modal stability]
+\label{cor:rigid-modal-stability}
+If $H_{qu}=0$, let
+\begin{align}
+ \lambda_j&\in\sigma(A_*^{1/2}H_{qq}A_*^{1/2}),&
+ \mu_k&\in\sigma(H_{uu}).
+\end{align}
+The representation modes solve
+\begin{align}
+ \zeta^2-[1+\beta-\eta(1-\beta)\lambda_j]\zeta+\beta&=0,
+\end{align}
+and the curvature modes are $\zeta_k=1-\rho\mu_k$.
+For $0\le\beta<1$, all these modes lie in the open unit disk if and only if
+\begin{align}
+ 0<\eta(1-\beta)\lambda_j&<2(1+\beta)\quad(\forall j),\\
+ 0<\rho\mu_k&<2\quad(\forall k).
+\end{align}
+\end{corollary}
+\begin{proof}
+For $p(\zeta)=\zeta^2-a\zeta+\beta$, the real quadratic Schur conditions are
+\begin{align}
+ 1-a+\beta&>0,&1+a+\beta&>0,&1-\beta&>0.
+\end{align}
+Substitution of $a=1+\beta-\eta(1-\beta)\lambda_j$ gives the first condition. The scalar curvature condition is $|1-\rho\mu_k|<1$.
+\end{proof}
+
+\begin{proposition}[Zero-momentum coupled spectrum]
+For $\beta=0$, let $D=\operatorname{diag}(\eta A_*,\rho I)$. The prediction-state Jacobian is $I-DH$ and the additional momentum eigenvalues are zero:
+\begin{align}
+ \sigma(I-DH)&=\sigma(I-D^{1/2}HD^{1/2}).
+\end{align}
+Thus local Schur stability is equivalent to
+\begin{align}
+ 0&\prec D^{1/2}HD^{1/2}\prec2I.
+\end{align}
+Moreover,
+\begin{align}
+ H\succ0\quad\Longleftrightarrow\quad
+ H_{qq}\succ0,\qquad H_{uu}-H_{uq}H_{qq}^{-1}H_{qu}\succ0.
+\end{align}
+\end{proposition}
+\begin{proof}
+\begin{align}
+ D^{-1/2}(I-DH)D^{1/2}&=I-D^{1/2}HD^{1/2},\\
+ \begin{pmatrix}I&0\\-H_{uq}H_{qq}^{-1}&I\end{pmatrix}
+ H
+ \begin{pmatrix}I&-H_{qq}^{-1}H_{qu}\\0&I\end{pmatrix}
+ &=\operatorname{diag}(H_{qq},H_{uu}-H_{uq}H_{qq}^{-1}H_{qu}).
+\end{align}
+\end{proof}
+
+The Schur complement inertia criterion \citep{horn2013matrix} connects the profiled objective to the coupled stability test. It accounts for the representation's response to curvature changes. In particular, separate positive diagonal Hessian blocks are insufficient if their coupling makes this complement indefinite. Normalization has a different role locally: its derivative at zero momentum is the identity, so its influence begins beyond first order.
+
+\begin{corollary}[Normalization and linearization]
+For every $\gamma\ge0$,
+\begin{align}
+ DN_\gamma(0)&=I,&\partial_\gamma D\mathcal T_*&=0.
+\end{align}
+Curvature--momentum normalization changes finite-displacement sensitivity, while its first-order linearization at a zero-momentum critical point is independent of $\gamma$.
+\end{corollary}
+
+
+\begin{corollary}[Softplus-coordinate linearization]
+For $B_*=\operatorname{diag}(\psi'(c_{g,*})^2)$ and the softplus update of Proposition~\ref{prop:softplus-rigid}, replace the curvature row of Eq.~\eqref{eq:rigid-local-jacobian} by
+\begin{align}
+ \bigl(-\rho B_*H_{uq},\ I-\rho B_*H_{uu},\ 0\bigr).
+\end{align}
+The zero-momentum spectral criterion holds with
+$D=\operatorname{diag}(\eta A_*,\rho B_*)$.
+\end{corollary}
+\begin{proof}
+\begin{align}
+ D[B(u)\nabla_uF]_*&=B_*D\nabla_uF+DB_*\nabla_uF_*=B_*D\nabla_uF,\\
+ R_c&=O(\rho^2\|\nabla_uF\|^2)=o(\|\mathrm{state}\|).
+\end{align}
+\end{proof}
+
+\begin{theorem}[Slow-curvature eigenvalues and the profiled Hessian]
+\label{thm:rigid-slow-spectrum}
+Fix $\eta>0$ and $0\le\beta<1$. Assume $H_{qq}\succ0$ and that every eigenvalue $\lambda_j$ of $A_*^{1/2}H_{qq}A_*^{1/2}$ satisfies
+\begin{align}
+ 0<\eta(1-\beta)\lambda_j<2(1+\beta).
+\end{align}
+Let the symmetric profiled Hessian
+\begin{align}
+ S_*:=H_{uu}-H_{uq}H_{qq}^{-1}H_{qu}
+\end{align}
+have simple eigenvalues $\mu_1,\ldots,\mu_G$. As $\rho\downarrow0$, exactly $G$ eigenvalues of the augmented Jacobian approach one, with
+\begin{align}\label{eq:rigid-slow-spectrum}
+ \zeta_k(\rho)=1-\rho\mu_k+O(\rho^2),\qquad k=1,\ldots,G.
+\end{align}
+All remaining eigenvalues stay strictly inside the unit disk for sufficiently small $\rho$. Consequently, $S_*\succ0$ implies local Schur stability for all sufficiently small positive $\rho$; any $\mu_k<0$ implies instability for all sufficiently small positive $\rho$. For a positive softplus preconditioner $B_*$, the same statement holds with $\mu_k$ the simple eigenvalues of $B_*^{1/2}S_*B_*^{1/2}$.
+\end{theorem}
+\begin{proof}
+At $\rho=0$, the curvature state is fixed. The representation--momentum subsystem is Schur stable by Corollary~\ref{cor:rigid-modal-stability}, so its spectrum is separated from one. The $G$ eigenvalues at one are semisimple: writing the state in representation--momentum and curvature blocks gives
+\begin{align}
+ J_0&=\begin{pmatrix}J_f&C_f\\0&I\end{pmatrix},&1&\notin\sigma(J_f),\\
+ \begin{pmatrix}I&-(I-J_f)^{-1}C_f\\0&I\end{pmatrix}
+ J_0
+ \begin{pmatrix}I&(I-J_f)^{-1}C_f\\0&I\end{pmatrix}
+ &=\operatorname{diag}(J_f,I).
+\end{align}
+For $\zeta$ near one, set $\delta_\beta=1-\beta$ and
+\begin{align}
+ Q(\zeta)&=(\zeta-\beta)(\zeta-1)I+\eta\zeta\delta_\beta A_*H_{qq},\\
+ R(\zeta)&=\eta\zeta\delta_\beta A_*H_{qu},\\
+ Q(1)^{-1}R(1)&=H_{qq}^{-1}H_{qu}.
+\end{align}
+Eliminating the representation component in the characteristic block polynomial yields
+\begin{align}
+ 0&=\det\bigl[(\zeta-1)I+\rho S(\zeta)\bigr],\\
+ S(\zeta)&:=H_{uu}-H_{uq}Q(\zeta)^{-1}R(\zeta),&S(1)&=S_*.
+\end{align}
+For $\zeta=1+\rho\nu$, divide by $\rho^G$ and use analyticity of $Q^{-1}R$ near one:
+\begin{align}
+ 0&=\det[\nu I+S_*+O(\rho)],\\
+ \nu_k(\rho)&=-\mu_k+O(\rho).
+\end{align}
+The simple-root implicit function theorem gives the last line. The remaining eigenvalues remain separated from the unit circle by continuity. If $\mu_k>0$, then $|1-\rho\mu_k+O(\rho^2)|<1$ for small positive $\rho$; if $\mu_k<0$, this modulus exceeds one. For the softplus update, elimination replaces $S(\zeta)$ by $B_*S(\zeta)$, and
+\begin{align}
+ B_*S_*&=B_*^{1/2}(B_*^{1/2}S_*B_*^{1/2})B_*^{-1/2}.
+\end{align}
+The same simple-root argument therefore applies. The positive-definiteness and negative-eigenvalue sign conclusions follow by congruence.
+\end{proof}
+
+This expansion explains what a slower curvature update can and cannot do. Once the representation--momentum subsystem is stable, the leading slow modes depend on the profiled Hessian, with $\eta$ and $\beta$ entering higher-order terms. Reducing $\rho$ can preserve stability when that Hessian is positive, but it slows the corresponding contraction and cannot stabilize a negative profiled direction. A zero eigenvalue requires higher-order analysis and is not covered by the sign conclusion.
+
+\begin{theorem}[Quantitative nonlinear attraction from the augmented spectrum]
+\label{thm:rigid-local-attraction}
+Center the full normal-coordinate state at the fixed point, so $s=(\xi,u-u_*,m)$ and $\mathcal T(0)=0$. Suppose the exact deterministic interior map is $C^{1,1}$ near zero and
+\begin{align}
+ J_*&:=D\mathcal T(0),&\operatorname{spr}(J_*)&<1.
+\end{align}
+Define
+\begin{align}
+ W_*&:=\sum_{k=0}^{\infty}(J_*^k)^\top J_*^k,&
+ \|s\|_{W_*}&=(s^\top W_*s)^{1/2},\\
+ \|B\|_{W_*}&:=\sup_{s\ne0}\|Bs\|_{W_*}/\|s\|_{W_*},&
+ \alpha_*&:=\sqrt{1-\lambda_{\max}(W_*)^{-1}}.
+\end{align}
+Let the closed $W_*$-ball of radius $r_0$ lie in the chart and in the interior update region, and choose $L_J>0$ such that
+\begin{align}
+ \|D\mathcal T(s)-J_*\|_{W_*}&\le L_J\|s\|_{W_*}
+ \qquad(\|s\|_{W_*}\le r_0).
+\end{align}
+For any radius satisfying
+\begin{align}
+ 0<r&\le r_0,&L_Jr&<2(1-\alpha_*),&
+ \vartheta&:=\alpha_*+L_Jr/2<1,
+\end{align}
+the ball is forward invariant and
+\begin{align}\label{eq:rigid-local-attraction}
+ \|s_t\|_{W_*}&\le\vartheta^t\|s_0\|_{W_*},\\
+ \|s_t\|_2&\le
+ \sqrt{\frac{\lambda_{\max}(W_*)}{\lambda_{\min}(W_*)}}
+ \vartheta^t\|s_0\|_2
+ \qquad(\|s_0\|_{W_*}\le r).
+\end{align}
+Between any two states in this ball, its Lipschitz constant is at most $\alpha_*+L_Jr$; hence pairwise contraction holds under the additional restriction $L_Jr<1-\alpha_*$.
+\end{theorem}
+\begin{proof}
+Stein's discrete Lyapunov theorem \citep[Theorem~1]{stein1952iterants} motivates a quadratic metric adapted to the augmented dynamics. Schur stability makes the defining series converge. Shifting its index gives
+\begin{align}
+ W_*&\succeq I,&J_*^\top W_*J_*&=W_*-I,\\
+ \|J_*s\|_{W_*}^2
+ &=\|s\|_{W_*}^2-\|s\|_2^2
+ \le\bigl(1-\lambda_{\max}(W_*)^{-1}\bigr)\|s\|_{W_*}^2.
+\end{align}
+For attraction to the fixed point, retaining the distance along the integration segment improves the remainder constant:
+\begin{align}
+ \mathcal T(s)&=J_*s+\int_0^1[D\mathcal T(as)-J_*]s\,da,\\
+ \|\mathcal T(s)\|_{W_*}
+ &\le\alpha_*\|s\|_{W_*}+\tfrac12L_J\|s\|_{W_*}^2
+ \le\vartheta\|s\|_{W_*}.
+\end{align}
+This proves forward invariance and permits iteration. For $s,s'$ in the ball, convexity gives the separate pairwise estimate
+\begin{align}
+ \mathcal T(s)-\mathcal T(s')
+ &=\int_0^1D\mathcal T(s'+a(s-s'))(s-s')\,da,\\
+ \|\mathcal T(s)-\mathcal T(s')\|_{W_*}
+ &\le(\alpha_*+L_Jr)\|s-s'\|_{W_*}.
+\end{align}
+The Euclidean bound follows from
+\begin{align}
+ \sqrt{\lambda_{\min}(W_*)}\|s\|_2
+ \le\|s\|_{W_*}\le\sqrt{\lambda_{\max}(W_*)}\|s\|_2.
+\end{align}
+\end{proof}
+
+\begin{corollary}[Best quadratic contraction factor]
+\label{cor:sharp-quadratic-metric}
+For any $\nu\in(\operatorname{spr}(J_*),1)$, the matrix
+\begin{align}
+ W_\nu&:=\sum_{k\ge0}\nu^{-2k}(J_*^k)^\top J_*^k,\\
+ J_*^\top W_\nu J_*&=\nu^2(W_\nu-I)\prec\nu^2W_\nu
+\end{align}
+is a valid Lyapunov metric. In particular,
+\begin{align}
+ \inf_{W\succ0}\|J_*\|_W=\operatorname{spr}(J_*).
+\end{align}
+The local theorem applies with $\alpha_*$ replaced by any certified $\|J_*\|_W<1$ and with the corresponding $W$-norm derivative constant.
+\end{corollary}
+\begin{proof}
+Apply the convergent Stein series to $J_*/\nu$. Every induced norm dominates the spectral radius; the displayed family approaches that lower bound as $\nu\downarrow\operatorname{spr}(J_*)$.
+\end{proof}
+
+\begin{corollary}[Local robustness to state perturbations]
+\label{cor:rigid-local-robustness}
+Under Theorem~\ref{thm:rigid-local-attraction}, consider coordinate-state perturbations
+\begin{align}
+ s_{t+1}&=\mathcal T(s_t)+e_t,&\|e_t\|_{W_*}&\le\bar e,\\
+ \|s_0\|_{W_*}&\le r,&\bar e&\le(1-\vartheta)r.
+\end{align}
+Then every iterate stays in the ball, and
+\begin{align}
+ \|s_t\|_{W_*}
+ &\le\vartheta^t\|s_0\|_{W_*}
+ +\sum_{j<t}\vartheta^{t-1-j}\|e_j\|_{W_*}\\
+ &\le\vartheta^t\|s_0\|_{W_*}
+ +\frac{\bar e}{1-\vartheta}(1-\vartheta^t).
+\end{align}
+If $\|e_t\|_{W_*}\to0$, then $s_t\to0$.
+\end{corollary}
+\begin{proof}
+The recurrence $\|s_{t+1}\|_{W_*}\le\vartheta\|s_t\|_{W_*}+\bar e$ preserves the radius $r$. Iteration gives the convolution. For vanishing perturbations, split this convolution at a fixed index: the finite prefix tends to zero geometrically, while the tail is at most $\sup_{j\ge N}\|e_j\|_{W_*}/(1-\vartheta)$, which tends to zero as $N\to\infty$.
+\end{proof}
+
+The Lyapunov norm handles transient amplification that a Euclidean norm can miss when the augmented Jacobian is nonnormal. Its condition number and the nonlinear constant $L_J$ determine the certified neighborhood. In a scalar coordinate normalized to the chosen quadratic metric, the map $y^+=\alpha y+L_Jy^2/2$, $0\le\alpha<1$, has a second fixed point at $2(1-\alpha)/L_J$. Thus the factor $2$ in the attraction-radius condition cannot be increased using only the stated derivative bound for a general $C^{1,1}$ map. Although $\gamma$ is absent from $J_*$, it can affect $L_J$ and therefore the neighborhood and perturbation tolerance. These are local deterministic statements; applying them to neighboring stochastic runs requires a common invariant neighborhood and suitable per-step contraction and injection bounds.

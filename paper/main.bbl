@@ -1,0 +1,283 @@
+\begin{thebibliography}{35}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Balazevic et~al.(2019)Balazevic, Allen, and
+  Hospedales]{balazevic2019poincare}
+Balazevic, I., Allen, C., and Hospedales, T.~M.
+\newblock Multi-relational poincar{\'{e}} graph embeddings.
+\newblock In \emph{Advances in Neural Information Processing Systems 32}, pp.\
+  4465--4475, 2019.
+\newblock URL
+  \url{https://proceedings.neurips.cc/paper/2019/hash/f8b932c70d0b2e6bf071729a4fa68dfc-Abstract.html}.
+
+\bibitem[Bartlett \& Mendelson(2002)Bartlett and
+  Mendelson]{bartlett2002rademacher}
+Bartlett, P.~L. and Mendelson, S.
+\newblock Rademacher and gaussian complexities: Risk bounds and structural
+  results.
+\newblock \emph{Journal of Machine Learning Research}, 3:\penalty0 463--482,
+  2002.
+\newblock URL \url{https://www.jmlr.org/papers/v3/bartlett02a.html}.
+
+\bibitem[Bauschke \& Combettes(2010)Bauschke and
+  Combettes]{bauschke2010baillon}
+Bauschke, H.~H. and Combettes, P.~L.
+\newblock The {Baillon--Haddad} theorem revisited.
+\newblock \emph{Journal of Convex Analysis}, 17\penalty0 (3--4):\penalty0
+  781--787, 2010.
+\newblock \doi{10.68381/jca17051}.
+\newblock URL \url{https://arxiv.org/abs/0906.0807}.
+
+\bibitem[Bdeir et~al.(2025)Bdeir, Burchert, Schmidt-Thieme, and
+  Landwehr]{bdeir2025robust}
+Bdeir, A., Burchert, J., Schmidt-Thieme, L., and Landwehr, N.
+\newblock Robust hyperbolic learning with curvature-aware optimization.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~38, 2025.
+\newblock URL
+  \url{https://papers.neurips.cc/paper_files/paper/2025/hash/75817c38dd91ccef8add921b2eb4284a-Abstract-Conference.html}.
+
+\bibitem[B{\'{e}}cigneul \& Ganea(2019)B{\'{e}}cigneul and
+  Ganea]{becigneul2019radam}
+B{\'{e}}cigneul, G. and Ganea, O.
+\newblock Riemannian adaptive optimization methods.
+\newblock In \emph{7th International Conference on Learning Representations}.
+  OpenReview.net, 2019.
+\newblock URL \url{https://openreview.net/forum?id=r1eiqi09K7}.
+
+\bibitem[Bhatia \& Davis(2000)Bhatia and Davis]{bhatia2000variance}
+Bhatia, R. and Davis, C.
+\newblock A better bound on the variance.
+\newblock \emph{The American Mathematical Monthly}, 107\penalty0 (4):\penalty0
+  353--357, 2000.
+\newblock \doi{10.1080/00029890.2000.12005203}.
+\newblock URL
+  \url{https://www.tandfonline.com/doi/full/10.1080/00029890.2000.12005203}.
+
+\bibitem[Bonnabel(2013)]{bonnabel2013sgd}
+Bonnabel, S.
+\newblock Stochastic gradient descent on riemannian manifolds.
+\newblock \emph{IEEE Transactions on Automatic Control}, 58\penalty0
+  (9):\penalty0 2217--2229, September 2013.
+\newblock ISSN 1558-2523.
+\newblock \doi{10.1109/tac.2013.2254619}.
+\newblock URL \url{http://dx.doi.org/10.1109/TAC.2013.2254619}.
+
+\bibitem[Bordes et~al.(2013)Bordes, Usunier, Garc{\'{i}}a{-}Dur{\'{a}}n,
+  Weston, and Yakhnenko]{bordes2013transe}
+Bordes, A., Usunier, N., Garc{\'{i}}a{-}Dur{\'{a}}n, A., Weston, J., and
+  Yakhnenko, O.
+\newblock Translating embeddings for modeling multi-relational data.
+\newblock In \emph{Advances in Neural Information Processing Systems 26}, pp.\
+  2787--2795, 2013.
+\newblock URL
+  \url{https://proceedings.neurips.cc/paper/2013/hash/1cecc7a77928ca8133fa24680a88d2f9-Abstract.html}.
+
+\bibitem[Bousquet et~al.(2020)Bousquet, Klochkov, and
+  Zhivotovskiy]{bousquet2020sharper}
+Bousquet, O., Klochkov, Y., and Zhivotovskiy, N.
+\newblock Sharper bounds for uniformly stable algorithms.
+\newblock In \emph{Proceedings of the Thirty Third Conference on Learning
+  Theory}, volume 125 of \emph{Proceedings of Machine Learning Research}, pp.\
+  610--626. PMLR, 2020.
+\newblock URL \url{https://proceedings.mlr.press/v125/bousquet20b.html}.
+
+\bibitem[Chami et~al.(2019)Chami, Ying, R{\'{e}}, and Leskovec]{chami2019hgcn}
+Chami, I., Ying, Z., R{\'{e}}, C., and Leskovec, J.
+\newblock Hyperbolic graph convolutional neural networks.
+\newblock In \emph{Advances in Neural Information Processing Systems 32}, pp.\
+  4869--4880, 2019.
+\newblock URL
+  \url{https://proceedings.neurips.cc/paper/2019/hash/0415740eaa4d9decbc8da001d3fd805f-Abstract.html}.
+
+\bibitem[Chami et~al.(2020)Chami, Wolf, Juan, Sala, Ravi, and
+  R{\'{e}}]{chami2020atth}
+Chami, I., Wolf, A., Juan, D.-C., Sala, F., Ravi, S., and R{\'{e}}, C.
+\newblock Low-dimensional hyperbolic knowledge graph embeddings.
+\newblock In \emph{Proceedings of the 58th Annual Meeting of the Association
+  for Computational Linguistics (ACL)}, pp.\  6901--6914, 2020.
+\newblock URL \url{https://aclanthology.org/2020.acl-main.617/}.
+\newblock Introduces ATTH/RotH: attention-based and rotation-based hyperbolic
+  KG embeddings with per-relation trainable curvature.
+
+\bibitem[Dudley(1967)]{dudley1967sizes}
+Dudley, R.~M.
+\newblock The sizes of compact subsets of {Hilbert} space and continuity of
+  {Gaussian} processes.
+\newblock \emph{Journal of Functional Analysis}, 1\penalty0 (3):\penalty0
+  290--330, 1967.
+\newblock \doi{10.1016/0022-1236(67)90017-1}.
+
+\bibitem[Grafakos(2014)]{grafakos2014fourier}
+Grafakos, L.
+\newblock \emph{Classical Fourier Analysis}, volume 249 of \emph{Graduate Texts
+  in Mathematics}.
+\newblock Springer, 3 edition, 2014.
+\newblock \doi{10.1007/978-1-4939-1194-3}.
+
+\bibitem[Gu et~al.(2019)Gu, Sala, Gunel, and R{\'e}]{gu2019mixed}
+Gu, A., Sala, F., Gunel, B., and R{\'e}, C.
+\newblock Learning mixed-curvature representations in product spaces.
+\newblock In \emph{International Conference on Learning Representations}, 2019.
+\newblock URL \url{https://openreview.net/forum?id=HJxeWnCcF7}.
+
+\bibitem[Hardt et~al.(2016)Hardt, Recht, and Singer]{hardt2016stability}
+Hardt, M., Recht, B., and Singer, Y.
+\newblock Train faster, generalize better: Stability of stochastic gradient
+  descent.
+\newblock In \emph{Proceedings of the 33rd International Conference on Machine
+  Learning}, volume~48 of \emph{{JMLR} Workshop and Conference Proceedings},
+  pp.\  1225--1234. JMLR.org, 2016.
+\newblock URL \url{http://proceedings.mlr.press/v48/hardt16.html}.
+
+\bibitem[He et~al.(2020)He, Deng, Wang, Li, Zhang, and Wang]{he2020lightgcn}
+He, X., Deng, K., Wang, X., Li, Y., Zhang, Y., and Wang, M.
+\newblock {LightGCN}: Simplifying and powering graph convolution network for
+  recommendation.
+\newblock In \emph{Proceedings of the International ACM SIGIR Conference on
+  Research and Development in Information Retrieval}, 2020.
+\newblock URL \url{https://arxiv.org/abs/2002.02126}.
+
+\bibitem[Higham(2002)]{higham2002accuracy}
+Higham, N.~J.
+\newblock \emph{Accuracy and Stability of Numerical Algorithms}.
+\newblock SIAM, 2 edition, 2002.
+\newblock \doi{10.1137/1.9780898718027}.
+
+\bibitem[Horn \& Johnson(2013)Horn and Johnson]{horn2013matrix}
+Horn, R.~A. and Johnson, C.~R.
+\newblock \emph{Matrix Analysis}.
+\newblock Cambridge University Press, 2 edition, 2013.
+\newblock \doi{10.1017/CBO9781139020411}.
+
+\bibitem[Karimi et~al.(2016)Karimi, Nutini, and Schmidt]{karimi2016pl}
+Karimi, H., Nutini, J., and Schmidt, M.
+\newblock Linear convergence of gradient and proximal-gradient methods under
+  the {Polyak--\L{}ojasiewicz} condition, 2016.
+\newblock URL \url{https://arxiv.org/abs/1608.04636}.
+
+\bibitem[Lee(2018)]{lee2018riemannian}
+Lee, J.~M.
+\newblock \emph{Introduction to Riemannian Manifolds}, volume 176 of
+  \emph{Graduate Texts in Mathematics}.
+\newblock Springer, 2 edition, 2018.
+\newblock \doi{10.1007/978-3-319-91755-9}.
+
+\bibitem[Milgrom \& Segal(2002)Milgrom and Segal]{milgrom2002envelope}
+Milgrom, P. and Segal, I.
+\newblock Envelope theorems for arbitrary choice sets.
+\newblock \emph{Econometrica}, 70\penalty0 (2):\penalty0 583--601, 2002.
+\newblock \doi{10.1111/1468-0262.00296}.
+\newblock URL \url{https://web.stanford.edu/~isegal/envelope.pdf}.
+
+\bibitem[Nickel \& Kiela(2017)Nickel and Kiela]{nickel2017poincare}
+Nickel, M. and Kiela, D.
+\newblock Poincar{\'{e}} embeddings for learning hierarchical representations.
+\newblock In Guyon, I., von Luxburg, U., Bengio, S., Wallach, H.~M., Fergus,
+  R., Vishwanathan, S. V.~N., and Garnett, R. (eds.), \emph{Advances in Neural
+  Information Processing Systems 30}, pp.\  6338--6347, 2017.
+\newblock URL
+  \url{https://proceedings.neurips.cc/paper/2017/hash/59dfa2df42d9e3d41f5b02bfc32229dd-Abstract.html}.
+
+\bibitem[Nickel \& Kiela(2018)Nickel and Kiela]{nickel2018lorentz}
+Nickel, M. and Kiela, D.
+\newblock Learning continuous hierarchies in the lorentz model of hyperbolic
+  geometry.
+\newblock In Dy, J.~G. and Krause, A. (eds.), \emph{Proceedings of the 35th
+  International Conference on Machine Learning}, volume~80 of \emph{Proceedings
+  of Machine Learning Research}, pp.\  3776--3785. {PMLR}, 2018.
+\newblock URL \url{http://proceedings.mlr.press/v80/nickel18a.html}.
+
+\bibitem[{NIST}(2026)]{nistDLMF}
+{NIST}.
+\newblock {NIST Digital Library of Mathematical Functions}, 2026.
+\newblock URL \url{https://dlmf.nist.gov/4.36}.
+\newblock Version 1.2.8; Section 4.36, Equation 4.36.1.
+
+\bibitem[{NLTK Project}(2026)]{nltkwordnet}
+{NLTK Project}.
+\newblock Wordnet interface: Sample usage.
+\newblock Official NLTK documentation, 2026.
+\newblock URL \url{https://www.nltk.org/howto/wordnet.html}.
+\newblock Accessed November 2026.
+
+\bibitem[Sakai \& Iiduka(2024)Sakai and Iiduka]{sakai2024adaptive}
+Sakai, H. and Iiduka, H.
+\newblock A general framework of riemannian adaptive optimization methods with
+  a convergence analysis.
+\newblock \emph{arXiv preprint arXiv:2409.00859}, 2024.
+\newblock URL \url{https://arxiv.org/abs/2409.00859}.
+\newblock Revised February 2025.
+
+\bibitem[{scikit-learn developers}(2026{\natexlab{a}})]{sklearn20news}
+{scikit-learn developers}.
+\newblock The 20 newsgroups text dataset.
+\newblock Official scikit-learn dataset documentation, 2026{\natexlab{a}}.
+\newblock URL
+  \url{https://scikit-learn.org/stable/datasets/real_world.html#the-20-newsgroups-text-dataset}.
+\newblock Accessed November 2026.
+
+\bibitem[{scikit-learn developers}(2026{\natexlab{b}})]{sklearndigits}
+{scikit-learn developers}.
+\newblock Optical recognition of handwritten digits: load\_digits.
+\newblock Official scikit-learn dataset documentation, 2026{\natexlab{b}}.
+\newblock URL
+  \url{https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_digits.html}.
+\newblock Accessed November 2026.
+
+\bibitem[Stein(1952)]{stein1952iterants}
+Stein, P.
+\newblock Some general theorems on iterants.
+\newblock \emph{Journal of Research of the National Bureau of Standards},
+  48\penalty0 (1):\penalty0 82--83, 1952.
+\newblock \doi{10.6028/jres.048.010}.
+\newblock URL
+  \url{https://nvlpubs.nist.gov/nistpubs/jres/048/1/V48.N01.A10.pdf}.
+
+\bibitem[Sun et~al.(2019)Sun, Deng, Nie, and Tang]{sun2019rotate}
+Sun, Z., Deng, Z., Nie, J., and Tang, J.
+\newblock Rotate: Knowledge graph embedding by relational rotation in complex
+  space.
+\newblock In \emph{7th International Conference on Learning Representations}.
+  OpenReview.net, 2019.
+\newblock URL \url{https://openreview.net/forum?id=HkgEQnRqYQ}.
+
+\bibitem[Telgarsky(2021)]{telgarsky2021notes}
+Telgarsky, M.
+\newblock Deep learning theory lecture notes, 2021.
+\newblock URL \url{https://mjt.cs.illinois.edu/dlt/}.
+\newblock Version 2021-10-27, Theorem 15.2.
+
+\bibitem[Tifrea et~al.(2019)Tifrea, B{\'{e}}cigneul, and
+  Ganea]{tifrea2019poincare}
+Tifrea, A., B{\'{e}}cigneul, G., and Ganea, O.
+\newblock Poincare glove: Hyperbolic word embeddings.
+\newblock In \emph{7th International Conference on Learning Representations}.
+  OpenReview.net, 2019.
+\newblock URL \url{https://openreview.net/forum?id=Ske5r3AqK7}.
+
+\bibitem[Williams(1991)]{williams1991martingales}
+Williams, D.
+\newblock \emph{Probability with Martingales}.
+\newblock Cambridge University Press, 1991.
+\newblock \doi{10.1017/CBO9780511813658}.
+
+\bibitem[Yang et~al.(2016)Yang, Cohen, and Salakhutdinov]{planetoiddata}
+Yang, Z., Cohen, W.~W., and Salakhutdinov, R.
+\newblock Planetoid: Revisiting semi-supervised learning with graph embeddings.
+\newblock Author-released implementation and datasets, 2016.
+\newblock URL \url{https://github.com/kimiyoung/planetoid}.
+
+\bibitem[Zhang \& Sra(2016)Zhang and Sra]{zhang2016geodesic}
+Zhang, H. and Sra, S.
+\newblock First-order methods for geodesically convex optimization.
+\newblock In \emph{Proceedings of the 29th Conference on Learning Theory},
+  volume~49 of \emph{{JMLR} Workshop and Conference Proceedings}, pp.\
+  1617--1638. JMLR.org, 2016.
+\newblock URL \url{http://proceedings.mlr.press/v49/zhang16b.html}.
+
+\end{thebibliography}

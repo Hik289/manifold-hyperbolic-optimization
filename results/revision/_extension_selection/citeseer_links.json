@@ -1,0 +1,170 @@
+{
+  "dataset": "citeseer_links",
+  "family": "link_prediction",
+  "metric": "ap",
+  "configs_completed": 30,
+  "created_unix": 1793641685.7292523,
+  "selected": {
+    "E": {
+      "id": "new_link_prediction_citeseer_links_E_s3",
+      "val_score": 0.942546836997506,
+      "config": {
+        "suite": "new_tasks_v1",
+        "family": "link_prediction",
+        "dataset": "citeseer_links",
+        "model": "product_embedding",
+        "method": "E",
+        "epochs": 1000,
+        "seed": 42,
+        "dim": 8,
+        "groups": 4,
+        "lr": 100.0,
+        "rho": 0.01,
+        "beta": 0.9,
+        "init_K": 1.0,
+        "point_decay": 0.0,
+        "search_slot": 3,
+        "search_budget": 6,
+        "priority": 4,
+        "eval_every": 25,
+        "selection_metric": "ap",
+        "id": "new_link_prediction_citeseer_links_E_s3"
+      }
+    },
+    "B3": {
+      "id": "new_link_prediction_citeseer_links_B3_s5",
+      "val_score": 0.9433314159463015,
+      "config": {
+        "suite": "new_tasks_v1",
+        "family": "link_prediction",
+        "dataset": "citeseer_links",
+        "model": "product_embedding",
+        "method": "B3",
+        "epochs": 1000,
+        "seed": 42,
+        "dim": 8,
+        "groups": 4,
+        "lr": 100.0,
+        "rho": 0.01,
+        "beta": 0.9,
+        "init_K": 3.0,
+        "point_decay": 0.0,
+        "search_slot": 5,
+        "search_budget": 6,
+        "priority": 4,
+        "eval_every": 25,
+        "selection_metric": "ap",
+        "id": "new_link_prediction_citeseer_links_B3_s5"
+      }
+    },
+    "B35": {
+      "id": "new_link_prediction_citeseer_links_B35_s5",
+      "val_score": 0.9433315096641262,
+      "config": {
+        "suite": "new_tasks_v1",
+        "family": "link_prediction",
+        "dataset": "citeseer_links",
+        "model": "product_embedding",
+        "method": "B35",
+        "epochs": 1000,
+        "seed": 42,
+        "dim": 8,
+        "groups": 4,
+        "lr": 100.0,
+        "rho": 0.01,
+        "beta": 0.9,
+        "init_K": 3.0,
+        "point_decay": 0.0,
+        "search_slot": 5,
+        "search_budget": 6,
+        "priority": 4,
+        "eval_every": 25,
+        "selection_metric": "ap",
+        "id": "new_link_prediction_citeseer_links_B35_s5"
+      }
+    },
+    "B5": {
+      "id": "new_link_prediction_citeseer_links_B5_s5",
+      "val_score": 0.9433388894611306,
+      "config": {
+        "suite": "new_tasks_v1",
+        "family": "link_prediction",
+        "dataset": "citeseer_links",
+        "model": "product_embedding",
+        "method": "B5",
+        "epochs": 1000,
+        "seed": 42,
+        "dim": 8,
+        "groups": 4,
+        "lr": 100.0,
+        "rho": 0.01,
+        "beta": 0.9,
+        "init_K": 3.0,
+        "point_decay": 0.0,
+        "search_slot": 5,
+        "search_budget": 6,
+        "priority": 4,
+        "eval_every": 25,
+        "selection_metric": "ap",
+        "id": "new_link_prediction_citeseer_links_B5_s5"
+      }
+    },
+    "A5": {
+      "id": "new_link_prediction_citeseer_links_A5_s5",
+      "val_score": 0.9433388894611306,
+      "config": {
+        "suite": "new_tasks_v1",
+        "family": "link_prediction",
+        "dataset": "citeseer_links",
+        "model": "product_embedding",
+        "method": "A5",
+        "epochs": 1000,
+        "seed": 42,
+        "dim": 8,
+        "groups": 4,
+        "lr": 100.0,
+        "rho": 0.01,
+        "beta": 0.9,
+        "init_K": 3.0,
+        "point_decay": 0.0,
+        "search_slot": 5,
+        "search_budget": 6,
+        "priority": 4,
+        "eval_every": 25,
+        "selection_metric": "ap",
+        "id": "new_link_prediction_citeseer_links_A5_s5"
+      }
+    }
+  },
+  "test": {
+    "E": {
+      "ap": 0.9191412375073251,
+      "auc": 0.8920420239101556
+    },
+    "B3": {
+      "ap": 0.9191491916220239,
+      "auc": 0.8923511653181984
+    },
+    "B35": {
+      "ap": 0.9191510932433588,
+      "auc": 0.892355995652699
+    },
+    "B5": {
+      "ap": 0.9191533313819401,
+      "auc": 0.8923608259871996
+    },
+    "A5": {
+      "ap": 0.9191533313819401,
+      "auc": 0.8923608259871996
+    }
+  },
+  "matched_A5": {
+    "id": "new_link_prediction_citeseer_links_A5_s5",
+    "test": {
+      "ap": 0.9191533313819401,
+      "auc": 0.8923608259871996
+    }
+  },
+  "data_sha256": "bc7434ee44318117db331ef6dea2bdccf5acaddf7ae1154ca9ed6468f27e7485",
+  "selection_scope": "Entire 30-run matrix completed before test release. No test-based hyperparameter choice. Exploratory single-seed extension; all task outcomes retained."
+}

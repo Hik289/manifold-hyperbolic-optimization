@@ -1,0 +1,131 @@
+\section{Complete Experimental Scope and Outcome Audit}
+\label{app:extended-audit}
+The main text focuses on the stronger observed conditions and states that selection explicitly. This appendix preserves the full evaluated scope: mixed graph results, historical negative ablations, all six mechanism cases, and every completed prospective real-data task. Registration and successful short path checks are not benchmark completion. Every original run and configuration remains in the execution ledger.
+
+\subsection{Ablations and numerical behavior}
+
+The rho sweep shows that curvature learning must be strong enough to move $K$ but not so aggressive that fitting loss degrades. At 1000 epochs, increasing $\rho$ from $10^{-3}$ to $10^{-2}$ to $10^{-1}$ increases B4 $\Kstd$ from 0.008 to 0.065 to 0.150 and decreases B4 distortion from 0.24427 to 0.23984 to 0.23570, but the loss at $10^{-1}$ rises to 0.13689 compared with 0.13452 at $10^{-2}$. The chosen interpretation is that $\rho=10^{-2}$ is the distortion/loss trade-off point, not that the largest curvature learning rate is uniformly best. The lambda sweep shows that $\lambda\in[0,10^{-3}]$ is inactive in this setting, with B4 distortion 0.24427 and $\Kstd=0.008$ across those values; forcing $\lambda=1.0$ at 500 epochs collapses $\Kstd$ to 0.002 and worsens distortion to 0.30139, although the shorter run length makes it only a qualitative warning. The WN18RR $K_{\max}$ sweep at 500 epochs shows saturation near $K\approx2$: $K_{\max}=5$ and $10$ match, while $K_{\max}=2$ is slightly worse in loss, so large caps do not automatically improve the model.
+
+The B5-vs-B4 ablation is negative. On the synthetic 2000-epoch convergence run, B5 final distortion 0.22555 is essentially tied with B4 final distortion 0.22569. In the rho sweep, B5 and B4 differ by less than 0.3\% in final distortion across all three rho values. In the heterogeneity sweep, B5 and B4 differ by less than 0.15\%. Moreover, B5 has no early advantage at epochs 50--100 in Table~\ref{tab:g8}, consistent with early momentum overshoot. We report this because it defines the architecture scope of the method: B5 is mathematically coherent in grouped-manifold architectures, but this comparison does not isolate transport from momentum and step normalization. The clean transport comparison is B5 versus A5.
+
+\input{tables/presentation_conditioning}
+
+\subsection{benchmark revision: full-data graph comparison and coverage}
+\label{sec:revision}
+The revision suite registers every dataset--model combination in proposal Section 6, including all four synthetic tree types at 1K/5K/10K nodes and dimensions 2/5/10/20. It additionally implements the A1--A12 mechanism checks on Cora/GCN, with separate flags for momentum, shared curvature, normalization, tangency projection, update-rate ratio, log-step clipping, curvature-update frequency, and initialization. A3 and A11 coincide for this prototype-head architecture and are labeled accordingly. Registration is not completion: the machine-readable coverage file in \texttt{tables/revision\_coverage.csv} distinguishes completed, claimed, pending, deferred-by-scope, unavailable-data, and failed runs. A claim is checked against a live process before being described as running. The subsequent budget amendment in Appendix~\ref{app:scope-amendment} changed which unfinished configurations would execute; it does not alter the original registry.
+
+Table~\ref{tab:revision-cora} gives completed 1000-epoch Cora/GCN comparisons on compute environment. They use seed 42 and the standard Planetoid split, the same two-layer GCN encoder with AdamW at $10^{-3}$, and 32-dimensional output features. E uses a Euclidean linear head; B2 uses fixed-curvature RSGD prototypes; B3 uses fixed-curvature momentum; B4 learns per-class curvature without momentum; B5 adds momentum, normalized steps, and compatible cross-curvature transport; A5 changes only that transport operation. Geometric base step is 0.1, curvature step 0.001, momentum 0.9, curvature interval is bounded above by 5, and the log-step cap is 0.01. These are fixed starting settings, not the result of equal-budget hyperparameter searches, which remain outstanding.
+
+\input{tables/revision_cora}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=.49\linewidth]{figures/fig_loss_revision_cora.pdf}
+\caption{Complete 1000-epoch Cora/GCN training-loss trajectories, with a logarithmic loss axis. Scores are tabulated in Table~\ref{tab:revision-cora}; test data do not select these curves or their run length.}
+\label{fig:loss-cora}
+\end{figure}
+
+B5 final test accuracy is 0.772 versus 0.771 for B3, and A5 equals B5 at the reported precision. The Euclidean head reaches 0.778. This is a near-tie among the manifold variants, not evidence of a robust graph-family win or an independent transport benefit. Recorded training times are descriptive and include concurrently running jobs; they are not controlled speed benchmarks. The full trajectories and checkpoints remain available for validation-selected analysis.
+
+The new implementation uses actual Lorentz point parameters with closed-form exponential updates and parallel transport. Curvature gradients differentiate through the point homothety, unlike a partial derivative at fixed ambient coordinates. Classification uses one manifold prototype per class; text uses deterministic hashed tokens with an MLP or a two-layer Transformer; graph models use GCN, GAT, or GraphSAGE; recommendation uses a four-factor product distance with MF or origin-chart LightGCN propagation; KG uses grouped product states with a distance or transported-translation score. Synthetic product factors partition the requested total intrinsic dimension. This last architecture differs from the historical independent-tree groups, and the two protocols are not pooled.
+
+KG evaluation in the revision ranks both heads and tails against every entity, filters other known true triples, uses average ranks for ties, and evaluates fixed full splits. MovieLens and Amazon Books use chronological leave-last-two-out per user. Recommendation excludes observed training items from negative draws and evaluates all-item, user-macro Recall@20/NDCG@20 with observed items masked. Yelp2018 instead preserves its published multi-positive test split, with one seed-42 original training interaction per user held out for validation. All test positives for each user contribute to Recall and normalized DCG. Both Euclidean and Lorentz LightGCN variants use two propagation layers; their geometry differs, while the graph operator is retained in both. Reuters retains all labels and uses binary cross entropy with micro/macro F1. Continual-learning experiments train for 1000 total epochs across five ordered tasks and report task-boundary average accuracy and forgetting; Rotated MNIST uses angles $0,36,72,108,144$ degrees, while Split CIFAR-100 uses five disjoint blocks of 20 class labels. No replay buffer is added. These protocols are predeclared in the executable configuration rather than adjusted after test scores are observed.
+
+Appendix~\ref{app:run-ledger} contains the generated completion ledger and current coverage counts; all 705 retained configurations are complete, while 188 deferred configurations are excluded from completion claims. Original WN18RR, FB15k-237, and MNIST data were recovered from the hpc project directory. Tiny-ImageNet and YAGO3-10 have been acquired separately. The deterministic Amazon Books 20K-user subset has also been acquired from the official 2018 five-core release. An existing compute environment ImageNet-100 cache has now been located and its manifest verified: 114129 training images, 12560 held-out training images for validation, and 5000 official validation images reserved as test. This is the cached \texttt{clane9/imagenet-100} version with shorter-side-160px source images, subsequently resized by the declared input transform; it must not be conflated with an original-resolution protocol. The manifest hash and data source are retained with the execution records. Its 18 formerly blocked configurations were made runnable before the budget amendment and are now explicitly deferred. The Yelp subset is instantiated as the Yelp2018 interaction benchmark released by the LightGCN authors \citep{he2020lightgcn}, rather than an unspecified raw-review subset. It contains 31668 users, 38048 items, 1205591 retained training interactions, 31668 validation interactions, and 324147 original test interactions. The source commit and file hashes are recorded; the original test split is unchanged. This explicitly named, non-chronological protocol resolved the twelve data-blocked configurations; their execution is now deferred under the same budget amendment.
+
+
+\subsection{Complete paired graph comparisons}
+Table~\ref{tab:revision-breadth} extends the graph comparison beyond Cora. The generated table contains every dataset--encoder pair for which both B3 and B5 have completed the same 1000-epoch protocol. It uses final test accuracy consistently; validation-selected test metrics are retained separately in the machine-readable evidence file. Positive, tied, and negative differences are all kept. A positive single-seed difference is descriptive evidence for that configuration, not a significance claim or a substitute for equal-budget hyperparameter tuning.
+
+\input{tables/revision_graph_breadth}
+
+\subsection{Long-horizon classification, ranking, and retention audit}
+\label{app:long-horizon-audit}
+We distinguish a complete method block from individual full-length runs. The 20 Newsgroups pooled-token block contains all eight registered methods. Its separate Transformer block has six registered methods; WN18RR translation, MovieLens-1M, and Rotated MNIST each have eight. WN18RR distance has six registered methods. These tables include only completed runs and state their coverage; missing controls are not assigned scores. Deferred methods are counted separately from unfinished retained controls. All records use seed 42 and the registered stopping length. Raw result and trajectory digests, selected validation epochs, and available per-run source digests are retained in \texttt{tables/revision\_long\_horizon\_evidence.json}. These are descriptive comparisons of registered configurations, not a claim that every run has an identical complete source snapshot.
+
+\paragraph{Text classification and checkpoint selection.}
+The registry name \texttt{mlp} denotes a pooled-token encoder: deterministic lowercase word hashing into 29999 nonpadding token IDs, truncation to 256 tokens, learned 128-dimensional token embeddings, masked mean pooling, and a 32-dimensional linear projection. The official 20 Newsgroups training split is divided into 10182 training and 1132 stratified validation documents with seed 42; all 7532 official test documents are retained. Headers, footers, and quotes are removed. The encoder uses AdamW with step $10^{-3}$; geometric prototypes use base step $0.1$, curvature step $0.001$, momentum $0.9$, and initial curvature 1. These are fixed configurations, not a hyperparameter search. Validation accuracy is checked every epoch; the first maximizing checkpoint is selected after the complete 1000-epoch run, and its test scores are distinguished from the final checkpoint. All eight selected epochs have been checked against the raw validation trajectories.
+
+\input{tables/revision_text_audit}
+
+\paragraph{Separate Transformer comparison.}
+The Transformer retains the same tokenization, data partitions, output dimension, prototype configuration, and validation selection. It adds learned positional embeddings and two Transformer encoder layers, each with hidden dimension 128, four attention heads, feed-forward dimension 256, and zero dropout, before masked mean pooling and projection. Table~\ref{tab:revision-transformer-audit} reports all four retained methods, including the B3--B5 pair. The two runs record identical hashes for the runner, geometry, and structured-task source modules. Their validation maxima occur at epochs 648 and 451, respectively (one-based). Selected test accuracy is $54.673\%$ for B3 and $52.987\%$ for B5, a B5 difference of $-1.686$ percentage points; selected macro-F1 is also lower for B5. Final accuracy preserves this ordering. The E and A5 controls finish at validation-selected test accuracies $55.709\%$ and $54.169\%$, respectively. Thus all four retained methods are complete, while B2 and B4 remain deferred. A different encoder on the same dataset is not an independent task family.
+
+\input{tables/revision_transformer_audit}
+
+\paragraph{Primary endpoints in the other registered families.}
+Tables~\ref{tab:revision-kg-audit}--\ref{tab:revision-retention-audit} report final endpoints rather than substituting the best observed test checkpoint. WN18RR translation B5 MRR is $0.10230$, versus $0.17225$ for E, $0.12598$ for B3, $0.12596$ for B35, and $0.10232$ for B4; B5 and A5 agree at the displayed precision. On MovieLens-1M, B5 Recall@20 is slightly higher than B3, but the primary NDCG@20 is lower ($2.1560\%$ versus $2.2072\%$); E reaches $4.2943\%$. On Rotated MNIST, all eight methods are complete. B5 mean accuracy is $43.432\%$, versus $43.388\%$ for B35 and $43.296\%$ for shared curvature: small increases of $0.044$ and $0.136$ percentage points. However, E, B3, and B2 reach $43.800\%$, $43.752\%$, and $44.340\%$, respectively. Shared curvature gives the highest last-task accuracy, $98.530\%$, versus $98.470\%$ for B5. A last-task score does not measure retention of earlier tasks. Accordingly, these observations do not establish an additional positive task family or an isolated transport benefit. All completed primary and secondary endpoints are shown, with each deferred method explicitly identified.
+
+The completed shared-curvature WN18RR control has MRR $0.10200$. Grouped B5 improves this narrowly by $0.000295$ absolute MRR ($0.289\%$ relative), while remaining below both fixed-curvature controls; Hits@10 is slightly lower than shared curvature ($30.600\%$ versus $30.616\%$). This mixed profile does not establish a broad grouped-curvature gain. The MovieLens-1M A5 endpoint equals B5 exactly in both stored primary NDCG@20 ($0.02156021$) and secondary Recall@20 ($0.05546358$). Equality is an observed ranking-score result for this run, not a claim that the optimizer trajectories are identical. Primary endpoint choice, full run lengths, and the original configurations are unchanged.
+
+\input{tables/revision_kg_audit}
+\input{tables/revision_recommendation_audit}
+\input{tables/revision_retention_audit}
+\FloatBarrier
+
+\subsection{Budget amendment and retained comparisons}
+\label{app:scope-amendment}
+On November 4, 2026, the remaining execution budget was reduced after 691 of the 893 registered configurations had completed. The decision used the observed outcomes and compute costs and is therefore exploratory. Of the 202 unfinished configurations, 14 are retained and 188 deferred. Table~\ref{tab:scope-amendment} enumerates every retained unfinished comparison. It preserves ongoing controls, supplies three missing Euclidean anchors, and completes one unopened model block with all six original methods. No completed result is excluded; the registry, raw trajectories, and intermediate checkpoints remain available. The amendment is recorded in \texttt{experiments/revision/execution\_scope.json} and linked to each deferred record.
+
+\begin{table}[!htbp]
+\centering
+\caption{Remaining execution budget at the amendment. Counts refer to unfinished configurations on November 4, not new trials or completed results. All retained runs keep their registered seed, splits, settings, and full training length.}
+\label{tab:scope-amendment}
+\footnotesize\setlength{\tabcolsep}{5pt}\renewcommand{\arraystretch}{1.12}
+\begin{tabular}{llrr}
+\toprule
+Dataset and model & Retained unfinished methods & Runs & Epochs \\
+\midrule
+Rotated MNIST / MLP & B35, shared & 2 & 1000 \\
+20 Newsgroups / Transformer & A5, E & 2 & 1000 \\
+MovieLens-1M / MF & B35, E & 2 & 1000 \\
+WN18RR / translation & B4, E & 2 & 2000 \\
+WN18RR / distance & E, B2, B3, B4, B5, A5 & 6 & 2000 \\
+\midrule
+Total retained unfinished & & 14 & \\
+Deferred, never started & & 187 & \\
+Deferred, partially trained & CIFAR-100 / ResNet-18 / B5 & 1 & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The interrupted CIFAR-100 run is not reported as a completed visual benchmark or a numerical failure. Its available checkpoints and loss log are preserved. The broad dataset--encoder expansion and other unstarted ablations are deferred for budget reasons. Within the amended blocks, the retained method counts are four of six for the Transformer, seven of eight for WN18RR translation, five of eight for MovieLens-1M, and all eight for Rotated MNIST. All 705 retained configurations have now completed, including all 14 runs retained by this amendment. The original 893 registrations are not relabeled as completed; the 188 deferred configurations remain separately identified.
+
+\paragraph{Hierarchy-motivated distance comparison.}
+The retained WN18RR distance block replaces transported translation by a relation-weighted product-distance score,
+\begin{equation*}
+s(h,r,t)=-\sum_{g=1}^{4}\bigl(1+\|v_{r,g}\|_{K_g}^{2}\bigr)
+d_{K_g}(x_{h,g},x_{t,g})^2,
+\qquad v_{r,g}=\operatorname{Log}_{o_{K_g}}(x_{r,g}).
+\end{equation*}
+It directly tests metric fitting on the same hierarchical graph, with the matched Euclidean architecture replacing each factor distance and relation norm by their Euclidean counterparts. All six originally registered methods are retained together, including the Euclidean, fixed-curvature, and no-transport controls; no hyperparameter or stopping rule is changed to pursue a favorable endpoint. The score is symmetric in its entity arguments, so it does not itself encode edge direction. This is a model-specific test within KG completion, not an additional task family. MRR remains the primary final-checkpoint endpoint under full filtered head-and-tail ranking, and the existing single-seed qualification remains in force. All six methods have now completed 2000 epochs. Table~\ref{tab:revision-kg-distance-audit} gives B5 MRR $0.13685$, compared with $0.15722$ for E, $0.14078$ for B2, $0.14077$ for B3, $0.13688$ for B4, and $0.13691$ for A5. B5 does not improve the primary endpoint over any of these controls. Its higher Hits@3 than B2 and B3 does not reverse the MRR or Hits@10 comparison. These final results do not establish an additional task-family advantage.
+
+\input{tables/revision_kg_distance_audit}
+\FloatBarrier
+
+
+\subsection{Complete product-factor reconstruction grid}
+\label{app:complete-product-grid}
+The four tree constructions are binary, 4-ary, 8-ary, and variable-branching trees. Each uses the full Cartesian grid of three node counts and four total intrinsic dimensions stated in Table~\ref{tab:revision-synthetic-complete}. The Lorentz product has $\min(4,d)$ factors whose dimensions sum to $d$; every factor fits the same tree observations. Each update samples 65536 ordered node pairs, removes self-pairs, and minimizes mean squared relative-distance error. A separate generator fixed at seed 1042 draws up to 100000 evaluation pairs once, again removing self-pairs; final distortion is mean absolute relative-distance error on that fixed set. This is a reconstruction diagnostic: evaluation pairs are not withheld from the training-pair distribution. All methods finish 2000 updates. The Euclidean control uses SGD with momentum 0.9 and step 10; the manifold methods use base step 10, curvature step 0.001, and the common geometric safeguards. This is a fixed-configuration comparison, not a validation-selected tuning study. In particular, the B5--B3 contrast combines curvature adaptation and step normalization, while B5--A5 isolates the cross-curvature state map. The full table makes both contrasts and the Euclidean result inspectable.
+\input{tables/revision_synthetic_all}
+
+\subsection{All long-horizon mechanism conditions}
+\input{tables/revision_mechanism}
+\input{tables/revision_selected_mechanism}
+
+\subsection{New real-data protocols and complete comparisons}
+The WordNet tasks use the full mammal and vehicle descendant subtrees in WordNet 3.0, including instances, and all internal transitive hypernym relations. The subtrees contain 1182 and 528 synsets, with 6542 and 2311 directed positive pairs, respectively. This is a custom missing-relation protocol and differs from the filtered mammals reconstruction benchmark of \citet{nickel2017poincare}. The corpus is accessed through NLTK \citep{nltkwordnet}. Ten percent of relations are reserved for validation and ten percent for test; the training split retains at least one incident relation for every nonisolated vertex. Filtered macro query MAP ranks every other synset and masks known positives outside the target split. The score penalizes both product distance and a reversed descendant--ancestor radial order.
+
+Cora and Citeseer links use the Planetoid graphs \citep{planetoiddata}, with node identities but no attributes or class labels. Undirected pairs are canonicalized before splitting. Positive and negative pairs are disjoint across train, validation, and test, including reverse-edge equivalence; known positives are excluded from negative draws. The splits contain 5278 and 4552 positive pairs, respectively, with a matched number of negatives and an approximately 80/10/10 positive split that preserves training vertex coverage. Balanced-pair AP is primary and ROC-AUC is secondary; these scores do not estimate precision at the natural all-pairs prevalence.
+
+Optical digits uses the 1797-image dataset distributed by scikit-learn \citep{sklearndigits}, with stratified training/validation/test counts 1078/359/360. Scaling is fit only on training observations. The 20 Newsgroups retrieval task \citep{sklearn20news} retains its official test set and partitions official training documents into 10182 training and 1132 validation queries, with 7532 test queries. Headers, footers, and quotes are removed. TF-IDF with at most 6000 features, a 128-component truncated SVD, and scaling are all fit exclusively on the training partition. A shared 128-unit tanh encoder produces eight features arranged as four two-dimensional factors; class proxies are optimized on their home manifolds. Retrieval uses observation embeddings, not class proxies, and the gallery contains training observations only. Primary same-class Recall@1 is the fraction of queries with a same-label top-ranked gallery item; secondary NDCG@10 uses same-class relevance. These are compact custom retrieval protocols rather than published leaderboard reproductions.
+
+For each manifold method, the six configurations cross $K_0\in\{0.1,1,3\}$ with two base steps: $\{10,100\}$ for relation embeddings and $\{0.1,1\}$ for retrieval proxies. The Euclidean control receives the same two steps crossed with point-decay coefficients $\{0,10^{-4},10^{-2}\}$, also six runs. Other shared settings are $\beta=0.9$, $\rho=0.01$, $K\in[0.001,5]$, the canonical radius cap 4, the normalized trust cap 0.25, and the log-curvature cap 0.01. Auxiliary parameters use AdamW with learning rate $10^{-3}$ and decay $10^{-4}$. Temperature is restricted to $[e^{-3},e^3]$. Full-batch training spans all training examples each epoch. Validation loss is saved every epoch and the primary ranking metric every 25 epochs and at the final checkpoint. Final-checkpoint validation, not the best test score or best test epoch, selects the configuration. Training data, transformations, model capacity, and stopping length are identical across the relevant manifold comparisons. The canonical-radius constraint still makes physical-distance capacity curvature-dependent.
+
+\input{tables/revision_new_tasks_progress}
+\input{tables/revision_new_tasks_all}
+
+\FloatBarrier
+\subsection{Recorded non-loss trajectory checkpoints}
+\input{tables/presentation_kg_checkpoints}
+\input{tables/presentation_drift_states}

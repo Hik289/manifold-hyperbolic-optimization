@@ -1,0 +1,9 @@
+{
+  "family": "recommendation",
+  "dataset": "ml1m",
+  "model": "mf",
+  "method": "B35",
+  "epochs": 1000,
+  "seed": 42,
+  "id": "recommendation_ml1m_mf_B35"
+}

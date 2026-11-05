@@ -1,0 +1,58 @@
+{
+  "created_unix": 1793899321.355904,
+  "counts": {
+    "complete": 705,
+    "deferred_scope": 188
+  },
+  "families": {
+    "graph": {
+      "complete": 91
+    },
+    "continual": {
+      "complete": 8,
+      "deferred_scope": 18
+    },
+    "kg": {
+      "complete": 13,
+      "deferred_scope": 25
+    },
+    "recommendation": {
+      "complete": 5,
+      "deferred_scope": 33
+    },
+    "text": {
+      "complete": 12,
+      "deferred_scope": 38
+    },
+    "vision": {
+      "deferred_scope": 74
+    },
+    "mechanism": {
+      "complete": 108
+    },
+    "synthetic": {
+      "complete": 288
+    },
+    "taxonomy": {
+      "complete": 60
+    },
+    "link_prediction": {
+      "complete": 60
+    },
+    "retrieval": {
+      "complete": 60
+    }
+  },
+  "registered": 893,
+  "claim_note": "claimed requires live process confirmation; does not imply running",
+  "execution_scope": {
+    "amendment_id": "2026-11-04-budget-reduction",
+    "original_registered": 893,
+    "completed_at_amendment": 691,
+    "retained_remaining_count": 14,
+    "retained_total": 705,
+    "deferred_count": 188,
+    "termination_rule": "Finish all 705 retained full-length configurations and required delayed tests; 188 deferred configurations are not counted as completed or numerical failures."
+  },
+  "retained_remaining": 0
+}

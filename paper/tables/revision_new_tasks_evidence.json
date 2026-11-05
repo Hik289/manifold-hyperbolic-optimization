@@ -1,0 +1,1134 @@
+{
+  "coverage": [
+    {
+      "family": "taxonomy",
+      "dataset": "wordnet_mammal",
+      "completed": 30,
+      "registered": 30
+    },
+    {
+      "family": "link_prediction",
+      "dataset": "cora_links",
+      "completed": 30,
+      "registered": 30
+    },
+    {
+      "family": "retrieval",
+      "dataset": "digits_retrieval",
+      "completed": 30,
+      "registered": 30
+    },
+    {
+      "family": "taxonomy",
+      "dataset": "wordnet_vehicle",
+      "completed": 30,
+      "registered": 30
+    },
+    {
+      "family": "link_prediction",
+      "dataset": "citeseer_links",
+      "completed": 30,
+      "registered": 30
+    },
+    {
+      "family": "retrieval",
+      "dataset": "20news_retrieval",
+      "completed": 30,
+      "registered": 30
+    }
+  ],
+  "results": [
+    {
+      "dataset": "wordnet_mammal",
+      "family": "taxonomy",
+      "metric": "map",
+      "configs_completed": 30,
+      "created_unix": 1793639571.1065931,
+      "selected": {
+        "E": {
+          "id": "new_taxonomy_wordnet_mammal_E_s4",
+          "val_score": 0.08156425348323924,
+          "config": {
+            "suite": "new_tasks_v1",
+            "family": "taxonomy",
+            "dataset": "wordnet_mammal",
+            "model": "product_embedding",
+            "method": "E",
+            "epochs": 1000,
+            "seed": 42,
+            "dim": 8,
+            "groups": 4,
+            "lr": 100.0,
+            "rho": 0.01,
+            "beta": 0.9,
+            "init_K": 1.0,
+            "point_decay": 0.0001,
+            "search_slot": 4,
+            "search_budget": 6,
+            "priority": 0,
+            "eval_every": 25,
+            "selection_metric": "map",
+            "id": "new_taxonomy_wordnet_mammal_E_s4"
+          }
+        },
+        "B3": {
+          "id": "new_taxonomy_wordnet_mammal_B3_s4",
+          "val_score": 0.08142996054071934,
+          "config": {
+            "suite": "new_tasks_v1",
+            "family": "taxonomy",
+            "dataset": "wordnet_mammal",
+            "model": "product_embedding",
+            "method": "B3",
+            "epochs": 1000,
+            "seed": 42,
+            "dim": 8,
+            "groups": 4,
+            "lr": 100.0,
+            "rho": 0.01,
+            "beta": 0.9,
+            "init_K": 1.0,
+            "point_decay": 0.0,
+            "search_slot": 4,
+            "search_budget": 6,
+            "priority": 0,
+            "eval_every": 25,
+            "selection_metric": "map",
+            "id": "new_taxonomy_wordnet_mammal_B3_s4"
+          }
+        },
+        "B35": {
+          "id": "new_taxonomy_wordnet_mammal_B35_s4",
+          "val_score": 0.07947987175871173,
+          "config": {
+            "suite": "new_tasks_v1",
+            "family": "taxonomy",
+            "dataset": "wordnet_mammal",
+            "model": "product_embedding",
+            "method": "B35",
+            "epochs": 1000,
+            "seed": 42,
+            "dim": 8,
+            "groups": 4,
+            "lr": 100.0,
+            "rho": 0.01,
+            "beta": 0.9,
+            "init_K": 1.0,
+            "point_decay": 0.0,
+            "search_slot": 4,
+            "search_budget": 6,
+            "priority": 0,
+            "eval_every": 25,
+            "selection_metric": "map",
+            "id": "new_taxonomy_wordnet_mammal_B35_s4"
+          }
+        },
+        "B5": {
+          "id": "new_taxonomy_wordnet_mammal_B5_s4",
+          "val_score": 0.0806915293336171,
+          "config": {
+            "suite": "new_tasks_v1",
+            "family": "taxonomy",
+            "dataset": "wordnet_mammal",
+            "model": "product_embedding",
+            "method": "B5",
+            "epochs": 1000,
+            "seed": 42,
+            "dim": 8,
+            "groups": 4,
+            "lr": 100.0,
+            "rho": 0.01,
+            "beta": 0.9,
+            "init_K": 1.0,
+            "point_decay": 0.0,
+            "search_slot": 4,
+            "search_budget": 6,
+            "priority": 0,
+            "eval_every": 25,
+            "selection_metric": "map",
+            "id": "new_taxonomy_wordnet_mammal_B5_s4"
+          }
+        },
+        "A5": {
+          "id": "new_taxonomy_wordnet_mammal_A5_s5",
+          "val_score": 0.08036012602693855,
+          "config": {
+            "suite": "new_tasks_v1",
+            "family": "taxonomy",
+            "dataset": "wordnet_mammal",
+            "model": "product_embedding",
+            "method": "A5",
+            "epochs": 1000,
+            "seed": 42,
+            "dim": 8,
+            "groups": 4,
+            "lr": 100.0,
+            "rho": 0.01,
+            "beta": 0.9,
+            "init_K": 3.0,
+            "point_decay": 0.0,
+            "search_slot": 5,
+            "search_budget": 6,
+            "priority": 0,
+            "eval_every": 25,
+            "selection_metric": "map",
+            "id": "new_taxonomy_wordnet_mammal_A5_s5"
+          }
+        }
+      },
+      "test": {
+        "E": {
+          "ap": 0.8936053545639537,
+          "auc": 0.9026643847786848,
+          "map": 0.08257821599538935
+        },
+        "B3": {
+          "ap": 0.8863124026002263,
+          "auc": 0.8987108268103133,
+          "map": 0.084891210893218
+        },
+        "B35": {
+          "ap": 0.8867522967300404,
+          "auc": 0.8994075508047396,
+          "map": 0.08307646814665334
+        },
+        "B5": {
+          "ap": 0.887210450585599,
+          "auc": 0.899734870802121,
+          "map": 0.08293717838772062
+        },
+        "A5": {
+          "ap": 0.8896844279850615,
+          "auc": 0.9042916327656669,
+          "map": 0.08961823856210781
+        }
+      },
+      "matched_A5": {
+        "id": "new_taxonomy_wordnet_mammal_A5_s4",
+        "test": {
+          "ap": 0.8862969956046052,
+          "auc": 0.8987879808096961,
+          "map": 0.08378919428026256
+        }
+      },
+      "data_sha256": "6c2d28bf7c2d969db5140a1d5b13559b87af5e6907f9ff17bc7b689d44bca564",
+      "selection_scope": "Entire 30-run matrix completed before test release. No test-based hyperparameter choice. Exploratory single-seed extension; all task outcomes retained.",
+      "B5_minus_baselines_pp": {
+        "E": 0.0358962392331269,
+        "B3": -0.19540325054973745,
+        "B35": -0.0139289758932723
+      },
+      "positive_display_eligible": false,
+      "broad_family": "knowledge-graph / taxonomy"
+    },
+    {
+      "dataset": "cora_links",
+      "family": "link_prediction",
+      "metric": "ap",
+      "configs_completed": 30,
+      "created_unix": 1793639605.3005576,
+      "selected": {
+        "E": {
+          "id": "new_link_prediction_cora_links_E_s3",
+          "val_score": 0.9306870942427795,
+          "config": {
+            "suite": "new_tasks_v1",
+            "family": "link_prediction",
+            "dataset": "cora_links",
+            "model": "product_embedding",
+            "method": "E",
+            "epochs": 1000,
+            "seed": 42,
+            "dim": 8,
+            "groups": 4,
+            "lr": 100.0,
+            "rho": 0.01,
+            "beta": 0.9,
+            "init_K": 1.0,
+            "point_decay": 0.0,
+            "search_slot": 3,
+            "search_budget": 6,
+            "priority": 1,
+            "eval_every": 25,
+            "selection_metric": "ap",
+            "id": "new_link_prediction_cora_links_E_s3"
+          }
+        },
+        "B3": {
+          "id": "new_link_prediction_cora_links_B3_s3",
+          "val_score": 0.9305853426334767,
+          "config": {
+            "suite": "new_tasks_v1",
+            "family": "link_prediction",
+            "dataset": "cora_links",
+            "model": "product_embedding",
+            "method": "B3",
+            "epochs": 1000,
+            "seed": 42,
+            "dim": 8,
+            "groups": 4,
+            "lr": 100.0,
+            "rho": 0.01,
+            "beta": 0.9,
+            "init_K": 0.1,
+            "point_decay": 0.0,
+            "search_slot": 3,
+            "search_budget": 6,
+            "priority": 1,
+            "eval_every": 25,
+            "selection_metric": "ap",
+            "id": "new_link_prediction_cora_links_B3_s3"
+          }
+        },
+        "B35": {
+          "id": "new_link_prediction_cora_links_B35_s3",
+          "val_score": 0.9305853426334767,
+          "config": {
+            "suite": "new_tasks_v1",
+            "family": "link_prediction",
+            "dataset": "cora_links",
+            "model": "product_embedding",
+            "method": "B35",
+            "epochs": 1000,
+            "seed": 42,
+            "dim": 8,
+            "groups": 4,
+            "lr": 100.0,
+            "rho": 0.01,
+            "beta": 0.9,
+            "init_K": 0.1,
+            "point_decay": 0.0,
+            "search_slot": 3,
+            "search_budget": 6,
+            "priority": 1,
+            "eval_every": 25,
+            "selection_metric": "ap",
+            "id": "new_link_prediction_cora_links_B35_s3"
+          }
+        },
+        "B5": {
+          "id": "new_link_prediction_cora_links_B5_s3",
+          "val_score": 0.9305924240510174,
+          "config": {
+            "suite": "new_tasks_v1",
+            "family": "link_prediction",
+            "dataset": "cora_links",
+            "model": "product_embedding",
+            "method": "B5",
+            "epochs": 1000,
+            "seed": 42,
+            "dim": 8,
+            "groups": 4,
+            "lr": 100.0,
+            "rho": 0.01,
+            "beta": 0.9,
+            "init_K": 0.1,
+            "point_decay": 0.0,
+            "search_slot": 3,
+            "search_budget": 6,
+            "priority": 1,
+            "eval_every": 25,
+            "selection_metric": "ap",
+            "id": "new_link_prediction_cora_links_B5_s3"
+          }
+        },
+        "A5": {
+          "id": "new_link_prediction_cora_links_A5_s3",
+          "val_score": 0.9305965077068546,
+          "config": {
+            "suite": "new_tasks_v1",
+            "family": "link_prediction",
+            "dataset": "cora_links",
+            "model": "product_embedding",
+            "method": "A5",
+            "epochs": 1000,
+            "seed": 42,
+            "dim": 8,
+            "groups": 4,
+            "lr": 100.0,
+            "rho": 0.01,
+            "beta": 0.9,
+            "init_K": 0.1,
+            "point_decay": 0.0,
+            "search_slot": 3,
+            "search_budget": 6,
+            "priority": 1,
+            "eval_every": 25,
+            "selection_metric": "ap",
+            "id": "new_link_prediction_cora_links_A5_s3"
+          }
+        }
+      },
+      "test": {
+        "E": {
+          "ap": 0.9345800353173768,
+          "auc": 0.9170270299464586
+        },
+        "B3": {
+          "ap": 0.9345599832343687,
+          "auc": 0.9169694198301223
+        },
+        "B35": {
+          "ap": 0.9345599832343687,
+          "auc": 0.9169694198301223
+        },
+        "B5": {
+          "ap": 0.9345719312955933,
+          "auc": 0.9169874229914773
+        },
+        "A5": {
+          "ap": 0.9345719312955933,
+          "auc": 0.9169874229914773
+        }
+      },
+      "matched_A5": {
+        "id": "new_link_prediction_cora_links_A5_s3",
+        "test": {
+          "ap": 0.9345719312955933,
+          "auc": 0.9169874229914773
+        }
+      },
+      "data_sha256": "1c86e385a1447e78645a8bca8ea8ce18016d61e5bc63a6c8b66e2fc8ede2015f",
+      "selection_scope": "Entire 30-run matrix completed before test release. No test-based hyperparameter choice. Exploratory single-seed extension; all task outcomes retained.",
+      "B5_minus_baselines_pp": {
+        "E": -0.0008104021783417181,
+        "B3": 0.0011948061224620332,
+        "B35": 0.0011948061224620332
+      },
+      "positive_display_eligible": false,
+      "broad_family": "graph"
+    },
+    {
+      "dataset": "digits_retrieval",
+      "family": "retrieval",
+      "metric": "recall1",
+      "configs_completed": 30,
+      "created_unix": 1793640708.873525,
+      "selected": {
+        "E": {
+          "id": "new_retrieval_digits_retrieval_E_s5",
+          "val_score": 0.9749303621169917,
+          "config": {
+            "suite": "new_tasks_v1",
+            "family": "retrieval",
+            "dataset": "digits_retrieval",
+            "model": "product_proxy",
+            "method": "E",
+            "epochs": 1000,
+            "seed": 42,
+            "dim": 8,
+            "groups": 4,
+            "lr": 1.0,
+            "rho": 0.01,
+            "beta": 0.9,
+            "init_K": 1.0,
+            "point_decay": 0.01,
+            "search_slot": 5,
+            "search_budget": 6,
+            "priority": 2,
+            "eval_every": 25,
+            "selection_metric": "recall1",
+            "id": "new_retrieval_digits_retrieval_E_s5"
+          }
+        },
+        "B3": {
+          "id": "new_retrieval_digits_retrieval_B3_s0",
+          "val_score": 0.9721448467966574,
+          "config": {
+            "suite": "new_tasks_v1",
+            "family": "retrieval",
+            "dataset": "digits_retrieval",
+            "model": "product_proxy",
+            "method": "B3",
+            "epochs": 1000,
+            "seed": 42,
+            "dim": 8,
+            "groups": 4,
+            "lr": 0.1,
+            "rho": 0.01,
+            "beta": 0.9,
+            "init_K": 0.1,
+            "point_decay": 0.0,
+            "search_slot": 0,
+            "search_budget": 6,
+            "priority": 2,
+            "eval_every": 25,
+            "selection_metric": "recall1",
+            "id": "new_retrieval_digits_retrieval_B3_s0"
+          }
+        },
+        "B35": {
+          "id": "new_retrieval_digits_retrieval_B35_s0",
+          "val_score": 0.9721448467966574,
+          "config": {
+            "suite": "new_tasks_v1",
+            "family": "retrieval",
+            "dataset": "digits_retrieval",
+            "model": "product_proxy",
+            "method": "B35",
+            "epochs": 1000,
+            "seed": 42,
+            "dim": 8,
+            "groups": 4,
+            "lr": 0.1,
+            "rho": 0.01,
+            "beta": 0.9,
+            "init_K": 0.1,
+            "point_decay": 0.0,
+            "search_slot": 0,
+            "search_budget": 6,
+            "priority": 2,
+            "eval_every": 25,
+            "selection_metric": "recall1",
+            "id": "new_retrieval_digits_retrieval_B35_s0"
+          }
+        },
+        "B5": {
+          "id": "new_retrieval_digits_retrieval_B5_s0",
+          "val_score": 0.9721448467966574,
+          "config": {
+            "suite": "new_tasks_v1",
+            "family": "retrieval",
+            "dataset": "digits_retrieval",
+            "model": "product_proxy",
+            "method": "B5",
+            "epochs": 1000,
+            "seed": 42,
+            "dim": 8,
+            "groups": 4,
+            "lr": 0.1,
+            "rho": 0.01,
+            "beta": 0.9,
+            "init_K": 0.1,
+            "point_decay": 0.0,
+            "search_slot": 0,
+            "search_budget": 6,
+            "priority": 2,
+            "eval_every": 25,
+            "selection_metric": "recall1",
+            "id": "new_retrieval_digits_retrieval_B5_s0"
+          }
+        },
+        "A5": {
+          "id": "new_retrieval_digits_retrieval_A5_s0",
+          "val_score": 0.9721448467966574,
+          "config": {
+            "suite": "new_tasks_v1",
+            "family": "retrieval",
+            "dataset": "digits_retrieval",
+            "model": "product_proxy",
+            "method": "A5",
+            "epochs": 1000,
+            "seed": 42,
+            "dim": 8,
+            "groups": 4,
+            "lr": 0.1,
+            "rho": 0.01,
+            "beta": 0.9,
+            "init_K": 0.1,
+            "point_decay": 0.0,
+            "search_slot": 0,
+            "search_budget": 6,
+            "priority": 2,
+            "eval_every": 25,
+            "selection_metric": "recall1",
+            "id": "new_retrieval_digits_retrieval_A5_s0"
+          }
+        }
+      },
+      "test": {
+        "E": {
+          "recall1": 0.9638888888888889,
+          "ndcg10": 0.962623331654403
+        },
+        "B3": {
+          "recall1": 0.9666666666666667,
+          "ndcg10": 0.9592211574109064
+        },
+        "B35": {
+          "recall1": 0.9666666666666667,
+          "ndcg10": 0.9588491336959931
+        },
+        "B5": {
+          "recall1": 0.9694444444444444,
+          "ndcg10": 0.9595461429200238
+        },
+        "A5": {
+          "recall1": 0.9694444444444444,
+          "ndcg10": 0.9595321586355567
+        }
+      },
+      "matched_A5": {
+        "id": "new_retrieval_digits_retrieval_A5_s0",
+        "test": {
+          "recall1": 0.9694444444444444,
+          "ndcg10": 0.9595321586355567
+        }
+      },
+      "data_sha256": "a052cdcf16e4299ed35ed264fcbacc585f0c165fe039d6b304b4a0b485bd4b47",
+      "selection_scope": "Entire 30-run matrix completed before test release. No test-based hyperparameter choice. Exploratory single-seed extension; all task outcomes retained.",
+      "B5_minus_baselines_pp": {
+        "E": 0.5555555555555536,
+        "B3": 0.2777777777777768,
+        "B35": 0.2777777777777768
+      },
+      "positive_display_eligible": false,
+      "broad_family": "retrieval"
+    },
+    {
+      "dataset": "wordnet_vehicle",
+      "family": "taxonomy",
+      "metric": "map",
+      "configs_completed": 30,
+      "created_unix": 1793642474.3015616,
+      "selected": {
+        "E": {
+          "id": "new_taxonomy_wordnet_vehicle_E_s3",
+          "val_score": 0.09666001366595886,
+          "config": {
+            "suite": "new_tasks_v1",
+            "family": "taxonomy",
+            "dataset": "wordnet_vehicle",
+            "model": "product_embedding",
+            "method": "E",
+            "epochs": 1000,
+            "seed": 42,
+            "dim": 8,
+            "groups": 4,
+            "lr": 100.0,
+            "rho": 0.01,
+            "beta": 0.9,
+            "init_K": 1.0,
+            "point_decay": 0.0,
+            "search_slot": 3,
+            "search_budget": 6,
+            "priority": 3,
+            "eval_every": 25,
+            "selection_metric": "map",
+            "id": "new_taxonomy_wordnet_vehicle_E_s3"
+          }
+        },
+        "B3": {
+          "id": "new_taxonomy_wordnet_vehicle_B3_s2",
+          "val_score": 0.09760395482468327,
+          "config": {
+            "suite": "new_tasks_v1",
+            "family": "taxonomy",
+            "dataset": "wordnet_vehicle",
+            "model": "product_embedding",
+            "method": "B3",
+            "epochs": 1000,
+            "seed": 42,
+            "dim": 8,
+            "groups": 4,
+            "lr": 10.0,
+            "rho": 0.01,
+            "beta": 0.9,
+            "init_K": 3.0,
+            "point_decay": 0.0,
+            "search_slot": 2,
+            "search_budget": 6,
+            "priority": 3,
+            "eval_every": 25,
+            "selection_metric": "map",
+            "id": "new_taxonomy_wordnet_vehicle_B3_s2"
+          }
+        },
+        "B35": {
+          "id": "new_taxonomy_wordnet_vehicle_B35_s4",
+          "val_score": 0.09910408626754838,
+          "config": {
+            "suite": "new_tasks_v1",
+            "family": "taxonomy",
+            "dataset": "wordnet_vehicle",
+            "model": "product_embedding",
+            "method": "B35",
+            "epochs": 1000,
+            "seed": 42,
+            "dim": 8,
+            "groups": 4,
+            "lr": 100.0,
+            "rho": 0.01,
+            "beta": 0.9,
+            "init_K": 1.0,
+            "point_decay": 0.0,
+            "search_slot": 4,
+            "search_budget": 6,
+            "priority": 3,
+            "eval_every": 25,
+            "selection_metric": "map",
+            "id": "new_taxonomy_wordnet_vehicle_B35_s4"
+          }
+        },
+        "B5": {
+          "id": "new_taxonomy_wordnet_vehicle_B5_s2",
+          "val_score": 0.09913482925180854,
+          "config": {
+            "suite": "new_tasks_v1",
+            "family": "taxonomy",
+            "dataset": "wordnet_vehicle",
+            "model": "product_embedding",
+            "method": "B5",
+            "epochs": 1000,
+            "seed": 42,
+            "dim": 8,
+            "groups": 4,
+            "lr": 10.0,
+            "rho": 0.01,
+            "beta": 0.9,
+            "init_K": 3.0,
+            "point_decay": 0.0,
+            "search_slot": 2,
+            "search_budget": 6,
+            "priority": 3,
+            "eval_every": 25,
+            "selection_metric": "map",
+            "id": "new_taxonomy_wordnet_vehicle_B5_s2"
+          }
+        },
+        "A5": {
+          "id": "new_taxonomy_wordnet_vehicle_A5_s2",
+          "val_score": 0.09926997988164121,
+          "config": {
+            "suite": "new_tasks_v1",
+            "family": "taxonomy",
+            "dataset": "wordnet_vehicle",
+            "model": "product_embedding",
+            "method": "A5",
+            "epochs": 1000,
+            "seed": 42,
+            "dim": 8,
+            "groups": 4,
+            "lr": 10.0,
+            "rho": 0.01,
+            "beta": 0.9,
+            "init_K": 3.0,
+            "point_decay": 0.0,
+            "search_slot": 2,
+            "search_budget": 6,
+            "priority": 3,
+            "eval_every": 25,
+            "selection_metric": "map",
+            "id": "new_taxonomy_wordnet_vehicle_A5_s2"
+          }
+        }
+      },
+      "test": {
+        "E": {
+          "ap": 0.8314389273574249,
+          "auc": 0.8557748168137779,
+          "map": 0.08421717446903021
+        },
+        "B3": {
+          "ap": 0.8454950763442453,
+          "auc": 0.8670377241805813,
+          "map": 0.08403174996645028
+        },
+        "B35": {
+          "ap": 0.8321020617579367,
+          "auc": 0.8548565431682315,
+          "map": 0.07797782050128456
+        },
+        "B5": {
+          "ap": 0.8439765525721801,
+          "auc": 0.8654635407882162,
+          "map": 0.08504986784828672
+        },
+        "A5": {
+          "ap": 0.8455802869760015,
+          "auc": 0.8665129963831263,
+          "map": 0.08273723537724863
+        }
+      },
+      "matched_A5": {
+        "id": "new_taxonomy_wordnet_vehicle_A5_s2",
+        "test": {
+          "ap": 0.8455802869760015,
+          "auc": 0.8665129963831263,
+          "map": 0.08273723537724863
+        }
+      },
+      "data_sha256": "f9f517f87f63b978f10579493311d20ebc90f61d1571d1b9222a11df4534efaa",
+      "selection_scope": "Entire 30-run matrix completed before test release. No test-based hyperparameter choice. Exploratory single-seed extension; all task outcomes retained.",
+      "B5_minus_baselines_pp": {
+        "E": 0.08326933792565105,
+        "B3": 0.10181178818364361,
+        "B35": 0.7072047347002162
+      },
+      "positive_display_eligible": false,
+      "broad_family": "knowledge-graph / taxonomy"
+    },
+    {
+      "dataset": "citeseer_links",
+      "family": "link_prediction",
+      "metric": "ap",
+      "configs_completed": 30,
+      "created_unix": 1793641685.7292523,
+      "selected": {
+        "E": {
+          "id": "new_link_prediction_citeseer_links_E_s3",
+          "val_score": 0.942546836997506,
+          "config": {
+            "suite": "new_tasks_v1",
+            "family": "link_prediction",
+            "dataset": "citeseer_links",
+            "model": "product_embedding",
+            "method": "E",
+            "epochs": 1000,
+            "seed": 42,
+            "dim": 8,
+            "groups": 4,
+            "lr": 100.0,
+            "rho": 0.01,
+            "beta": 0.9,
+            "init_K": 1.0,
+            "point_decay": 0.0,
+            "search_slot": 3,
+            "search_budget": 6,
+            "priority": 4,
+            "eval_every": 25,
+            "selection_metric": "ap",
+            "id": "new_link_prediction_citeseer_links_E_s3"
+          }
+        },
+        "B3": {
+          "id": "new_link_prediction_citeseer_links_B3_s5",
+          "val_score": 0.9433314159463015,
+          "config": {
+            "suite": "new_tasks_v1",
+            "family": "link_prediction",
+            "dataset": "citeseer_links",
+            "model": "product_embedding",
+            "method": "B3",
+            "epochs": 1000,
+            "seed": 42,
+            "dim": 8,
+            "groups": 4,
+            "lr": 100.0,
+            "rho": 0.01,
+            "beta": 0.9,
+            "init_K": 3.0,
+            "point_decay": 0.0,
+            "search_slot": 5,
+            "search_budget": 6,
+            "priority": 4,
+            "eval_every": 25,
+            "selection_metric": "ap",
+            "id": "new_link_prediction_citeseer_links_B3_s5"
+          }
+        },
+        "B35": {
+          "id": "new_link_prediction_citeseer_links_B35_s5",
+          "val_score": 0.9433315096641262,
+          "config": {
+            "suite": "new_tasks_v1",
+            "family": "link_prediction",
+            "dataset": "citeseer_links",
+            "model": "product_embedding",
+            "method": "B35",
+            "epochs": 1000,
+            "seed": 42,
+            "dim": 8,
+            "groups": 4,
+            "lr": 100.0,
+            "rho": 0.01,
+            "beta": 0.9,
+            "init_K": 3.0,
+            "point_decay": 0.0,
+            "search_slot": 5,
+            "search_budget": 6,
+            "priority": 4,
+            "eval_every": 25,
+            "selection_metric": "ap",
+            "id": "new_link_prediction_citeseer_links_B35_s5"
+          }
+        },
+        "B5": {
+          "id": "new_link_prediction_citeseer_links_B5_s5",
+          "val_score": 0.9433388894611306,
+          "config": {
+            "suite": "new_tasks_v1",
+            "family": "link_prediction",
+            "dataset": "citeseer_links",
+            "model": "product_embedding",
+            "method": "B5",
+            "epochs": 1000,
+            "seed": 42,
+            "dim": 8,
+            "groups": 4,
+            "lr": 100.0,
+            "rho": 0.01,
+            "beta": 0.9,
+            "init_K": 3.0,
+            "point_decay": 0.0,
+            "search_slot": 5,
+            "search_budget": 6,
+            "priority": 4,
+            "eval_every": 25,
+            "selection_metric": "ap",
+            "id": "new_link_prediction_citeseer_links_B5_s5"
+          }
+        },
+        "A5": {
+          "id": "new_link_prediction_citeseer_links_A5_s5",
+          "val_score": 0.9433388894611306,
+          "config": {
+            "suite": "new_tasks_v1",
+            "family": "link_prediction",
+            "dataset": "citeseer_links",
+            "model": "product_embedding",
+            "method": "A5",
+            "epochs": 1000,
+            "seed": 42,
+            "dim": 8,
+            "groups": 4,
+            "lr": 100.0,
+            "rho": 0.01,
+            "beta": 0.9,
+            "init_K": 3.0,
+            "point_decay": 0.0,
+            "search_slot": 5,
+            "search_budget": 6,
+            "priority": 4,
+            "eval_every": 25,
+            "selection_metric": "ap",
+            "id": "new_link_prediction_citeseer_links_A5_s5"
+          }
+        }
+      },
+      "test": {
+        "E": {
+          "ap": 0.9191412375073251,
+          "auc": 0.8920420239101556
+        },
+        "B3": {
+          "ap": 0.9191491916220239,
+          "auc": 0.8923511653181984
+        },
+        "B35": {
+          "ap": 0.9191510932433588,
+          "auc": 0.892355995652699
+        },
+        "B5": {
+          "ap": 0.9191533313819401,
+          "auc": 0.8923608259871996
+        },
+        "A5": {
+          "ap": 0.9191533313819401,
+          "auc": 0.8923608259871996
+        }
+      },
+      "matched_A5": {
+        "id": "new_link_prediction_citeseer_links_A5_s5",
+        "test": {
+          "ap": 0.9191533313819401,
+          "auc": 0.8923608259871996
+        }
+      },
+      "data_sha256": "bc7434ee44318117db331ef6dea2bdccf5acaddf7ae1154ca9ed6468f27e7485",
+      "selection_scope": "Entire 30-run matrix completed before test release. No test-based hyperparameter choice. Exploratory single-seed extension; all task outcomes retained.",
+      "B5_minus_baselines_pp": {
+        "E": 0.0012093874614982347,
+        "B3": 0.0004139759916199637,
+        "B35": 0.00022381385813563526
+      },
+      "positive_display_eligible": false,
+      "broad_family": "graph"
+    },
+    {
+      "dataset": "20news_retrieval",
+      "family": "retrieval",
+      "metric": "recall1",
+      "configs_completed": 30,
+      "created_unix": 1793642852.753577,
+      "selected": {
+        "E": {
+          "id": "new_retrieval_20news_retrieval_E_s5",
+          "val_score": 0.4796819787985866,
+          "config": {
+            "suite": "new_tasks_v1",
+            "family": "retrieval",
+            "dataset": "20news_retrieval",
+            "model": "product_proxy",
+            "method": "E",
+            "epochs": 1000,
+            "seed": 42,
+            "dim": 8,
+            "groups": 4,
+            "lr": 1.0,
+            "rho": 0.01,
+            "beta": 0.9,
+            "init_K": 1.0,
+            "point_decay": 0.01,
+            "search_slot": 5,
+            "search_budget": 6,
+            "priority": 5,
+            "eval_every": 25,
+            "selection_metric": "recall1",
+            "id": "new_retrieval_20news_retrieval_E_s5"
+          }
+        },
+        "B3": {
+          "id": "new_retrieval_20news_retrieval_B3_s3",
+          "val_score": 0.4832155477031802,
+          "config": {
+            "suite": "new_tasks_v1",
+            "family": "retrieval",
+            "dataset": "20news_retrieval",
+            "model": "product_proxy",
+            "method": "B3",
+            "epochs": 1000,
+            "seed": 42,
+            "dim": 8,
+            "groups": 4,
+            "lr": 1.0,
+            "rho": 0.01,
+            "beta": 0.9,
+            "init_K": 0.1,
+            "point_decay": 0.0,
+            "search_slot": 3,
+            "search_budget": 6,
+            "priority": 5,
+            "eval_every": 25,
+            "selection_metric": "recall1",
+            "id": "new_retrieval_20news_retrieval_B3_s3"
+          }
+        },
+        "B35": {
+          "id": "new_retrieval_20news_retrieval_B35_s3",
+          "val_score": 0.48586572438162545,
+          "config": {
+            "suite": "new_tasks_v1",
+            "family": "retrieval",
+            "dataset": "20news_retrieval",
+            "model": "product_proxy",
+            "method": "B35",
+            "epochs": 1000,
+            "seed": 42,
+            "dim": 8,
+            "groups": 4,
+            "lr": 1.0,
+            "rho": 0.01,
+            "beta": 0.9,
+            "init_K": 0.1,
+            "point_decay": 0.0,
+            "search_slot": 3,
+            "search_budget": 6,
+            "priority": 5,
+            "eval_every": 25,
+            "selection_metric": "recall1",
+            "id": "new_retrieval_20news_retrieval_B35_s3"
+          }
+        },
+        "B5": {
+          "id": "new_retrieval_20news_retrieval_B5_s3",
+          "val_score": 0.48586572438162545,
+          "config": {
+            "suite": "new_tasks_v1",
+            "family": "retrieval",
+            "dataset": "20news_retrieval",
+            "model": "product_proxy",
+            "method": "B5",
+            "epochs": 1000,
+            "seed": 42,
+            "dim": 8,
+            "groups": 4,
+            "lr": 1.0,
+            "rho": 0.01,
+            "beta": 0.9,
+            "init_K": 0.1,
+            "point_decay": 0.0,
+            "search_slot": 3,
+            "search_budget": 6,
+            "priority": 5,
+            "eval_every": 25,
+            "selection_metric": "recall1",
+            "id": "new_retrieval_20news_retrieval_B5_s3"
+          }
+        },
+        "A5": {
+          "id": "new_retrieval_20news_retrieval_A5_s3",
+          "val_score": 0.48498233215547704,
+          "config": {
+            "suite": "new_tasks_v1",
+            "family": "retrieval",
+            "dataset": "20news_retrieval",
+            "model": "product_proxy",
+            "method": "A5",
+            "epochs": 1000,
+            "seed": 42,
+            "dim": 8,
+            "groups": 4,
+            "lr": 1.0,
+            "rho": 0.01,
+            "beta": 0.9,
+            "init_K": 0.1,
+            "point_decay": 0.0,
+            "search_slot": 3,
+            "search_budget": 6,
+            "priority": 5,
+            "eval_every": 25,
+            "selection_metric": "recall1",
+            "id": "new_retrieval_20news_retrieval_A5_s3"
+          }
+        }
+      },
+      "test": {
+        "E": {
+          "recall1": 0.42312798725438133,
+          "ndcg10": 0.42440028718820577
+        },
+        "B3": {
+          "recall1": 0.4349442379182156,
+          "ndcg10": 0.430292042796275
+        },
+        "B35": {
+          "recall1": 0.4349442379182156,
+          "ndcg10": 0.4302611390264251
+        },
+        "B5": {
+          "recall1": 0.4349442379182156,
+          "ndcg10": 0.43037562174163657
+        },
+        "A5": {
+          "recall1": 0.4345459373340414,
+          "ndcg10": 0.43040862678591235
+        }
+      },
+      "matched_A5": {
+        "id": "new_retrieval_20news_retrieval_A5_s3",
+        "test": {
+          "recall1": 0.4345459373340414,
+          "ndcg10": 0.43040862678591235
+        }
+      },
+      "data_sha256": "33ff025a976b1663330a0fdfad66d68f28cf71ac2764fb10fca605f8ee959d55",
+      "selection_scope": "Entire 30-run matrix completed before test release. No test-based hyperparameter choice. Exploratory single-seed extension; all task outcomes retained.",
+      "B5_minus_baselines_pp": {
+        "E": 1.1816250663834293,
+        "B3": 0.0,
+        "B35": 0.0
+      },
+      "positive_display_eligible": false,
+      "broad_family": "retrieval"
+    }
+  ],
+  "family_assessment": {
+    "graph": {
+      "completed_tasks": 2,
+      "registered_tasks": 2,
+      "supported_on_both_tasks": false
+    },
+    "retrieval": {
+      "completed_tasks": 2,
+      "registered_tasks": 2,
+      "supported_on_both_tasks": false
+    },
+    "knowledge-graph / taxonomy": {
+      "completed_tasks": 2,
+      "registered_tasks": 2,
+      "supported_on_both_tasks": false
+    }
+  },
+  "criterion": "Both predeclared tasks per broad family must exceed all three controls by >=0.005 absolute primary score before a descriptive family-level advantage is claimed. Single-seed evidence, not significance."
+}

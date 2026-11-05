@@ -1,0 +1,24 @@
+\section{Related Work}
+\label{sec:related-work}
+
+\paragraph{Hyperbolic representations and learned curvature.}
+Poincar\'{e} embeddings use negative curvature for compact hierarchical representations, while Lorentz embeddings provide an alternative model with closed-form geodesic operations~\citep{nickel2017poincare,nickel2018lorentz}. Learning curvature is already established: product-space embeddings jointly learn geometry across factors~\citep{gu2019mixed}, and HGCN learns a curvature at each graph-convolution layer~\citep{chami2019hgcn}. For knowledge graphs, MuRP provides a hyperbolic relational model~\citep{balazevic2019poincare}, while RotH and AttH learn relation-specific curvatures together with isometric transformations~\citep{chami2020atth}. Poincar\'{e} GloVe extends hyperbolic representation learning to lexical co-occurrence~\citep{tifrea2019poincare}. Grouped or relation-specific curvature is therefore a precedent, rather than a novelty claim of this paper.
+
+\paragraph{Riemannian optimization and optimizer memory.}
+RSGD establishes stochastic optimization directly on a manifold~\citep{bonnabel2013sgd}; curvature-dependent first-order analysis characterizes geodesically convex objectives~\citep{zhang2016geodesic}. Riemannian Adam and AMSGrad maintain adaptive statistics on a product manifold and transport first-moment information between tangent spaces~\citep{becigneul2019radam}. More recent adaptive frameworks analyze minibatch size and constant or diminishing steps on embedded manifolds~\citep{sakai2024adaptive}. These are important fixed-manifold foundations. Our analysis additionally tracks a learned curvature coordinate, including the gradient induced by identifying points through a curvature-dependent homothety. It retains the different representation and curvature step weights instead of assigning both blocks the same rate by default.
+
+\paragraph{Curvature-aware state mapping: the closest optimization precedent.}
+\citet{bdeir2025robust} already identify mismatches caused by updating curvature while retaining stale manifold parameters and optimizer states. Their curvature-aware scheme updates parameters and transports gradients and momentum through the origin tangent space; it is combined with Riemannian AdamW and radius rescaling. We therefore do not claim to introduce cross-curvature optimizer-state consistency. HyperbolicMomentum instead studies a homothetic point-and-momentum map, grouped slow curvature updates, and a curvature--momentum normalized geodesic step. The distinction is the chosen coupled update and its error-explicit analysis; the homothety itself also has precedents discussed by that work. Its behavior relative to origin-tangent remapping requires a matched empirical comparison, which the current experiments do not supply.
+
+\input{sections/related_work_table}
+
+\paragraph{The map being compared.}
+The origin-tangent point map has the form
+$\Exp_{o_{K'}}^{K'}\!\circ\Log_{o_K}^{K}$ and retains the physical radial coordinate. Our map is
+$\Psi_{K\to K'}(x)=\sqrt{K/K'}\,x$, with differential
+$D\Psi(v)=\sqrt{K/K'}\,v$; it retains the canonical state
+$q=\sqrt Kx$, $p=\sqrt Km$ while scaling physical distances.
+These invariants are different. Neither map implies a universal performance ordering. Table~\ref{tab:related-work-features} separates architectural curvature learning, transported tangent memory, and changes of the geometry itself, rather than assigning every hyperbolic model the same optimizer.
+
+\paragraph{Generalization and evidence boundaries.}
+Replace-one stability links coupled optimization trajectories to expected generalization under an appropriate sampling model~\citep{hardt2016stability}. Our conditional bound exposes its curvature-radius and cumulative-step dependence and distinguishes fixed i.i.d. data from graph dependence or continual-learning shift. Historical KG measurements in this paper are exploratory fixed-versus-learned-curvature Adam comparisons; they are not matched optimizer comparisons against RotH/AttH or curvature-aware RAdamW. The table records mechanisms, while the experiment section separately records which comparisons were actually run.

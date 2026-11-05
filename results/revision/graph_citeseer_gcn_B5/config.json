@@ -1,0 +1,9 @@
+{
+  "family": "graph",
+  "dataset": "citeseer",
+  "model": "gcn",
+  "method": "B5",
+  "epochs": 1000,
+  "seed": 42,
+  "id": "graph_citeseer_gcn_B5"
+}

@@ -1,0 +1,216 @@
+\subsection{Lorentz geometry and canonical coordinates}
+\label{app:rigid-geometry}
+Curvature adaptation moves both the point and its tangent space. The purpose of the following identities is to place these moving objects in a common coordinate system while retaining their physical metric. Keeping track of the metric scaling is essential: preserving normalized coordinates does not preserve physical distances or the numerical value of the gradient.
+\begin{definition}[State space]
+\begin{align}
+ J_d&=\operatorname{diag}(-1,I_d),&
+ \langle a,b\rangle_L&=a^\top J_db,\\
+ H_K^d&=\{x\in\mathbb R^{d+1}:x^\top J_dx=-K^{-1},\ x_0>0\},&
+ o_K&=(K^{-1/2},0,\ldots,0),\\
+ T_xH_K^d&=\{v:x^\top J_dv=0\},&
+ \|v\|_x^2&=v^\top J_dv,\\
+ \mathcal Q&=\prod_{g=1}^G(H_1^{d_g})^{n_g},&
+ U&=\prod_{g=1}^G[u_{g,-},u_{g,+}],\\
+ K_g&=e^{u_g}\in[K_-,K_+],&0&<K_-\le K_+<\infty.
+\end{align}
+\end{definition}
+
+\begin{lemma}[Positive tangent metric and projection]
+For $x=(x_0,x_s)\in H_K^d$,
+\begin{align}
+ x_0^2&=K^{-1}+\|x_s\|_2^2,&
+ v_0&=x_s^\top v_s/x_0\quad(v\in T_xH_K^d),\\
+ \|v\|_x^2
+ &=\|v_s\|_2^2-(x_s^\top v_s)^2/x_0^2
+ \ge\frac{\|v_s\|_2^2}{Kx_0^2}\ge0,\\
+ \Pi_x^K a&=a+K\langle x,a\rangle_Lx,&
+ (\Pi_x^K)^2&=\Pi_x^K,\\
+ \langle x,\Pi_x^Ka\rangle_L&=0,&
+ \operatorname{grad}f(x)&=\Pi_x^KJ_d\nabla\widetilde f(x).
+\end{align}
+\end{lemma}
+\begin{proof}
+\begin{align}
+ (x_s^\top v_s)^2
+ &\le\|x_s\|_2^2\|v_s\|_2^2,\\
+ 1-\|x_s\|_2^2/x_0^2&=(Kx_0^2)^{-1},\\
+ \langle x,\Pi_x^Ka\rangle_L
+ &=\langle x,a\rangle_L+K\langle x,a\rangle_L(-K^{-1})=0,\\
+ \langle\Pi_x^KJ_d\nabla\widetilde f,v\rangle_L
+ &=\nabla\widetilde f^\top v
+   +K\langle x,J_d\nabla\widetilde f\rangle_L\langle x,v\rangle_L
+ =Df(x)[v].
+\end{align}
+\end{proof}
+
+\begin{proposition}[Connection, curvature and geodesics]
+For tangent fields $V,W$ and $v\in T_xH_K^d$,
+\begin{align}
+ \nabla_VW&=\Pi_x^KD_VW=D_VW-K\langle V,W\rangle_Lx,\\
+ R(U,V)W&=-K(\langle V,W\rangle_LU-\langle U,W\rangle_LV),\\
+ \operatorname{Sec}(U,V)&=-K,\\
+ \gamma_v(s)&=\cosh(\sqrt K\|v\|s)x+
+ \frac{\sinh(\sqrt K\|v\|s)}{\sqrt K\|v\|}v,\\
+ \gamma_v''(s)&=K\|v\|^2\gamma_v(s),&
+ \nabla_{\dot\gamma}\dot\gamma&=0,\\
+ \Exp_x^K(v)&=\gamma_v(1),&
+ d_K(x,y)&=K^{-1/2}\operatorname{arcosh}(-K\langle x,y\rangle_L).
+\end{align}
+\end{proposition}
+\begin{proof}
+\begin{align}
+ D_V\langle x,W\rangle_L&=0
+ \Longrightarrow\langle x,D_VW\rangle_L=-\langle V,W\rangle_L,\\
+ D_VW&=\nabla_VW+K\langle V,W\rangle_Lx,\\
+ \Pi_x^K(D_UD_VW-D_VD_UW-D_{[U,V]}W)&=0,\\
+ R(U,V)W
+ &=-K\langle V,W\rangle_LU+K\langle U,W\rangle_LV,\\
+ \langle\gamma_v(s),\gamma_v(s)\rangle_L
+ &=-K^{-1}\cosh^2(\sqrt K\|v\|s)
+   +K^{-1}\sinh^2(\sqrt K\|v\|s)\\
+ &=-K^{-1},\\
+ \langle\dot\gamma_v,\dot\gamma_v\rangle_L&=\|v\|^2,\\
+ \Pi_{\gamma_v}^K\gamma_v''&=K\|v\|^2\Pi_{\gamma_v}^K\gamma_v=0,\\
+ -K\langle x,\gamma_v(s)\rangle_L&=\cosh(\sqrt K\|v\|s).
+\end{align}
+\end{proof}
+
+\begin{proposition}[Closed-form parallel transport]
+\label{prop:rigid-pt}
+\begin{align}
+ P_{x\to y}^Kv
+ &=v+\frac{K\langle y,v\rangle_L}{1-K\langle x,y\rangle_L}(x+y),\\
+ \langle y,P_{x\to y}^Kv\rangle_L&=0,&
+ \|P_{x\to y}^Kv\|_y&=\|v\|_x,\\
+ P_{y\to x}^KP_{x\to y}^K&=I_{T_xH_K}.
+\end{align}
+\end{proposition}
+\begin{proof}
+Set $a=\langle y,v\rangle_L$, $b=-K\langle x,y\rangle_L\ge1$,
+$c=Ka/(1+b)$. Then
+\begin{align}
+ \langle y,v+c(x+y)\rangle_L
+ &=a-c(1+b)/K=0,\\
+ \langle x+y,x+y\rangle_L&=-2(1+b)/K,\\
+ \|v+c(x+y)\|_L^2-\|v\|_L^2
+ &=2ca-2c^2(1+b)/K=0.
+\end{align}
+For $y=\gamma_w(s)$, $\lambda=\sqrt K\|w\|$ and
+$v=v_\perp+\langle w,v\rangle_Lw/\|w\|^2$,
+\begin{align}
+ c(s)&=\frac{K\langle w,v\rangle_L}{\lambda}\tanh(\lambda s/2),\\
+ P_{x\to\gamma_w(s)}^Kv
+ &=v_\perp+\frac{\langle w,v\rangle_L}{\|w\|^2}\dot\gamma_w(s),\\
+ \Pi_{\gamma_w(s)}^K\frac d{ds}P_{x\to\gamma_w(s)}^Kv
+ &=\frac{\langle w,v\rangle_L}{\|w\|^2}
+   \Pi_{\gamma_w(s)}^K\lambda^2\gamma_w(s)=0.
+\end{align}
+\end{proof}
+
+\begin{proposition}[Homothety and compatible state transport]
+\label{prop:homothety}
+For $a=\sqrt{K/K'}$, $\Psi_{K\to K'}x=ax$,
+$C_{K\to K'}v=av$,
+\begin{align}
+ \langle ax,ax\rangle_L&=-K'^{-1},&
+ \langle ax,av\rangle_L&=0,\\
+ \Psi_{K\to K'}^*g_{K'}&=a^2g_K,&
+ \|av\|_{ax}&=a\|v\|_x,\\
+ d_{K'}(ax,ay)&=a\,d_K(x,y),\\
+ \Psi_{K\to K'}\Exp_x^K(v)&=\Exp_{ax}^{K'}(av),\\
+ P_{ax\to ay}^{K'}(av)&=aP_{x\to y}^Kv.
+\end{align}
+\end{proposition}
+\begin{proof}
+\begin{align}
+ a^2/K&=1/K',&\sqrt{K'}\|av\|&=\sqrt K\|v\|,\\
+ -K'\langle ax,ay\rangle_L&=-K\langle x,y\rangle_L,\\
+ \Exp_{ax}^{K'}(av)
+ &=a\cosh(\sqrt K\|v\|)x+
+ a\frac{\sinh(\sqrt K\|v\|)}{\sqrt K\|v\|}v,\\
+ P_{ax\to ay}^{K'}(av)
+ &=av+\frac{K'a^2\langle y,v\rangle_L}{1-K'a^2\langle x,y\rangle_L}a(x+y)
+ =aP_{x\to y}^Kv.
+\end{align}
+\end{proof}
+
+The homothety commutes with geodesic motion and parallel transport, so it provides a consistent identification of the chosen state across curvatures. This compatibility is the property used below. In particular, an old momentum must undergo the same differential as the point; retaining its ambient entries produces the discrepancy quantified after the canonical identities.
+
+\begin{definition}[Canonical trivialization]
+\begin{align}\label{eq:canonical}
+ q_g&=e^{u_g/2}x_g,&p_g&=e^{u_g/2}m_g,\\
+ F(q,u)&=\widetilde{\mathcal J}((e^{-u_g/2}q_g)_g,u),\\
+ A(u)&=\operatorname{diag}(e^{u_g}I_{n_gd_g})_{g=1}^G.
+\end{align}
+\end{definition}
+\begin{corollary}[Metric and gradient identities]
+\label{cor:canonical-gradient}
+\begin{align}\label{eq:equivalent-metrics}
+ K_+^{-1}\|v\|_1^2&\le\sum_gK_g^{-1}\|v_g\|_1^2
+ \le K_-^{-1}\|v\|_1^2,\\
+ \operatorname{grad}_{q_g}F&=K_g^{-1/2}\operatorname{grad}_{x_g}\mathcal J,\\
+ \sqrt{K_g}\operatorname{grad}_{x_g}\mathcal J
+ &=K_g\operatorname{grad}_{q_g}F,\\
+ q_g'&=\sqrt{K_g'}\sqrt{K_g/K_g'}x_g=q_g,\\
+ p_g'&=\sqrt{K_g'}\sqrt{K_g/K_g'}m_g=p_g.
+\end{align}
+\end{corollary}
+\begin{proof}
+\begin{align}
+ D_{q_g}F[v_g]
+ &=D_{x_g}\mathcal J[K_g^{-1/2}v_g]\\
+ &=\langle K_g^{-1/2}\operatorname{grad}_{x_g}\mathcal J,v_g\rangle_L.
+\end{align}
+\end{proof}
+
+\begin{proposition}[Omitted transport]
+\label{prop:omitted-rigid}
+For $u'=u+\delta u$ and $m'=m$,
+\begin{align}\label{eq:missing-transport}
+ p'&=e^{\delta u/2}p,&
+ \|p'-p\|&=|e^{\delta u/2}-1|\|p\|,\\
+ \|p'-p\|&\le\tfrac12e^{|\delta u|/2}|\delta u|\|p\|,\\
+ p'-p&=\tfrac12\delta u\,p+\tfrac18(\delta u)^2p+O(|\delta u|^3\|p\|),\\
+ \prod_{j=s}^{t}e^{(u_{j+1}-u_j)/2}
+ &=e^{(u_{t+1}-u_s)/2}\in[\sqrt{K_-/K_+},\sqrt{K_+/K_-}].
+\end{align}
+\end{proposition}
+\begin{proof}
+\begin{align}
+ e^{z/2}-1&=\tfrac z2\int_0^1e^{sz/2}\,ds,&
+ \sum_{j=s}^{t}(u_{j+1}-u_j)&=u_{t+1}-u_s.
+\end{align}
+\end{proof}
+
+\begin{lemma}[Logarithm and minimizing distance]
+For $\alpha=-K\langle x,y\rangle_L\ge1$,
+\begin{align}
+ v&=\frac{\operatorname{arcosh}\alpha}{\sqrt{\alpha^2-1}}(y-\alpha x),\\
+ \langle x,v\rangle_L&=0,&
+ \|v\|^2&=K^{-1}(\operatorname{arcosh}\alpha)^2,&\Exp_x^Kv&=y.
+\end{align}
+For any piecewise $C^1$ curve $c:[0,1]\to H_K$ from $x$ to $y$,
+\begin{align}
+ \operatorname{Length}(c)&\ge K^{-1/2}\operatorname{arcosh}\alpha.
+\end{align}
+\end{lemma}
+\begin{proof}
+\begin{align}
+ \sqrt{(K^{-1}+a^2)(K^{-1}+b^2)}&\ge K^{-1}+ab\quad(a,b\ge0),\\
+ -\langle x,y\rangle_L&=x_0y_0-x_s^\top y_s\ge K^{-1},\\
+ \langle y-\alpha x,y-\alpha x\rangle_L&=(\alpha^2-1)/K,\\
+ \langle x,y-\alpha x\rangle_L&=-\alpha/K+\alpha/K=0,\\
+ \Exp_x^Kv&=\alpha x+(y-\alpha x)=y.
+\end{align}
+For $\alpha(z)=-K\langle x,z\rangle_L$ and
+$r_x(z)=K^{-1/2}\operatorname{arcosh}\alpha(z)$,
+\begin{align}
+ \operatorname{grad}r_x(z)
+ &=\frac{-\sqrt K}{\sqrt{\alpha(z)^2-1}}\Pi_z^Kx,\\
+ \|\Pi_z^Kx\|^2&=(\alpha(z)^2-1)/K,\\
+ \|\operatorname{grad}r_x(z)\|&=1,\\
+ r_x(y)-r_x(x)&=\int_0^1\langle\operatorname{grad}r_x(c(s)),\dot c(s)\rangle\,ds
+ \le\int_0^1\|\dot c(s)\|\,ds.
+\end{align}
+The value at $z=x$ follows by continuity and the inequality by an arbitrarily short exclusion of that endpoint.
+\end{proof}

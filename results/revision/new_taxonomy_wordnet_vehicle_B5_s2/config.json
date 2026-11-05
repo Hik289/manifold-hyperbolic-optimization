@@ -1,0 +1,22 @@
+{
+  "suite": "new_tasks_v1",
+  "family": "taxonomy",
+  "dataset": "wordnet_vehicle",
+  "model": "product_embedding",
+  "method": "B5",
+  "epochs": 1000,
+  "seed": 42,
+  "dim": 8,
+  "groups": 4,
+  "lr": 10.0,
+  "rho": 0.01,
+  "beta": 0.9,
+  "init_K": 3.0,
+  "point_decay": 0.0,
+  "search_slot": 2,
+  "search_budget": 6,
+  "priority": 3,
+  "eval_every": 25,
+  "selection_metric": "map",
+  "id": "new_taxonomy_wordnet_vehicle_B5_s2"
+}

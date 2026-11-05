@@ -1,0 +1,11 @@
+{
+  "family": "graph",
+  "dataset": "cora",
+  "model": "gcn",
+  "method": "B5",
+  "epochs": 1000,
+  "seed": 42,
+  "ablation": "A7",
+  "rho": 0.1,
+  "id": "graph_cora_gcn_B5_A7"
+}

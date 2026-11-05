@@ -1,0 +1,39 @@
+{
+  "status": "complete",
+  "config": {
+    "family": "kg",
+    "dataset": "wn18rr",
+    "model": "lorentz_translation",
+    "method": "B5",
+    "epochs": 2000,
+    "seed": 42,
+    "id": "kg_wn18rr_lorentz_translation_B5"
+  },
+  "final": {
+    "epoch": 1999,
+    "train_loss": 0.06662479710603286,
+    "seconds": 31008.38426709175,
+    "K": [
+      0.11221610009670258,
+      0.11593705415725708,
+      0.11250121891498566,
+      0.11374741047620773
+    ],
+    "grad_norm": 4.5741522626485676e-05,
+    "momentum_norm": 3.1532290449831635e-05,
+    "exp_argument": 0.00010178275988437235,
+    "radius_clipped_fraction": 9.728573058964685e-05,
+    "manifold_residual": 0.028224945068359375,
+    "tangent_residual": 2.384185791015625e-07,
+    "mean_radius": 0.64862060546875,
+    "val_MRR": 0.10243556924295699,
+    "val_Hits1": 0.007580751483190508,
+    "val_Hits3": 0.1537574159525379,
+    "val_Hits10": 0.3150955833882663,
+    "test_MRR": 0.10229514471149997,
+    "test_Hits1": 0.011327377153797065,
+    "test_Hits3": 0.15060625398851307,
+    "test_Hits10": 0.30599872367581366
+  },
+  "epochs_completed": 2000
+}

@@ -1,0 +1,37 @@
+{
+  "selected_epoch": 227,
+  "selected_test": {
+    "accuracy": 0.7440000176429749,
+    "macro_f1": 0.7432429197573933
+  },
+  "status": "complete",
+  "config": {
+    "family": "graph",
+    "dataset": "pubmed",
+    "model": "sage",
+    "method": "E",
+    "epochs": 1000,
+    "seed": 42,
+    "id": "graph_pubmed_sage_E"
+  },
+  "final": {
+    "epoch": 999,
+    "task": 0,
+    "train_loss": 0.000117819472507108,
+    "seconds": 13.02733039855957,
+    "K": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "learning_rate": 0.1,
+    "curvature_learning_rate": 0.001,
+    "peak_memory_mb": 317.714944,
+    "val_accuracy": 0.7700000405311584,
+    "val_macro_f1": 0.774967496749675,
+    "test_accuracy": 0.7420000433921814,
+    "test_macro_f1": 0.7400900692662707
+  },
+  "best_validation": 0.7760000228881836,
+  "epochs_completed": 1000
+}

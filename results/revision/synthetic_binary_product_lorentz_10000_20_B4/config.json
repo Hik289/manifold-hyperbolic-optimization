@@ -1,0 +1,12 @@
+{
+  "family": "synthetic",
+  "dataset": "binary",
+  "model": "product_lorentz",
+  "method": "B4",
+  "epochs": 2000,
+  "seed": 42,
+  "nodes": 10000,
+  "dim": 20,
+  "lr": 10.0,
+  "id": "synthetic_binary_product_lorentz_10000_20_B4"
+}

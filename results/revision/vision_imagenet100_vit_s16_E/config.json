@@ -1,0 +1,9 @@
+{
+  "family": "vision",
+  "dataset": "imagenet100",
+  "model": "vit_s16",
+  "method": "E",
+  "epochs": 1000,
+  "seed": 42,
+  "id": "vision_imagenet100_vit_s16_E"
+}

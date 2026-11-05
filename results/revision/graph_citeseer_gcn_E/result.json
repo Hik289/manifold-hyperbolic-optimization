@@ -1,0 +1,40 @@
+{
+  "selected_epoch": 24,
+  "selected_test": {
+    "accuracy": 0.6740000247955322,
+    "macro_f1": 0.6382363491233481
+  },
+  "status": "complete",
+  "config": {
+    "family": "graph",
+    "dataset": "citeseer",
+    "model": "gcn",
+    "method": "E",
+    "epochs": 1000,
+    "seed": 42,
+    "id": "graph_citeseer_gcn_E"
+  },
+  "final": {
+    "epoch": 999,
+    "task": 0,
+    "train_loss": 0.00013276157551445067,
+    "seconds": 23.866872549057007,
+    "K": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "learning_rate": 0.1,
+    "curvature_learning_rate": 0.001,
+    "peak_memory_mb": 79.42912,
+    "val_accuracy": 0.6320000290870667,
+    "val_macro_f1": 0.5976895923673213,
+    "test_accuracy": 0.6370000243186951,
+    "test_macro_f1": 0.6068278389472032
+  },
+  "best_validation": 0.6800000071525574,
+  "epochs_completed": 1000
+}

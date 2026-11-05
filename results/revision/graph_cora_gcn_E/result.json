@@ -1,0 +1,33 @@
+{
+  "status": "complete",
+  "config": {
+    "family": "graph",
+    "dataset": "cora",
+    "model": "gcn",
+    "method": "E",
+    "epochs": 1000,
+    "seed": 42,
+    "id": "graph_cora_gcn_E"
+  },
+  "final": {
+    "epoch": 999,
+    "task": 0,
+    "train_loss": 0.00023626918846275657,
+    "seconds": 10.342618465423584,
+    "K": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "val_accuracy": 0.7740000486373901,
+    "val_macro_f1": 0.7574720500528638,
+    "test_accuracy": 0.7780000567436218,
+    "test_macro_f1": 0.7694302086843778
+  },
+  "best_validation": 0.7900000214576721,
+  "epochs_completed": 1000
+}

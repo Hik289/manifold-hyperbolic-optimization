@@ -1,0 +1,9 @@
+{
+  "family": "continual",
+  "dataset": "rotmnist",
+  "model": "resnet18",
+  "method": "E",
+  "epochs": 1000,
+  "seed": 42,
+  "id": "continual_rotmnist_resnet18_E"
+}

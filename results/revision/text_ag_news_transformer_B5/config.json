@@ -1,0 +1,9 @@
+{
+  "family": "text",
+  "dataset": "ag_news",
+  "model": "transformer",
+  "method": "B5",
+  "epochs": 1000,
+  "seed": 42,
+  "id": "text_ag_news_transformer_B5"
+}

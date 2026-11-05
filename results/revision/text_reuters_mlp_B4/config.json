@@ -1,0 +1,9 @@
+{
+  "family": "text",
+  "dataset": "reuters",
+  "model": "mlp",
+  "method": "B4",
+  "epochs": 1000,
+  "seed": 42,
+  "id": "text_reuters_mlp_B4"
+}

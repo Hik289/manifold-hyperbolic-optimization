@@ -1,0 +1,22 @@
+% WWW_REFERENCE_STYLE
+\begin{table}[!htbp]
+\centering
+\caption{\textbf{Complete 20 Newsgroups classification block.} Eight methods, 1000 epochs each, seed 42. The registry labels the pooled-token encoder as \texttt{mlp}. The first maximum validation-accuracy checkpoint selects each method\textquotesingle s test result; epochs are one-based. All scores are percentages. Final accuracy is a separately labeled endpoint, not an alternative selection rule.}
+\label{tab:revision-text-audit}
+\footnotesize\setlength{\tabcolsep}{5pt}\renewcommand{\arraystretch}{1.12}
+\begin{tabular}{lrrrrr}
+\toprule
+Method & Selected epoch & Val. acc.\ $\uparrow$ & Test acc.\ $\uparrow$ & Test macro-F1\ $\uparrow$ & Final acc.\ $\uparrow$ \\
+\midrule
+E & 427 & \textbf{71.113} & \textbf{61.471} & \textbf{60.750} & \textbf{61.418} \\
+B2 & 179 & 68.463 & 57.554 & 56.291 & 56.678 \\
+B3 & 179 & 68.728 & 57.820 & 56.552 & 56.745 \\
+B4 & 183 & 68.286 & 57.754 & 56.494 & 56.121 \\
+\rowcolor{oursbg}
+B5 & 182 & 68.551 & 57.674 & 56.449 & 56.213 \\
+A5 & 182 & 68.551 & 57.687 & 56.461 & 56.213 \\
+B35 & 179 & 68.728 & 57.820 & 56.560 & 56.798 \\
+Shared & 179 & 68.728 & 57.674 & 56.457 & 56.028 \\
+\bottomrule
+\end{tabular}
+\end{table}

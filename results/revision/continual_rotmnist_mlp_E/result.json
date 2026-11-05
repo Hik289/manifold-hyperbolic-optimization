@@ -1,0 +1,45 @@
+{
+  "status": "complete",
+  "config": {
+    "family": "continual",
+    "dataset": "rotmnist",
+    "model": "mlp",
+    "method": "E",
+    "epochs": 1000,
+    "seed": 42,
+    "id": "continual_rotmnist_mlp_E"
+  },
+  "final": {
+    "epoch": 999,
+    "task": 4,
+    "train_loss": 0.008286829476831136,
+    "seconds": 6261.315800905228,
+    "K": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "val_accuracy": 0.9818333387374878,
+    "val_macro_f1": 0.9815412355202285,
+    "test_accuracy": 0.9837999939918518,
+    "test_macro_f1": 0.983699285076147,
+    "task_accuracies": [
+      0.2563000023365021,
+      0.14739999175071716,
+      0.19110000133514404,
+      0.6114000082015991,
+      0.9837999939918518
+    ],
+    "average_accuracy": 0.4379999995231628,
+    "forgetting": 0.6826749891042709
+  },
+  "best_validation": 0.984833300113678,
+  "epochs_completed": 1000
+}

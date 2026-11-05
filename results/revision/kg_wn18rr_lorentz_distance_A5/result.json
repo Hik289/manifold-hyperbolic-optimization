@@ -1,0 +1,39 @@
+{
+  "status": "complete",
+  "config": {
+    "family": "kg",
+    "dataset": "wn18rr",
+    "model": "lorentz_distance",
+    "method": "A5",
+    "epochs": 2000,
+    "seed": 42,
+    "id": "kg_wn18rr_lorentz_distance_A5"
+  },
+  "final": {
+    "epoch": 1999,
+    "train_loss": 0.021709522203841366,
+    "seconds": 20677.93466567993,
+    "K": [
+      0.39311105012893677,
+      0.26282963156700134,
+      0.20532870292663574,
+      0.20221972465515137
+    ],
+    "grad_norm": 1.6066140233306214e-05,
+    "momentum_norm": 1.515054282208439e-05,
+    "exp_argument": 0.000258732121437788,
+    "radius_clipped_fraction": 2.432143264741171e-05,
+    "manifold_residual": 0.007860183715820312,
+    "tangent_residual": 1.4901161193847656e-08,
+    "mean_radius": 0.34884968400001526,
+    "val_MRR": 0.14077741902291316,
+    "val_Hits1": 0.0006591957811470006,
+    "val_Hits3": 0.28477257745550427,
+    "val_Hits10": 0.35497692814765985,
+    "test_MRR": 0.13690615662209027,
+    "test_Hits1": 0.0,
+    "test_Hits3": 0.27393107849393744,
+    "test_Hits10": 0.3490746649649011
+  },
+  "epochs_completed": 2000
+}

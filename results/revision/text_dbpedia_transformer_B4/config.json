@@ -1,0 +1,9 @@
+{
+  "family": "text",
+  "dataset": "dbpedia",
+  "model": "transformer",
+  "method": "B4",
+  "epochs": 1000,
+  "seed": 42,
+  "id": "text_dbpedia_transformer_B4"
+}

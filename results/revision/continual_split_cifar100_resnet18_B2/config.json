@@ -1,0 +1,9 @@
+{
+  "family": "continual",
+  "dataset": "split_cifar100",
+  "model": "resnet18",
+  "method": "B2",
+  "epochs": 1000,
+  "seed": 42,
+  "id": "continual_split_cifar100_resnet18_B2"
+}

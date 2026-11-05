@@ -1,0 +1,176 @@
+{
+  "dataset": "wordnet_vehicle",
+  "family": "taxonomy",
+  "metric": "map",
+  "configs_completed": 30,
+  "created_unix": 1793642474.3015616,
+  "selected": {
+    "E": {
+      "id": "new_taxonomy_wordnet_vehicle_E_s3",
+      "val_score": 0.09666001366595886,
+      "config": {
+        "suite": "new_tasks_v1",
+        "family": "taxonomy",
+        "dataset": "wordnet_vehicle",
+        "model": "product_embedding",
+        "method": "E",
+        "epochs": 1000,
+        "seed": 42,
+        "dim": 8,
+        "groups": 4,
+        "lr": 100.0,
+        "rho": 0.01,
+        "beta": 0.9,
+        "init_K": 1.0,
+        "point_decay": 0.0,
+        "search_slot": 3,
+        "search_budget": 6,
+        "priority": 3,
+        "eval_every": 25,
+        "selection_metric": "map",
+        "id": "new_taxonomy_wordnet_vehicle_E_s3"
+      }
+    },
+    "B3": {
+      "id": "new_taxonomy_wordnet_vehicle_B3_s2",
+      "val_score": 0.09760395482468327,
+      "config": {
+        "suite": "new_tasks_v1",
+        "family": "taxonomy",
+        "dataset": "wordnet_vehicle",
+        "model": "product_embedding",
+        "method": "B3",
+        "epochs": 1000,
+        "seed": 42,
+        "dim": 8,
+        "groups": 4,
+        "lr": 10.0,
+        "rho": 0.01,
+        "beta": 0.9,
+        "init_K": 3.0,
+        "point_decay": 0.0,
+        "search_slot": 2,
+        "search_budget": 6,
+        "priority": 3,
+        "eval_every": 25,
+        "selection_metric": "map",
+        "id": "new_taxonomy_wordnet_vehicle_B3_s2"
+      }
+    },
+    "B35": {
+      "id": "new_taxonomy_wordnet_vehicle_B35_s4",
+      "val_score": 0.09910408626754838,
+      "config": {
+        "suite": "new_tasks_v1",
+        "family": "taxonomy",
+        "dataset": "wordnet_vehicle",
+        "model": "product_embedding",
+        "method": "B35",
+        "epochs": 1000,
+        "seed": 42,
+        "dim": 8,
+        "groups": 4,
+        "lr": 100.0,
+        "rho": 0.01,
+        "beta": 0.9,
+        "init_K": 1.0,
+        "point_decay": 0.0,
+        "search_slot": 4,
+        "search_budget": 6,
+        "priority": 3,
+        "eval_every": 25,
+        "selection_metric": "map",
+        "id": "new_taxonomy_wordnet_vehicle_B35_s4"
+      }
+    },
+    "B5": {
+      "id": "new_taxonomy_wordnet_vehicle_B5_s2",
+      "val_score": 0.09913482925180854,
+      "config": {
+        "suite": "new_tasks_v1",
+        "family": "taxonomy",
+        "dataset": "wordnet_vehicle",
+        "model": "product_embedding",
+        "method": "B5",
+        "epochs": 1000,
+        "seed": 42,
+        "dim": 8,
+        "groups": 4,
+        "lr": 10.0,
+        "rho": 0.01,
+        "beta": 0.9,
+        "init_K": 3.0,
+        "point_decay": 0.0,
+        "search_slot": 2,
+        "search_budget": 6,
+        "priority": 3,
+        "eval_every": 25,
+        "selection_metric": "map",
+        "id": "new_taxonomy_wordnet_vehicle_B5_s2"
+      }
+    },
+    "A5": {
+      "id": "new_taxonomy_wordnet_vehicle_A5_s2",
+      "val_score": 0.09926997988164121,
+      "config": {
+        "suite": "new_tasks_v1",
+        "family": "taxonomy",
+        "dataset": "wordnet_vehicle",
+        "model": "product_embedding",
+        "method": "A5",
+        "epochs": 1000,
+        "seed": 42,
+        "dim": 8,
+        "groups": 4,
+        "lr": 10.0,
+        "rho": 0.01,
+        "beta": 0.9,
+        "init_K": 3.0,
+        "point_decay": 0.0,
+        "search_slot": 2,
+        "search_budget": 6,
+        "priority": 3,
+        "eval_every": 25,
+        "selection_metric": "map",
+        "id": "new_taxonomy_wordnet_vehicle_A5_s2"
+      }
+    }
+  },
+  "test": {
+    "E": {
+      "ap": 0.8314389273574249,
+      "auc": 0.8557748168137779,
+      "map": 0.08421717446903021
+    },
+    "B3": {
+      "ap": 0.8454950763442453,
+      "auc": 0.8670377241805813,
+      "map": 0.08403174996645028
+    },
+    "B35": {
+      "ap": 0.8321020617579367,
+      "auc": 0.8548565431682315,
+      "map": 0.07797782050128456
+    },
+    "B5": {
+      "ap": 0.8439765525721801,
+      "auc": 0.8654635407882162,
+      "map": 0.08504986784828672
+    },
+    "A5": {
+      "ap": 0.8455802869760015,
+      "auc": 0.8665129963831263,
+      "map": 0.08273723537724863
+    }
+  },
+  "matched_A5": {
+    "id": "new_taxonomy_wordnet_vehicle_A5_s2",
+    "test": {
+      "ap": 0.8455802869760015,
+      "auc": 0.8665129963831263,
+      "map": 0.08273723537724863
+    }
+  },
+  "data_sha256": "f9f517f87f63b978f10579493311d20ebc90f61d1571d1b9222a11df4534efaa",
+  "selection_scope": "Entire 30-run matrix completed before test release. No test-based hyperparameter choice. Exploratory single-seed extension; all task outcomes retained."
+}

@@ -1,0 +1,54 @@
+{
+  "selected_epoch": 959,
+  "selected_test": {
+    "accuracy": 0.5570897459983826,
+    "macro_f1": 0.5500627814363027
+  },
+  "status": "complete",
+  "config": {
+    "family": "text",
+    "dataset": "20news",
+    "model": "transformer",
+    "method": "E",
+    "epochs": 1000,
+    "seed": 42,
+    "id": "text_20news_transformer_E"
+  },
+  "final": {
+    "epoch": 999,
+    "task": 0,
+    "train_loss": 0.0797213167638079,
+    "seconds": 1702.771560907364,
+    "K": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "learning_rate": 0.1,
+    "curvature_learning_rate": 0.001,
+    "peak_memory_mb": 523.201536,
+    "val_accuracy": 0.6342756152153015,
+    "val_macro_f1": 0.632747943377188,
+    "test_accuracy": 0.5561603903770447,
+    "test_macro_f1": 0.5465037904153565
+  },
+  "best_validation": 0.6572438478469849,
+  "epochs_completed": 1000
+}

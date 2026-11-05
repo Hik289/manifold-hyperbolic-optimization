@@ -1,0 +1,41 @@
+{
+  "selected_epoch": 26,
+  "selected_test": {
+    "accuracy": 0.7610000371932983,
+    "macro_f1": 0.7558062788245515
+  },
+  "status": "complete",
+  "config": {
+    "family": "graph",
+    "dataset": "cora",
+    "model": "sage",
+    "method": "E",
+    "epochs": 1000,
+    "seed": 42,
+    "id": "graph_cora_sage_E"
+  },
+  "final": {
+    "epoch": 999,
+    "task": 0,
+    "train_loss": 8.591853838879615e-05,
+    "seconds": 40.475210666656494,
+    "K": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "learning_rate": 0.1,
+    "curvature_learning_rate": 0.001,
+    "peak_memory_mb": 127.671296,
+    "val_accuracy": 0.7680000066757202,
+    "val_macro_f1": 0.7577580578640688,
+    "test_accuracy": 0.7780000567436218,
+    "test_macro_f1": 0.7709232738166134
+  },
+  "best_validation": 0.7800000309944153,
+  "epochs_completed": 1000
+}

@@ -1,0 +1,134 @@
+\section{Theory}
+\label{sec:theory}
+The analysis uses one geometric identification to connect optimization and generalization. Canonical coordinates fix the state space while exposing curvature as a preconditioner; exact Jacobi operators then quantify the effect of normalization. A predictable parallel frame preserves martingale orthogonality in the momentum proof. Finally, the full comparison matrix yields a stability certificate through Collatz--Wielandt, and chaining controls hypothesis complexity. The appendix supplies complete proofs and distinguishes sharp constants and equality cases from sufficient asymptotic rates.
+
+Write
+\begin{gather}
+ \mathcal Q=\prod_{g=1}^G(H_1^{d_g})^{n_g},\quad u_g=\log K_g,\\
+ q_g=\sqrt{K_g}x_g,\qquad p_g=\sqrt{K_g}m_g,\\
+ F(q,u)=\widetilde{\mathcal J}((e^{-u_g/2}q_g)_g,u),\\
+ A(u)=\operatorname{diag}(K_gI)_{g=1}^G,\\
+ g_t=\operatorname{grad}_qF(q_t,u_t),\quad b_t=\nabla_uF(q_t,u_t),\\
+ N_\gamma(v)=\frac{v}{1+\gamma\|v\|}.
+\end{gather}
+The main results use normalization blocks contained in individual curvature groups, so $A$ is scalar on each such block. Compact curvature intervals bound $A$; smoothness and oracle assumptions control descent; bounded chart domains and per-example derivatives control stability. These hypotheses serve distinct purposes.
+
+\begin{proposition}[Compatible geometry and sharp step sensitivity]
+\label{prop:main-sharp-geometry}
+For $a=\sqrt{K/K'}$, the homothety $\Psi x=ax$ satisfies
+\begin{gather}
+ d_{K'}(ax,ay)=a\,d_K(x,y),\\
+ \Psi\Exp_x^Kv=\Exp_{ax}^{K'}(av),\\
+ P_{ax\to ay}^{K'}(av)=aP_{x\to y}^Kv,\quad(q',p')=(q,p),\\
+ \partial_{u_g}F=\partial_{u_g}\widetilde{\mathcal J}-\tfrac12\nabla_{x_g}\widetilde{\mathcal J}^{\top}x_g.
+\end{gather}
+For $\eta,\gamma>0$, fix $x$ and define $\mathcal S_x(m)=\Exp_x^K[-\eta m/(1+\gamma\sqrt K\|m\|)]$. For $d\ge2$, $z=\gamma\sqrt K\|m\|/(1+\gamma\sqrt K\|m\|)$, and $\alpha=\eta/\gamma$, its differential has singular values
+\begin{gather}
+ \sigma_\parallel=\eta(1-z)^2,\quad
+ \sigma_\perp=\eta(1-z)\frac{\sinh(\alpha z)}{\alpha z}.
+\end{gather}
+In particular, uniformly over $K>0$,
+\begin{gather}
+ \eta/\gamma\le\alpha_c\quad\Longrightarrow\\[-4pt]
+ d_K(\mathcal S_x(m),\mathcal S_x(m'))\le\eta\|m-m'\|,\\
+ \alpha_c:=\inf_{\lambda>0}\frac{\lambda\sinh\lambda}{\sinh\lambda-\lambda}\ge\sqrt6.
+\end{gather}
+\end{proposition}
+The proof combines the constant-curvature Jacobi equations underlying Rauch comparison \citep{lee2018riemannian} with Euler's product for $\sinh$ \citep{nistDLMF}. Retaining their common radial variable removes the extra $\sinh(\alpha)/\alpha$ factor of a separate worst-case estimate. Theorem~\ref{thm:sharp-normalized-exp} gives the optimal Lipschitz factor and exact threshold. Normalization is also the gradient of a convex radial potential, so Baillon--Haddad \citep{bauschke2010baillon} gives firm nonexpansiveness. Proposition~\ref{prop:sharp-normalization-jacobian} proves the optimal constants $2\gamma$ for its Jacobian and $\gamma$ for the quadratic remainder.
+
+\begin{theorem}[Normalized momentum with a finite-horizon tracking certificate]
+Under Assumptions~\ref{ass:descent-new} and~\ref{ass:rigid-full-momentum}, consider
+\begin{gather}
+ p_t=\beta P_{t-1}p_{t-1}+(1-\beta)A_t\widehat g_t,\\
+ q_{t+1}=\Exp_{q_t}[-\eta N_\gamma(p_t)],\\
+ u_{t+1}=u_t-\rho\widehat b_t,\quad e_t^m=p_t-A_tg_t,\\
+ a=\frac{a_-}{1+\gamma a_-G_0},\quad C_e=a^{-1}+L\eta.
+\end{gather}
+If $\eta\le a/(4La_+^2)$ and $\rho\le L^{-1}$, then
+\begin{gather}
+ \begin{aligned}
+ &\sum_{t<T}\left[\frac{a\eta}{2}\mathbb E\|g_t\|^2+
+ \frac\rho2\mathbb E\|b_t\|^2\right]\\
+ &\quad\le\Delta_F+C_e\eta\mathscr E_T^\sharp+
+ \frac{L\rho^2\sigma_u^2}{2}\sum_{t<T}\mathfrak b_t^{-1},
+ \end{aligned}\\
+ \sum_{t<T}\mathbb E\|e_t^m\|^2\le\mathscr E_T^\sharp,\\
+ \mathscr E_T^\sharp:=\min\left\{\mathscr E_T,
+ \left(\sqrt{\mathcal I_T+\mathcal V_T}+h_{\beta,T}\sqrt{\overline D_T}\right)^2\right\},\\
+ \mathcal V_T=\frac{1-\beta}{1+\beta}\sum_{j<T}
+ (1-\beta^{2(T-j)})\frac{a_+^2\sigma_q^2}{\mathfrak b_j}.
+\end{gather}
+Here $\mathcal I_T$, $h_{\beta,T}$ and $\overline D_T$ are the explicit initial-memory term, finite convolution norm and drift budget of Theorem~\ref{thm:sharp-momentum-filter}. Consequently,
+\begin{gather}
+ \beta<1,\quad\eta\asymp T^{-1/2},\quad\rho\asymp T^{-3/4},\\
+ \mathfrak b_t\gtrsim T^{1/2}\quad\Longrightarrow\quad
+ \begin{cases}
+ T^{-1}\sum_t\mathbb E\|g_t\|^2=O(T^{-1/2}),\\
+ T^{-1}\sum_t\mathbb E\|b_t\|^2=O(T^{-1/4}),
+ \end{cases}\\
+ \mathfrak b_t\asymp1,\quad\eta,\rho\asymp T^{-3/5},\\
+ 1-\beta\asymp T^{-2/5}\quad\Longrightarrow\\[-4pt]
+ T^{-1}\sum_t\mathbb E(\|g_t\|^2+\|b_t\|^2)=O(T^{-2/5}).
+\end{gather}
+\end{theorem}
+The scalar-block alignment constant $a$ is attained by a gradient concentrated in a minimum-curvature block. The factor $(1-\beta)/(1+\beta)$ in $\mathcal V_T$ is exact for a stationary target with zero initial error. For a moving target, the filter separates this variance from memory lag, whose gain grows as $(1-\beta)^{-1}$. The displayed rates are sufficient schedules, rather than minimax claims; the two block rates retain their distinct descent weights.
+
+\begin{proposition}[Constrained curvature stationarity]
+For $u^+=\Pi_U[u-\rho B(b+r)]$, $b=\nabla_uF(q,u)$,
+$b_-I\preceq B\preceq b_+I$ and $\rho\le(2Lb_+)^{-1}$,
+\begin{gather}
+ G_{\rho,B}(q,u)=\rho^{-1}[u-\Pi_U(u-\rho Bb)],\\
+ \begin{aligned}
+ F(q,u^+)\le {}&F(q,u)-\tfrac\rho4\|G_{\rho,B}(q,u)\|_{B^{-1}}^2\\
+ &+\tfrac{3\rho}{2}\|r\|_B^2,
+ \end{aligned}\\
+ G_{\rho,B}(q,u)=0\Longleftrightarrow0\in\nabla_uF(q,u)+N_U(u).
+\end{gather}
+\end{proposition}
+At a boundary optimum, the raw curvature derivative can remain nonzero. The projected residual is therefore the relevant stationarity measure. Theorem~\ref{thm:rigid-implemented-curvature} includes softplus coordinates and log-step caps, and the perturbation analysis accounts for additional implementation errors.
+
+\begin{theorem}[Full-state stability and sharper generalization]
+Under the compact-domain coordinate and sampling assumptions, let $M,b$ be the constant-step comparison matrix and injection vector of Theorem~\ref{thm:rigid-coupling-matrix}, and $c_\ell=(L_{\ell,z},L_{\ell,u},0)^\top$. Let $\epsilon_T$ denote the uniform expected absolute stability of $A_T$. Then
+\begin{gather}
+ \epsilon_T\le\frac{c_\ell^\top(\sum_{k<T}M^k)b}{n}.
+\end{gather}
+If $M$ is irreducible, choose its positive left Perron vector $w$, set $r_*=\operatorname{spr}(M)$ and $L_w=\max_i(c_{\ell,i}/w_i)$. Then
+\begin{gather}
+ \epsilon_T\le\frac{L_ww^\top b}{n}\sum_{k<T}r_*^k,\quad
+ r_*=\inf_{v>0}\|M\|_{1,v}.
+\end{gather}
+For $0\le\ell\le M_\ell$ and $\mathcal G=R(A_T(S;\omega))-R_S(A_T(S;\omega))$,
+\begin{gather}
+ |\mathbb E\mathcal G|\le\epsilon_T,\\
+ \mathbb E|\mathcal G|\le\sqrt{M_\ell^2/(4n)+4M_\ell\epsilon_T}.
+\end{gather}
+Moreover, with probability at least $1-\delta$ over $S$,
+\begin{gather}
+ \begin{aligned}
+ |\mathbb E_\omega\mathcal G(S,\omega)|
+ \le C_{\rm BKW}\Bigg[{}&\epsilon_T\log(2n)\log(2/\delta)\\
+ &+M_\ell\sqrt{\frac{\log(2/\delta)}n}\Bigg].
+ \end{aligned}
+\end{gather}
+\end{theorem}
+The one-coordinate decoupling proof retains the loss variance and uses Bhatia--Davis \citep{bhatia2000variance} for the optimal IID coefficient $1/4$. Collatz--Wielandt \citep{horn2013matrix} gives the smallest growth factor achievable by a fixed positive weighted norm of the comparison system. The high-probability statement applies the stability theorem of \citet{bousquet2020sharper} to the seed-averaged loss; a randomly chosen run requires the separate joint-moment or pathwise assumptions in Appendix~\ref{app:rigid-generalization}. For variable steps, Theorems~\ref{thm:rigid-coupling-matrix} and~\ref{thm:rigid-stability} give the matrix product and its scalar exponential consequence. Local contraction is certified separately by the coupled Hessian and Stein's Lyapunov theorem \citep{stein1952iterants}.
+
+The statistical analysis also avoids choosing a single increasingly fine hypothesis net. Dudley chaining \citep{dudley1967sizes,bartlett2002rademacher} gives
+\begin{gather}
+ \begin{aligned}
+ &\sup_{\theta\in\Theta}|R(\theta)-R_S(\theta)|\\
+ &\quad\le\frac{24L_\Theta}{\sqrt n}\int_0^{d_0/2}\sqrt{\mathcal H_\varepsilon}\,d\varepsilon
+ +M_\ell\sqrt{\frac{\log(2/\delta)}{2n}}.
+ \end{aligned}
+\end{gather}
+with probability $1-\delta$, with all domain constants specified in Theorem~\ref{thm:sharp-dudley-generalization}. For fixed domain constants this removes the extra $\sqrt{\log n}$ resolution penalty. We retain the deterministic minimum of this bound and the optimized single-net bound, denoted $\mathfrak s_n^\sharp$.
+
+Finally, the envelope reduction \citep{milgrom2002envelope} connects geometry to a possible approximation gain. Under the profile assumptions,
+\begin{gather}
+ \nabla^2\phi=H_{uu}-H_{uq}H_{qq}^{-1}H_{qu},\\
+ \tfrac12V_a\le\Delta_{\rm grp}\le\tfrac12V_b.
+\end{gather}
+where $V_a,V_b$ are the Hessian-weighted distances to the shared-curvature subspace in Proposition~\ref{prop:group-gap}. Both endpoints have quadratic equality cases. The same Schur complement controls the slow curvature eigenvalues of Theorem~\ref{thm:rigid-slow-spectrum}; Theorem~\ref{thm:rigid-risk-comparison} states precisely when the population approximation gain exceeds optimization error and the sharper estimation bound. Thus the theory quantifies a conditional advantage without assuming that arbitrary neural losses have separable or strongly convex profiles.
+
+\paragraph{Connection to the implemented updates.}
+The rates require their explicit direction-error budgets and momentum/batch schedules; fixed-step benchmark trajectories are not asserted to satisfy an asymptotic schedule. Active radius clipping and gradient clipping enter the perturbation budgets in Appendix~\ref{app:complete-theory}. The statistical results apply under the stated compact-domain and sampling conditions; they do not automatically certify an unconstrained backbone or dependent graph samples. The comparison-matrix growth factor determines whether the finite-horizon stability certificate is informative.

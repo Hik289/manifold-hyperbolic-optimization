@@ -1,0 +1,9 @@
+{
+  "family": "kg",
+  "dataset": "yago310",
+  "model": "lorentz_distance",
+  "method": "E",
+  "epochs": 2000,
+  "seed": 42,
+  "id": "kg_yago310_lorentz_distance_E"
+}

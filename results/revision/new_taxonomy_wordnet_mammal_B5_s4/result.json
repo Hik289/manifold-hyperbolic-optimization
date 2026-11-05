@@ -1,0 +1,107 @@
+{
+  "status": "complete",
+  "config": {
+    "suite": "new_tasks_v1",
+    "family": "taxonomy",
+    "dataset": "wordnet_mammal",
+    "model": "product_embedding",
+    "method": "B5",
+    "epochs": 1000,
+    "seed": 42,
+    "dim": 8,
+    "groups": 4,
+    "lr": 100.0,
+    "rho": 0.01,
+    "beta": 0.9,
+    "init_K": 1.0,
+    "point_decay": 0.0,
+    "search_slot": 4,
+    "search_budget": 6,
+    "priority": 0,
+    "eval_every": 25,
+    "selection_metric": "map",
+    "id": "new_taxonomy_wordnet_mammal_B5_s4"
+  },
+  "final": {
+    "epoch": 999,
+    "train_loss": 0.32041090726852417,
+    "seconds": 85.1526643242687,
+    "K": [
+      0.9995578527450562,
+      0.9984294772148132,
+      0.9992372989654541,
+      0.9993876814842224
+    ],
+    "temperature": 0.5779373049736023,
+    "peak_memory_mb": 12.878336,
+    "grad_norm": 1.1123537660751026e-05,
+    "momentum_norm": 3.7668683035008144e-06,
+    "exp_argument": 0.038025032728910446,
+    "radius_clipped_fraction": 0.0,
+    "manifold_residual": 3.5762786865234375e-07,
+    "tangent_residual": 1.8189894035458565e-12,
+    "mean_radius": 0.46518439054489136,
+    "val_loss": 0.4864225387573242,
+    "val_ap": 0.8722119759778241,
+    "val_auc": 0.8930131208558951,
+    "val_map": 0.0806915293336171
+  },
+  "epochs_completed": 1000,
+  "test_status": "withheld_until_all_30_configs_complete",
+  "protocol": {
+    "suite": "new_tasks_v1",
+    "data": {
+      "source": "Princeton WordNet via NLTK",
+      "version": "3.0",
+      "source_url": "https://www.nltk.org/howto/wordnet.html",
+      "root_synset": "mammal.n.01",
+      "directed": true,
+      "archive_sha256": "cbda5ea6eef7f36a97a43d4a75f85e07fccbb4f23657d27b4ccbc93e2646ab59",
+      "protocol": "All descendants and internal transitive hypernym relations, including instances. Unfiltered subtree: differs from the original Poincare mammals reconstruction benchmark. Hold out 10% validation and 10% test relations with training vertex coverage. Rank every other vertex with other known positives filtered; report macro query MAP.",
+      "dataset": "wordnet_mammal",
+      "split_seed": 42,
+      "sha256": "6c2d28bf7c2d969db5140a1d5b13559b87af5e6907f9ff17bc7b689d44bca564",
+      "shapes": {
+        "n": [],
+        "all_positive": [
+          6542,
+          2
+        ],
+        "train_positive": [
+          5234,
+          2
+        ],
+        "train_negative": [
+          5234,
+          2
+        ],
+        "validation_positive": [
+          654,
+          2
+        ],
+        "validation_negative": [
+          654,
+          2
+        ],
+        "test_positive": [
+          654,
+          2
+        ],
+        "test_negative": [
+          654,
+          2
+        ],
+        "names": [
+          1182
+        ]
+      }
+    },
+    "search_runs_per_method": 6,
+    "primary_metric": "map",
+    "selection": "Complete all 30 configs for the dataset, select each method by final validation metric, then evaluate only the selected checkpoints on test.",
+    "initialization": "Identical seed42; K-dependent Lorentz homothety as in the optimizer.",
+    "dimensionality": "4 factors x 2 intrinsic dimensions; Euclidean control has 8 dimensions.",
+    "calibration": "Every method learns the same score bias and temperature; temperature constrained to exp([-3,3]).",
+    "known_limitations": "Single seed. These are compact custom protocols, not reproductions of published benchmark scores; common canonical cap permits curvature-dependent physical radius."
+  }
+}

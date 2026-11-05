@@ -1,0 +1,101 @@
+{
+  "status": "complete",
+  "config": {
+    "suite": "new_tasks_v1",
+    "family": "link_prediction",
+    "dataset": "cora_links",
+    "model": "product_embedding",
+    "method": "B5",
+    "epochs": 1000,
+    "seed": 42,
+    "dim": 8,
+    "groups": 4,
+    "lr": 10.0,
+    "rho": 0.01,
+    "beta": 0.9,
+    "init_K": 3.0,
+    "point_decay": 0.0,
+    "search_slot": 2,
+    "search_budget": 6,
+    "priority": 1,
+    "eval_every": 25,
+    "selection_metric": "ap",
+    "id": "new_link_prediction_cora_links_B5_s2"
+  },
+  "final": {
+    "epoch": 999,
+    "train_loss": 0.18334995210170746,
+    "seconds": 69.98903471045196,
+    "K": [
+      2.9734716415405273,
+      2.974682092666626,
+      2.9719951152801514,
+      2.973529815673828
+    ],
+    "temperature": 0.320314884185791,
+    "peak_memory_mb": 3.093504,
+    "grad_norm": 2.022903208853677e-05,
+    "momentum_norm": 2.0429029973456636e-05,
+    "exp_argument": 0.0016616863431409001,
+    "radius_clipped_fraction": 0.0,
+    "manifold_residual": 3.5762786865234375e-07,
+    "tangent_residual": 1.4551915228366852e-11,
+    "mean_radius": 0.3303511440753937,
+    "val_loss": 0.6010017395019531,
+    "val_ap": 0.8028960414029161,
+    "val_auc": 0.8159680839955497
+  },
+  "epochs_completed": 1000,
+  "test_status": "withheld_until_all_30_configs_complete",
+  "protocol": {
+    "suite": "new_tasks_v1",
+    "data": {
+      "source": "PyG Planetoid cora",
+      "source_url": "https://github.com/kimiyoung/planetoid",
+      "directed": false,
+      "features_used": false,
+      "protocol": "Transductive held-out-edge prediction; no class labels or node features used. Canonical undirected pairs and negatives are disjoint across splits; all known positive pairs are excluded from negative draws.",
+      "dataset": "cora_links",
+      "split_seed": 42,
+      "sha256": "1c86e385a1447e78645a8bca8ea8ce18016d61e5bc63a6c8b66e2fc8ede2015f",
+      "shapes": {
+        "n": [],
+        "all_positive": [
+          5278,
+          2
+        ],
+        "train_positive": [
+          4224,
+          2
+        ],
+        "train_negative": [
+          4224,
+          2
+        ],
+        "validation_positive": [
+          527,
+          2
+        ],
+        "validation_negative": [
+          527,
+          2
+        ],
+        "test_positive": [
+          527,
+          2
+        ],
+        "test_negative": [
+          527,
+          2
+        ]
+      }
+    },
+    "search_runs_per_method": 6,
+    "primary_metric": "ap",
+    "selection": "Complete all 30 configs for the dataset, select each method by final validation metric, then evaluate only the selected checkpoints on test.",
+    "initialization": "Identical seed42; K-dependent Lorentz homothety as in the optimizer.",
+    "dimensionality": "4 factors x 2 intrinsic dimensions; Euclidean control has 8 dimensions.",
+    "calibration": "Every method learns the same score bias and temperature; temperature constrained to exp([-3,3]).",
+    "known_limitations": "Single seed. These are compact custom protocols, not reproductions of published benchmark scores; common canonical cap permits curvature-dependent physical radius."
+  }
+}

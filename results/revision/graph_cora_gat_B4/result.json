@@ -1,0 +1,48 @@
+{
+  "selected_epoch": 29,
+  "selected_test": {
+    "accuracy": 0.7720000147819519,
+    "macro_f1": 0.7725969341138385
+  },
+  "status": "complete",
+  "config": {
+    "family": "graph",
+    "dataset": "cora",
+    "model": "gat",
+    "method": "B4",
+    "epochs": 1000,
+    "seed": 42,
+    "id": "graph_cora_gat_B4"
+  },
+  "final": {
+    "epoch": 999,
+    "task": 0,
+    "train_loss": 0.008748244494199753,
+    "seconds": 89.18868780136108,
+    "K": [
+      0.9904876947402954,
+      0.9903565645217896,
+      0.9907410144805908,
+      0.9903508424758911,
+      0.9903097152709961,
+      0.9905710220336914,
+      0.9906327724456787
+    ],
+    "learning_rate": 0.1,
+    "curvature_learning_rate": 0.001,
+    "peak_memory_mb": 55.154688,
+    "grad_norm": 0.003599174553528428,
+    "momentum_norm": 0.003599170595407486,
+    "exp_argument": 0.00035817798925563693,
+    "radius_clipped_fraction": 0.0,
+    "manifold_residual": 3.337860107421875e-06,
+    "tangent_residual": 7.450580596923828e-09,
+    "mean_radius": 2.443537950515747,
+    "val_accuracy": 0.6640000343322754,
+    "val_macro_f1": 0.6540938161004816,
+    "test_accuracy": 0.6760000586509705,
+    "test_macro_f1": 0.6763384631285769
+  },
+  "best_validation": 0.7780000567436218,
+  "epochs_completed": 1000
+}

@@ -1,0 +1,9 @@
+{
+  "family": "recommendation",
+  "dataset": "amazon_books",
+  "model": "lightgcn",
+  "method": "B3",
+  "epochs": 1000,
+  "seed": 42,
+  "id": "recommendation_amazon_books_lightgcn_B3"
+}

@@ -1,0 +1,47 @@
+{
+  "selected_epoch": 16,
+  "selected_test": {
+    "accuracy": 0.6790000200271606,
+    "macro_f1": 0.6448067812592438
+  },
+  "status": "complete",
+  "config": {
+    "family": "graph",
+    "dataset": "citeseer",
+    "model": "gcn",
+    "method": "B4",
+    "epochs": 1000,
+    "seed": 42,
+    "id": "graph_citeseer_gcn_B4"
+  },
+  "final": {
+    "epoch": 999,
+    "task": 0,
+    "train_loss": 0.00709952088072896,
+    "seconds": 74.45649528503418,
+    "K": [
+      0.9906231164932251,
+      0.9905155301094055,
+      0.990493893623352,
+      0.9908075928688049,
+      0.9905394911766052,
+      0.9907633066177368
+    ],
+    "learning_rate": 0.1,
+    "curvature_learning_rate": 0.001,
+    "peak_memory_mb": 84.6976,
+    "grad_norm": 0.003451573895290494,
+    "momentum_norm": 0.003451573895290494,
+    "exp_argument": 0.00034351341309957206,
+    "radius_clipped_fraction": 0.0,
+    "manifold_residual": 2.2649765014648438e-06,
+    "tangent_residual": 7.450580596923828e-09,
+    "mean_radius": 2.421597719192505,
+    "val_accuracy": 0.6500000357627869,
+    "val_macro_f1": 0.616690552728638,
+    "test_accuracy": 0.6570000052452087,
+    "test_macro_f1": 0.6219284721674233
+  },
+  "best_validation": 0.6840000152587891,
+  "epochs_completed": 1000
+}

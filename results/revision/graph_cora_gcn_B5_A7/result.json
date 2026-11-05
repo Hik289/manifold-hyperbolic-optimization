@@ -1,0 +1,50 @@
+{
+  "selected_epoch": 28,
+  "selected_test": {
+    "accuracy": 0.7790000438690186,
+    "macro_f1": 0.7761663669677284
+  },
+  "status": "complete",
+  "config": {
+    "family": "graph",
+    "dataset": "cora",
+    "model": "gcn",
+    "method": "B5",
+    "epochs": 1000,
+    "seed": 42,
+    "ablation": "A7",
+    "rho": 0.1,
+    "id": "graph_cora_gcn_B5_A7"
+  },
+  "final": {
+    "epoch": 999,
+    "task": 0,
+    "train_loss": 0.0026435141917318106,
+    "seconds": 98.09899997711182,
+    "K": [
+      0.5053640007972717,
+      0.5081866383552551,
+      0.49792295694351196,
+      0.5010196566581726,
+      0.5029694437980652,
+      0.5134387612342834,
+      0.5263211727142334
+    ],
+    "learning_rate": 0.1,
+    "curvature_learning_rate": 0.1,
+    "peak_memory_mb": 48.159232,
+    "grad_norm": 0.0012393785873427987,
+    "momentum_norm": 0.0012548234080895782,
+    "exp_argument": 9.095667337533087e-05,
+    "radius_clipped_fraction": 0.0,
+    "manifold_residual": 1.0728836059570312e-06,
+    "tangent_residual": 9.313225746154785e-10,
+    "mean_radius": 2.341834545135498,
+    "val_accuracy": 0.7760000228881836,
+    "val_macro_f1": 0.7575601782277728,
+    "test_accuracy": 0.7740000486373901,
+    "test_macro_f1": 0.7705849826390416
+  },
+  "best_validation": 0.7920000553131104,
+  "epochs_completed": 1000
+}

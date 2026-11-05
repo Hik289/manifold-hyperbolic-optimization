@@ -1,0 +1,25 @@
+{
+  "family": "mechanism",
+  "dataset": "heterogeneous",
+  "model": "independent_lorentz",
+  "epochs": 2000,
+  "seed": 42,
+  "nodes_per_group": 250,
+  "dim": 3,
+  "branchings": [
+    2,
+    8,
+    32,
+    128
+  ],
+  "schedule": "static",
+  "scale_end": 1.0,
+  "lr": 100.0,
+  "rho": 0.01,
+  "beta": 0.98,
+  "priority": 205,
+  "method": "A5",
+  "init_K": 3.0,
+  "ablation": "initial_K3.0",
+  "id": "mechanism_heterogeneous_independent_lorentz_3_A5_initial_K3.0"
+}

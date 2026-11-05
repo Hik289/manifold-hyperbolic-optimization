@@ -1,0 +1,22 @@
+% WWW_REFERENCE_STYLE
+\begin{table}[!htbp]
+\centering
+\caption{\textbf{Available full-length endpoints.} Rotated MNIST, five ordered tasks and 1000 total epochs without replay. Mean accuracy across all five tasks is primary; forgetting averages the first four tasks, in percentage points. Last-task accuracy is secondary. All rows use the final checkpoint. 8/8 registered methods complete; all completed rows are shown. Bold compares only the displayed completed rows, including rounded ties; B5 is shaded. Seed 42, fixed starting configuration, no equal-budget hyperparameter search.}
+\label{tab:revision-retention-audit}
+\footnotesize\setlength{\tabcolsep}{5pt}\renewcommand{\arraystretch}{1.12}
+\begin{tabular}{lrrr}
+\toprule
+Method & Mean acc. (\%) $\uparrow$ & Forgetting (pp) $\downarrow$ & Last-task acc. (\%) $\uparrow$ \\
+\midrule
+E & 43.800 & 68.267 & 98.380 \\
+B2 & \textbf{44.340} & \textbf{67.520} & 98.350 \\
+B3 & 43.752 & 68.320 & 98.390 \\
+B4 & 42.804 & 69.535 & 98.390 \\
+\rowcolor{oursbg}
+B5 & 43.432 & 68.715 & 98.470 \\
+A5 & 43.378 & 68.782 & 98.350 \\
+B35 & 43.388 & 68.807 & 98.400 \\
+Shared & 43.296 & 68.927 & \textbf{98.530} \\
+\bottomrule
+\end{tabular}
+\end{table}

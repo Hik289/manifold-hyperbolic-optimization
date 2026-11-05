@@ -1,0 +1,25 @@
+{
+  "family": "mechanism",
+  "dataset": "smooth8",
+  "model": "independent_lorentz",
+  "epochs": 2000,
+  "seed": 42,
+  "nodes_per_group": 250,
+  "dim": 3,
+  "branchings": [
+    2,
+    4,
+    8,
+    16
+  ],
+  "schedule": "smooth",
+  "scale_end": 8.0,
+  "lr": 100.0,
+  "rho": 0.01,
+  "beta": 0.98,
+  "priority": 3,
+  "method": "B35",
+  "init_K": 0.1,
+  "ablation": "fixed_K0.1",
+  "id": "mechanism_smooth8_independent_lorentz_3_B35_fixed_K0.1"
+}

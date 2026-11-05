@@ -1,0 +1,9 @@
+{
+  "family": "graph",
+  "dataset": "arxiv",
+  "model": "gat",
+  "method": "E",
+  "epochs": 1000,
+  "seed": 42,
+  "id": "graph_arxiv_gat_E"
+}

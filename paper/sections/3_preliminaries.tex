@@ -1,0 +1,31 @@
+\section{Preliminaries and Problem Setup}
+
+We work in the Lorentz model because it gives closed-form geodesics and parallel transport. For $K>0$, the $d$-dimensional hyperbolic space of sectional curvature $-K$ is
+\begin{equation}
+\begin{gathered}
+\HH_{-K}^{d}=\{x\in\RR^{d+1}:\inner{x}{x}=-1/K,\;x_0>0\},\\
+\inner{x}{y}=-x_0y_0+\sum_{i=1}^{d}x_iy_i .
+\end{gathered}
+\end{equation}
+The tangent space at $x$ is $T_x\HH_{-K}^{d}=\{v:\inner{x}{v}=0\}$ with norm $\|v\|_x=\sqrt{\inner{v}{v}}$. The exponential map is
+\begin{equation}
+\Exp_x^K(v)=\cosh(\sqrt{K}r)x+\frac{\sinh(\sqrt{K}r)}{\sqrt{K}r}v,\qquad r=\|v\|_x,
+\label{eq:exp-main}
+\end{equation}
+with the usual convention at $r=0$. This formula shows why the product $\sqrt{K}r$ is central: it is the argument of the hyperbolic sine and cosine terms that control both useful volume growth and harmful numerical amplification.
+
+For momentum, the previous tangent vector must be moved before it can be combined with the current gradient. Along the geodesic from $x$ to $y$ at fixed curvature, the Lorentz parallel transport of $v\in T_x\HH^d_{-K}$ is
+\begin{equation}
+\PT_{x\to y}^{K}(v)=v+\frac{K\inner{y}{v}}{1-K\inner{x}{y}}(x+y),
+\label{eq:pt-main}
+\end{equation}
+which lies in $T_y\HH^d_{-K}$ and preserves the Lorentz norm. When curvature changes from $K$ to $K'$, the natural Lorentz rescaling maps points and tangent vectors as $\Psi_{K\to K'}(x)=\sqrt{K/K'}x$ and $\mathcal{C}_{K\to K'}(v)=\sqrt{K/K'}v$. These maps preserve the hyperboloid constraint and give the first-order cross-curvature consistency used by the optimizer.
+
+The learning problem has $G$ structural groups. Each group $g$ has a parameter point $x_{g,t}\in\HH^{d_g}_{-K_{g,t}}$, a momentum vector $m_{g,t}\in T_{x_{g,t}}\HH^{d_g}_{-K_{g,t}}$, and a log-curvature coordinate $u_{g,t}=\log K_{g,t}$ implemented with a positive softplus parameterization and clipping to $[K_{\min},K_{\max}]$. The joint objective is
+\begin{equation}
+\mathcal{J}(x,u)=F(x,e^u)+\lambda_u\sum_g (u_g-u_{\mathrm{ref}})^2.
+\label{eq:joint-main}
+\end{equation}
+The regularizer is not a claim that all curvatures should equal the reference; it is a numerical guard against runaway curvature. In the KG experiments, WN18RR reaches a boundary-like regime near $K=2$ for the highest-curvature relation, whereas synthetic runs often remain in an interior regime. The distinction matters for theory and is stated explicitly in Section~\ref{sec:theory}.
+
+The experimental method labels are fixed throughout the paper. B3 is fixed-curvature Riemannian momentum with $K=1$. B4 adds grouped learnable curvature and maps points as curvature changes. B5 is the full HyperbolicMomentum variant with learnable curvature, curvature-normalized geodesic steps, and cross-curvature momentum transport. In shared-entity KG architectures, relation-specific curvature is used at scoring time while entity embeddings are shared across relations; therefore B5's cross-curvature momentum mechanism has no coherent home manifold and the KG comparison is interpreted as B4 versus B3, not as evidence for B5 beating B4.

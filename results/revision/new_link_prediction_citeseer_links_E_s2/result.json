@@ -1,0 +1,89 @@
+{
+  "status": "complete",
+  "config": {
+    "suite": "new_tasks_v1",
+    "family": "link_prediction",
+    "dataset": "citeseer_links",
+    "model": "product_embedding",
+    "method": "E",
+    "epochs": 1000,
+    "seed": 42,
+    "dim": 8,
+    "groups": 4,
+    "lr": 10.0,
+    "rho": 0.01,
+    "beta": 0.9,
+    "init_K": 1.0,
+    "point_decay": 0.01,
+    "search_slot": 2,
+    "search_budget": 6,
+    "priority": 4,
+    "eval_every": 25,
+    "selection_metric": "ap",
+    "id": "new_link_prediction_citeseer_links_E_s2"
+  },
+  "final": {
+    "epoch": 999,
+    "train_loss": 0.6931472420692444,
+    "seconds": 13.663927970454097,
+    "K": [],
+    "temperature": 0.9903221726417542,
+    "peak_memory_mb": 1.756672,
+    "val_loss": 0.6931471824645996,
+    "val_ap": 0.5,
+    "val_auc": 0.5
+  },
+  "epochs_completed": 1000,
+  "test_status": "withheld_until_all_30_configs_complete",
+  "protocol": {
+    "suite": "new_tasks_v1",
+    "data": {
+      "source": "PyG Planetoid citeseer",
+      "source_url": "https://github.com/kimiyoung/planetoid",
+      "directed": false,
+      "features_used": false,
+      "protocol": "Transductive held-out-edge prediction; no class labels or node features used. Canonical undirected pairs and negatives are disjoint across splits; all known positive pairs are excluded from negative draws.",
+      "dataset": "citeseer_links",
+      "split_seed": 42,
+      "sha256": "bc7434ee44318117db331ef6dea2bdccf5acaddf7ae1154ca9ed6468f27e7485",
+      "shapes": {
+        "n": [],
+        "all_positive": [
+          4552,
+          2
+        ],
+        "train_positive": [
+          3642,
+          2
+        ],
+        "train_negative": [
+          3642,
+          2
+        ],
+        "validation_positive": [
+          455,
+          2
+        ],
+        "validation_negative": [
+          455,
+          2
+        ],
+        "test_positive": [
+          455,
+          2
+        ],
+        "test_negative": [
+          455,
+          2
+        ]
+      }
+    },
+    "search_runs_per_method": 6,
+    "primary_metric": "ap",
+    "selection": "Complete all 30 configs for the dataset, select each method by final validation metric, then evaluate only the selected checkpoints on test.",
+    "initialization": "Identical seed42; K-dependent Lorentz homothety as in the optimizer.",
+    "dimensionality": "4 factors x 2 intrinsic dimensions; Euclidean control has 8 dimensions.",
+    "calibration": "Every method learns the same score bias and temperature; temperature constrained to exp([-3,3]).",
+    "known_limitations": "Single seed. These are compact custom protocols, not reproductions of published benchmark scores; common canonical cap permits curvature-dependent physical radius."
+  }
+}

@@ -1,0 +1,22 @@
+\begin{table*}[t]
+\centering
+\caption{\textbf{Cross-curvature state consistency.} Curvature drift is prescribed, gradients are canonical constants, and the position does not move. This isolates optimizer-state consistency; it is not a downstream accuracy comparison.}
+\label{tab:operator-transport}
+\footnotesize\setlength{\tabcolsep}{4.2pt}\renewcommand{\arraystretch}{1.12}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{lrrr}
+\toprule
+State mapping & $2\times$ drift & $5\times$ drift & $8\times$ drift \\
+\midrule
+\multicolumn{4}{l}{\textit{FP32, maximum absolute canonical momentum error over 2000 updates}} \\
+Point only & 1.70e-02 & 3.87e-02 & 4.94e-02 \\
+\rowcolor{oursbg}
+Point + momentum & \textbf{3.13e-06} & \textbf{1.03e-06} & \textbf{1.84e-06} \\
+\multicolumn{4}{l}{\textit{FP64, maximum absolute canonical momentum error over 2000 updates}} \\
+Point only & 1.70e-02 & 3.87e-02 & 4.94e-02 \\
+\rowcolor{oursbg}
+Point + momentum & \textbf{2.55e-15} & \textbf{6.22e-15} & \textbf{4.22e-15} \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table*}

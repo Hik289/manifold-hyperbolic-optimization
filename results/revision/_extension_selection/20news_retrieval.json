@@ -1,0 +1,170 @@
+{
+  "dataset": "20news_retrieval",
+  "family": "retrieval",
+  "metric": "recall1",
+  "configs_completed": 30,
+  "created_unix": 1793642852.753577,
+  "selected": {
+    "E": {
+      "id": "new_retrieval_20news_retrieval_E_s5",
+      "val_score": 0.4796819787985866,
+      "config": {
+        "suite": "new_tasks_v1",
+        "family": "retrieval",
+        "dataset": "20news_retrieval",
+        "model": "product_proxy",
+        "method": "E",
+        "epochs": 1000,
+        "seed": 42,
+        "dim": 8,
+        "groups": 4,
+        "lr": 1.0,
+        "rho": 0.01,
+        "beta": 0.9,
+        "init_K": 1.0,
+        "point_decay": 0.01,
+        "search_slot": 5,
+        "search_budget": 6,
+        "priority": 5,
+        "eval_every": 25,
+        "selection_metric": "recall1",
+        "id": "new_retrieval_20news_retrieval_E_s5"
+      }
+    },
+    "B3": {
+      "id": "new_retrieval_20news_retrieval_B3_s3",
+      "val_score": 0.4832155477031802,
+      "config": {
+        "suite": "new_tasks_v1",
+        "family": "retrieval",
+        "dataset": "20news_retrieval",
+        "model": "product_proxy",
+        "method": "B3",
+        "epochs": 1000,
+        "seed": 42,
+        "dim": 8,
+        "groups": 4,
+        "lr": 1.0,
+        "rho": 0.01,
+        "beta": 0.9,
+        "init_K": 0.1,
+        "point_decay": 0.0,
+        "search_slot": 3,
+        "search_budget": 6,
+        "priority": 5,
+        "eval_every": 25,
+        "selection_metric": "recall1",
+        "id": "new_retrieval_20news_retrieval_B3_s3"
+      }
+    },
+    "B35": {
+      "id": "new_retrieval_20news_retrieval_B35_s3",
+      "val_score": 0.48586572438162545,
+      "config": {
+        "suite": "new_tasks_v1",
+        "family": "retrieval",
+        "dataset": "20news_retrieval",
+        "model": "product_proxy",
+        "method": "B35",
+        "epochs": 1000,
+        "seed": 42,
+        "dim": 8,
+        "groups": 4,
+        "lr": 1.0,
+        "rho": 0.01,
+        "beta": 0.9,
+        "init_K": 0.1,
+        "point_decay": 0.0,
+        "search_slot": 3,
+        "search_budget": 6,
+        "priority": 5,
+        "eval_every": 25,
+        "selection_metric": "recall1",
+        "id": "new_retrieval_20news_retrieval_B35_s3"
+      }
+    },
+    "B5": {
+      "id": "new_retrieval_20news_retrieval_B5_s3",
+      "val_score": 0.48586572438162545,
+      "config": {
+        "suite": "new_tasks_v1",
+        "family": "retrieval",
+        "dataset": "20news_retrieval",
+        "model": "product_proxy",
+        "method": "B5",
+        "epochs": 1000,
+        "seed": 42,
+        "dim": 8,
+        "groups": 4,
+        "lr": 1.0,
+        "rho": 0.01,
+        "beta": 0.9,
+        "init_K": 0.1,
+        "point_decay": 0.0,
+        "search_slot": 3,
+        "search_budget": 6,
+        "priority": 5,
+        "eval_every": 25,
+        "selection_metric": "recall1",
+        "id": "new_retrieval_20news_retrieval_B5_s3"
+      }
+    },
+    "A5": {
+      "id": "new_retrieval_20news_retrieval_A5_s3",
+      "val_score": 0.48498233215547704,
+      "config": {
+        "suite": "new_tasks_v1",
+        "family": "retrieval",
+        "dataset": "20news_retrieval",
+        "model": "product_proxy",
+        "method": "A5",
+        "epochs": 1000,
+        "seed": 42,
+        "dim": 8,
+        "groups": 4,
+        "lr": 1.0,
+        "rho": 0.01,
+        "beta": 0.9,
+        "init_K": 0.1,
+        "point_decay": 0.0,
+        "search_slot": 3,
+        "search_budget": 6,
+        "priority": 5,
+        "eval_every": 25,
+        "selection_metric": "recall1",
+        "id": "new_retrieval_20news_retrieval_A5_s3"
+      }
+    }
+  },
+  "test": {
+    "E": {
+      "recall1": 0.42312798725438133,
+      "ndcg10": 0.42440028718820577
+    },
+    "B3": {
+      "recall1": 0.4349442379182156,
+      "ndcg10": 0.430292042796275
+    },
+    "B35": {
+      "recall1": 0.4349442379182156,
+      "ndcg10": 0.4302611390264251
+    },
+    "B5": {
+      "recall1": 0.4349442379182156,
+      "ndcg10": 0.43037562174163657
+    },
+    "A5": {
+      "recall1": 0.4345459373340414,
+      "ndcg10": 0.43040862678591235
+    }
+  },
+  "matched_A5": {
+    "id": "new_retrieval_20news_retrieval_A5_s3",
+    "test": {
+      "recall1": 0.4345459373340414,
+      "ndcg10": 0.43040862678591235
+    }
+  },
+  "data_sha256": "33ff025a976b1663330a0fdfad66d68f28cf71ac2764fb10fca605f8ee959d55",
+  "selection_scope": "Entire 30-run matrix completed before test release. No test-based hyperparameter choice. Exploratory single-seed extension; all task outcomes retained."
+}

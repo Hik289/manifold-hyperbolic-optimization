@@ -1,0 +1,20 @@
+% WWW_REFERENCE_STYLE
+\begin{table}[!htbp]
+\centering
+\caption{\textbf{Available full-length endpoints.} WN18RR relation-weighted distance model, 2000 epochs. All six registered methods are retained under the budget amendment. All-entity filtered head-and-tail ranking at the final checkpoint. MRR is primary; Hits scores are percentages. 6/6 registered methods complete; all completed rows are shown. Bold compares only the displayed completed rows, including rounded ties; B5 is shaded. Seed 42, fixed starting configuration, no equal-budget hyperparameter search.}
+\label{tab:revision-kg-distance-audit}
+\footnotesize\setlength{\tabcolsep}{5pt}\renewcommand{\arraystretch}{1.12}
+\begin{tabular}{lrrrr}
+\toprule
+Method & MRR $\uparrow$ & Hits@1 (\%) $\uparrow$ & Hits@3 (\%) $\uparrow$ & Hits@10 (\%) $\uparrow$ \\
+\midrule
+E & \textbf{0.15722} & \textbf{0.000} & \textbf{30.089} & \textbf{38.449} \\
+B2 & 0.14078 & \textbf{0.000} & 25.973 & 37.572 \\
+B3 & 0.14077 & \textbf{0.000} & 25.973 & 37.556 \\
+B4 & 0.13688 & \textbf{0.000} & 27.361 & 34.923 \\
+\rowcolor{oursbg}
+B5 & 0.13685 & \textbf{0.000} & 27.393 & 34.907 \\
+A5 & 0.13691 & \textbf{0.000} & 27.393 & 34.907 \\
+\bottomrule
+\end{tabular}
+\end{table}

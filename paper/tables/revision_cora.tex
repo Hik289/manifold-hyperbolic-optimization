@@ -1,0 +1,24 @@
+% WWW_REFERENCE_STYLE
+\begin{table}[t]
+\centering
+\footnotesize\setlength{\tabcolsep}{4.2pt}\renewcommand{\arraystretch}{1.12}
+\caption{benchmark revision: Cora/GCN, seed 42, complete 1000-epoch runs. Final checkpoint is reported consistently; no significance claim is made. E uses a Euclidean linear head; other rows use Lorentz prototypes. The encoder is shared in form and trained with AdamW.}
+\label{tab:revision-cora}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{lrrrr}
+\toprule
+Method & Final val. acc. & Final test acc. & Test macro-F1 & Seconds \\
+\midrule
+E & 0.7740 & \textbf{0.7780} & \textbf{0.7694} & 10.3 \\
+B2 & \textbf{0.7800} & 0.7720 & 0.7680 & 62.5 \\
+B3 & 0.7780 & 0.7710 & 0.7678 & 63.2 \\
+B4 & \textbf{0.7800} & 0.7720 & 0.7680 & 66.1 \\
+\rowcolor{oursbg}
+B5 & 0.7760 & 0.7720 & 0.7692 & 72.0 \\
+A5 & 0.7760 & 0.7720 & 0.7692 & 80.0 \\
+B35 & 0.7760 & 0.7720 & 0.7692 & 92.0 \\
+shared & 0.7760 & 0.7720 & 0.7692 & 93.6 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}

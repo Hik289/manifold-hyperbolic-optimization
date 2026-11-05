@@ -1,0 +1,12 @@
+{
+  "family": "synthetic",
+  "dataset": "8ary",
+  "model": "product_lorentz",
+  "method": "B5",
+  "epochs": 2000,
+  "seed": 42,
+  "nodes": 1000,
+  "dim": 2,
+  "lr": 10.0,
+  "id": "synthetic_8ary_product_lorentz_1000_2_B5"
+}

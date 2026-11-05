@@ -1,0 +1,225 @@
+\subsection{Constrained curvature, coordinate error, and sequential coupling}
+Curvature bounds change the appropriate optimality condition. At a boundary optimum, the loss can decrease only in an infeasible direction, leaving a nonzero raw derivative. We therefore analyze a projected gradient mapping, and then account for the softplus coordinate, step caps, and the fact that the curvature derivative may be evaluated before the representation moves.
+\begin{definition}[Weighted projected residual]
+For a positive diagonal $B$, a box $U$, and $b=\nabla_uF(q,u)$,
+\begin{align}
+ \Pi_U^B(z)&:=\arg\min_{v\in U}\|v-z\|_{B^{-1}}^2=\Pi_U(z),\\
+ G_{\rho,B}(q,u)&:=\rho^{-1}\{u-\Pi_U(u-\rho Bb)\},\\
+ \|v\|_{B^{-1}}^2&=v^\top B^{-1}v,&\|v\|_B^2&=v^\top Bv.
+\end{align}
+\end{definition}
+\begin{proposition}[KKT equivalence]
+\begin{align}
+ G_{\rho,B}(q,u)=0
+ &\Longleftrightarrow\langle b,v-u\rangle\ge0\quad(\forall v\in U)\\
+ &\Longleftrightarrow0\in b+N_U(u).
+\end{align}
+Coordinatewise,
+\begin{align}
+ u_{g,-}<u_g<u_{g,+}&\Longrightarrow b_g=0,\\
+ u_g=u_{g,-}&\Longrightarrow b_g\ge0,\\
+ u_g=u_{g,+}&\Longrightarrow b_g\le0.
+\end{align}
+\end{proposition}
+\begin{proof}
+\begin{align}
+ u=\Pi_U^B(u-\rho Bb)
+ &\Longleftrightarrow
+ \langle B^{-1}(u-(u-\rho Bb)),v-u\rangle\ge0\\
+ &\Longleftrightarrow\rho\langle b,v-u\rangle\ge0.
+\end{align}
+\end{proof}
+
+\begin{proposition}[Projected curvature descent]
+\label{prop:projected-new}
+Let $u^+=\Pi_U(u-\rho B[b+r])$ and $b_-I\preceq B\preceq b_+I$.
+If $\rho\le1/(2Lb_+)$, then
+\begin{align}\label{eq:rigid-projected-descent}
+ F(q,u^+)\le F(q,u)-\frac\rho4\|G_{\rho,B}(q,u)\|_{B^{-1}}^2+
+ \frac{3\rho}{2}\|r\|_B^2.
+\end{align}
+\end{proposition}
+\begin{proof}
+Set $s=(u-u^+)/\rho$. Projection optimality gives
+\begin{align}
+ \langle b+r,s\rangle&\ge\|s\|_{B^{-1}}^2,\\
+ F(q,u^+)-F(q,u)
+ &\le-\rho\langle b,s\rangle+\tfrac L2\rho^2\|s\|^2\\
+ &\le-\rho(1-L\rho b_+/2)\|s\|_{B^{-1}}^2+
+ \rho\langle r,s\rangle,\\
+ \langle r,s\rangle&\le\tfrac14\|s\|_{B^{-1}}^2+\|r\|_B^2,\\
+ F(q,u^+)-F(q,u)&\le-\tfrac\rho2\|s\|_{B^{-1}}^2+\rho\|r\|_B^2,\\
+ \|s-G_{\rho,B}\|_{B^{-1}}
+ &\le\|B r\|_{B^{-1}}=\|r\|_B,\\
+ \|G_{\rho,B}\|_{B^{-1}}^2
+ &\le2\|s\|_{B^{-1}}^2+2\|r\|_B^2.
+\end{align}
+\end{proof}
+
+\begin{corollary}[Constrained joint budget]
+For the representation update of Theorem~\ref{thm:rigid-full-convergence}, followed by the projected curvature update at $q_{t+1}$,
+\begin{align}
+ \sum_{t<T}\left[\tfrac{a\eta_t}{2}\mathbb E\|g_t\|^2+
+ \tfrac{\rho_t}{4}\mathbb E\|G_{\rho_t,B_t}(q_{t+1},u_t)\|_{B_t^{-1}}^2\right]
+ &\le\Delta_F+C_e\sum_t\eta_t\mathbb E\|z_t\|^2+
+ \tfrac32\sum_t\rho_t\mathbb E\|r_t\|_{B_t}^2.
+\end{align}
+If $\widehat b_t$ is evaluated at $q_t$,
+\begin{align}
+ r_t&=\widehat b_t-\nabla_uF(q_{t+1},u_t),\\
+ \mathbb E\|r_t\|_{B_t}^2
+ &\le2b_+\sigma_u^2/\mathfrak b_t+
+ 2b_+L_{uq}^2M_N^2\eta_t^2.
+\end{align}
+\end{corollary}
+\begin{proof}
+\begin{align}
+ r_t&=(\widehat b_t-b_t)+[b_t-\nabla_uF(q_{t+1},u_t)],\\
+ \|b_t-\nabla_uF(q_{t+1},u_t)\|
+ &\le L_{uq}d(q_t,q_{t+1})\le L_{uq}\eta_tM_N.
+\end{align}
+Add the representation and curvature descent inequalities and telescope.
+\end{proof}
+
+\begin{lemma}[Biased preconditioned curvature step]
+For $h_t=B_t\widehat b_t+\delta_t$, $\|\delta_t\|\le d_t$ a.s.,
+$\mathbb E_t\widehat b_t=b_t$, and $L\rho_tb_+^2\le b_-/4$,
+\begin{align}
+ \mathbb E_t[-\rho_t\langle b_t,h_t\rangle+\tfrac L2\rho_t^2\|h_t\|^2]
+ &\le-\frac{b_-\rho_t}{2}\|b_t\|^2+
+ \rho_t(b_-^{-1}+L\rho_t)d_t^2+
+ \frac{L\rho_t^2b_+^2\sigma_u^2}{\mathfrak b_t}.
+\end{align}
+\end{lemma}
+\begin{proof}
+\begin{align}
+ -\langle b_t,\mathbb E_th_t\rangle
+ &\le-b_-\|b_t\|^2+\|b_t\|d_t
+ \le-\tfrac{3b_-}{4}\|b_t\|^2+b_-^{-1}d_t^2,\\
+ \mathbb E_t\|h_t\|^2
+ &\le2b_+^2(\|b_t\|^2+\sigma_u^2/\mathfrak b_t)+2d_t^2.
+\end{align}
+\end{proof}
+
+\begin{corollary}[Softplus implementation remainder]
+For $u=\psi(c)$ and $c^+=c-\rho\psi'(c)\widehat b$,
+\begin{align}
+ B_t&=\operatorname{diag}(\psi'(c_{g,t})^2),\\
+ u_{t+1}&=u_t-\rho_tB_t\widehat b_t+R_t,\\
+ \|R_t\|&\le C_\psi\rho_t^2H_0^2,&C_\psi&=B_\psi b_+/2,\\
+ |F(q,u+R_t)-F(q,u)|
+ &\le H_FC_\psi\rho_t^2H_0^2+
+ \tfrac L2C_\psi^2\rho_t^4H_0^4=:\varepsilon_t^c.
+\end{align}
+The unconstrained budget therefore receives the additional explicit term
+\begin{align}
+ \sum_t\mathbb E\varepsilon_t^c
+ \le H_FC_\psi H_0^2\sum_t\rho_t^2+
+ \tfrac L2C_\psi^2H_0^4\sum_t\rho_t^4.
+\end{align}
+\end{corollary}
+\begin{proof}
+Apply Proposition~\ref{prop:softplus-rigid} componentwise and use
+$\|(\widehat b_g^2)_g\|_2\le\sum_g\widehat b_g^2\le H_0^2$.
+\end{proof}
+
+\begin{proposition}[Log-step clipping]
+For a scalar coordinate and $\Delta>0$, define
+\begin{align}
+ T_{\rho,\Delta}(u,h)&=\Pi_U\{u+\operatorname{clip}(-\rho h,-\Delta,\Delta)\},\\
+ s_\Delta(u,b)&=\rho^{-1}[u-T_{\rho,\Delta}(u,b)],\\
+ G_\rho(u,b)&=\rho^{-1}[u-\Pi_U(u-\rho b)].
+\end{align}
+Then
+\begin{align}
+ s_\Delta(u,b)&=\operatorname{sign}(G_\rho)\min(|G_\rho|,\Delta/\rho),\\
+ s_\Delta(u,b)=0&\Longleftrightarrow G_\rho(u,b)=0,\\
+ |b|\le H&\Longrightarrow
+ |s_\Delta(u,b)|\ge\min(1,\Delta/(\rho H))|G_\rho(u,b)|,\\
+ |T_{\rho,\Delta}(u,h)-T_{\rho,\Delta}(u',h')|
+ &\le|u-u'|+\rho|h-h'|,\\
+ \rho|h|\le\Delta&\Longrightarrow T_{\rho,\Delta}(u,h)=\Pi_U(u-\rho h).
+\end{align}
+\end{proposition}
+\begin{proof}
+For $b>0$, both displacements equal the minimum of the proposed positive step and the distance $u-u_-$; for $b<0$, replace $u-u_-$ by $u_+-u$. Moreover,
+\begin{align}
+ |\Pi_U(a)-\Pi_U(a')|&\le|a-a'|,\\
+ |\operatorname{clip}(a,-\Delta,\Delta)-\operatorname{clip}(a',-\Delta,\Delta)|&\le|a-a'|.
+\end{align}
+\end{proof}
+
+\begin{proposition}[Summability consequence]
+If the right-hand side of Eq.~\eqref{eq:budget-new} remains bounded as $T\to\infty$ and
+$\sum_t\eta_t=\sum_t\rho_t=\infty$, then
+\begin{align}
+ \sum_t\eta_t\mathbb E\|g_t\|^2&<\infty,&
+ \sum_t\rho_t\mathbb E\|b_t\|^2&<\infty,\\
+ \liminf_{t\to\infty}\mathbb E\|g_t\|^2&=0,&
+ \liminf_{t\to\infty}\mathbb E\|b_t\|^2&=0.
+\end{align}
+No convergence of every iterate to a single critical point is inferred.
+\end{proposition}
+\begin{proof}
+If $\liminf\mathbb E\|g_t\|^2\ge\epsilon>0$, then
+$\sum_t\eta_t\mathbb E\|g_t\|^2\ge(\epsilon/2)\sum_{t\ge t_0}\eta_t=\infty$, a contradiction. The curvature block is identical.
+\end{proof}
+
+The combined theorem uses the residual of the admissible curvature step and charges sequential evaluation as an explicit derivative error. Projection controls feasibility, while the Taylor remainder controls the discrepancy between the softplus step and its preconditioned log-curvature approximation. Point-radius clipping is a separate modification of the representation dynamics and must be inactive here or included in the perturbation budget of the next subsection.
+
+\begin{theorem}[Softplus, box constraints and log-step caps together]
+\label{thm:rigid-implemented-curvature}
+Let $U=\psi(C)$ for a coordinate box $C$ and componentwise increasing $\psi$.
+Let $U_t=U\cap[u_t-\Delta,u_t+\Delta]$ and
+\begin{align}
+ q_{t+1}&=\Exp_{q_t}[-\eta_tN_\gamma(p_t)],\\
+ c_t^{\rm raw}&=c_t-\rho_t\operatorname{diag}(\psi'(c_t))\widehat b_t,\\
+ u_{t+1}&=\Pi_{U_t}\psi(c_t^{\rm raw}),&
+ B_t&=\operatorname{diag}(\psi'(c_t)^2),\\
+ b_t^+&=\nabla_uF(q_{t+1},u_t),\\
+ G_t^\Delta&=\rho_t^{-1}\{u_t-\Pi_{U_t}(u_t-\rho_tB_tb_t^+)\}.
+\end{align}
+Assume the oracle, smoothness, compact-coordinate and tangent-momentum assumptions above, with inactive point-radius clipping and no unaccounted gradient-estimator bias. If
+$\eta_t\le a/(4La_+^2)$, $\rho_t\le1/(2Lb_+)$, then
+\begin{align}
+ \sum_{t<T}\left[\tfrac{a\eta_t}{2}\mathbb E\|g_t\|^2+
+ \tfrac{\rho_t}{4}\mathbb E\|G_t^\Delta\|_{B_t^{-1}}^2\right]
+ &\le\Delta_F+C_e\sum_t\eta_t\mathbb E\|e_t^m\|^2\\
+ &\quad+3b_+\sigma_u^2\sum_t\rho_t/\mathfrak b_t
+ +3b_+L_{uq}^2M_N^2\sum_t\rho_t\eta_t^2
+ +\sum_t\mathbb E\varepsilon_t^c.
+\end{align}
+For fixed $\beta<1$, $\eta\asymp T^{-1/2}$, $\rho\asymp T^{-3/4}$,
+$\mathfrak b_t\gtrsim T^{1/2}$,
+\begin{align}
+ T^{-1}\sum_t\mathbb E\|g_t\|^2&=O(T^{-1/2}),\\
+ T^{-1}\sum_t\mathbb E\|G_t^\Delta\|_{B_t^{-1}}^2&=O(T^{-1/4}).
+\end{align}
+\end{theorem}
+\begin{proof}
+For fixed $u_t$, projection onto $U_t$ is nonexpansive and $u_t\in U_t$.
+By the softplus remainder bound,
+\begin{align}
+ \bar u_{t+1}&=\Pi_{U_t}(u_t-\rho_tB_t\widehat b_t),\\
+ \|u_{t+1}-\bar u_{t+1}\|&\le C_\psi\rho_t^2H_0^2,\\
+ F(q_{t+1},u_{t+1})&\le F(q_{t+1},\bar u_{t+1})+\varepsilon_t^c,\\
+ \|u_{t+1}-u_t\|&\le\rho_t\widetilde H,
+ \qquad\widetilde H:=b_+H_0+C_\psi\rho_{\max}H_0^2,\\
+ \sum_t\mathbb E\|e_t^m\|^2
+ &\le\frac{\beta\mathbb E\|e_{-1}^m\|^2}{1-\beta}+
+ \frac{2\beta^2}{(1-\beta)^2}
+ \left[L_{vq}^2M_N^2\sum_t\eta_t^2+
+ L_{vu}^2\widetilde H^2\sum_t\rho_t^2\right]\\
+ &\quad+(1-\beta)a_+^2\sigma_q^2\sum_t\mathfrak b_t^{-1}.
+\end{align}
+Apply projected descent to $U_t$ with error $\widehat b_t-b_t^+$; its expected squared $B_t$-norm is bounded by
+$2b_+\sigma_u^2/\mathfrak b_t+2b_+L_{uq}^2\eta_t^2M_N^2$.
+Adding the normalized representation descent gives the budget. Finally,
+\begin{align}
+ \eta\sum_t\mathbb E\|e_t^m\|^2&=O(1),\\
+ \sum_t\rho/\mathfrak b_t&=O(T^{-1/4}),&
+ \sum_t\rho\eta^2&=O(T^{-3/4}),\\
+ \sum_t\varepsilon_t^c&=O(T^{-1/2}),&
+ T\eta&\asymp T^{1/2},&T\rho&\asymp T^{1/4}.
+\end{align}
+\end{proof}

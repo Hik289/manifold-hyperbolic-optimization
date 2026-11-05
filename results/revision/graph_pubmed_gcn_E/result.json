@@ -1,0 +1,37 @@
+{
+  "selected_epoch": 127,
+  "selected_test": {
+    "accuracy": 0.7710000276565552,
+    "macro_f1": 0.768055894061256
+  },
+  "status": "complete",
+  "config": {
+    "family": "graph",
+    "dataset": "pubmed",
+    "model": "gcn",
+    "method": "E",
+    "epochs": 1000,
+    "seed": 42,
+    "id": "graph_pubmed_gcn_E"
+  },
+  "final": {
+    "epoch": 999,
+    "task": 0,
+    "train_loss": 0.00036550124059431255,
+    "seconds": 27.19322419166565,
+    "K": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "learning_rate": 0.1,
+    "curvature_learning_rate": 0.001,
+    "peak_memory_mb": 126.887936,
+    "val_accuracy": 0.7500000596046448,
+    "val_macro_f1": 0.7555485092857107,
+    "test_accuracy": 0.76500004529953,
+    "test_macro_f1": 0.7603519298833494
+  },
+  "best_validation": 0.7780000567436218,
+  "epochs_completed": 1000
+}

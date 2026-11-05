@@ -1,0 +1,359 @@
+\subsection{Full normalized momentum: tracking, descent, and finite-time rates}
+\label{app:rigid-momentum}
+Momentum estimates a moving preconditioned gradient, rather than a fixed vector. The target changes through both representation motion and curvature adaptation, and successive estimates belong to different tangent spaces. Parallel transport permits an exact subtraction; the resulting recursion separates memory decay, target drift, and fresh sampling noise.
+\begin{assumption}[Canonical stochastic dynamics]
+\label{ass:rigid-full-momentum}
+For $\mathcal F_t$ generated before the current sample,
+\begin{align}
+ \mathbb E_t\widehat g_t&=g_t,&
+ \mathbb E_t\widehat b_t&=b_t,\\
+ \mathbb E_t\|\widehat g_t-g_t\|^2&\le\sigma_q^2/\mathfrak b_t,&
+ \mathbb E_t\|\widehat b_t-b_t\|^2&\le\sigma_u^2/\mathfrak b_t,\\
+ \|\widehat g_t\|&\le G_0,&\|\widehat b_t\|&\le H_0\quad\text{a.s.},\\
+ A_t&=A(u_t),&a_-I\preceq A_t&\preceq a_+I,\\
+ p_t&=\beta P_{t-1}p_{t-1}+(1-\beta)A_t\widehat g_t,&0&\le\beta<1,\\
+ q_{t+1}&=\Exp_{q_t}[-\eta_tN_\gamma(p_t)],&
+ u_{t+1}&=u_t-\rho_t\widehat b_t.\label{eq:rigid-full-update}
+\end{align}
+Here $P_{t-1}=P^1_{q_{t-1}\to q_t}$; compatible cross-curvature transport has already been applied.
+Assume along the relevant paths
+\begin{align}
+ \|g(q,u)-P_{q'\to q}g(q',u)\|&\le L_{qq}d_1(q,q'),\\
+ \|g(q,u)-g(q,u')\|&\le L_{qu}\|u-u'\|.
+\end{align}
+The full product smoothness assumption holds and every update is interior and exact.
+\end{assumption}
+
+\begin{proposition}[Canonical realization of the physical update]
+\begin{align}
+ \widetilde m_{g,t}&=\beta m_{g,t}^{\rm carry}+(1-\beta)\widehat g^x_{g,t},\\
+ p_{g,t}&=\sqrt{K_{g,t}}\widetilde m_{g,t}
+ =\beta p_{g,t}^{\rm carry}+(1-\beta)K_{g,t}\widehat g^q_{g,t},\\
+ \sqrt{K_{g,t}}\Exp_{x_{g,t}}^{K_{g,t}}
+ \left(\frac{-\eta_t\widetilde m_{g,t}}{1+\gamma\sqrt{K_{g,t}}\|\widetilde m_{g,t}\|}\right)
+ &=\Exp_{q_{g,t}}^1[-\eta_tN_\gamma(p_{g,t})],\\
+ \sqrt{K_{g,t+1}}m_{g,t+1}^{\rm carry}
+ &=P^1_{q_{g,t}\to q_{g,t+1}}p_{g,t}.
+\end{align}
+\end{proposition}
+\begin{proof}
+Use Corollary~\ref{cor:canonical-gradient} and Proposition~\ref{prop:homothety} in each line.
+\end{proof}
+
+\begin{lemma}[Pathwise momentum invariant]
+\label{lem:rigid-momentum-bound}
+Let $M=\max(\|p_{-1}\|,a_+G_0)$. Then
+\begin{align}
+ \|p_t\|&\le M,&\|N_\gamma(p_t)\|&\le M_N,\\
+ M_N&:=\min(M,\sqrt\nu/\gamma),&
+ \|m_{g,t}\|&\le M/\sqrt{K_-},
+\end{align}
+where $\nu$ is the number of separately normalized tangent blocks ($\nu=1$ for global normalization).
+\end{lemma}
+\begin{proof}
+\begin{align}
+ \|p_t\|&\le\beta\|p_{t-1}\|+(1-\beta)a_+G_0,\\
+ \|p_t\|&\le\beta^{t+1}\|p_{-1}\|+(1-\beta^{t+1})a_+G_0\le M,\\
+ \|N_\gamma(p_t)\|^2
+ &=\sum_{j=1}^{\nu}\frac{\|p_{t,j}\|^2}{(1+\gamma\|p_{t,j}\|)^2}
+ \le\min(M^2,\nu/\gamma^2).
+\end{align}
+\end{proof}
+
+\begin{definition}[Tracking variables]
+\begin{align}
+ v_t&=A_tg_t,&\xi_t&=\widehat g_t-g_t,&e_{t}^{m}&=p_t-v_t,\\
+ d_t&=v_t-P_{t-1}v_{t-1}&& (t\ge1),&d_0&=0,\\
+ v_{-1}&=v_0,&P_{-1}&=I,&e_{-1}^{m}&=p_{-1}-v_0.
+\end{align}
+\end{definition}
+\begin{lemma}[Exact error recursion]
+\label{lem:tracking-new}
+\begin{align}\label{eq:tracking-identity}
+ e_{t}^{m}&=\beta P_{t-1}e_{t-1}^{m}-\beta d_t+(1-\beta)A_t\xi_t,\\
+ \mathbb E\|e_{t}^{m}\|^2
+ &\le\beta\mathbb E\|e_{t-1}^{m}\|^2+
+ \frac{\beta^2}{1-\beta}\mathbb E\|d_t\|^2+
+ \frac{(1-\beta)^2a_+^2\sigma_q^2}{\mathfrak b_t},\\
+ \sum_{t<T}\mathbb E\|e_{t}^{m}\|^2
+ &\le\frac{\beta}{1-\beta}\mathbb E\|e_{-1}^{m}\|^2+
+ \frac{\beta^2}{(1-\beta)^2}\sum_{t<T}\mathbb E\|d_t\|^2
+ +(1-\beta)a_+^2\sigma_q^2\sum_{t<T}\mathfrak b_t^{-1}.
+ \label{eq:tracking-sum}
+\end{align}
+\end{lemma}
+\begin{proof}
+\begin{align}
+ p_t-v_t
+ &=\beta P_{t-1}(p_{t-1}-v_{t-1})
+ +\beta(P_{t-1}v_{t-1}-v_t)+(1-\beta)A_t\xi_t,\\
+ \mathbb E_t\langle\beta P_{t-1}e_{t-1}^{m}-\beta d_t,A_t\xi_t\rangle&=0,\\
+ \|\beta a-\beta b\|^2
+ &\le\beta\|a\|^2+\frac{\beta^2}{1-\beta}\|b\|^2,\\
+ (1-\beta)\sum_{t<T}\mathbb E\|e_{t}^{m}\|^2
+ &\le\beta\mathbb E\|e_{-1}^{m}\|^2-
+ \beta\mathbb E\|e_{T-1}^{m}\|^2\\
+ &\quad+\frac{\beta^2}{1-\beta}\sum_{t<T}\mathbb E\|d_t\|^2+
+ (1-\beta)^2a_+^2\sigma_q^2\sum_{t<T}\mathfrak b_t^{-1}.
+\end{align}
+The case $\beta=0$ follows directly from $e_{t}^{m}=A_t\xi_t$.
+\end{proof}
+
+The factor $(1-\beta)$ averages fresh noise, whereas target motion persists through the momentum memory. This explains the opposite dependence of variance and drift on $1-\beta$ in the summed tracking bound. Curvature enters twice: through the objective gradient and through $A(u)$, so a bound on $\nabla_uF$ alone is insufficient to control this drift.
+
+\begin{lemma}[Representation--curvature drift]
+\label{lem:rigid-drift}
+For $A(u)=\operatorname{diag}(e^{u_g}I)$, set
+\begin{align}
+ L_{vq}&=K_+L_{qq},&L_{vu}&=K_+(L_{qu}+G_0).
+\end{align}
+Then
+\begin{align}
+ \|d_t\|
+ &\le L_{vq}d_1(q_t,q_{t-1})+L_{vu}\|u_t-u_{t-1}\|\\
+ &\le L_{vq}M_N\eta_{t-1}+L_{vu}H_0\rho_{t-1},\\
+ D_T:=\sum_{t<T}\mathbb E\|d_t\|^2
+ &\le\sum_{t<T-1}(L_{vq}M_N\eta_t+L_{vu}H_0\rho_t)^2=:\overline D_T\\
+ &\le2L_{vq}^2M_N^2\sum_{t<T-1}\eta_t^2+
+ 2L_{vu}^2H_0^2\sum_{t<T-1}\rho_t^2.
+\end{align}
+\end{lemma}
+\begin{proof}
+\begin{align}
+ v_t-P_{t-1}v_{t-1}
+ &=A_t(g_t-P_{t-1}g_{t-1})+(A_t-A_{t-1})P_{t-1}g_{t-1},\\
+ \|A_t-A_{t-1}\|_{\rm op}
+ &\le K_+\|u_t-u_{t-1}\|_\infty\le K_+\|u_t-u_{t-1}\|,\\
+ d_1(q_t,q_{t-1})&=\eta_{t-1}\|N_\gamma(p_{t-1})\|\le\eta_{t-1}M_N,\\
+ \|u_t-u_{t-1}\|&\le\rho_{t-1}H_0,\\
+ (a+b)^2&\le2a^2+2b^2.
+\end{align}
+\end{proof}
+
+\begin{theorem}[Finite-horizon martingale filter bound]
+\label{thm:sharp-momentum-filter}
+Let $E_T=\sum_{t<T}\mathbb E\|e_t^m\|^2$, and define
+\begin{align}
+ \mathcal I_T&:=\frac{\beta^2(1-\beta^{2T})}{1-\beta^2}
+ \mathbb E\|e_{-1}^m\|^2,\\
+ \mathcal V_T&:=\frac{1-\beta}{1+\beta}
+ \sum_{j<T}(1-\beta^{2(T-j)})\frac{a_+^2\sigma_q^2}{\mathfrak b_j},\\
+ (L_{\beta,T})_{tj}&:=\beta^{t-j+1}\mathbf1_{\{1\le j\le t\}},
+ \quad 0\le t<T,\ 1\le j<T,\\
+ h_{\beta,T}&:=\|L_{\beta,T}\|_{2\to2}
+ \le\beta\sum_{k=0}^{T-2}\beta^k.
+\end{align}
+For $T=1$, set $h_{\beta,1}=0$. Then
+\begin{align}\label{eq:sharp-momentum-filter}
+ E_T&\le\left(\sqrt{\mathcal I_T+\mathcal V_T}
+ +h_{\beta,T}\sqrt{D_T}\right)^2.
+\end{align}
+For a stationary target, zero initial error, and a scalar oracle whose variance saturates the stated bound, $E_T=\mathcal V_T$. Thus the stationary variance factor $(1-\beta)/(1+\beta)$, including its finite-horizon weights, is exact.
+\end{theorem}
+\begin{proof}
+Use the predictable isometric frame
+\begin{align}
+ U_0&=I,&U_t&=P_{t-1}U_{t-1},\\
+ \widetilde e_t&=U_t^{-1}e_t^m,&
+ \widetilde d_t&=U_t^{-1}d_t,&
+ \zeta_t&=U_t^{-1}A_t\xi_t.
+\end{align}
+Because $U_t$ and $A_t$ are $\mathcal F_t$-measurable, $\mathbb E_t\zeta_t=0$ in the fixed Hilbert space $T_{q_0}\mathcal Q$. The tracking identity becomes
+\begin{align}
+ \widetilde e_t
+ &=\underbrace{\beta^{t+1}e_{-1}^m+
+ (1-\beta)\sum_{j\le t}\beta^{t-j}\zeta_j}_{Y_t}
+ -\sum_{1\le j\le t}\beta^{t-j+1}\widetilde d_j.
+\end{align}
+Martingale orthogonality \citep{williams1991martingales} gives
+\begin{align}
+ \sum_{t<T}\mathbb E\|Y_t\|^2
+ &=\mathcal I_T+(1-\beta)^2\sum_{j<T}
+ \left(\sum_{t=j}^{T-1}\beta^{2(t-j)}\right)\mathbb E\|\zeta_j\|^2\\
+ &\le\mathcal I_T+\mathcal V_T.
+\end{align}
+Minkowski's inequality in $\ell_2(L^2)$ now yields
+\begin{align}
+ E_T^{1/2}
+ &\le\left(\sum_{t<T}\mathbb E\|Y_t\|^2\right)^{1/2}
+ +\|L_{\beta,T}\|_{2\to2}
+ \left(\sum_{j=1}^{T-1}\mathbb E\|\widetilde d_j\|^2\right)^{1/2}.
+\end{align}
+Young's convolution inequality \citep{grafakos2014fourier} bounds the operator norm by the $\ell_1$ norm of its truncated kernel, giving the displayed upper bound for $h_{\beta,T}$. If $d_t=0$ and $e_{-1}^m=0$, only the orthogonal noise sum remains, proving the equality case.
+\end{proof}
+
+The useful step is the predictable frame: it puts all noise increments in one fixed Hilbert space before invoking orthogonality. Direct transport of each past increment to the final random tangent space would make the transporting operator depend on future noise. The filter bound keeps the exact geometric noise weights and the finite-horizon drift gain, instead of applying Young's scalar inequality separately at every time.
+
+\begin{definition}[Explicit tracking bounds]
+\begin{align}
+ E_T&:=\sum_{t<T}\mathbb E\|e_{t}^{m}\|^2,\\
+ \mathscr E_T&:=\frac{\beta}{1-\beta}\mathbb E\|e_{-1}^{m}\|^2+
+ \frac{\beta^2\overline D_T}{(1-\beta)^2}\\
+ &\qquad +(1-\beta)a_+^2\sigma_q^2\sum_{t<T}\mathfrak b_t^{-1},\\
+ \mathscr E_T^\sharp&:=\min\left\{\mathscr E_T,
+ \left(\sqrt{\mathcal I_T+\mathcal V_T}+h_{\beta,T}\sqrt{\overline D_T}\right)^2\right\}.
+\end{align}
+Thus $E_T\le\mathscr E_T^\sharp\le\mathscr E_T$.
+\end{definition}
+
+\begin{theorem}[Normalized two-block momentum budget]
+\label{thm:rigid-full-convergence}
+Under Assumption~\ref{ass:rigid-full-momentum}, put
+\begin{align}
+ a&=\begin{cases}
+ \displaystyle\frac{a_-}{1+\gamma a_-G_0},&\text{scalar preconditioner on each normalization block},\\[3pt]
+ \displaystyle\frac{a_-}{1+\gamma a_+G_0},&\text{otherwise},
+ \end{cases}\\
+ C_e&=a^{-1}+L\eta_{\max}.
+\end{align}
+If $\eta_t\le a/(4La_+^2)$ and $\rho_t\le L^{-1}$, then
+\begin{align}\label{eq:rigid-full-budget}
+ \sum_{t<T}\left(\frac{a\eta_t}{2}\mathbb E\|g_t\|^2+
+ \frac{\rho_t}{2}\mathbb E\|b_t\|^2\right)
+ &\le\Delta_F+C_e\sum_{t<T}\eta_t\mathbb E\|e_{t}^{m}\|^2+
+ \frac{L\sigma_u^2}{2}\sum_{t<T}\frac{\rho_t^2}{\mathfrak b_t}.
+\end{align}
+For constant steps,
+\begin{align}\label{eq:rigid-full-rates-explicit}
+ \frac1T\sum_{t<T}\mathbb E\|g_t\|^2
+ &\le\frac{2\Delta_F}{aT\eta}+
+ \frac{2C_e\mathscr E_T^\sharp}{aT}+
+ \frac{L\sigma_u^2\rho^2}{a\eta T}\sum_{t<T}\mathfrak b_t^{-1},\\
+ \frac1T\sum_{t<T}\mathbb E\|b_t\|^2
+ &\le\frac{2\Delta_F}{T\rho}+
+ \frac{2C_e\eta\mathscr E_T^\sharp}{T\rho}+
+ \frac{L\sigma_u^2\rho}{T}\sum_{t<T}\mathfrak b_t^{-1}.
+\end{align}
+\end{theorem}
+\begin{proof}
+Let $n_t=N_\gamma(p_t)$, $n_t^*=N_\gamma(v_t)$ and $\delta_t=n_t-n_t^*$.
+\begin{align}
+ \|\delta_t\|&\le\|e_{t}^{m}\|,\\
+ \langle g_t,n_t\rangle
+ &=\langle g_t,n_t^*\rangle+\langle g_t,\delta_t\rangle\\
+ &\ge a\|g_t\|^2-\|g_t\|\|e_{t}^{m}\|\\
+ &\ge\tfrac{3a}{4}\|g_t\|^2-a^{-1}\|e_{t}^{m}\|^2,\\
+ \|n_t\|^2&\le2\|n_t^*\|^2+2\|\delta_t\|^2
+ \le2a_+^2\|g_t\|^2+2\|e_{t}^{m}\|^2,\\
+ -\eta_t\langle g_t,n_t\rangle+\tfrac L2\eta_t^2\|n_t\|^2
+ &\le-\eta_t(3a/4-La_+^2\eta_t)\|g_t\|^2
+ +\eta_t(a^{-1}+L\eta_t)\|e_{t}^{m}\|^2\\
+ &\le-\tfrac{a\eta_t}{2}\|g_t\|^2+C_e\eta_t\|e_{t}^{m}\|^2,
+ \label{eq:normalized-descent}\\
+ \mathbb E_t[-\rho_t\langle b_t,\widehat b_t\rangle+
+ \tfrac L2\rho_t^2\|\widehat b_t\|^2]
+ &\le-\rho_t(1-L\rho_t/2)\|b_t\|^2+
+ \frac{L\rho_t^2\sigma_u^2}{2\mathfrak b_t}\\
+ &\le-\tfrac{\rho_t}{2}\|b_t\|^2+
+ \frac{L\rho_t^2\sigma_u^2}{2\mathfrak b_t}.
+\end{align}
+Combining these inequalities with Lemma~\ref{lem:rigid-product-descent},
+\begin{align}
+ \mathbb EF_{t+1}-\mathbb EF_t
+ &\le-\tfrac{a\eta_t}{2}\mathbb E\|g_t\|^2-
+ \tfrac{\rho_t}{2}\mathbb E\|b_t\|^2+C_e\eta_t\mathbb E\|e_{t}^{m}\|^2
+ +\frac{L\rho_t^2\sigma_u^2}{2\mathfrak b_t},\\
+ \sum_{t<T}(\mathbb EF_t-\mathbb EF_{t+1})&\le\Delta_F,\\
+ \eta\sum_{t<T}\mathbb E\|e_{t}^{m}\|^2&\le\eta\mathscr E_T^\sharp.
+\end{align}
+\end{proof}
+
+\begin{corollary}[Increasing-batch unequal-step regime]
+\label{cor:rigid-canonical-rate}
+For fixed $\beta<1$ and constants satisfying the step restrictions, let
+\begin{align}
+ \eta&=c_\eta T^{-1/2},&\rho&=c_\rho T^{-3/4},&
+ \mathfrak b_t&\ge c_bT^{1/2}.
+\end{align}
+Then
+\begin{align}
+ \mathscr E_T/T
+ &\le C_0T^{-1}+C_1T^{-1}+C_2T^{-3/2}+C_3T^{-1/2},\\
+ T^{-1}\sum_{t<T}\mathbb E\|g_t\|^2&=O(T^{-1/2}),\\
+ T^{-1}\sum_{t<T}\mathbb E\|b_t\|^2&=O(T^{-1/4}).
+\end{align}
+The same rates hold for deterministic gradients with fixed $\beta$.
+\end{corollary}
+\begin{proof}
+\begin{align}
+ \frac{\eta}{\rho}&=\frac{c_\eta}{c_\rho}T^{1/4},&
+ \frac1{T\eta}&=c_\eta^{-1}T^{-1/2},&
+ \frac1{T\rho}&=c_\rho^{-1}T^{-1/4},\\
+ \frac{\rho^2}{\eta T}\sum_t\mathfrak b_t^{-1}&=O(T^{-3/2}),&
+ \frac\rho T\sum_t\mathfrak b_t^{-1}&=O(T^{-5/4}),\\
+ \frac{\eta\mathscr E_T}{T\rho}&=O(T^{-1/4}).
+\end{align}
+\end{proof}
+
+The increasing-batch regime makes the variance term vanish while keeping the memory parameter fixed. With a fixed batch, the same proof requires the memory parameter to change with the horizon. The exponent calculation below displays this trade-off explicitly; its sufficient schedule is not an optimality claim or a statement that a fixed-step benchmark run realizes these asymptotics.
+
+\begin{corollary}[General horizon exponents]
+Let $\eta\asymp T^{-\alpha}$, $\rho\asymp T^{-\theta}$,
+$1-\beta\asymp T^{-\kappa}$ and $\mathfrak b_t\asymp T^\omega$, with
+$0<\alpha,\theta<1$, $\kappa,\omega\ge0$. Then
+\begin{align}
+ \mathscr E_T/T
+ &=O\left(T^{-1+\kappa}+T^{-2\alpha+2\kappa}
+ +T^{-2\theta+2\kappa}+T^{-\kappa-\omega}\right),\\
+ \frac1T\sum_t\mathbb E\|g_t\|^2
+ &=O\left(T^{\alpha-1}+\frac{\mathscr E_T}T+
+ T^{-2\theta+\alpha-\omega}\right),\\
+ \frac1T\sum_t\mathbb E\|b_t\|^2
+ &=O\left(T^{\theta-1}+T^{\theta-\alpha}\frac{\mathscr E_T}T+
+ T^{-\theta-\omega}\right).
+\end{align}
+\end{corollary}
+\begin{proof}
+Substitute the four horizon powers into the explicit inequalities of Theorem~\ref{thm:rigid-full-convergence}; $C_e$ and the pathwise bound $M$ remain bounded independently of $T$.
+\end{proof}
+
+\begin{corollary}[A fixed-batch sufficient schedule]
+For $\omega=0$, $\alpha=\theta=3/5$, $\kappa=2/5$,
+\begin{align}
+ \mathscr E_T/T&=O(T^{-2/5}),\\
+ \frac1T\sum_t\mathbb E(\|g_t\|^2+\|b_t\|^2)&=O(T^{-2/5}).
+\end{align}
+For fixed $\beta$ and fixed batch, the preceding tracking argument retains the term
+\begin{align}
+ (1-\beta)a_+^2\sigma_q^2/\mathfrak b,
+\end{align}
+which is not set to zero.
+\end{corollary}
+\begin{proof}
+\begin{align}
+ -1+\kappa&=-3/5,&-2\alpha+2\kappa&=-2/5,\\
+ -2\theta+2\kappa&=-2/5,&-\kappa-\omega&=-2/5,\\
+ \alpha-1&=\theta-1=-2/5,&\theta-\alpha&=0.
+\end{align}
+\end{proof}
+
+\begin{proposition}[PL tracking with a drifting curvature]
+\label{prop:rigid-pl}
+Assume $\|g(q,u)\|^2\ge2\mu[F(q,u)-F^*(u)]$ and
+\begin{align}
+ |F(q,u')-F(q,u)|&\le H\|u'-u\|,\\
+ |F^*(u')-F^*(u)|&\le H_*\|u'-u\|.
+\end{align}
+For $\mathcal D_t=F(q_t,u_t)-F^*(u_t)$ and $0<a\mu\eta_t\le1$,
+\begin{align}
+ \mathbb E\mathcal D_{t+1}
+ &\le(1-a\mu\eta_t)\mathbb E\mathcal D_t+
+ C_e\eta_t\mathbb E\|e_{t}^{m}\|^2+(H+H_*)\mathbb E\|u_{t+1}-u_t\|.
+\end{align}
+For constant steps and $\sup_t\mathbb E\|e_{t}^{m}\|^2\le Z^2$,
+\begin{align}
+ \mathbb E\mathcal D_T
+ &\le(1-a\mu\eta)^T\mathcal D_0+
+ \frac{C_eZ^2}{a\mu}+
+ \frac{(H+H_*)H_0\rho}{a\mu\eta}.
+\end{align}
+\end{proposition}
+\begin{proof}
+\begin{align}
+ F(q_{t+1},u_t)-F^*(u_t)
+ &\le\mathcal D_t-\tfrac{a\eta_t}{2}\|g_t\|^2+C_e\eta_t\|e_{t}^{m}\|^2,\\
+ \mathcal D_{t+1}-[F(q_{t+1},u_t)-F^*(u_t)]
+ &\le(H+H_*)\|u_{t+1}-u_t\|,\\
+ \sum_{j=0}^{T-1}(1-a\mu\eta)^j&\le(a\mu\eta)^{-1}.
+\end{align}
+\end{proof}

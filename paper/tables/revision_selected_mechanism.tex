@@ -1,0 +1,21 @@
+% WWW_REFERENCE_STYLE
+\begin{table*}[t]
+\centering
+\footnotesize\setlength{\tabcolsep}{4.2pt}\renewcommand{\arraystretch}{1.12}
+\caption{Matched five-initialization comparison, 2000 updates per run. B35, B5, and A5 each use $K_0\in\{0.03,0.1,0.3,1,3\}$, with configurations selected by final validation distortion. Test distortion is reported after selection. A case appears only when all 15 runs finish. The last column compares B5 with A5 at B5\textquotesingle s selected initialization, retaining the clean transport contrast.}
+\label{tab:revision-selected-mechanism}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{lrrrrr}
+\toprule
+Case & Best fixed & B5 & Best A5 & B5 $K_0$ & Matched A5 \\
+\midrule
+abrupt8 & \textbf{0.1637} & \cellcolor{oursbg}0.1655 & 0.1663 & 0.03 & 0.1663 \\
+heterogeneous & 0.2182 & \cellcolor{oursbg}0.2177 & \textbf{0.2174} & 0.1 & \textbf{0.2174} \\
+smooth2 & 0.1823 & \cellcolor{oursbg}\textbf{0.1762} & 0.1763 & 0.1 & 0.1763 \\
+smooth5 & \textbf{0.2058} & \cellcolor{oursbg}\textbf{0.2058} & 0.2061 & 0.03 & 0.2061 \\
+smooth8 & 0.2757 & \cellcolor{oursbg}\textbf{0.2619} & 0.2624 & 0.03 & 0.2624 \\
+static & 0.2011 & \cellcolor{oursbg}0.1952 & \textbf{0.1951} & 0.1 & \textbf{0.1951} \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table*}

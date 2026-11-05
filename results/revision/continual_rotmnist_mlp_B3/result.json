@@ -1,0 +1,55 @@
+{
+  "status": "complete",
+  "config": {
+    "family": "continual",
+    "dataset": "rotmnist",
+    "model": "mlp",
+    "method": "B3",
+    "epochs": 1000,
+    "seed": 42,
+    "id": "continual_rotmnist_mlp_B3"
+  },
+  "final": {
+    "epoch": 999,
+    "task": 4,
+    "train_loss": 0.01393156074539379,
+    "seconds": 53846.565672159195,
+    "K": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "learning_rate": 0.1,
+    "curvature_learning_rate": 0.001,
+    "peak_memory_mb": 33.375232,
+    "grad_norm": 0.02205861546099186,
+    "momentum_norm": 0.004544558469206095,
+    "exp_argument": 0.0004544558469206095,
+    "radius_clipped_fraction": 1.0,
+    "manifold_residual": 0.001708984375,
+    "tangent_residual": 2.384185791015625e-07,
+    "mean_radius": 4.000454902648926,
+    "val_accuracy": 0.9810000061988831,
+    "val_macro_f1": 0.9807900387952424,
+    "test_accuracy": 0.9838999509811401,
+    "test_macro_f1": 0.9837939371911608,
+    "task_accuracies": [
+      0.2646999955177307,
+      0.1639999896287918,
+      0.17270000278949738,
+      0.6022999882698059,
+      0.9838999509811401
+    ],
+    "average_accuracy": 0.4375199854373932,
+    "forgetting": 0.683199979364872
+  },
+  "best_validation": 0.984833300113678,
+  "epochs_completed": 1000
+}

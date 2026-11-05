@@ -1,0 +1,84 @@
+{
+  "scope": "Every data point used by the three included loss figures. No smoothing, interpolation or synthetic points.",
+  "historical_source": {
+    "path": "tables/table1c_kg_trajectory.csv",
+    "sha256": "b44e396e2534cd056ac04a0711854a67fa79e063dfec0442732e02f1c5738489"
+  },
+  "run_sources": {
+    "graph_cora_gcn_E": {
+      "result_sha256": "a2c64c9a8e4bfbcd84d2bd2ba84ddd1ceabb29d0324a8016a170ef467b2d3861",
+      "trajectory_sha256": "f43969e23c8eb0afc4dc2c2240f229861f4e1773ee77f08f390c8ad7303ff33b",
+      "epochs_verified": 1000
+    },
+    "graph_cora_gcn_B3": {
+      "result_sha256": "0e5da2fb88cb57baf491877ed36a7261b8447e64883caa5476ab5e35fc860657",
+      "trajectory_sha256": "a051f24a904082e803b3773b0bafa4c3f25b6cf7783964e026a1711281d40567",
+      "epochs_verified": 1000
+    },
+    "graph_cora_gcn_B4": {
+      "result_sha256": "8ac1cb10ae339dc4db571b503d383340f1507deaafefda6a3546f2085dfcb7de",
+      "trajectory_sha256": "3ba6f0c2d863a8741dab4a5bedaba2b06e518245f3e48840666015add955a787",
+      "epochs_verified": 1000
+    },
+    "graph_cora_gcn_B5": {
+      "result_sha256": "fbffdb3b9ece9a29c9fe0b7c657d69741eb269a79d0e2fd46da2f47369b59c7d",
+      "trajectory_sha256": "9954a481bd1db7e9d3e954cd6b31247f3e8a64faf235556f7e7085f7114a84ea",
+      "epochs_verified": 1000
+    },
+    "graph_cora_gcn_A5": {
+      "result_sha256": "75d3283f3eae2431000583bb2450b523a2dbea1b2972d7ee397ea00f146d0f47",
+      "trajectory_sha256": "493e755849878070a32218b5210c901f14cb0beef5ff92cebdfec97a15c0c80a",
+      "epochs_verified": 1000
+    },
+    "mechanism_smooth2_independent_lorentz_3_B3": {
+      "result_sha256": "793175ea2b6e81992da2a369023e63cffe35d3b70429bb3dc11ad4d5fff939cb",
+      "trajectory_sha256": "515ecf603a032a1a00ac59ff4faf46269944c68241b6e6761ab6551b3b633867",
+      "epochs_verified": 2000
+    },
+    "mechanism_smooth2_independent_lorentz_3_B5": {
+      "result_sha256": "bebfdd149d8aafe19c3540108f70be48a903573e4c087c550c534db9769227e3",
+      "trajectory_sha256": "fcab4062ccdbad3071a2cb82575d0052f7e160910f5a5e5ae2b22ce3f32657b2",
+      "epochs_verified": 2000
+    },
+    "mechanism_smooth2_independent_lorentz_3_A5": {
+      "result_sha256": "9fb72a86821be1fc63c269cf2a137056b3bb0278fccde99cf4bd691606a56649",
+      "trajectory_sha256": "dffdb7eb7bff19ddd05cd02a2d083a7b8907351054ee9024d758d26fc3928158",
+      "epochs_verified": 2000
+    },
+    "mechanism_smooth5_independent_lorentz_3_B3": {
+      "result_sha256": "f0ea1a63c7d7ee5dc47fcefb7cbd2f569ccafdaba724c3d1da07395b5ecea3e4",
+      "trajectory_sha256": "c9bf5dbb98de2474fe6ba65844c2187ec2c0e03d506f3db24bc01261f2627f17",
+      "epochs_verified": 2000
+    },
+    "mechanism_smooth5_independent_lorentz_3_B5": {
+      "result_sha256": "8c8c994e74c80a93d3c461a5b169063d733925d921642d09819b99515975cece",
+      "trajectory_sha256": "e35b3ba6c82bbdd2ff0c8256638e257ef7e6785453adcd11e45f169dab3cdbb2",
+      "epochs_verified": 2000
+    },
+    "mechanism_smooth5_independent_lorentz_3_A5": {
+      "result_sha256": "270080f2f6034d71c000055ea7146aeef139d5928881f0923e5a7077e6350152",
+      "trajectory_sha256": "29272d9dd3f05f12a994cd2e538ecd756eb4869338e782d23210f418643b63e3",
+      "epochs_verified": 2000
+    },
+    "mechanism_smooth8_independent_lorentz_3_B3": {
+      "result_sha256": "244f805f2b61b5aacb0d948caa7e970479341c19265027b06febb66e728656b5",
+      "trajectory_sha256": "c49d29a41f7679794e7aabf8938b71db02cdf7a32f31d3e1105418dadeaa3869",
+      "epochs_verified": 2000
+    },
+    "mechanism_smooth8_independent_lorentz_3_B5": {
+      "result_sha256": "981af3b97f60ecfae6965a9da25c2d38b9f31da5a8946022a1ca79b82de7630e",
+      "trajectory_sha256": "840a39ab4fb9d00e60693d6dda9cb27faff448ea30b7674f572e3f3fd3dcf88e",
+      "epochs_verified": 2000
+    },
+    "mechanism_smooth8_independent_lorentz_3_A5": {
+      "result_sha256": "5e4cde9b3b0ed40cb5f1ee7cc081b3f85419f4fc21e67a3f9919661b08709e77",
+      "trajectory_sha256": "220dc767e54d55275ffcd1d60a0c8a5273dd2b6c9fb3ec4e5af3ea58379b75bd",
+      "epochs_verified": 2000
+    }
+  },
+  "bundled_csv_sha256": {
+    "historical_kg_loss.csv": "8728865061e316bf4574421f61d05cf53bad583b785a5315a3b16bb424d4d7b6",
+    "revision_cora_loss.csv": "0c557ef38b0512352c33c1ab1a74700b747cb9e8a94b053438183b1db58071ef",
+    "smooth_drift_loss.csv": "840fb954ed19de3fa3fdfb200e2e4a8b94772087a5a3b447b3d3a1fe3188505d"
+  }
+}

@@ -1,0 +1,50 @@
+\section{Methodology}
+\label{sec:methodology}
+Table~\ref{tab:method-overview} shows the main update and its slower curvature branch. The current momentum is stored at the current point; geodesic transport and cross-curvature mapping occur after the step, before the next iteration.
+
+
+The intuition behind HyperbolicMomentum is that curvature should be treated like a slowly changing geometric state, not like a static hyperparameter. A high-curvature group can represent rapid hierarchical expansion, but the same high curvature makes exponential-map perturbations and finite-precision residuals larger. The optimizer therefore learns $K_g$ only on a slower timescale, rescales geodesic steps by the local curvature-momentum magnitude, and transports momentum only when the model architecture gives that momentum a well-defined manifold on which to live.
+
+For each group $g$, the stochastic Riemannian gradient is $\widehat g_{g,t}=\grad_{x_g}\mathcal{J}(x_t,u_t)$ and the stochastic curvature gradient is $\widehat h_{g,t}=\partial_{c_g}F(q_t,u_t)$, including the point-rescaling derivative in Eq.~\eqref{eq:total-curv-gradient}. The stored momentum $m_{g,t}$ already belongs to the current tangent space because the previous step transported it. The update averages this state with the current gradient:
+\begin{equation}
+\widetilde m_{g,t}=\beta m_{g,t}+(1-\beta)\widehat g_{g,t}.
+\label{eq:momentum-main}
+\end{equation}
+This equation is the Riemannian analogue of Euclidean momentum. Transport is performed after the geodesic update below and across curvature changes; applying it again at the next iteration would double-count the state movement.
+
+The geodesic step uses a curvature-normalized learning rate,
+\begin{equation}
+\chi_{g,t}=\sqrt{K_{g,t}}\|\widetilde m_{g,t}\|_{x_{g,t}},\qquad
+\eta^{\mathrm{geo}}_{g,t}=\frac{\eta_t}{1+\gamma\chi_{g,t}}.
+\label{eq:eta-main}
+\end{equation}
+The quantity $\chi_{g,t}$ is dimensionless. It is exactly the part of the exponential map argument that grows with both curvature and momentum norm, so the denominator prevents large-$K$ groups from taking disproportionately distorted geodesic steps. The parameter update is
+\begin{equation}
+\begin{gathered}
+x_{g,t+\frac12}=\Exp_{x_{g,t}}^{K_{g,t}}(-\eta^{\mathrm{geo}}_{g,t}\widetilde m_{g,t}),\\
+m_{g,t+\frac12}=\PT_{x_{g,t}\to x_{g,t+\frac12}}^{K_{g,t}}(\widetilde m_{g,t}).
+\end{gathered}
+\label{eq:x-step-main}
+\end{equation}
+The first equation moves the parameter on the manifold. The second keeps the velocity state aligned with the new base point, so that the next iteration starts with a tangent vector at the correct point.
+
+Curvature is updated after the geodesic step with a slower step size $\rho_t$:
+\begin{equation}
+K_{g,t+1}=K_{\min}+\softplus(c_{g,t}-\rho_t\widehat h_{g,t}).
+\label{eq:k-step-main}
+\end{equation}
+When the architecture has a dedicated manifold per group, both the point and momentum are then mapped to the new curvature:
+\begin{equation}
+\begin{gathered}
+x_{g,t+1}=\sqrt{\frac{K_{g,t}}{K_{g,t+1}}}\,x_{g,t+\frac12},\\
+m_{g,t+1}=\Proj_{T_{x_{g,t+1}}}\left[\sqrt{\frac{K_{g,t}}{K_{g,t+1}}}\,m_{g,t+\frac12}\right].
+\end{gathered}
+\label{eq:xcurv-main}
+\end{equation}
+The point rescaling enforces $\langle x,x\rangle_{\mathcal L}=-1/K_{g,t+1}$. The projected tangent rescaling corrects finite-precision tangency error. We do not assert that Lorentz projection contracts arbitrary ambient vectors, since the ambient bilinear form is indefinite. In the experiments, numerical method M1 applies this projection at every step in pure FP32.
+
+\begin{center}
+\fbox{\begin{minipage}{0.94\linewidth}
+\textbf{Algorithm 1: HyperbolicMomentum update for group $g$.} Given $(x_{g,t},m_{g,t},K_{g,t})$, compute $\widehat g_{g,t}$ and $\widehat h_{g,t}$; average the current tangent momentum with Eq.~\eqref{eq:momentum-main}; compute the curvature-normalized step in Eq.~\eqref{eq:eta-main}; move $x$ and momentum with Eq.~\eqref{eq:x-step-main}; update curvature with Eq.~\eqref{eq:k-step-main}; and, in grouped-manifold architectures, map both point and momentum to $K_{g,t+1}$ with Eq.~\eqref{eq:xcurv-main}. In shared-entity KG architectures, the learnable-curvature and normalized-step mechanisms remain valid, but the cross-curvature momentum step is not interpreted as a separate B5 advantage.
+\end{minipage}}
+\end{center}

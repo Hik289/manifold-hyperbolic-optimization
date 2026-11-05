@@ -1,0 +1,9 @@
+{
+  "family": "recommendation",
+  "dataset": "yelp",
+  "model": "lightgcn",
+  "method": "B4",
+  "epochs": 1000,
+  "seed": 42,
+  "id": "recommendation_yelp_lightgcn_B4"
+}

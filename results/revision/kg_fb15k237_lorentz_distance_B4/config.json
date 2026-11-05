@@ -1,0 +1,9 @@
+{
+  "family": "kg",
+  "dataset": "fb15k237",
+  "model": "lorentz_distance",
+  "method": "B4",
+  "epochs": 2000,
+  "seed": 42,
+  "id": "kg_fb15k237_lorentz_distance_B4"
+}

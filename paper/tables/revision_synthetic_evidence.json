@@ -1,0 +1,1112 @@
+{
+  "complete_blocks": 48,
+  "registered_blocks": 48,
+  "entire_grid_complete": true,
+  "records": [
+    {
+      "tree": "4ary",
+      "nodes": 1000,
+      "dim": 2,
+      "scores": {
+        "E": 0.3605124056339264,
+        "B2": 0.5090800523757935,
+        "B3": 0.508227527141571,
+        "B4": 0.5051196813583374,
+        "B5": 0.5042076110839844,
+        "A5": 0.504223644733429
+      },
+      "run_ids": {
+        "E": "synthetic_4ary_product_lorentz_1000_2_E",
+        "B2": "synthetic_4ary_product_lorentz_1000_2_B2",
+        "B3": "synthetic_4ary_product_lorentz_1000_2_B3",
+        "B4": "synthetic_4ary_product_lorentz_1000_2_B4",
+        "B5": "synthetic_4ary_product_lorentz_1000_2_B5",
+        "A5": "synthetic_4ary_product_lorentz_1000_2_A5"
+      },
+      "reduction_vs_B3_percent": 0.790967793538444,
+      "relative_A5_difference_percent": 0.003179868618230497
+    },
+    {
+      "tree": "4ary",
+      "nodes": 1000,
+      "dim": 5,
+      "scores": {
+        "E": 0.2345495969057083,
+        "B2": 0.38138577342033386,
+        "B3": 0.3813130259513855,
+        "B4": 0.3788210451602936,
+        "B5": 0.37875545024871826,
+        "A5": 0.37877777218818665
+      },
+      "run_ids": {
+        "E": "synthetic_4ary_product_lorentz_1000_5_E",
+        "B2": "synthetic_4ary_product_lorentz_1000_5_B2",
+        "B3": "synthetic_4ary_product_lorentz_1000_5_B3",
+        "B4": "synthetic_4ary_product_lorentz_1000_5_B4",
+        "B5": "synthetic_4ary_product_lorentz_1000_5_B5",
+        "A5": "synthetic_4ary_product_lorentz_1000_5_A5"
+      },
+      "reduction_vs_B3_percent": 0.6707286477523389,
+      "relative_A5_difference_percent": 0.005893149257263364
+    },
+    {
+      "tree": "4ary",
+      "nodes": 1000,
+      "dim": 10,
+      "scores": {
+        "E": 0.18215350806713104,
+        "B2": 0.34136638045310974,
+        "B3": 0.34099656343460083,
+        "B4": 0.3394155502319336,
+        "B5": 0.33905693888664246,
+        "A5": 0.33907148241996765
+      },
+      "run_ids": {
+        "E": "synthetic_4ary_product_lorentz_1000_10_E",
+        "B2": "synthetic_4ary_product_lorentz_1000_10_B2",
+        "B3": "synthetic_4ary_product_lorentz_1000_10_B3",
+        "B4": "synthetic_4ary_product_lorentz_1000_10_B4",
+        "B5": "synthetic_4ary_product_lorentz_1000_10_B5",
+        "A5": "synthetic_4ary_product_lorentz_1000_10_A5"
+      },
+      "reduction_vs_B3_percent": 0.5688105851924141,
+      "relative_A5_difference_percent": 0.004289223387765606
+    },
+    {
+      "tree": "4ary",
+      "nodes": 1000,
+      "dim": 20,
+      "scores": {
+        "E": 0.15828973054885864,
+        "B2": 0.32289665937423706,
+        "B3": 0.3224189877510071,
+        "B4": 0.3212723135948181,
+        "B5": 0.32080310583114624,
+        "A5": 0.3208143711090088
+      },
+      "run_ids": {
+        "E": "synthetic_4ary_product_lorentz_1000_20_E",
+        "B2": "synthetic_4ary_product_lorentz_1000_20_B2",
+        "B3": "synthetic_4ary_product_lorentz_1000_20_B3",
+        "B4": "synthetic_4ary_product_lorentz_1000_20_B4",
+        "B5": "synthetic_4ary_product_lorentz_1000_20_B5",
+        "A5": "synthetic_4ary_product_lorentz_1000_20_A5"
+      },
+      "reduction_vs_B3_percent": 0.5011745527557898,
+      "relative_A5_difference_percent": 0.003511462975802626
+    },
+    {
+      "tree": "4ary",
+      "nodes": 5000,
+      "dim": 2,
+      "scores": {
+        "E": 0.4410645067691803,
+        "B2": 0.8775306940078735,
+        "B3": 0.8779608607292175,
+        "B4": 0.8767321109771729,
+        "B5": 0.8771700263023376,
+        "A5": 0.8771749138832092
+      },
+      "run_ids": {
+        "E": "synthetic_4ary_product_lorentz_5000_2_E",
+        "B2": "synthetic_4ary_product_lorentz_5000_2_B2",
+        "B3": "synthetic_4ary_product_lorentz_5000_2_B3",
+        "B4": "synthetic_4ary_product_lorentz_5000_2_B4",
+        "B5": "synthetic_4ary_product_lorentz_5000_2_B5",
+        "A5": "synthetic_4ary_product_lorentz_5000_2_A5"
+      },
+      "reduction_vs_B3_percent": 0.0900762735850269,
+      "relative_A5_difference_percent": 0.0005571956965710889
+    },
+    {
+      "tree": "4ary",
+      "nodes": 5000,
+      "dim": 5,
+      "scores": {
+        "E": 0.34467971324920654,
+        "B2": 0.8566747307777405,
+        "B3": 0.8571777939796448,
+        "B4": 0.8560565114021301,
+        "B5": 0.8565665483474731,
+        "A5": 0.8565704822540283
+      },
+      "run_ids": {
+        "E": "synthetic_4ary_product_lorentz_5000_5_E",
+        "B2": "synthetic_4ary_product_lorentz_5000_5_B2",
+        "B3": "synthetic_4ary_product_lorentz_5000_5_B3",
+        "B4": "synthetic_4ary_product_lorentz_5000_5_B4",
+        "B5": "synthetic_4ary_product_lorentz_5000_5_B5",
+        "A5": "synthetic_4ary_product_lorentz_5000_5_A5"
+      },
+      "reduction_vs_B3_percent": 0.07130908388722768,
+      "relative_A5_difference_percent": 0.0004592624467725237
+    },
+    {
+      "tree": "4ary",
+      "nodes": 5000,
+      "dim": 10,
+      "scores": {
+        "E": 0.3165894150733948,
+        "B2": 0.8462185859680176,
+        "B3": 0.846754789352417,
+        "B4": 0.8455683588981628,
+        "B5": 0.8461108207702637,
+        "A5": 0.8461148738861084
+      },
+      "run_ids": {
+        "E": "synthetic_4ary_product_lorentz_5000_10_E",
+        "B2": "synthetic_4ary_product_lorentz_5000_10_B2",
+        "B3": "synthetic_4ary_product_lorentz_5000_10_B3",
+        "B4": "synthetic_4ary_product_lorentz_5000_10_B4",
+        "B5": "synthetic_4ary_product_lorentz_5000_10_B5",
+        "A5": "synthetic_4ary_product_lorentz_5000_10_A5"
+      },
+      "reduction_vs_B3_percent": 0.07605136578511251,
+      "relative_A5_difference_percent": 0.00047902666290289275
+    },
+    {
+      "tree": "4ary",
+      "nodes": 5000,
+      "dim": 20,
+      "scores": {
+        "E": 0.30327585339546204,
+        "B2": 0.8376772999763489,
+        "B3": 0.83823162317276,
+        "B4": 0.8369771838188171,
+        "B5": 0.8375371694564819,
+        "A5": 0.8375415802001953
+      },
+      "run_ids": {
+        "E": "synthetic_4ary_product_lorentz_5000_20_E",
+        "B2": "synthetic_4ary_product_lorentz_5000_20_B2",
+        "B3": "synthetic_4ary_product_lorentz_5000_20_B3",
+        "B4": "synthetic_4ary_product_lorentz_5000_20_B4",
+        "B5": "synthetic_4ary_product_lorentz_5000_20_B5",
+        "A5": "synthetic_4ary_product_lorentz_5000_20_A5"
+      },
+      "reduction_vs_B3_percent": 0.0828474728320927,
+      "relative_A5_difference_percent": 0.000526629819663782
+    },
+    {
+      "tree": "4ary",
+      "nodes": 10000,
+      "dim": 2,
+      "scores": {
+        "E": 0.6256446838378906,
+        "B2": 0.9442394971847534,
+        "B3": 0.9444571137428284,
+        "B4": 0.9440529346466064,
+        "B5": 0.9442728161811829,
+        "A5": 0.9442738890647888
+      },
+      "run_ids": {
+        "E": "synthetic_4ary_product_lorentz_10000_2_E",
+        "B2": "synthetic_4ary_product_lorentz_10000_2_B2",
+        "B3": "synthetic_4ary_product_lorentz_10000_2_B3",
+        "B4": "synthetic_4ary_product_lorentz_10000_2_B4",
+        "B5": "synthetic_4ary_product_lorentz_10000_2_B5",
+        "A5": "synthetic_4ary_product_lorentz_10000_2_A5"
+      },
+      "reduction_vs_B3_percent": 0.019513597702192076,
+      "relative_A5_difference_percent": 0.00011361995904124456
+    },
+    {
+      "tree": "4ary",
+      "nodes": 10000,
+      "dim": 5,
+      "scores": {
+        "E": 0.5707767009735107,
+        "B2": 0.9340502619743347,
+        "B3": 0.9342955946922302,
+        "B4": 0.9338997602462769,
+        "B5": 0.9341468811035156,
+        "A5": 0.9341477751731873
+      },
+      "run_ids": {
+        "E": "synthetic_4ary_product_lorentz_10000_5_E",
+        "B2": "synthetic_4ary_product_lorentz_10000_5_B2",
+        "B3": "synthetic_4ary_product_lorentz_10000_5_B3",
+        "B4": "synthetic_4ary_product_lorentz_10000_5_B4",
+        "B5": "synthetic_4ary_product_lorentz_10000_5_B5",
+        "A5": "synthetic_4ary_product_lorentz_10000_5_A5"
+      },
+      "reduction_vs_B3_percent": 0.015917188260272663,
+      "relative_A5_difference_percent": 9.570966129635039e-05
+    },
+    {
+      "tree": "4ary",
+      "nodes": 10000,
+      "dim": 10,
+      "scores": {
+        "E": 0.5536069869995117,
+        "B2": 0.9282204508781433,
+        "B3": 0.9284740090370178,
+        "B4": 0.9280492663383484,
+        "B5": 0.9283044934272766,
+        "A5": 0.9283053874969482
+      },
+      "run_ids": {
+        "E": "synthetic_4ary_product_lorentz_10000_10_E",
+        "B2": "synthetic_4ary_product_lorentz_10000_10_B2",
+        "B3": "synthetic_4ary_product_lorentz_10000_10_B3",
+        "B4": "synthetic_4ary_product_lorentz_10000_10_B4",
+        "B5": "synthetic_4ary_product_lorentz_10000_10_B5",
+        "A5": "synthetic_4ary_product_lorentz_10000_10_A5"
+      },
+      "reduction_vs_B3_percent": 0.018257442652269695,
+      "relative_A5_difference_percent": 9.631202012583273e-05
+    },
+    {
+      "tree": "4ary",
+      "nodes": 10000,
+      "dim": 20,
+      "scores": {
+        "E": 0.543950617313385,
+        "B2": 0.9222692847251892,
+        "B3": 0.9225269556045532,
+        "B4": 0.9220665693283081,
+        "B5": 0.9223259687423706,
+        "A5": 0.922326922416687
+      },
+      "run_ids": {
+        "E": "synthetic_4ary_product_lorentz_10000_20_E",
+        "B2": "synthetic_4ary_product_lorentz_10000_20_B2",
+        "B3": "synthetic_4ary_product_lorentz_10000_20_B3",
+        "B4": "synthetic_4ary_product_lorentz_10000_20_B4",
+        "B5": "synthetic_4ary_product_lorentz_10000_20_B5",
+        "A5": "synthetic_4ary_product_lorentz_10000_20_A5"
+      },
+      "reduction_vs_B3_percent": 0.02178655712568034,
+      "relative_A5_difference_percent": 0.00010339872915654524
+    },
+    {
+      "tree": "8ary",
+      "nodes": 1000,
+      "dim": 2,
+      "scores": {
+        "E": 0.3462904393672943,
+        "B2": 0.39497077465057373,
+        "B3": 0.3942301273345947,
+        "B4": 0.3935333490371704,
+        "B5": 0.3928014039993286,
+        "A5": 0.3928084075450897
+      },
+      "run_ids": {
+        "E": "synthetic_8ary_product_lorentz_1000_2_E",
+        "B2": "synthetic_8ary_product_lorentz_1000_2_B2",
+        "B3": "synthetic_8ary_product_lorentz_1000_2_B3",
+        "B4": "synthetic_8ary_product_lorentz_1000_2_B4",
+        "B5": "synthetic_8ary_product_lorentz_1000_2_B5",
+        "A5": "synthetic_8ary_product_lorentz_1000_2_A5"
+      },
+      "reduction_vs_B3_percent": 0.3624084604912814,
+      "relative_A5_difference_percent": 0.00178294191941486
+    },
+    {
+      "tree": "8ary",
+      "nodes": 1000,
+      "dim": 5,
+      "scores": {
+        "E": 0.18629099428653717,
+        "B2": 0.2498617321252823,
+        "B3": 0.24962349236011505,
+        "B4": 0.24933907389640808,
+        "B5": 0.2491089403629303,
+        "A5": 0.2491166740655899
+      },
+      "run_ids": {
+        "E": "synthetic_8ary_product_lorentz_1000_5_E",
+        "B2": "synthetic_8ary_product_lorentz_1000_5_B2",
+        "B3": "synthetic_8ary_product_lorentz_1000_5_B3",
+        "B4": "synthetic_8ary_product_lorentz_1000_5_B4",
+        "B5": "synthetic_8ary_product_lorentz_1000_5_B5",
+        "A5": "synthetic_8ary_product_lorentz_1000_5_A5"
+      },
+      "reduction_vs_B3_percent": 0.20613123881884077,
+      "relative_A5_difference_percent": 0.0031044500287347176
+    },
+    {
+      "tree": "8ary",
+      "nodes": 1000,
+      "dim": 10,
+      "scores": {
+        "E": 0.12705840170383453,
+        "B2": 0.21325504779815674,
+        "B3": 0.21274656057357788,
+        "B4": 0.2127324342727661,
+        "B5": 0.2122420370578766,
+        "A5": 0.21224650740623474
+      },
+      "run_ids": {
+        "E": "synthetic_8ary_product_lorentz_1000_10_E",
+        "B2": "synthetic_8ary_product_lorentz_1000_10_B2",
+        "B3": "synthetic_8ary_product_lorentz_1000_10_B3",
+        "B4": "synthetic_8ary_product_lorentz_1000_10_B4",
+        "B5": "synthetic_8ary_product_lorentz_1000_10_B5",
+        "A5": "synthetic_8ary_product_lorentz_1000_10_A5"
+      },
+      "reduction_vs_B3_percent": 0.23714767201926668,
+      "relative_A5_difference_percent": 0.0021062058512932857
+    },
+    {
+      "tree": "8ary",
+      "nodes": 1000,
+      "dim": 20,
+      "scores": {
+        "E": 0.09253821521997452,
+        "B2": 0.19816571474075317,
+        "B3": 0.19756899774074554,
+        "B4": 0.19763825833797455,
+        "B5": 0.19706013798713684,
+        "A5": 0.19706371426582336
+      },
+      "run_ids": {
+        "E": "synthetic_8ary_product_lorentz_1000_20_E",
+        "B2": "synthetic_8ary_product_lorentz_1000_20_B2",
+        "B3": "synthetic_8ary_product_lorentz_1000_20_B3",
+        "B4": "synthetic_8ary_product_lorentz_1000_20_B4",
+        "B5": "synthetic_8ary_product_lorentz_1000_20_B5",
+        "A5": "synthetic_8ary_product_lorentz_1000_20_A5"
+      },
+      "reduction_vs_B3_percent": 0.2575605279308224,
+      "relative_A5_difference_percent": 0.0018147829496939494
+    },
+    {
+      "tree": "8ary",
+      "nodes": 5000,
+      "dim": 2,
+      "scores": {
+        "E": 0.36753642559051514,
+        "B2": 0.7850598096847534,
+        "B3": 0.7856252193450928,
+        "B4": 0.7828723192214966,
+        "B5": 0.7834506630897522,
+        "A5": 0.783463716506958
+      },
+      "run_ids": {
+        "E": "synthetic_8ary_product_lorentz_5000_2_E",
+        "B2": "synthetic_8ary_product_lorentz_5000_2_B2",
+        "B3": "synthetic_8ary_product_lorentz_5000_2_B3",
+        "B4": "synthetic_8ary_product_lorentz_5000_2_B4",
+        "B5": "synthetic_8ary_product_lorentz_5000_2_B5",
+        "A5": "synthetic_8ary_product_lorentz_5000_2_A5"
+      },
+      "reduction_vs_B3_percent": 0.27679308171310035,
+      "relative_A5_difference_percent": 0.0016661163664388745
+    },
+    {
+      "tree": "8ary",
+      "nodes": 5000,
+      "dim": 5,
+      "scores": {
+        "E": 0.23427635431289673,
+        "B2": 0.7470030784606934,
+        "B3": 0.7477201819419861,
+        "B4": 0.7453047037124634,
+        "B5": 0.7460340857505798,
+        "A5": 0.7460452318191528
+      },
+      "run_ids": {
+        "E": "synthetic_8ary_product_lorentz_5000_5_E",
+        "B2": "synthetic_8ary_product_lorentz_5000_5_B2",
+        "B3": "synthetic_8ary_product_lorentz_5000_5_B3",
+        "B4": "synthetic_8ary_product_lorentz_5000_5_B4",
+        "B5": "synthetic_8ary_product_lorentz_5000_5_B5",
+        "A5": "synthetic_8ary_product_lorentz_5000_5_A5"
+      },
+      "reduction_vs_B3_percent": 0.22549828560559648,
+      "relative_A5_difference_percent": 0.0014940204826174863
+    },
+    {
+      "tree": "8ary",
+      "nodes": 5000,
+      "dim": 10,
+      "scores": {
+        "E": 0.19335971772670746,
+        "B2": 0.728318452835083,
+        "B3": 0.7290917634963989,
+        "B4": 0.7265875339508057,
+        "B5": 0.7273709177970886,
+        "A5": 0.7273823022842407
+      },
+      "run_ids": {
+        "E": "synthetic_8ary_product_lorentz_5000_10_E",
+        "B2": "synthetic_8ary_product_lorentz_5000_10_B2",
+        "B3": "synthetic_8ary_product_lorentz_5000_10_B3",
+        "B4": "synthetic_8ary_product_lorentz_5000_10_B4",
+        "B5": "synthetic_8ary_product_lorentz_5000_10_B5",
+        "A5": "synthetic_8ary_product_lorentz_5000_10_A5"
+      },
+      "reduction_vs_B3_percent": 0.23602594151631573,
+      "relative_A5_difference_percent": 0.0015651311719211414
+    },
+    {
+      "tree": "8ary",
+      "nodes": 5000,
+      "dim": 20,
+      "scores": {
+        "E": 0.1730431467294693,
+        "B2": 0.7150342464447021,
+        "B3": 0.7158347964286804,
+        "B4": 0.7132375836372375,
+        "B5": 0.7140467762947083,
+        "A5": 0.7140586376190186
+      },
+      "run_ids": {
+        "E": "synthetic_8ary_product_lorentz_5000_20_E",
+        "B2": "synthetic_8ary_product_lorentz_5000_20_B2",
+        "B3": "synthetic_8ary_product_lorentz_5000_20_B3",
+        "B4": "synthetic_8ary_product_lorentz_5000_20_B4",
+        "B5": "synthetic_8ary_product_lorentz_5000_20_B5",
+        "A5": "synthetic_8ary_product_lorentz_5000_20_A5"
+      },
+      "reduction_vs_B3_percent": 0.2497811147058826,
+      "relative_A5_difference_percent": 0.0016611134835975427
+    },
+    {
+      "tree": "8ary",
+      "nodes": 10000,
+      "dim": 2,
+      "scores": {
+        "E": 0.4605894684791565,
+        "B2": 0.8989464044570923,
+        "B3": 0.8993106484413147,
+        "B4": 0.8983708620071411,
+        "B5": 0.898740291595459,
+        "A5": 0.8987438082695007
+      },
+      "run_ids": {
+        "E": "synthetic_8ary_product_lorentz_10000_2_E",
+        "B2": "synthetic_8ary_product_lorentz_10000_2_B2",
+        "B3": "synthetic_8ary_product_lorentz_10000_2_B3",
+        "B4": "synthetic_8ary_product_lorentz_10000_2_B4",
+        "B5": "synthetic_8ary_product_lorentz_10000_2_B5",
+        "A5": "synthetic_8ary_product_lorentz_10000_2_A5"
+      },
+      "reduction_vs_B3_percent": 0.0634215603745214,
+      "relative_A5_difference_percent": 0.00039128770729091045
+    },
+    {
+      "tree": "8ary",
+      "nodes": 10000,
+      "dim": 5,
+      "scores": {
+        "E": 0.37141671776771545,
+        "B2": 0.8813796043395996,
+        "B3": 0.8817979693412781,
+        "B4": 0.8809266686439514,
+        "B5": 0.8813491463661194,
+        "A5": 0.8813518285751343
+      },
+      "run_ids": {
+        "E": "synthetic_8ary_product_lorentz_10000_5_E",
+        "B2": "synthetic_8ary_product_lorentz_10000_5_B2",
+        "B3": "synthetic_8ary_product_lorentz_10000_5_B3",
+        "B4": "synthetic_8ary_product_lorentz_10000_5_B4",
+        "B5": "synthetic_8ary_product_lorentz_10000_5_B5",
+        "A5": "synthetic_8ary_product_lorentz_10000_5_A5"
+      },
+      "reduction_vs_B3_percent": 0.05089861745700697,
+      "relative_A5_difference_percent": 0.0003043289782733716
+    },
+    {
+      "tree": "8ary",
+      "nodes": 10000,
+      "dim": 10,
+      "scores": {
+        "E": 0.3454175293445587,
+        "B2": 0.8720834255218506,
+        "B3": 0.8725189566612244,
+        "B4": 0.8715863823890686,
+        "B5": 0.8720259070396423,
+        "A5": 0.8720288872718811
+      },
+      "run_ids": {
+        "E": "synthetic_8ary_product_lorentz_10000_10_E",
+        "B2": "synthetic_8ary_product_lorentz_10000_10_B2",
+        "B3": "synthetic_8ary_product_lorentz_10000_10_B3",
+        "B4": "synthetic_8ary_product_lorentz_10000_10_B4",
+        "B5": "synthetic_8ary_product_lorentz_10000_10_B5",
+        "A5": "synthetic_8ary_product_lorentz_10000_10_A5"
+      },
+      "reduction_vs_B3_percent": 0.056508757525308706,
+      "relative_A5_difference_percent": 0.00034175843051098553
+    },
+    {
+      "tree": "8ary",
+      "nodes": 10000,
+      "dim": 20,
+      "scores": {
+        "E": 0.33155709505081177,
+        "B2": 0.8634396195411682,
+        "B3": 0.8638833165168762,
+        "B4": 0.8628780245780945,
+        "B5": 0.8633256554603577,
+        "A5": 0.8633288145065308
+      },
+      "run_ids": {
+        "E": "synthetic_8ary_product_lorentz_10000_20_E",
+        "B2": "synthetic_8ary_product_lorentz_10000_20_B2",
+        "B3": "synthetic_8ary_product_lorentz_10000_20_B3",
+        "B4": "synthetic_8ary_product_lorentz_10000_20_B4",
+        "B5": "synthetic_8ary_product_lorentz_10000_20_B5",
+        "A5": "synthetic_8ary_product_lorentz_10000_20_A5"
+      },
+      "reduction_vs_B3_percent": 0.06455282164343767,
+      "relative_A5_difference_percent": 0.000365914599398387
+    },
+    {
+      "tree": "binary",
+      "nodes": 1000,
+      "dim": 2,
+      "scores": {
+        "E": 0.4163694679737091,
+        "B2": 0.7263971567153931,
+        "B3": 0.7263482809066772,
+        "B4": 0.7240331172943115,
+        "B5": 0.7239899039268494,
+        "A5": 0.7240020632743835
+      },
+      "run_ids": {
+        "E": "synthetic_binary_product_lorentz_1000_2_E",
+        "B2": "synthetic_binary_product_lorentz_1000_2_B2",
+        "B3": "synthetic_binary_product_lorentz_1000_2_B3",
+        "B4": "synthetic_binary_product_lorentz_1000_2_B4",
+        "B5": "synthetic_binary_product_lorentz_1000_2_B5",
+        "A5": "synthetic_binary_product_lorentz_1000_2_A5"
+      },
+      "reduction_vs_B3_percent": 0.3246895520815474,
+      "relative_A5_difference_percent": 0.0016794631052863274
+    },
+    {
+      "tree": "binary",
+      "nodes": 1000,
+      "dim": 5,
+      "scores": {
+        "E": 0.3260156512260437,
+        "B2": 0.6609442830085754,
+        "B3": 0.6613349318504333,
+        "B4": 0.6590302586555481,
+        "B5": 0.6594341397285461,
+        "A5": 0.6594497561454773
+      },
+      "run_ids": {
+        "E": "synthetic_binary_product_lorentz_1000_5_E",
+        "B2": "synthetic_binary_product_lorentz_1000_5_B2",
+        "B3": "synthetic_binary_product_lorentz_1000_5_B3",
+        "B4": "synthetic_binary_product_lorentz_1000_5_B4",
+        "B5": "synthetic_binary_product_lorentz_1000_5_B5",
+        "A5": "synthetic_binary_product_lorentz_1000_5_A5"
+      },
+      "reduction_vs_B3_percent": 0.2874174688714426,
+      "relative_A5_difference_percent": 0.0023680980674622987
+    },
+    {
+      "tree": "binary",
+      "nodes": 1000,
+      "dim": 10,
+      "scores": {
+        "E": 0.29453325271606445,
+        "B2": 0.630965530872345,
+        "B3": 0.6313404440879822,
+        "B4": 0.6293003559112549,
+        "B5": 0.629686176776886,
+        "A5": 0.6296996474266052
+      },
+      "run_ids": {
+        "E": "synthetic_binary_product_lorentz_1000_10_E",
+        "B2": "synthetic_binary_product_lorentz_1000_10_B2",
+        "B3": "synthetic_binary_product_lorentz_1000_10_B3",
+        "B4": "synthetic_binary_product_lorentz_1000_10_B4",
+        "B5": "synthetic_binary_product_lorentz_1000_10_B5",
+        "A5": "synthetic_binary_product_lorentz_1000_10_A5"
+      },
+      "reduction_vs_B3_percent": 0.26202460599302757,
+      "relative_A5_difference_percent": 0.0021392182406820837
+    },
+    {
+      "tree": "binary",
+      "nodes": 1000,
+      "dim": 20,
+      "scores": {
+        "E": 0.27958324551582336,
+        "B2": 0.6131572723388672,
+        "B3": 0.6135032176971436,
+        "B4": 0.6116123795509338,
+        "B5": 0.6119664907455444,
+        "A5": 0.6119787693023682
+      },
+      "run_ids": {
+        "E": "synthetic_binary_product_lorentz_1000_20_E",
+        "B2": "synthetic_binary_product_lorentz_1000_20_B2",
+        "B3": "synthetic_binary_product_lorentz_1000_20_B3",
+        "B4": "synthetic_binary_product_lorentz_1000_20_B4",
+        "B5": "synthetic_binary_product_lorentz_1000_20_B5",
+        "A5": "synthetic_binary_product_lorentz_1000_20_A5"
+      },
+      "reduction_vs_B3_percent": 0.25048392694131394,
+      "relative_A5_difference_percent": 0.0020063697369288036
+    },
+    {
+      "tree": "binary",
+      "nodes": 5000,
+      "dim": 2,
+      "scores": {
+        "E": 0.6945335268974304,
+        "B2": 0.9545236229896545,
+        "B3": 0.9547109603881836,
+        "B4": 0.9544026851654053,
+        "B5": 0.9545917510986328,
+        "A5": 0.9545925259590149
+      },
+      "run_ids": {
+        "E": "synthetic_binary_product_lorentz_5000_2_E",
+        "B2": "synthetic_binary_product_lorentz_5000_2_B2",
+        "B3": "synthetic_binary_product_lorentz_5000_2_B3",
+        "B4": "synthetic_binary_product_lorentz_5000_2_B4",
+        "B5": "synthetic_binary_product_lorentz_5000_2_B5",
+        "A5": "synthetic_binary_product_lorentz_5000_2_A5"
+      },
+      "reduction_vs_B3_percent": 0.012486427253577403,
+      "relative_A5_difference_percent": 8.117184673306355e-05
+    },
+    {
+      "tree": "binary",
+      "nodes": 5000,
+      "dim": 5,
+      "scores": {
+        "E": 0.650762140750885,
+        "B2": 0.9467169642448425,
+        "B3": 0.9469253420829773,
+        "B4": 0.9466214776039124,
+        "B5": 0.946831226348877,
+        "A5": 0.9468317031860352
+      },
+      "run_ids": {
+        "E": "synthetic_binary_product_lorentz_5000_5_E",
+        "B2": "synthetic_binary_product_lorentz_5000_5_B2",
+        "B3": "synthetic_binary_product_lorentz_5000_5_B3",
+        "B4": "synthetic_binary_product_lorentz_5000_5_B4",
+        "B5": "synthetic_binary_product_lorentz_5000_5_B5",
+        "A5": "synthetic_binary_product_lorentz_5000_5_A5"
+      },
+      "reduction_vs_B3_percent": 0.009939087055510498,
+      "relative_A5_difference_percent": 5.036134262947911e-05
+    },
+    {
+      "tree": "binary",
+      "nodes": 5000,
+      "dim": 10,
+      "scores": {
+        "E": 0.6368924379348755,
+        "B2": 0.9423919320106506,
+        "B3": 0.942607581615448,
+        "B4": 0.9422862529754639,
+        "B5": 0.9425033330917358,
+        "A5": 0.9425039887428284
+      },
+      "run_ids": {
+        "E": "synthetic_binary_product_lorentz_5000_10_E",
+        "B2": "synthetic_binary_product_lorentz_5000_10_B2",
+        "B3": "synthetic_binary_product_lorentz_5000_10_B3",
+        "B4": "synthetic_binary_product_lorentz_5000_10_B4",
+        "B5": "synthetic_binary_product_lorentz_5000_10_B5",
+        "A5": "synthetic_binary_product_lorentz_5000_10_A5"
+      },
+      "reduction_vs_B3_percent": 0.011059588926021213,
+      "relative_A5_difference_percent": 6.956480824715783e-05
+    },
+    {
+      "tree": "binary",
+      "nodes": 5000,
+      "dim": 20,
+      "scores": {
+        "E": 0.6296539902687073,
+        "B2": 0.9382612109184265,
+        "B3": 0.9384810328483582,
+        "B4": 0.9381401538848877,
+        "B5": 0.938361406326294,
+        "A5": 0.9383621215820312
+      },
+      "run_ids": {
+        "E": "synthetic_binary_product_lorentz_5000_20_E",
+        "B2": "synthetic_binary_product_lorentz_5000_20_B2",
+        "B3": "synthetic_binary_product_lorentz_5000_20_B3",
+        "B4": "synthetic_binary_product_lorentz_5000_20_B4",
+        "B5": "synthetic_binary_product_lorentz_5000_20_B5",
+        "A5": "synthetic_binary_product_lorentz_5000_20_A5"
+      },
+      "reduction_vs_B3_percent": 0.012746823630638282,
+      "relative_A5_difference_percent": 7.62238501428314e-05
+    },
+    {
+      "tree": "binary",
+      "nodes": 10000,
+      "dim": 2,
+      "scores": {
+        "E": 0.8461973667144775,
+        "B2": 0.9801830053329468,
+        "B3": 0.9802612662315369,
+        "B4": 0.9801574349403381,
+        "B5": 0.9802361130714417,
+        "A5": 0.980236291885376
+      },
+      "run_ids": {
+        "E": "synthetic_binary_product_lorentz_10000_2_E",
+        "B2": "synthetic_binary_product_lorentz_10000_2_B2",
+        "B3": "synthetic_binary_product_lorentz_10000_2_B3",
+        "B4": "synthetic_binary_product_lorentz_10000_2_B4",
+        "B5": "synthetic_binary_product_lorentz_10000_2_B5",
+        "A5": "synthetic_binary_product_lorentz_10000_2_A5"
+      },
+      "reduction_vs_B3_percent": 0.002565964907697005,
+      "relative_A5_difference_percent": 1.8241921440065312e-05
+    },
+    {
+      "tree": "binary",
+      "nodes": 10000,
+      "dim": 5,
+      "scores": {
+        "E": 0.8247968554496765,
+        "B2": 0.9760703444480896,
+        "B3": 0.9761573672294617,
+        "B4": 0.9760482907295227,
+        "B5": 0.9761357307434082,
+        "A5": 0.9761358499526978
+      },
+      "run_ids": {
+        "E": "synthetic_binary_product_lorentz_10000_5_E",
+        "B2": "synthetic_binary_product_lorentz_10000_5_B2",
+        "B3": "synthetic_binary_product_lorentz_10000_5_B3",
+        "B4": "synthetic_binary_product_lorentz_10000_5_B4",
+        "B5": "synthetic_binary_product_lorentz_10000_5_B5",
+        "A5": "synthetic_binary_product_lorentz_10000_5_A5"
+      },
+      "reduction_vs_B3_percent": 0.0022164956983150574,
+      "relative_A5_difference_percent": 1.2212366706787492e-05
+    },
+    {
+      "tree": "binary",
+      "nodes": 10000,
+      "dim": 10,
+      "scores": {
+        "E": 0.8170801401138306,
+        "B2": 0.9732945561408997,
+        "B3": 0.9733839631080627,
+        "B4": 0.9732673764228821,
+        "B5": 0.9733571410179138,
+        "A5": 0.9733572602272034
+      },
+      "run_ids": {
+        "E": "synthetic_binary_product_lorentz_10000_10_E",
+        "B2": "synthetic_binary_product_lorentz_10000_10_B2",
+        "B3": "synthetic_binary_product_lorentz_10000_10_B3",
+        "B4": "synthetic_binary_product_lorentz_10000_10_B4",
+        "B5": "synthetic_binary_product_lorentz_10000_10_B5",
+        "A5": "synthetic_binary_product_lorentz_10000_10_A5"
+      },
+      "reduction_vs_B3_percent": 0.0027555508581911248,
+      "relative_A5_difference_percent": 1.2247228686756984e-05
+    },
+    {
+      "tree": "binary",
+      "nodes": 10000,
+      "dim": 20,
+      "scores": {
+        "E": 0.8122632503509521,
+        "B2": 0.9700876474380493,
+        "B3": 0.9701781868934631,
+        "B4": 0.9700522422790527,
+        "B5": 0.97014319896698,
+        "A5": 0.9701433777809143
+      },
+      "run_ids": {
+        "E": "synthetic_binary_product_lorentz_10000_20_E",
+        "B2": "synthetic_binary_product_lorentz_10000_20_B2",
+        "B3": "synthetic_binary_product_lorentz_10000_20_B3",
+        "B4": "synthetic_binary_product_lorentz_10000_20_B4",
+        "B5": "synthetic_binary_product_lorentz_10000_20_B5",
+        "A5": "synthetic_binary_product_lorentz_10000_20_A5"
+      },
+      "reduction_vs_B3_percent": 0.0036063402533481614,
+      "relative_A5_difference_percent": 1.843170178705833e-05
+    },
+    {
+      "tree": "variable",
+      "nodes": 1000,
+      "dim": 2,
+      "scores": {
+        "E": 0.37558555603027344,
+        "B2": 0.5682818293571472,
+        "B3": 0.5675793290138245,
+        "B4": 0.564673125743866,
+        "B5": 0.563945472240448,
+        "A5": 0.5639625191688538
+      },
+      "run_ids": {
+        "E": "synthetic_variable_product_lorentz_1000_2_E",
+        "B2": "synthetic_variable_product_lorentz_1000_2_B2",
+        "B3": "synthetic_variable_product_lorentz_1000_2_B3",
+        "B4": "synthetic_variable_product_lorentz_1000_2_B4",
+        "B5": "synthetic_variable_product_lorentz_1000_2_B5",
+        "A5": "synthetic_variable_product_lorentz_1000_2_A5"
+      },
+      "reduction_vs_B3_percent": 0.6402376879528604,
+      "relative_A5_difference_percent": 0.0030227059115373045
+    },
+    {
+      "tree": "variable",
+      "nodes": 1000,
+      "dim": 5,
+      "scores": {
+        "E": 0.2494480162858963,
+        "B2": 0.45533493161201477,
+        "B3": 0.4554150104522705,
+        "B4": 0.45274385809898376,
+        "B5": 0.45283129811286926,
+        "A5": 0.4528537690639496
+      },
+      "run_ids": {
+        "E": "synthetic_variable_product_lorentz_1000_5_E",
+        "B2": "synthetic_variable_product_lorentz_1000_5_B2",
+        "B3": "synthetic_variable_product_lorentz_1000_5_B3",
+        "B4": "synthetic_variable_product_lorentz_1000_5_B4",
+        "B5": "synthetic_variable_product_lorentz_1000_5_B5",
+        "A5": "synthetic_variable_product_lorentz_1000_5_A5"
+      },
+      "reduction_vs_B3_percent": 0.5673313966606752,
+      "relative_A5_difference_percent": 0.004962076638281854
+    },
+    {
+      "tree": "variable",
+      "nodes": 1000,
+      "dim": 10,
+      "scores": {
+        "E": 0.2138650268316269,
+        "B2": 0.41567590832710266,
+        "B3": 0.41552597284317017,
+        "B4": 0.4136193096637726,
+        "B5": 0.4134792685508728,
+        "A5": 0.41349518299102783
+      },
+      "run_ids": {
+        "E": "synthetic_variable_product_lorentz_1000_10_E",
+        "B2": "synthetic_variable_product_lorentz_1000_10_B2",
+        "B3": "synthetic_variable_product_lorentz_1000_10_B3",
+        "B4": "synthetic_variable_product_lorentz_1000_10_B4",
+        "B5": "synthetic_variable_product_lorentz_1000_10_B5",
+        "A5": "synthetic_variable_product_lorentz_1000_10_A5"
+      },
+      "reduction_vs_B3_percent": 0.49255748763262774,
+      "relative_A5_difference_percent": 0.0038487607134651824
+    },
+    {
+      "tree": "variable",
+      "nodes": 1000,
+      "dim": 20,
+      "scores": {
+        "E": 0.19138622283935547,
+        "B2": 0.3967666029930115,
+        "B3": 0.3965124189853668,
+        "B4": 0.3950051963329315,
+        "B5": 0.3947579264640808,
+        "A5": 0.3947708010673523
+      },
+      "run_ids": {
+        "E": "synthetic_variable_product_lorentz_1000_20_E",
+        "B2": "synthetic_variable_product_lorentz_1000_20_B2",
+        "B3": "synthetic_variable_product_lorentz_1000_20_B3",
+        "B4": "synthetic_variable_product_lorentz_1000_20_B4",
+        "B5": "synthetic_variable_product_lorentz_1000_20_B5",
+        "A5": "synthetic_variable_product_lorentz_1000_20_A5"
+      },
+      "reduction_vs_B3_percent": 0.4424811020485975,
+      "relative_A5_difference_percent": 0.003261285595757002
+    },
+    {
+      "tree": "variable",
+      "nodes": 5000,
+      "dim": 2,
+      "scores": {
+        "E": 0.5144836902618408,
+        "B2": 0.9061325192451477,
+        "B3": 0.9064808487892151,
+        "B4": 0.9056473970413208,
+        "B5": 0.9060012102127075,
+        "A5": 0.9060041904449463
+      },
+      "run_ids": {
+        "E": "synthetic_variable_product_lorentz_5000_2_E",
+        "B2": "synthetic_variable_product_lorentz_5000_2_B2",
+        "B3": "synthetic_variable_product_lorentz_5000_2_B3",
+        "B4": "synthetic_variable_product_lorentz_5000_2_B4",
+        "B5": "synthetic_variable_product_lorentz_5000_2_B5",
+        "A5": "synthetic_variable_product_lorentz_5000_2_A5"
+      },
+      "reduction_vs_B3_percent": 0.05291215773043367,
+      "relative_A5_difference_percent": 0.0003289424342800551
+    },
+    {
+      "tree": "variable",
+      "nodes": 5000,
+      "dim": 5,
+      "scores": {
+        "E": 0.43578946590423584,
+        "B2": 0.8902153968811035,
+        "B3": 0.8906174302101135,
+        "B4": 0.8898398280143738,
+        "B5": 0.8902465105056763,
+        "A5": 0.8902488350868225
+      },
+      "run_ids": {
+        "E": "synthetic_variable_product_lorentz_5000_5_E",
+        "B2": "synthetic_variable_product_lorentz_5000_5_B2",
+        "B3": "synthetic_variable_product_lorentz_5000_5_B3",
+        "B4": "synthetic_variable_product_lorentz_5000_5_B4",
+        "B5": "synthetic_variable_product_lorentz_5000_5_B5",
+        "A5": "synthetic_variable_product_lorentz_5000_5_A5"
+      },
+      "reduction_vs_B3_percent": 0.041647478687878436,
+      "relative_A5_difference_percent": 0.0002611158874454844
+    },
+    {
+      "tree": "variable",
+      "nodes": 5000,
+      "dim": 10,
+      "scores": {
+        "E": 0.41322875022888184,
+        "B2": 0.8820502161979675,
+        "B3": 0.882475733757019,
+        "B4": 0.8816496729850769,
+        "B5": 0.8820794820785522,
+        "A5": 0.8820819854736328
+      },
+      "run_ids": {
+        "E": "synthetic_variable_product_lorentz_5000_10_E",
+        "B2": "synthetic_variable_product_lorentz_5000_10_B2",
+        "B3": "synthetic_variable_product_lorentz_5000_10_B3",
+        "B4": "synthetic_variable_product_lorentz_5000_10_B4",
+        "B5": "synthetic_variable_product_lorentz_5000_10_B5",
+        "A5": "synthetic_variable_product_lorentz_5000_10_A5"
+      },
+      "reduction_vs_B3_percent": 0.04490227473789021,
+      "relative_A5_difference_percent": 0.0002838052609366315
+    },
+    {
+      "tree": "variable",
+      "nodes": 5000,
+      "dim": 20,
+      "scores": {
+        "E": 0.4013383388519287,
+        "B2": 0.8750953674316406,
+        "B3": 0.8755333423614502,
+        "B4": 0.874657154083252,
+        "B5": 0.8750991225242615,
+        "A5": 0.8751017451286316
+      },
+      "run_ids": {
+        "E": "synthetic_variable_product_lorentz_5000_20_E",
+        "B2": "synthetic_variable_product_lorentz_5000_20_B2",
+        "B3": "synthetic_variable_product_lorentz_5000_20_B3",
+        "B4": "synthetic_variable_product_lorentz_5000_20_B4",
+        "B5": "synthetic_variable_product_lorentz_5000_20_B5",
+        "A5": "synthetic_variable_product_lorentz_5000_20_A5"
+      },
+      "reduction_vs_B3_percent": 0.049594894469418005,
+      "relative_A5_difference_percent": 0.0002996913655683997
+    },
+    {
+      "tree": "variable",
+      "nodes": 10000,
+      "dim": 2,
+      "scores": {
+        "E": 0.6883568167686462,
+        "B2": 0.9559347033500671,
+        "B3": 0.9561091065406799,
+        "B4": 0.9558160901069641,
+        "B5": 0.9559918642044067,
+        "A5": 0.955992579460144
+      },
+      "run_ids": {
+        "E": "synthetic_variable_product_lorentz_10000_2_E",
+        "B2": "synthetic_variable_product_lorentz_10000_2_B2",
+        "B3": "synthetic_variable_product_lorentz_10000_2_B3",
+        "B4": "synthetic_variable_product_lorentz_10000_2_B4",
+        "B5": "synthetic_variable_product_lorentz_10000_2_B5",
+        "A5": "synthetic_variable_product_lorentz_10000_2_A5"
+      },
+      "reduction_vs_B3_percent": 0.012262443216071173,
+      "relative_A5_difference_percent": 7.48181264831338e-05
+    },
+    {
+      "tree": "variable",
+      "nodes": 10000,
+      "dim": 5,
+      "scores": {
+        "E": 0.6437926888465881,
+        "B2": 0.9477244019508362,
+        "B3": 0.9479202032089233,
+        "B4": 0.9476273655891418,
+        "B5": 0.9478242993354797,
+        "A5": 0.9478247165679932
+      },
+      "run_ids": {
+        "E": "synthetic_variable_product_lorentz_10000_5_E",
+        "B2": "synthetic_variable_product_lorentz_10000_5_B2",
+        "B3": "synthetic_variable_product_lorentz_10000_5_B3",
+        "B4": "synthetic_variable_product_lorentz_10000_5_B4",
+        "B5": "synthetic_variable_product_lorentz_10000_5_B5",
+        "A5": "synthetic_variable_product_lorentz_10000_5_A5"
+      },
+      "reduction_vs_B3_percent": 0.010117293957756512,
+      "relative_A5_difference_percent": 4.402000772785186e-05
+    },
+    {
+      "tree": "variable",
+      "nodes": 10000,
+      "dim": 10,
+      "scores": {
+        "E": 0.6291857957839966,
+        "B2": 0.9428450465202332,
+        "B3": 0.9430466890335083,
+        "B4": 0.9427326917648315,
+        "B5": 0.942935585975647,
+        "A5": 0.9429361820220947
+      },
+      "run_ids": {
+        "E": "synthetic_variable_product_lorentz_10000_10_E",
+        "B2": "synthetic_variable_product_lorentz_10000_10_B2",
+        "B3": "synthetic_variable_product_lorentz_10000_10_B3",
+        "B4": "synthetic_variable_product_lorentz_10000_10_B4",
+        "B5": "synthetic_variable_product_lorentz_10000_10_B5",
+        "A5": "synthetic_variable_product_lorentz_10000_10_A5"
+      },
+      "reduction_vs_B3_percent": 0.011781289214340962,
+      "relative_A5_difference_percent": 6.321174848000766e-05
+    },
+    {
+      "tree": "variable",
+      "nodes": 10000,
+      "dim": 20,
+      "scores": {
+        "E": 0.6210694313049316,
+        "B2": 0.9376904368400574,
+        "B3": 0.9378952383995056,
+        "B4": 0.9375547170639038,
+        "B5": 0.937760591506958,
+        "A5": 0.9377613067626953
+      },
+      "run_ids": {
+        "E": "synthetic_variable_product_lorentz_10000_20_E",
+        "B2": "synthetic_variable_product_lorentz_10000_20_B2",
+        "B3": "synthetic_variable_product_lorentz_10000_20_B3",
+        "B4": "synthetic_variable_product_lorentz_10000_20_B4",
+        "B5": "synthetic_variable_product_lorentz_10000_20_B5",
+        "A5": "synthetic_variable_product_lorentz_10000_20_A5"
+      },
+      "reduction_vs_B3_percent": 0.014356282773908546,
+      "relative_A5_difference_percent": 7.627268603371817e-05
+    }
+  ],
+  "comparison_scope": "Descriptive fixed-configuration B5 versus B3 ablation; all six methods retained. No statistical significance or overall-best claim."
+}

@@ -1,0 +1,47 @@
+{
+  "selected_epoch": 474,
+  "selected_test": {
+    "accuracy": 0.6620000600814819,
+    "macro_f1": 0.6245901068635721
+  },
+  "status": "complete",
+  "config": {
+    "family": "graph",
+    "dataset": "citeseer",
+    "model": "sage",
+    "method": "A5",
+    "epochs": 1000,
+    "seed": 42,
+    "id": "graph_citeseer_sage_A5"
+  },
+  "final": {
+    "epoch": 999,
+    "task": 0,
+    "train_loss": 0.00673425430431962,
+    "seconds": 84.55223751068115,
+    "K": [
+      0.9911028742790222,
+      0.9910561442375183,
+      0.9909477829933167,
+      0.9910727739334106,
+      0.9910107851028442,
+      0.9911794662475586
+    ],
+    "learning_rate": 0.1,
+    "curvature_learning_rate": 0.001,
+    "peak_memory_mb": 307.606016,
+    "grad_norm": 0.003376216161996126,
+    "momentum_norm": 0.003409626893699169,
+    "exp_argument": 0.000338289508363232,
+    "radius_clipped_fraction": 0.0,
+    "manifold_residual": 2.86102294921875e-06,
+    "tangent_residual": 7.450580596923828e-09,
+    "mean_radius": 2.3682641983032227,
+    "val_accuracy": 0.6600000262260437,
+    "val_macro_f1": 0.6222152069642142,
+    "test_accuracy": 0.6660000085830688,
+    "test_macro_f1": 0.628121866864891
+  },
+  "best_validation": 0.6640000343322754,
+  "epochs_completed": 1000
+}

@@ -1,0 +1,44 @@
+{
+  "selected_epoch": 57,
+  "selected_test": {
+    "accuracy": 0.7470000386238098,
+    "macro_f1": 0.7437205562495057
+  },
+  "status": "complete",
+  "config": {
+    "family": "graph",
+    "dataset": "pubmed",
+    "model": "gat",
+    "method": "B3",
+    "epochs": 1000,
+    "seed": 42,
+    "id": "graph_pubmed_gat_B3"
+  },
+  "final": {
+    "epoch": 999,
+    "task": 0,
+    "train_loss": 0.0027054075617343187,
+    "seconds": 52.010796546936035,
+    "K": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "learning_rate": 0.1,
+    "curvature_learning_rate": 0.001,
+    "peak_memory_mb": 178.935296,
+    "grad_norm": 0.002689583692699671,
+    "momentum_norm": 0.0027190526016056538,
+    "exp_argument": 0.00027190527180209756,
+    "radius_clipped_fraction": 0.0,
+    "manifold_residual": 1.9073486328125e-06,
+    "tangent_residual": 7.450580596923828e-09,
+    "mean_radius": 2.336369276046753,
+    "val_accuracy": 0.7480000257492065,
+    "val_macro_f1": 0.748305731755989,
+    "test_accuracy": 0.7590000629425049,
+    "test_macro_f1": 0.7526863322846613
+  },
+  "best_validation": 0.7700000405311584,
+  "epochs_completed": 1000
+}

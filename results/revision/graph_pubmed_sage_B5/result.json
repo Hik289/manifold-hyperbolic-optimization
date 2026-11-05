@@ -1,0 +1,44 @@
+{
+  "selected_epoch": 679,
+  "selected_test": {
+    "accuracy": 0.7500000596046448,
+    "macro_f1": 0.7485221506997224
+  },
+  "status": "complete",
+  "config": {
+    "family": "graph",
+    "dataset": "pubmed",
+    "model": "sage",
+    "method": "B5",
+    "epochs": 1000,
+    "seed": 42,
+    "id": "graph_pubmed_sage_B5"
+  },
+  "final": {
+    "epoch": 999,
+    "task": 0,
+    "train_loss": 0.002764342585578561,
+    "seconds": 48.56288743019104,
+    "K": [
+      0.9923698902130127,
+      0.9913949966430664,
+      0.992077112197876
+    ],
+    "learning_rate": 0.1,
+    "curvature_learning_rate": 0.001,
+    "peak_memory_mb": 317.712896,
+    "grad_norm": 0.0028936685994267464,
+    "momentum_norm": 0.0029234697576612234,
+    "exp_argument": 0.00029034141334705055,
+    "radius_clipped_fraction": 0.0,
+    "manifold_residual": 1.7881393432617188e-06,
+    "tangent_residual": 7.450580596923828e-09,
+    "mean_radius": 2.2119598388671875,
+    "val_accuracy": 0.7740000486373901,
+    "val_macro_f1": 0.777263514889362,
+    "test_accuracy": 0.7520000338554382,
+    "test_macro_f1": 0.7502278365975098
+  },
+  "best_validation": 0.7740000486373901,
+  "epochs_completed": 1000
+}

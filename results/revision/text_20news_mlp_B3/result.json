@@ -1,0 +1,61 @@
+{
+  "selected_epoch": 178,
+  "selected_test": {
+    "accuracy": 0.5781996846199036,
+    "macro_f1": 0.5655222729044211
+  },
+  "status": "complete",
+  "config": {
+    "family": "text",
+    "dataset": "20news",
+    "model": "mlp",
+    "method": "B3",
+    "epochs": 1000,
+    "seed": 42,
+    "id": "text_20news_mlp_B3"
+  },
+  "final": {
+    "epoch": 999,
+    "task": 0,
+    "train_loss": 0.08857685002929873,
+    "seconds": 13301.62560248375,
+    "K": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "learning_rate": 0.1,
+    "curvature_learning_rate": 0.001,
+    "peak_memory_mb": 114.2016,
+    "grad_norm": 0.004121794365346432,
+    "momentum_norm": 0.012648864649236202,
+    "exp_argument": 0.0012648864649236202,
+    "radius_clipped_fraction": 1.0,
+    "manifold_residual": 0.0013427734375,
+    "tangent_residual": 2.384185791015625e-07,
+    "mean_radius": 4.000309467315674,
+    "val_accuracy": 0.6651943325996399,
+    "val_macro_f1": 0.6618319437016222,
+    "test_accuracy": 0.5674455761909485,
+    "test_macro_f1": 0.5547811654840872
+  },
+  "best_validation": 0.6872791647911072,
+  "epochs_completed": 1000
+}

@@ -1,0 +1,12 @@
+{
+  "family": "synthetic",
+  "dataset": "variable",
+  "model": "product_lorentz",
+  "method": "B5",
+  "epochs": 2000,
+  "seed": 42,
+  "nodes": 1000,
+  "dim": 5,
+  "lr": 10.0,
+  "id": "synthetic_variable_product_lorentz_1000_5_B5"
+}

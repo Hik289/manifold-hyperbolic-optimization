@@ -1,0 +1,23 @@
+Conceptual illustration generated with the built-in imagegen tool.
+This is an illustrative asset, not a measured experimental figure.
+
+BASE PROMPT
+
+Use case: scientific-educational / infographic-diagram.
+Create a polished, high-resolution PNG conceptual hero figure for the academic open-source repository "HyperbolicMomentum". This is an intuition illustration, not a benchmark or a data plot. Wide landscape canvas approximately 2400 by 1100 pixels. White background, exceptional typographic hierarchy, very generous whitespace, sophisticated muted indigo, teal and warm amber palette, fine precise strokes. A top-tier machine learning research website aesthetic: clean, calm, mathematically grounded, publication-quality. Absolutely no neon rainbow, heavy rounded boxes, spreadsheets, matrix grids, big paragraph blocks, distracting decorations or fake results.
+
+Composition: a small title across the top "HyperbolicMomentum" with subtitle "Learn the geometry. Carry the momentum." Three connected conceptual stages across the canvas, with the THIRD stage occupying about 45 percent of the width. Small discrete numbered labels 01, 02, 03. Use elegant softly shaded 3D upper-sheet Lorentz hyperboloid illustrations with sparse curved mesh lines, clearly identified as schematic. Clean thin arrows connect the three stages.
+
+Stage 01 title "Adapt curvature". Draw two small upper-sheet hyperboloids of different shape/radius with a few hierarchical branch nodes on each. Indigo and teal, representing independent groups, not data. Small labels "Group 1" and "Group 2". Short caption "One geometric scale per group".
+
+Stage 02 title "Take a controlled step". Draw one larger indigo hyperboloid with a point x, a curved geodesic from x to y, and teal tangent momentum arrows at the two points. The tangent arrow at y follows the tangent plane there. A faint plane at y may clarify tangency. Tiny labels "Geodesic step" and "Transport memory". Caption "Scale the step to local geometry".
+
+Stage 03 title "Move the point AND its memory". Two hyperboloids side by side, the left indigo, the right teal, same shape scaled uniformly about the ambient origin. Their point and tangent momentum are mapped together via a clean thick teal connecting arrow. Draw one indigo point with tangent arrow before, one teal point with tangent arrow after, highlighting both. Keep the point on each surface and its arrow tangent. Do not draw a spurious non-tangent failure example.
+Small labels above surfaces "Before" and "After". Under this drawing typeset exactly "a = sqrt(K_old / K_new)" followed by "x_new = a x" and "m_new = a m" in clean readable mathematical notation, with ordinary subscripts or typeset math. Final short caption "Preserve the canonical state".
+Footer very small "Schematic intuition for independent manifold groups". No conference acceptance badge, no logos, no named institutions, no private information, no API information, no numerical performance claims. Make the artwork beautiful and legible at GitHub README width. Output PNG.
+
+GEOMETRY REFINEMENT
+
+Edit this scientific infographic. Keep the composition, whitespace, elegant title, exact text, indigo/teal/gold colors, three-stage layout and formulas unchanged. One crucial mathematical correction: EVERY surface currently resembles a one-sheet hourglass hyperboloid, which is WRONG for the Lorentz model in this paper. Replace ALL five surfaces with the UPPER SHEET of a TWO-SHEET hyperboloid, z = sqrt(1/K + x^2 + y^2). Visually each surface is an upward-opening smooth BOWL with a rounded lowest point, like a shallow cup with no stem: CLOSED ROUND BOTTOM, wide OPEN TOP, monotonically increasing width upward. Absolutely no hourglass waist, no downward-flaring lower half, no saddle, no two-sided trumpet shape. The top opening is an ellipse; smoothly curved meridian grid lines converge toward the closed bottom. The lower boundary must be a rounded bowl bottom, NOT another open ellipse.
+The surfaces in stage 3 must be similar bowls scaled uniformly. Keep visible points ON the surfaces and momentum arrows aligned to the tangent plane. Keep the stage 2 orange geodesic hugging the bowl surface between x and y, with tangent teal arrows at both ends. Keep the stage1 branch nodes integrated onto bowl surfaces. Keep all formulas and all labels exactly as they are and make sure none are clipped. Preserve the beautiful clean scientific editorial style, high resolution PNG, white background. This is a conceptual scientific figure, so prioritize correct upper-sheet bowl geometry.
+

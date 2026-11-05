@@ -1,0 +1,55 @@
+{
+  "status": "complete",
+  "config": {
+    "family": "continual",
+    "dataset": "rotmnist",
+    "model": "mlp",
+    "method": "shared",
+    "epochs": 1000,
+    "seed": 42,
+    "id": "continual_rotmnist_mlp_shared"
+  },
+  "final": {
+    "epoch": 999,
+    "task": 4,
+    "train_loss": 0.004330496657777716,
+    "seconds": 90981.76406240463,
+    "K": [
+      0.5599658489227295,
+      0.5599658489227295,
+      0.5599658489227295,
+      0.5599658489227295,
+      0.5599658489227295,
+      0.5599658489227295,
+      0.5599658489227295,
+      0.5599658489227295,
+      0.5599658489227295,
+      0.5599658489227295
+    ],
+    "learning_rate": 0.1,
+    "curvature_learning_rate": 0.001,
+    "peak_memory_mb": 33.375744,
+    "grad_norm": 0.012396899983286858,
+    "momentum_norm": 0.0016739526763558388,
+    "exp_argument": 0.00012510665692389011,
+    "radius_clipped_fraction": 1.0,
+    "manifold_residual": 0.0003095865249633789,
+    "tangent_residual": 2.384185791015625e-07,
+    "mean_radius": 5.345554351806641,
+    "val_accuracy": 0.9836666584014893,
+    "val_macro_f1": 0.9835083466496867,
+    "test_accuracy": 0.9853000044822693,
+    "test_macro_f1": 0.9852024023148476,
+    "task_accuracies": [
+      0.249099999666214,
+      0.13989999890327454,
+      0.17649999260902405,
+      0.6139999628067017,
+      0.9853000044822693
+    ],
+    "average_accuracy": 0.4329599916934967,
+    "forgetting": 0.689274974167347
+  },
+  "best_validation": 0.984499990940094,
+  "epochs_completed": 1000
+}

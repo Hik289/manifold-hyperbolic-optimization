@@ -1,0 +1,170 @@
+{
+  "dataset": "cora_links",
+  "family": "link_prediction",
+  "metric": "ap",
+  "configs_completed": 30,
+  "created_unix": 1793639605.3005576,
+  "selected": {
+    "E": {
+      "id": "new_link_prediction_cora_links_E_s3",
+      "val_score": 0.9306870942427795,
+      "config": {
+        "suite": "new_tasks_v1",
+        "family": "link_prediction",
+        "dataset": "cora_links",
+        "model": "product_embedding",
+        "method": "E",
+        "epochs": 1000,
+        "seed": 42,
+        "dim": 8,
+        "groups": 4,
+        "lr": 100.0,
+        "rho": 0.01,
+        "beta": 0.9,
+        "init_K": 1.0,
+        "point_decay": 0.0,
+        "search_slot": 3,
+        "search_budget": 6,
+        "priority": 1,
+        "eval_every": 25,
+        "selection_metric": "ap",
+        "id": "new_link_prediction_cora_links_E_s3"
+      }
+    },
+    "B3": {
+      "id": "new_link_prediction_cora_links_B3_s3",
+      "val_score": 0.9305853426334767,
+      "config": {
+        "suite": "new_tasks_v1",
+        "family": "link_prediction",
+        "dataset": "cora_links",
+        "model": "product_embedding",
+        "method": "B3",
+        "epochs": 1000,
+        "seed": 42,
+        "dim": 8,
+        "groups": 4,
+        "lr": 100.0,
+        "rho": 0.01,
+        "beta": 0.9,
+        "init_K": 0.1,
+        "point_decay": 0.0,
+        "search_slot": 3,
+        "search_budget": 6,
+        "priority": 1,
+        "eval_every": 25,
+        "selection_metric": "ap",
+        "id": "new_link_prediction_cora_links_B3_s3"
+      }
+    },
+    "B35": {
+      "id": "new_link_prediction_cora_links_B35_s3",
+      "val_score": 0.9305853426334767,
+      "config": {
+        "suite": "new_tasks_v1",
+        "family": "link_prediction",
+        "dataset": "cora_links",
+        "model": "product_embedding",
+        "method": "B35",
+        "epochs": 1000,
+        "seed": 42,
+        "dim": 8,
+        "groups": 4,
+        "lr": 100.0,
+        "rho": 0.01,
+        "beta": 0.9,
+        "init_K": 0.1,
+        "point_decay": 0.0,
+        "search_slot": 3,
+        "search_budget": 6,
+        "priority": 1,
+        "eval_every": 25,
+        "selection_metric": "ap",
+        "id": "new_link_prediction_cora_links_B35_s3"
+      }
+    },
+    "B5": {
+      "id": "new_link_prediction_cora_links_B5_s3",
+      "val_score": 0.9305924240510174,
+      "config": {
+        "suite": "new_tasks_v1",
+        "family": "link_prediction",
+        "dataset": "cora_links",
+        "model": "product_embedding",
+        "method": "B5",
+        "epochs": 1000,
+        "seed": 42,
+        "dim": 8,
+        "groups": 4,
+        "lr": 100.0,
+        "rho": 0.01,
+        "beta": 0.9,
+        "init_K": 0.1,
+        "point_decay": 0.0,
+        "search_slot": 3,
+        "search_budget": 6,
+        "priority": 1,
+        "eval_every": 25,
+        "selection_metric": "ap",
+        "id": "new_link_prediction_cora_links_B5_s3"
+      }
+    },
+    "A5": {
+      "id": "new_link_prediction_cora_links_A5_s3",
+      "val_score": 0.9305965077068546,
+      "config": {
+        "suite": "new_tasks_v1",
+        "family": "link_prediction",
+        "dataset": "cora_links",
+        "model": "product_embedding",
+        "method": "A5",
+        "epochs": 1000,
+        "seed": 42,
+        "dim": 8,
+        "groups": 4,
+        "lr": 100.0,
+        "rho": 0.01,
+        "beta": 0.9,
+        "init_K": 0.1,
+        "point_decay": 0.0,
+        "search_slot": 3,
+        "search_budget": 6,
+        "priority": 1,
+        "eval_every": 25,
+        "selection_metric": "ap",
+        "id": "new_link_prediction_cora_links_A5_s3"
+      }
+    }
+  },
+  "test": {
+    "E": {
+      "ap": 0.9345800353173768,
+      "auc": 0.9170270299464586
+    },
+    "B3": {
+      "ap": 0.9345599832343687,
+      "auc": 0.9169694198301223
+    },
+    "B35": {
+      "ap": 0.9345599832343687,
+      "auc": 0.9169694198301223
+    },
+    "B5": {
+      "ap": 0.9345719312955933,
+      "auc": 0.9169874229914773
+    },
+    "A5": {
+      "ap": 0.9345719312955933,
+      "auc": 0.9169874229914773
+    }
+  },
+  "matched_A5": {
+    "id": "new_link_prediction_cora_links_A5_s3",
+    "test": {
+      "ap": 0.9345719312955933,
+      "auc": 0.9169874229914773
+    }
+  },
+  "data_sha256": "1c86e385a1447e78645a8bca8ea8ce18016d61e5bc63a6c8b66e2fc8ede2015f",
+  "selection_scope": "Entire 30-run matrix completed before test release. No test-based hyperparameter choice. Exploratory single-seed extension; all task outcomes retained."
+}

@@ -1,0 +1,103 @@
+% !TeX program = pdflatex
+% Target ICML 2027; see TEMPLATE_PROVENANCE.txt for official-style availability.
+\documentclass{article}
+\PassOptionsToPackage{table}{xcolor}
+\usepackage{hyperref}
+\usepackage{icml2027_draft}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{xurl}
+\usepackage{booktabs}
+\usepackage{amsfonts,amsmath,amssymb,amsthm,mathtools}
+\usepackage{nicefrac}
+\usepackage{mathrsfs}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{wrapfig}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{pifont}
+\usepackage{enumitem}
+\usepackage{makecell}
+\setlength{\emergencystretch}{1em}
+\usepackage{longtable}
+\usepackage{placeins}
+\usepackage{float}
+\usepackage{adjustbox}
+\usepackage{multirow}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\HH}{\mathbb{H}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\Exp}{\operatorname{Exp}}
+\newcommand{\Log}{\operatorname{Log}}
+\newcommand{\grad}{\operatorname{grad}}
+\newcommand{\PT}{\mathcal{P}}
+\newcommand{\Proj}{\operatorname{Proj}}
+\newcommand{\softplus}{\operatorname{softplus}}
+\newcommand{\arcosh}{\operatorname{arcosh}}
+\newcommand{\norm}[1]{\left\lVert #1\right\rVert}
+\newcommand{\inner}[2]{\langle #1,#2\rangle_{\cL}}
+\newcommand{\Kstd}{K_{\mathrm{std}}}
+\definecolor{oursbg}{RGB}{230,244,233}
+\definecolor{oursgoodbg}{RGB}{198,232,205}
+\definecolor{checkgreen}{RGB}{21,128,61}
+\definecolor{crossred}{RGB}{190,35,45}
+\definecolor{rwblue}{HTML}{1761A0}
+\definecolor{rwgreen}{HTML}{197647}
+\definecolor{rwred}{HTML}{B13B37}
+\definecolor{rwgray}{HTML}{F1F3F5}
+\newcommand{\rwcheck}{\textcolor{rwgreen}{\ding{51}}}
+\newcommand{\rwcross}{\textcolor{rwred}{\ding{55}}}
+\newcommand{\rwna}{\textcolor{gray}{\textemdash}}
+
+
+\icmltitlerunning{HyperbolicMomentum: Curvature-Adaptive Manifold Optimization}
+\begin{document}
+\twocolumn[
+\icmltitle{HyperbolicMomentum: Curvature-Adaptive Momentum\\for Hierarchical Neural Optimization}
+\begin{icmlauthorlist}
+\icmlauthor{Anonymous Authors}{anon}
+\end{icmlauthorlist}
+\icmlaffiliation{anon}{Anonymous Institution}
+\icmlcorrespondingauthor{}{}
+\icmlkeywords{Riemannian optimization, hyperbolic geometry, momentum, learnable curvature}
+\vskip 0.3in
+]
+\printAffiliationsAndNotice{}
+
+\begin{abstract}
+We introduce \emph{HyperbolicMomentum}, a Lorentz-model optimizer that combines grouped learnable curvature, curvature-normalized geodesic steps, and consistent momentum transport across tangent spaces and curvature changes. We derive an exact curvature-independent sensitivity certificate for normalized steps, sharp normalization and heterogeneity constants with equality cases, and conditional convergence, full-state stability, and generalization bounds. In complete 2000-update synthetic experiments, matched five-initialization searches selected by validation reduce held-out distortion by $2.94\%$ in a stationary hierarchy and $3.31\%$ and $5.02\%$ under $2\times$ and $8\times$ smooth distance drift, relative to selected normalized fixed-curvature momentum. These are selected positive conditions from a six-case matrix with mixed outcomes, and the radius constraint permits curvature-dependent physical capacity. The omitted-transport ablation remains close, so training scores do not isolate a transport benefit. A separate operator experiment does: compatible transport keeps the maximum FP32 canonical momentum error below $3.2\times10^{-6}$, whereas point-only transport yields final errors of $1.70\%$--$4.94\%$ under prescribed drift. Historical knowledge-graph results supply exploratory curvature evidence. All evaluated conditions, including negative and tied results, remain available in the complete comparison appendix, and the 705 retained full-length configurations and all delayed test evaluations are complete.
+\end{abstract}
+
+\input{sections/1_introduction}
+\input{sections/2_related_work}
+\input{sections/3_preliminaries}
+\input{sections/4_methodology}
+\input{sections/5_theory}
+\input{sections/6_experiments}
+\input{sections/8_conclusion}
+
+\bibliographystyle{icml2026}
+\bibliography{references}
+
+\clearpage
+\appendix
+\onecolumn
+\input{theory/analysis_complete}
+\input{sections/appendix}
+\input{sections/experimental_audit}
+\FloatBarrier
+\clearpage
+\input{tables/revision_all_results}
+
+\end{document}

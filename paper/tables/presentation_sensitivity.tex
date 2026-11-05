@@ -1,0 +1,17 @@
+\begin{table}[t]
+\centering
+\caption{\textbf{Measured sensitivity check.} FP64 transverse finite perturbations use all five $K\in\{0.01,0.1,1,10,100\}$. Exact gains are listed; the final column is the largest measured relative discrepancy across these curvatures and both operators. No trust cap is used in this operator check.}
+\label{tab:sensitivity}
+\footnotesize\setlength{\tabcolsep}{4.2pt}\renewcommand{\arraystretch}{1.12}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{lrrr}
+\toprule
+\makecell{Scaled\\momentum} & \makecell{Uncapped\\gain} & \makecell{Normalized\\gain} & \makecell{Max. rel.\\error $\downarrow$} \\
+\midrule
+0.1 & 1.00167 & 0.910344 & 4.44e-10 \\
+1 & 1.1752 & 0.521095 & 1.56e-11 \\
+10 & 1101.32 & 0.103959 & 5.05e-08 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}

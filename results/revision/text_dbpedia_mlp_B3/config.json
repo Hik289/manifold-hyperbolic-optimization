@@ -1,0 +1,9 @@
+{
+  "family": "text",
+  "dataset": "dbpedia",
+  "model": "mlp",
+  "method": "B3",
+  "epochs": 1000,
+  "seed": 42,
+  "id": "text_dbpedia_mlp_B3"
+}

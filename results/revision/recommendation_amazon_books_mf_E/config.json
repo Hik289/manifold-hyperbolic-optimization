@@ -1,0 +1,9 @@
+{
+  "family": "recommendation",
+  "dataset": "amazon_books",
+  "model": "mf",
+  "method": "E",
+  "epochs": 1000,
+  "seed": 42,
+  "id": "recommendation_amazon_books_mf_E"
+}

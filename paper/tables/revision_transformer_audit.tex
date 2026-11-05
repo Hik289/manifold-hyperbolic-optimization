@@ -1,0 +1,18 @@
+% WWW_REFERENCE_STYLE
+\begin{table}[!htbp]
+\centering
+\caption{\textbf{20 Newsgroups Transformer: completed method endpoints.} Each listed method finishes 1000 epochs, seed 42. The first maximum validation-accuracy checkpoint selects its test result; epochs are one-based. 4/6 registered methods complete; 2 methods deferred by the budget amendment. Every completed method is retained. All scores are percentages; final accuracy is separately labeled. Bold compares only the displayed rows; B5 is shaded.}
+\label{tab:revision-transformer-audit}
+\footnotesize\setlength{\tabcolsep}{5pt}\renewcommand{\arraystretch}{1.12}
+\begin{tabular}{lrrrrr}
+\toprule
+Method & Selected epoch & Val. acc.\ $\uparrow$ & Test acc.\ $\uparrow$ & Test macro-F1\ $\uparrow$ & Final acc.\ $\uparrow$ \\
+\midrule
+E & 960 & \textbf{65.724} & \textbf{55.709} & \textbf{55.006} & \textbf{55.616} \\
+B3 & 648 & 63.428 & 54.673 & 53.539 & 54.408 \\
+\rowcolor{oursbg}
+B5 & 451 & 61.749 & 52.987 & 52.485 & 52.894 \\
+A5 & 592 & 62.544 & 54.169 & 53.213 & 53.120 \\
+\bottomrule
+\end{tabular}
+\end{table}

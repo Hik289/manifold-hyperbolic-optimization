@@ -1,0 +1,9 @@
+{
+  "family": "graph",
+  "dataset": "pubmed",
+  "model": "gat",
+  "method": "B2",
+  "epochs": 1000,
+  "seed": 42,
+  "id": "graph_pubmed_gat_B2"
+}

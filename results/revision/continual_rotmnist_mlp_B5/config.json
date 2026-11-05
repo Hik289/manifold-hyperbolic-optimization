@@ -1,0 +1,9 @@
+{
+  "family": "continual",
+  "dataset": "rotmnist",
+  "model": "mlp",
+  "method": "B5",
+  "epochs": 1000,
+  "seed": 42,
+  "id": "continual_rotmnist_mlp_B5"
+}

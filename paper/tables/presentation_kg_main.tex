@@ -1,0 +1,22 @@
+\begin{table}[t]
+\centering
+\caption{\textbf{Historical WN18RR ranking and fitting.} B3 and B4 use the historical Euclidean-Adam protocol; B4 learns curvature and is shaded. Best values within each window are bold, including B3 on Hits@1. These unfiltered tail-only scores are separate from the new filtered protocol.}
+\label{tab:kg-main}
+\footnotesize\setlength{\tabcolsep}{4.2pt}\renewcommand{\arraystretch}{1.12}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{lrrrr}
+\toprule
+Method & MRR $\uparrow$ & Hits@1 $\uparrow$ & Hits@10 $\uparrow$ & Loss $\downarrow$ \\
+\midrule
+\multicolumn{5}{l}{\textit{WN18RR, last 5 evaluations}} \\
+B3 & 0.1332 & \textbf{0.0282} & 0.3510 & 2.1274 \\
+\rowcolor{oursbg}
+B4 & \textbf{0.1345} & 0.0270 & \textbf{0.3652} & \textbf{2.0680} \\
+\multicolumn{5}{l}{\textit{WN18RR, last 10 evaluations}} \\
+B3 & 0.1326 & \textbf{0.0280} & 0.3491 & 2.1274 \\
+\rowcolor{oursbg}
+B4 & \textbf{0.1357} & 0.0268 & \textbf{0.3685} & \textbf{2.0678} \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}

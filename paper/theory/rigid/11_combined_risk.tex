@@ -1,0 +1,155 @@
+\subsection{PL objective error, oracle complexity, and a conditional risk comparison}
+\label{app:rigid-combined}
+The Polyak--\L{}ojasiewicz (PL) condition \citep{karimi2016pl} converts stationarity control into an objective-error statement without asserting that every model satisfies it. The contraction is governed by the smaller effective block step, and its forcing terms retain momentum lag and sampling noise. We then combine optimization error with a uniform statistical bound to state a sufficient condition for a grouped-curvature population-risk advantage.
+\begin{assumption}[Joint PL condition]
+In addition to Assumption~\ref{ass:rigid-full-momentum}, let
+\begin{align}
+ \|g_t\|^2+\|b_t\|^2&\ge2\mu(F(q_t,u_t)-F_*),&\mu&>0.
+\end{align}
+Use constant $\eta,\rho,\beta,\mathfrak b$ and put
+\begin{align}
+ \chi&=\min(a\eta,\rho),&r&=1-\mu\chi\in[0,1),\\
+ D_*&=L_{vq}M_N\eta+L_{vu}H_0\rho,\\
+ Z_\infty^2&=\frac{\beta^2D_*^2}{(1-\beta)^2}+
+ \frac{(1-\beta)a_+^2\sigma_q^2}{\mathfrak b},\\
+ Q_*&=C_e\eta Z_\infty^2+\frac{L\rho^2\sigma_u^2}{2\mathfrak b}.
+\end{align}
+\end{assumption}
+\begin{theorem}[PL contraction with explicit momentum transient]
+\label{thm:rigid-joint-pl}
+Let $v_\xi=a_+^2\sigma_q^2/\mathfrak b$. Separate initial memory and filtered noise from the drift envelope:
+\begin{align}
+ \mathfrak v_t&:=\beta^{2(t+1)}\mathbb E\|e_{-1}^m\|^2+
+ \frac{1-\beta}{1+\beta}(1-\beta^{2(t+1)})v_\xi,\\
+ \mathfrak d_t&:=\frac{\beta(1-\beta^t)}{1-\beta}D_*,\\
+ \mathfrak z_t&:=\min\left\{\beta^{t+1}\mathbb E\|e_{-1}^m\|^2+Z_\infty^2,
+ (\sqrt{\mathfrak v_t}+\mathfrak d_t)^2\right\}.
+\end{align}
+Then the finite-time convolution bound is
+\begin{align}\label{eq:sharp-pl-convolution}
+ \mathbb E(F_T-F_*)
+ &\le r^T\Delta_F+C_e\eta\sum_{t<T}r^{T-1-t}\mathfrak z_t
+ +\frac{L\rho^2\sigma_u^2}{2\mathfrak b}\sum_{t<T}r^{T-1-t}.
+\end{align}
+In particular, the simpler closed form is
+\begin{align}
+ \mathbb E(F_T-F_*)
+ &\le r^T\Delta_F+
+ C_e\eta\mathbb E\|e_{-1}^m\|^2\,\mathcal C_T(r,\beta)+
+ \frac{Q_*}{\mu\chi}(1-r^T),\\
+ \mathcal C_T(r,\beta)
+ &:=\begin{cases}
+ \displaystyle\frac{\beta(r^T-\beta^T)}{r-\beta},&r\ne\beta,\\[5pt]
+ Tr^T,&r=\beta.
+ \end{cases}
+\end{align}
+\end{theorem}
+\begin{proof}
+The predictable-frame decomposition of Theorem~\ref{thm:sharp-momentum-filter}, now at a fixed time, gives
+\begin{align}
+ (\mathbb E\|e_t^m\|^2)^{1/2}\le\sqrt{\mathfrak v_t}+\mathfrak d_t.
+\end{align}
+The earlier tracking recursion also gives
+\begin{align}
+ \mathbb E\|e_t^m\|^2
+ &\le\beta^{t+1}\mathbb E\|e_{-1}^m\|^2+Z_\infty^2.
+\end{align}
+Their minimum is $\mathfrak z_t$. Unrolling the next descent inequality with that certificate proves Eq.~\eqref{eq:sharp-pl-convolution}; using the first alternative gives the closed form.
+The normalized descent and PL inequalities imply
+\begin{align}
+ \mathbb E(F_{t+1}-F_*)
+ &\le\mathbb E(F_t-F_*)-
+ \frac\chi2\mathbb E(\|g_t\|^2+\|b_t\|^2)
+ +C_e\eta\mathbb E\|e_t^m\|^2+
+ \frac{L\rho^2\sigma_u^2}{2\mathfrak b}\\
+ &\le r\mathbb E(F_t-F_*)+
+ C_e\eta\beta^{t+1}\mathbb E\|e_{-1}^m\|^2+Q_*,\\
+ \sum_{t<T}r^{T-1-t}\beta^{t+1}&=\mathcal C_T(r,\beta),\\
+ \sum_{t<T}r^{T-1-t}&=(1-r^T)/(1-r).
+\end{align}
+\end{proof}
+
+The transient is a convolution of the objective contraction and the memory decay. When these rates coincide, the factor $Tr^T$ replaces a single geometric term. With constant steps and nonzero noise or drift, the theorem gives an error neighborhood rather than exact convergence; the explicit floor shows which quantities must decrease to shrink it.
+
+\begin{corollary}[Squared-stationarity oracle budgets]
+Let $\tau\in(0,1)$ denote a target for an expected squared stationarity measure.
+With constants independent of $T$,
+\begin{align}
+ \eta\asymp T^{-1/2},\quad\rho\asymp T^{-3/4},\quad\mathfrak b\asymp T^{1/2}
+ &\Longrightarrow
+ \begin{cases}
+ T=O(\tau^{-4}),\\
+ \text{sampled-gradient calls}=O(\tau^{-6}),
+ \end{cases}\\
+ \eta,\rho\asymp T^{-3/5},\quad1-\beta\asymp T^{-2/5},\quad\mathfrak b\asymp1
+ &\Longrightarrow
+ \begin{cases}
+ T=O(\tau^{-5/2}),\\
+ \text{sampled-gradient calls}=O(\tau^{-5/2}).
+ \end{cases}
+\end{align}
+The first line controls both representation and curvature averages; the second line concerns the interior exact update of Theorem~\ref{thm:rigid-full-convergence}.
+\end{corollary}
+\begin{proof}
+\begin{align}
+ C_qT^{-1/2}+C_uT^{-1/4}\le\tau
+ &\Longleftarrow T\ge\max[(2C_q/\tau)^2,(2C_u/\tau)^4],\\
+ CT^{-2/5}\le\tau&\Longleftarrow T\ge(C/\tau)^{5/2},\\
+ T\mathfrak b&\asymp T^{3/2}\quad\text{or}\quad T.
+\end{align}
+\end{proof}
+
+\begin{definition}[Nested curvature classes]
+Let
+\begin{align}
+ \Theta_{\rm grp}&=\mathcal Q_B\times U,&
+ \Theta_{\rm shared}&=\{(q,u)\in\Theta_{\rm grp}:u_1=\cdots=u_G\},\\
+ R_{\rm grp}^*&=\inf_{\theta\in\Theta_{\rm grp}}R(\theta),&
+ R_{\rm shared}^*&=\inf_{\theta\in\Theta_{\rm shared}}R(\theta),\\
+ \Delta_*&=R_{\rm shared}^*-R_{\rm grp}^*\ge0,\\
+ \delta_{\rm opt}(S,\omega)&=R_S(\widehat\theta_{\rm grp})-
+ \inf_{\theta\in\Theta_{\rm grp}}R_S(\theta)\ge0.
+\end{align}
+\end{definition}
+
+The approximation gain $\Delta_*$ is a population property, whereas the output is obtained by empirical optimization. To turn a larger hypothesis class into a risk advantage, its gain must exceed both the optimization error and the statistical deviation. The following sufficient condition makes that comparison quantitative; heterogeneity alone does not certify an advantage at a given sample size or training horizon.
+
+\begin{theorem}[Approximation--optimization--estimation comparison]
+\label{thm:rigid-risk-comparison}
+Let $\mathfrak s_n(\delta_s):=\mathfrak s_n^\sharp(\delta_s)$ be the optimized deterministic envelope in Eq.~\eqref{eq:sharp-statistical-envelope}, and suppose
+\begin{align}
+ \mathbb E\delta_{\rm opt}(S,\omega)&\le\mathfrak o_T.
+\end{align}
+For every data-dependent $\widehat\theta_{\rm shared}\in\Theta_{\rm shared}$, with probability at least $1-\delta_s-\delta_o$,
+\begin{align}
+ R(\widehat\theta_{\rm grp})-R(\widehat\theta_{\rm shared})
+ \le-\Delta_*+\mathfrak o_T/\delta_o+2\mathfrak s_n(\delta_s).
+\end{align}
+If $U=I^G$ for a common curvature interval $I$ and the population profile separates as
+\begin{align}
+ \inf_qR(q,u)&=\sum_gw_gf_g(u_g),&
+ 0<\mu_g&\le f_g''\le L_g\text{ on }I,&f_g'(u_g^*)&=0,\quad u_g^*\in I,
+\end{align}
+with $w_g>0$, $\sum_gw_g=1$ and $\Theta_{\rm shared}\ne\varnothing$, set $a_g=w_g\mu_g$ and $u_a=(\sum_ga_gu_g^*)/(\sum_ga_g)$. A sufficient condition for strict population-risk improvement is
+\begin{align}
+ \frac12\sum_ga_g(u_g^*-u_a)^2
+ >\frac{\mathfrak o_T}{\delta_o}+2\mathfrak s_n(\delta_s).
+\end{align}
+\end{theorem}
+\begin{proof}
+By Markov's inequality and uniform generalization,
+\begin{align}
+ \Pr(\delta_{\rm opt}>\mathfrak o_T/\delta_o)&\le\delta_o,\\
+ \Pr\left(\sup_{\theta\in\Theta_{\rm grp}}|R(\theta)-R_S(\theta)|>
+ \mathfrak s_n(\delta_s)\right)&\le\delta_s.
+\end{align}
+On their joint complement, for $\theta^*\in\Theta_{\rm grp}$,
+\begin{align}
+ R(\widehat\theta_{\rm grp})
+ &\le R_S(\widehat\theta_{\rm grp})+\mathfrak s_n\\
+ &\le R_S(\theta^*)+\delta_{\rm opt}+\mathfrak s_n\\
+ &\le R(\theta^*)+\mathfrak o_T/\delta_o+2\mathfrak s_n,\\
+ R(\widehat\theta_{\rm shared})&\ge R_{\rm shared}^*=R_{\rm grp}^*+\Delta_*.
+\end{align}
+Take a minimizing sequence $R(\theta^*)\downarrow R_{\rm grp}^*$ and apply Proposition~\ref{prop:group-gap} to the separated population profile.
+\end{proof}

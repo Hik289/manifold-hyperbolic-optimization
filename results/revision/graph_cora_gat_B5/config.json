@@ -1,0 +1,9 @@
+{
+  "family": "graph",
+  "dataset": "cora",
+  "model": "gat",
+  "method": "B5",
+  "epochs": 1000,
+  "seed": 42,
+  "id": "graph_cora_gat_B5"
+}

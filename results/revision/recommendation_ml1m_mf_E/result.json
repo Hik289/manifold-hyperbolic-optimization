@@ -1,0 +1,28 @@
+{
+  "status": "complete",
+  "config": {
+    "family": "recommendation",
+    "dataset": "ml1m",
+    "model": "mf",
+    "method": "E",
+    "epochs": 1000,
+    "seed": 42,
+    "id": "recommendation_ml1m_mf_E"
+  },
+  "final": {
+    "epoch": 999,
+    "train_loss": 0.10798852672417937,
+    "seconds": 6962.501822471619,
+    "K": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "val_recall20": 0.13841059602649006,
+    "val_ndcg20": 0.05237521842771997,
+    "test_recall20": 0.11556291390728476,
+    "test_ndcg20": 0.04294300973218518
+  },
+  "epochs_completed": 1000
+}

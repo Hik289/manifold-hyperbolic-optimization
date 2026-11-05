@@ -1,0 +1,9 @@
+{
+  "family": "graph",
+  "dataset": "cora",
+  "model": "sage",
+  "method": "A5",
+  "epochs": 1000,
+  "seed": 42,
+  "id": "graph_cora_sage_A5"
+}

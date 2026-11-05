@@ -1,0 +1,9 @@
+{
+  "family": "vision",
+  "dataset": "imagenet100",
+  "model": "resnet18",
+  "method": "B4",
+  "epochs": 1000,
+  "seed": 42,
+  "id": "vision_imagenet100_resnet18_B4"
+}

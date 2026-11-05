@@ -1,0 +1,9 @@
+{
+  "family": "kg",
+  "dataset": "fb15k237",
+  "model": "lorentz_translation",
+  "method": "B5",
+  "epochs": 2000,
+  "seed": 42,
+  "id": "kg_fb15k237_lorentz_translation_B5"
+}

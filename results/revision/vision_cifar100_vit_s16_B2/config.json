@@ -1,0 +1,9 @@
+{
+  "family": "vision",
+  "dataset": "cifar100",
+  "model": "vit_s16",
+  "method": "B2",
+  "epochs": 1000,
+  "seed": 42,
+  "id": "vision_cifar100_vit_s16_B2"
+}

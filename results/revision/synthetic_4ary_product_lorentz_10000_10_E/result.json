@@ -1,0 +1,30 @@
+{
+  "status": "complete",
+  "config": {
+    "family": "synthetic",
+    "dataset": "4ary",
+    "model": "product_lorentz",
+    "method": "E",
+    "epochs": 2000,
+    "seed": 42,
+    "nodes": 10000,
+    "dim": 10,
+    "lr": 10.0,
+    "id": "synthetic_4ary_product_lorentz_10000_10_E"
+  },
+  "final": {
+    "epoch": 1999,
+    "train_loss": 0.32446470856666565,
+    "distortion_fixed_pairs": 0.5536069869995117,
+    "seconds": 16.149110555648804,
+    "K": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "MAP": 0.0010171794350951609,
+    "mean_rank": 5253.792779277927
+  },
+  "epochs_completed": 2000
+}

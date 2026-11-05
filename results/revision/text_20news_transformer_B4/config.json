@@ -1,0 +1,9 @@
+{
+  "family": "text",
+  "dataset": "20news",
+  "model": "transformer",
+  "method": "B4",
+  "epochs": 1000,
+  "seed": 42,
+  "id": "text_20news_transformer_B4"
+}

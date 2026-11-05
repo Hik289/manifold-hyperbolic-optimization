@@ -1,0 +1,9 @@
+{
+  "family": "graph",
+  "dataset": "pubmed",
+  "model": "gcn",
+  "method": "A5",
+  "epochs": 1000,
+  "seed": 42,
+  "id": "graph_pubmed_gcn_A5"
+}

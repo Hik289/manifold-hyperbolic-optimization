@@ -1,0 +1,9 @@
+{
+  "family": "graph",
+  "dataset": "arxiv",
+  "model": "sage",
+  "method": "B5",
+  "epochs": 1000,
+  "seed": 42,
+  "id": "graph_arxiv_sage_B5"
+}

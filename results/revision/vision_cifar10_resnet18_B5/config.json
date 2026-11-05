@@ -1,0 +1,9 @@
+{
+  "family": "vision",
+  "dataset": "cifar10",
+  "model": "resnet18",
+  "method": "B5",
+  "epochs": 1000,
+  "seed": 42,
+  "id": "vision_cifar10_resnet18_B5"
+}

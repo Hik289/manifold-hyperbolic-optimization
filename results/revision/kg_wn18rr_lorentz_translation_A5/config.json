@@ -1,0 +1,9 @@
+{
+  "family": "kg",
+  "dataset": "wn18rr",
+  "model": "lorentz_translation",
+  "method": "A5",
+  "epochs": 2000,
+  "seed": 42,
+  "id": "kg_wn18rr_lorentz_translation_A5"
+}

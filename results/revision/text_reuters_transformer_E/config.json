@@ -1,0 +1,9 @@
+{
+  "family": "text",
+  "dataset": "reuters",
+  "model": "transformer",
+  "method": "E",
+  "epochs": 1000,
+  "seed": 42,
+  "id": "text_reuters_transformer_E"
+}

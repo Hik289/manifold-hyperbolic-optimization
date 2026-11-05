@@ -1,0 +1,48 @@
+{
+  "selected_epoch": 114,
+  "selected_test": {
+    "accuracy": 0.7820000648498535,
+    "macro_f1": 0.7760304589892543
+  },
+  "status": "complete",
+  "config": {
+    "family": "graph",
+    "dataset": "cora",
+    "model": "sage",
+    "method": "B4",
+    "epochs": 1000,
+    "seed": 42,
+    "id": "graph_cora_sage_B4"
+  },
+  "final": {
+    "epoch": 999,
+    "task": 0,
+    "train_loss": 0.008731992915272713,
+    "seconds": 93.29011845588684,
+    "K": [
+      0.9905989170074463,
+      0.9904947280883789,
+      0.990602970123291,
+      0.9905445575714111,
+      0.990325927734375,
+      0.9905775785446167,
+      0.9905903339385986
+    ],
+    "learning_rate": 0.1,
+    "curvature_learning_rate": 0.001,
+    "peak_memory_mb": 127.669248,
+    "grad_norm": 0.0035874019376933575,
+    "momentum_norm": 0.0035873937886208296,
+    "exp_argument": 0.00035704963374882936,
+    "radius_clipped_fraction": 0.0,
+    "manifold_residual": 1.7881393432617188e-06,
+    "tangent_residual": 7.450580596923828e-09,
+    "mean_radius": 2.4394261837005615,
+    "val_accuracy": 0.7640000581741333,
+    "val_macro_f1": 0.7520151898200057,
+    "test_accuracy": 0.7820000648498535,
+    "test_macro_f1": 0.7770461165189705
+  },
+  "best_validation": 0.7700000405311584,
+  "epochs_completed": 1000
+}

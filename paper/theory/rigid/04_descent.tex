@@ -1,0 +1,165 @@
+\subsection{Product descent and blockwise stationarity}
+\label{app:rigid-descent}
+We first treat the update directions as arbitrary inexact directions. This separates a geometric descent statement from the stochastic and momentum arguments needed to control its errors. The representation step and curvature step enter with separate weights, which must be retained when converting a summed descent budget into stationarity rates.
+\begin{assumption}[Smooth objective]
+\label{ass:descent-new}
+Let $\mathcal M=\mathcal Q\times\mathbb R^G$ with product metric $g_1\oplus I$.
+For each update segment,
+\begin{align}
+ F&\ge F_*>-\infty,&
+ \|\operatorname{Hess}F\|_{\rm op}&\le L,\\
+ g_t&=\operatorname{grad}_qF(q_t,u_t),&b_t&=\nabla_uF(q_t,u_t),\\
+ q_{t+1}&=\Exp_{q_t}(-\eta_ta_t),&u_{t+1}&=u_t-\rho_th_t,\label{eq:analysis-update}\\
+ e_t&=a_t-g_t,&r_t&=h_t-b_t,\\
+ \Delta_F&=F(q_0,u_0)-F_*.
+\end{align}
+\end{assumption}
+
+\begin{lemma}[Integral product descent]
+\label{lem:rigid-product-descent}
+\begin{align}
+ F(q_{t+1},u_{t+1})
+ &\le F(q_t,u_t)-\eta_t\langle g_t,a_t\rangle
+ -\rho_t\langle b_t,h_t\rangle\\
+ &\quad+\tfrac L2\bigl(\eta_t^2\|a_t\|^2+\rho_t^2\|h_t\|^2\bigr).
+\end{align}
+\end{lemma}
+\begin{proof}
+For $\Gamma(s)=(\Exp_{q_t}(-s\eta_ta_t),u_t-s\rho_th_t)$,
+\begin{align}
+ \varphi(s)&=F(\Gamma(s)),\\
+ \varphi'(0)&=-\eta_t\langle g_t,a_t\rangle-\rho_t\langle b_t,h_t\rangle,\\
+ \varphi''(s)&=\operatorname{Hess}F(\Gamma(s))[\dot\Gamma(s),\dot\Gamma(s)],\\
+ \|\dot\Gamma(s)\|^2&=\eta_t^2\|a_t\|^2+\rho_t^2\|h_t\|^2,\\
+ \varphi(1)-\varphi(0)
+ &=\varphi'(0)+\int_0^1(1-s)\varphi''(s)\,ds.
+\end{align}
+\end{proof}
+
+\begin{theorem}[Error-explicit stationarity budget]
+\label{thm:budget-new}
+For $0<\eta_t,\rho_t\le1/(4L)$,
+\begin{align}\label{eq:budget-new}
+ \sum_{t<T}\left(\frac{\eta_t}{2}\mathbb E\|g_t\|^2+
+ \frac{\rho_t}{2}\mathbb E\|b_t\|^2\right)
+ &\le\Delta_F+
+ \frac54\sum_{t<T}\left(\eta_t\mathbb E\|e_t\|^2+
+ \rho_t\mathbb E\|r_t\|^2\right).
+\end{align}
+If $F(z_{t+1}^{\rm impl})\le F(z_{t+1}^{\rm exact})+\varepsilon_t$,
+add $\sum_t\mathbb E\varepsilon_t$ to the right-hand side.
+\end{theorem}
+\begin{proof}
+\begin{align}
+ -\langle g,g+e\rangle
+ &=-\|g\|^2-\langle g,e\rangle
+ \le-\tfrac34\|g\|^2+\|e\|^2,\\
+ \|g+e\|^2&\le2\|g\|^2+2\|e\|^2,\\
+ -\eta\langle g,g+e\rangle+\tfrac L2\eta^2\|g+e\|^2
+ &\le-\eta(\tfrac34-L\eta)\|g\|^2+
+ \eta(1+L\eta)\|e\|^2\\
+ &\le-\tfrac\eta2\|g\|^2+\tfrac54\eta\|e\|^2,\\
+ \mathbb EF_{t+1}-\mathbb EF_t
+ &\le-\tfrac{\eta_t}2\mathbb E\|g_t\|^2
+ -\tfrac{\rho_t}2\mathbb E\|b_t\|^2\\
+ &\quad+\tfrac54\eta_t\mathbb E\|e_t\|^2
+ +\tfrac54\rho_t\mathbb E\|r_t\|^2,\\
+ \sum_{t<T}(\mathbb EF_t-\mathbb EF_{t+1})
+ &=F_0-\mathbb EF_T\le\Delta_F.
+\end{align}
+\end{proof}
+
+\begin{corollary}[Distinct weighted output laws]
+Let $S_q=\sum_t\eta_t$, $S_u=\sum_t\rho_t$, and let $B_T$ denote the right-hand side of Eq.~\eqref{eq:budget-new}. For
+\begin{align}
+ \Pr(R_q=t)&=\eta_t/S_q,&\Pr(R_u=t)&=\rho_t/S_u,
+\end{align}
+\begin{align}
+ \mathbb E\|g_{R_q}\|^2&\le2B_T/S_q,&
+ \mathbb E\|b_{R_u}\|^2&\le2B_T/S_u.
+\end{align}
+For constant horizon steps,
+\begin{align}
+ T^{-1}\sum_{t<T}\mathbb E\|g_t\|^2&\le2B_T/(T\eta),\\
+ T^{-1}\sum_{t<T}\mathbb E\|b_t\|^2&\le2B_T/(T\rho).
+\end{align}
+\end{corollary}
+\begin{proof}
+\begin{align}
+ \mathbb E\|g_{R_q}\|^2
+ &=S_q^{-1}\sum_t\eta_t\mathbb E\|g_t\|^2,\\
+ \mathbb E\|b_{R_u}\|^2
+ &=S_u^{-1}\sum_t\rho_t\mathbb E\|b_t\|^2.
+\end{align}
+\end{proof}
+
+The two output laws express what the budget actually controls. Dividing the curvature term by the representation step would give an unsupported rate when the steps differ. The predictable-preconditioner result below is a useful baseline because conditional unbiasedness cancels its linear noise term; the nonlinear normalized-momentum update requires the separate tracking analysis in Section~\ref{app:rigid-momentum}.
+
+\begin{assumption}[Predictable preconditioning]
+For a pre-sampling filtration $\mathcal F_t$,
+\begin{align}
+ A_t,B_t&\in\mathcal F_t,&
+ a_-I\preceq A_t&\preceq a_+I,&b_-I\preceq B_t&\preceq b_+I,\\
+ \mathbb E_t\widehat g_t&=g_t,&
+ \mathbb E_t\widehat b_t&=b_t,\\
+ \mathbb E_t\|\widehat g_t-g_t\|^2&\le\sigma_q^2/\mathfrak b_t,&
+ \mathbb E_t\|\widehat b_t-b_t\|^2&\le\sigma_u^2/\mathfrak b_t,\\
+ a_t&=A_t\widehat g_t,&h_t&=B_t\widehat b_t.
+\end{align}
+\end{assumption}
+\begin{theorem}[Unbiased preconditioned block budget]
+If $L\eta_ta_+^2\le a_-$ and $L\rho_tb_+^2\le b_-$, then
+\begin{align}\label{eq:unbiased-budget}
+ \sum_{t<T}\left(\tfrac{a_-\eta_t}{2}\mathbb E\|g_t\|^2+
+ \tfrac{b_-\rho_t}{2}\mathbb E\|b_t\|^2\right)
+ &\le\Delta_F+
+ \tfrac L2\sum_{t<T}\frac{a_+^2\eta_t^2\sigma_q^2+b_+^2\rho_t^2\sigma_u^2}{\mathfrak b_t}.
+\end{align}
+\end{theorem}
+\begin{proof}
+\begin{align}
+ \mathbb E_t\langle g_t,A_t\widehat g_t\rangle
+ &=\langle g_t,A_tg_t\rangle\ge a_-\|g_t\|^2,\\
+ \mathbb E_t\|A_t\widehat g_t\|^2
+ &\le a_+^2\mathbb E_t\|\widehat g_t\|^2
+ \le a_+^2(\|g_t\|^2+\sigma_q^2/\mathfrak b_t),\\
+ \mathbb E_t\langle b_t,B_t\widehat b_t\rangle
+ &\ge b_-\|b_t\|^2,\\
+ \mathbb E_tF_{t+1}-F_t
+ &\le-\eta_t(a_--La_+^2\eta_t/2)\|g_t\|^2\\
+ &\quad-\rho_t(b_--Lb_+^2\rho_t/2)\|b_t\|^2
+ +\frac{L(a_+^2\eta_t^2\sigma_q^2+b_+^2\rho_t^2\sigma_u^2)}{2\mathfrak b_t}.
+\end{align}
+\end{proof}
+
+\begin{corollary}[Unequal steps]
+For fixed batch size, $\eta=c_\eta T^{-1/2}$, $\rho=c_\rho T^{-3/4}$,
+\begin{align}\label{eq:separate-rates}
+ \frac1T\sum_{t<T}\mathbb E\|g_t\|^2&=O(T^{-1/2}),&
+ \frac1T\sum_{t<T}\mathbb E\|b_t\|^2&=O(T^{-1/4}).
+\end{align}
+For $\eta,\rho\asymp T^{-1/2}$, both bounds are $O(T^{-1/2})$.
+\end{corollary}
+\begin{proof}
+\begin{align}
+ \sum_t\eta^2&=c_\eta^2,&\sum_t\rho^2&=c_\rho^2T^{-1/2},\\
+ T\eta&=c_\eta T^{1/2},&T\rho&=c_\rho T^{1/4}.
+\end{align}
+\end{proof}
+
+\begin{proposition}[Sharp obstruction for the uniform curvature average]
+For $f(u)=(u-1)^2/2$, $u_0=0$, $u_{t+1}=u_t-\rho f'(u_t)$,
+$\rho=T^{-3/4}$,
+\begin{align}
+ u_t-1&=-(1-\rho)^t,\\
+ \frac1T\sum_{t<T}|f'(u_t)|^2
+ &=\frac{1-(1-\rho)^{2T}}{T(2\rho-\rho^2)}
+ \sim\frac1{2T\rho}=\tfrac12T^{-1/4}.
+\end{align}
+\end{proposition}
+\begin{proof}
+\begin{align}
+ (1-\rho)^{2T}&\le e^{-2T\rho}=e^{-2T^{1/4}}\longrightarrow0,\\
+ (2\rho-\rho^2)/(2\rho)&\longrightarrow1.
+\end{align}
+\end{proof}

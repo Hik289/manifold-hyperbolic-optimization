@@ -1,0 +1,27 @@
+{
+  "status": "OK",
+  "method": "B3",
+  "G": 4,
+  "branchings": [
+    2,
+    4,
+    6,
+    8
+  ],
+  "dim": 5,
+  "nodes_per_group": 2000,
+  "epochs": 2000,
+  "final_total_distortion": 0.2264075018465519,
+  "final_total_loss": 0.12967075034976006,
+  "learned_K": [
+    1.0,
+    1.0,
+    1.0,
+    1.0
+  ],
+  "K_mean": 1.0,
+  "K_std": 0.0,
+  "final_max_radius": 7.385036468505859,
+  "max_manifold_res": 0.0625,
+  "seed": 42
+}

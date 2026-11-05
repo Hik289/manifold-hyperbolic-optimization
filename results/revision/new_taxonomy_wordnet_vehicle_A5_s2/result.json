@@ -1,0 +1,107 @@
+{
+  "status": "complete",
+  "config": {
+    "suite": "new_tasks_v1",
+    "family": "taxonomy",
+    "dataset": "wordnet_vehicle",
+    "model": "product_embedding",
+    "method": "A5",
+    "epochs": 1000,
+    "seed": 42,
+    "dim": 8,
+    "groups": 4,
+    "lr": 10.0,
+    "rho": 0.01,
+    "beta": 0.9,
+    "init_K": 3.0,
+    "point_decay": 0.0,
+    "search_slot": 2,
+    "search_budget": 6,
+    "priority": 3,
+    "eval_every": 25,
+    "selection_metric": "map",
+    "id": "new_taxonomy_wordnet_vehicle_A5_s2"
+  },
+  "final": {
+    "epoch": 999,
+    "train_loss": 0.30435165762901306,
+    "seconds": 64.92158495634794,
+    "K": [
+      2.9953231811523438,
+      2.994725227355957,
+      2.9957406520843506,
+      2.9944894313812256
+    ],
+    "temperature": 0.5327087044715881,
+    "peak_memory_mb": 5.714944,
+    "grad_norm": 3.705080598592758e-05,
+    "momentum_norm": 3.3230437111342326e-05,
+    "exp_argument": 0.0028212990146130323,
+    "radius_clipped_fraction": 0.0,
+    "manifold_residual": 2.980232238769531e-07,
+    "tangent_residual": 7.275957614183426e-12,
+    "mean_radius": 0.3812325894832611,
+    "val_loss": 0.50005042552948,
+    "val_ap": 0.8306603910413668,
+    "val_auc": 0.8634958115477596,
+    "val_map": 0.09926997988164121
+  },
+  "epochs_completed": 1000,
+  "test_status": "withheld_until_all_30_configs_complete",
+  "protocol": {
+    "suite": "new_tasks_v1",
+    "data": {
+      "source": "Princeton WordNet via NLTK",
+      "version": "3.0",
+      "source_url": "https://www.nltk.org/howto/wordnet.html",
+      "root_synset": "vehicle.n.01",
+      "directed": true,
+      "archive_sha256": "cbda5ea6eef7f36a97a43d4a75f85e07fccbb4f23657d27b4ccbc93e2646ab59",
+      "protocol": "All descendants and internal transitive hypernym relations, including instances. Unfiltered subtree: differs from the original Poincare mammals reconstruction benchmark. Hold out 10% validation and 10% test relations with training vertex coverage. Rank every other vertex with other known positives filtered; report macro query MAP.",
+      "dataset": "wordnet_vehicle",
+      "split_seed": 42,
+      "sha256": "f9f517f87f63b978f10579493311d20ebc90f61d1571d1b9222a11df4534efaa",
+      "shapes": {
+        "n": [],
+        "all_positive": [
+          2311,
+          2
+        ],
+        "train_positive": [
+          1849,
+          2
+        ],
+        "train_negative": [
+          1849,
+          2
+        ],
+        "validation_positive": [
+          231,
+          2
+        ],
+        "validation_negative": [
+          231,
+          2
+        ],
+        "test_positive": [
+          231,
+          2
+        ],
+        "test_negative": [
+          231,
+          2
+        ],
+        "names": [
+          528
+        ]
+      }
+    },
+    "search_runs_per_method": 6,
+    "primary_metric": "map",
+    "selection": "Complete all 30 configs for the dataset, select each method by final validation metric, then evaluate only the selected checkpoints on test.",
+    "initialization": "Identical seed42; K-dependent Lorentz homothety as in the optimizer.",
+    "dimensionality": "4 factors x 2 intrinsic dimensions; Euclidean control has 8 dimensions.",
+    "calibration": "Every method learns the same score bias and temperature; temperature constrained to exp([-3,3]).",
+    "known_limitations": "Single seed. These are compact custom protocols, not reproductions of published benchmark scores; common canonical cap permits curvature-dependent physical radius."
+  }
+}

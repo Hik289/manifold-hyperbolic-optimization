@@ -1,0 +1,9 @@
+# Core geometry, synthetic/mechanism experiments, analysis and figure reproduction.
+torch>=2.3,<2.6
+numpy>=1.23,<3
+scipy>=1.10,<2
+scikit-learn>=1.1,<2
+matplotlib>=3.5,<4
+pandas>=1.4,<3
+psutil>=5.9,<8
+Pillow>=9

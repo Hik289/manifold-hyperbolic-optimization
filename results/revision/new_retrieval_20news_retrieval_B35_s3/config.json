@@ -1,0 +1,22 @@
+{
+  "suite": "new_tasks_v1",
+  "family": "retrieval",
+  "dataset": "20news_retrieval",
+  "model": "product_proxy",
+  "method": "B35",
+  "epochs": 1000,
+  "seed": 42,
+  "dim": 8,
+  "groups": 4,
+  "lr": 1.0,
+  "rho": 0.01,
+  "beta": 0.9,
+  "init_K": 0.1,
+  "point_decay": 0.0,
+  "search_slot": 3,
+  "search_budget": 6,
+  "priority": 5,
+  "eval_every": 25,
+  "selection_metric": "recall1",
+  "id": "new_retrieval_20news_retrieval_B35_s3"
+}

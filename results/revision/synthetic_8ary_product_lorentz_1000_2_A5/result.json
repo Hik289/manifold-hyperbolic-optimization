@@ -1,0 +1,35 @@
+{
+  "status": "complete",
+  "config": {
+    "family": "synthetic",
+    "dataset": "8ary",
+    "model": "product_lorentz",
+    "method": "A5",
+    "epochs": 2000,
+    "seed": 42,
+    "nodes": 1000,
+    "dim": 2,
+    "lr": 10.0,
+    "id": "synthetic_8ary_product_lorentz_1000_2_A5"
+  },
+  "final": {
+    "epoch": 1999,
+    "train_loss": 0.240158811211586,
+    "distortion_fixed_pairs": 0.3928084075450897,
+    "seconds": 76.2587628364563,
+    "K": [
+      0.9576027989387512,
+      0.9580014944076538
+    ],
+    "grad_norm": 4.316898048273288e-05,
+    "momentum_norm": 3.16890436806716e-05,
+    "exp_argument": 0.001296094967983663,
+    "radius_clipped_fraction": 0.009000000543892384,
+    "manifold_residual": 0.0035028457641601562,
+    "tangent_residual": 3.725290298461914e-09,
+    "mean_radius": 1.9186832904815674,
+    "MAP": 0.007696753938469313,
+    "mean_rank": 422.2642642642643
+  },
+  "epochs_completed": 2000
+}

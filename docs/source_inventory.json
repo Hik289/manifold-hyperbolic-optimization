@@ -1,0 +1,300 @@
+{
+  "original_source_files": 57,
+  "present_in_public_release": 57,
+  "unchanged_optimizer_and_task_kernels": [
+    "experiments/lorentz.py",
+    "experiments/optimizers.py",
+    "experiments/optimizers_mg.py",
+    "experiments/revision/geometry.py",
+    "experiments/revision/structured.py",
+    "experiments/revision/mechanism.py",
+    "experiments/revision/new_tasks.py"
+  ],
+  "files": [
+    {
+      "path": "experiments/train_rotmnist.py",
+      "sha256": "7e0c71cd1e781be20d4d9f8d863876fc274efce3722f916dc7b2e089e1b2adc1",
+      "unchanged_from_original": false
+    },
+    {
+      "path": "experiments/diag_nan.py",
+      "sha256": "fa8f02b34dd584be02a4ae8e52d0735b10d6644c60fc0eb91cb4ec40f295be6f",
+      "unchanged_from_original": true
+    },
+    {
+      "path": "experiments/train_formal.py",
+      "sha256": "5413fea0e390228fcb5c06adae9841e738c06cbe94ffd6b294c58430132d6676",
+      "unchanged_from_original": true
+    },
+    {
+      "path": "experiments/lorentz.py",
+      "sha256": "b83ddf4f4fdf1e2fd97638ccf195a3443491392b8404387fdebafb0ce314c4d0",
+      "unchanged_from_original": true
+    },
+    {
+      "path": "experiments/run_grid.sh",
+      "sha256": "a044bb4798add7a2d658c16c9240bdca7bbf4f11ee57d71d1a8e68aa75016875",
+      "unchanged_from_original": true
+    },
+    {
+      "path": "experiments/test_operators.py",
+      "sha256": "6d26ab7933f9a70acebfe0448006840a09cd7b90396ba6621c75b62de4eba4cc",
+      "unchanged_from_original": true
+    },
+    {
+      "path": "experiments/optimizers_mg.py",
+      "sha256": "cb0b735c747c79d59c9a6991200ec3e378cd8edd71e244493a0404df840cd4ce",
+      "unchanged_from_original": true
+    },
+    {
+      "path": "experiments/optimizers.py",
+      "sha256": "13d4edb2648b506190801d3bb57b714bb0fefd4e65f930e2d5f45e42516baec3",
+      "unchanged_from_original": true
+    },
+    {
+      "path": "experiments/train.py",
+      "sha256": "869e22ad94dfda64569869ebc27474d6e9c7dd21c18ebc14f1c821cd05dcff9b",
+      "unchanged_from_original": true
+    },
+    {
+      "path": "experiments/trace_drift.py",
+      "sha256": "6a82a6b55f2070cc4f3450609efb8cecbe6943ac0c174f10cc875ea9dea442df",
+      "unchanged_from_original": true
+    },
+    {
+      "path": "experiments/train_multigroup.py",
+      "sha256": "835f32e31a393846da3c0b71753752b9ef06ac1246ecb8f7b137bdb0acaa4ab4",
+      "unchanged_from_original": true
+    },
+    {
+      "path": "experiments/train_kg.py",
+      "sha256": "3388f67db5f50cb1ce18aefb6f8bae03d123275237de2fb47dea251e45d3a8a5",
+      "unchanged_from_original": false
+    },
+    {
+      "path": "experiments/test_mitigation.py",
+      "sha256": "d5f40cf5ad8089544adac49bc7a6d9c3505a2a69998f5934af284427a867e4b2",
+      "unchanged_from_original": true
+    },
+    {
+      "path": "experiments/data.py",
+      "sha256": "63c26d0fec84ecce989bd0eaa330fa8077bcd1854802315f342b72b443f8d1b8",
+      "unchanged_from_original": true
+    },
+    {
+      "path": "experiments/revision/worker.py",
+      "sha256": "54f4ef8303e7eac32c1bb1cf4df37dddfc6b060395c2644b59722fb0c6e42fc0",
+      "unchanged_from_original": false
+    },
+    {
+      "path": "experiments/revision/package_overleaf.py",
+      "sha256": "54b11b6f344eeb598cfd5a64051d8fc14d0eacfeab8430c913ce0206a87b836a",
+      "unchanged_from_original": false
+    },
+    {
+      "path": "experiments/revision/restart_supervisor.py",
+      "sha256": "32dd9c9dade0997e3c4b82e1d66fd010524da0e89b657499699c970bc47d57af",
+      "unchanged_from_original": true
+    },
+    {
+      "path": "experiments/revision/priority_worker.py",
+      "sha256": "07a5362c014f13773d9695d808101c33eb56df33068c18055831d1d4d6ba3223",
+      "unchanged_from_original": false
+    },
+    {
+      "path": "experiments/revision/collect.py",
+      "sha256": "56232b3de1cd68bb73ce296aa0a20ad922dffb93edd92d9304bb78cf60d795d7",
+      "unchanged_from_original": false
+    },
+    {
+      "path": "experiments/revision/sync_local.py",
+      "sha256": "99da18b83173eebd979552872049f2231e12aaa66e6c4ee9ea3345549669f837",
+      "unchanged_from_original": false
+    },
+    {
+      "path": "experiments/revision/validate_geometry.py",
+      "sha256": "505f16613f5ba5839ca0f61410303e633de9c0015082c3f4d75f40dd08ddcd0c",
+      "unchanged_from_original": true
+    },
+    {
+      "path": "experiments/revision/runner.py",
+      "sha256": "f1a828d3d3b28b9645989d61b05fe4827fc692d35c2c4ee58b12e9717f29b6a5",
+      "unchanged_from_original": false
+    },
+    {
+      "path": "experiments/revision/validate_tasks.py",
+      "sha256": "d06f7ec812a73b5d29f874187dd593bb30fd46e11e9208f1fbf7e05b50aaad4c",
+      "unchanged_from_original": false
+    },
+    {
+      "path": "experiments/revision/new_tasks.py",
+      "sha256": "819a4c314a3b1756d5a1578d3d07d5b1131f5c01569d607ee280048da93f82dd",
+      "unchanged_from_original": true
+    },
+    {
+      "path": "experiments/revision/manifest.py",
+      "sha256": "2e15729803a0b20c43d3e7374c34fc164ea902db10545ee60170421b79c28e18",
+      "unchanged_from_original": true
+    },
+    {
+      "path": "experiments/revision/prepare_data.py",
+      "sha256": "e390e0c8ea0f9ee43b51dadffd280c77fcf9c8bab1dfac08915a36fbff66a7b5",
+      "unchanged_from_original": false
+    },
+    {
+      "path": "experiments/revision/supervisor.py",
+      "sha256": "09c6fbfd642b2ee38d222a643750548d818942ee82cc42c89652c5e058c5d354",
+      "unchanged_from_original": false
+    },
+    {
+      "path": "experiments/revision/validate_new_tasks.py",
+      "sha256": "5681886a1aa2cccf6ddfd8bbff6062e5760c6fbc01eb080ef090f8592d718a83",
+      "unchanged_from_original": false
+    },
+    {
+      "path": "experiments/revision/extension_manifest.py",
+      "sha256": "69b4a7982bdde6819d01d58bd2336ffcbce48afa3b1b50d43062bb12f2809c28",
+      "unchanged_from_original": true
+    },
+    {
+      "path": "experiments/revision/validate_test_release.py",
+      "sha256": "35cca83854667c7a0fa6d4b03acc9ca5eee03226ad34128e41c8f962f47f4916",
+      "unchanged_from_original": false
+    },
+    {
+      "path": "experiments/revision/mechanism.py",
+      "sha256": "aadf053d90cfbdc5d10645d80fa97c5387cb066eb674ba66a83e82bc1726c334",
+      "unchanged_from_original": true
+    },
+    {
+      "path": "experiments/revision/prepare_yelp2018.py",
+      "sha256": "c7d6aac579ee6848b0e0b310c02e590d2384705a0bc36c974e15b089ee3b59b8",
+      "unchanged_from_original": false
+    },
+    {
+      "path": "experiments/revision/long_horizon_evidence.py",
+      "sha256": "dd672106b194cc36a9ea037c1821b3a5f786f083f0c26ffd5d6a5585d30f3591",
+      "unchanged_from_original": true
+    },
+    {
+      "path": "experiments/revision/manifest_images.py",
+      "sha256": "e0dc645ac4f5783a8e49d3ff8c962cc15aaa4176b803fb806e7f576c018a486c",
+      "unchanged_from_original": true
+    },
+    {
+      "path": "experiments/revision/export_paper_reproduction.py",
+      "sha256": "a1cf8624e2a7273432b973cc1f454eb4752786e13e5c886b148b8bc75eb098d8",
+      "unchanged_from_original": false
+    },
+    {
+      "path": "experiments/revision/geometry.py",
+      "sha256": "2620b310ea63dc6abbf9f2cd4d96c07d427b3a060fedecfad35727cbf7dd8e5a",
+      "unchanged_from_original": true
+    },
+    {
+      "path": "experiments/revision/extension_evidence.py",
+      "sha256": "dda2ae798691a9419a2d01f6cc1e1a8a7d4ee6b25fa2faa7167e9a27ad25c960",
+      "unchanged_from_original": true
+    },
+    {
+      "path": "experiments/revision/structured.py",
+      "sha256": "abb0bb29acc959f62896df60a8b8b596afe08f3776bd90b6641325f4d4dfc0c0",
+      "unchanged_from_original": true
+    },
+    {
+      "path": "experiments/revision/table_style.py",
+      "sha256": "db44c218860268408abf4886d3a24d30f926060bf8cf1410b45449f04580f2a6",
+      "unchanged_from_original": true
+    },
+    {
+      "path": "experiments/revision/theory_diagnostics.py",
+      "sha256": "93895776c961574b2e9d698416eb9e7d1659a25954d4356dd91c7d7b8e9b31dd",
+      "unchanged_from_original": false
+    },
+    {
+      "path": "experiments/revision/finalize_new_tasks.py",
+      "sha256": "02e4ac04595bf755f5d64124769ccfe4e4d2966e4a3b42b274558cee624a760a",
+      "unchanged_from_original": true
+    },
+    {
+      "path": "experiments/revision/synthetic_evidence.py",
+      "sha256": "ca46a54e6b97e29e1969104cda6d97a00e13f57a168e7c44f6a245475ebae693",
+      "unchanged_from_original": true
+    },
+    {
+      "path": "experiments/revision/evidence.py",
+      "sha256": "86c67bb728d2c0823a2ac8dd9733a77d5c9a91b47e1f997d78533e3ec6830921",
+      "unchanged_from_original": false
+    },
+    {
+      "path": "experiments/revision/extension_data.py",
+      "sha256": "cdf8afefac19f1155f85542ba1f3a828d6e970a1776ec375dfcdff3f148d09c8",
+      "unchanged_from_original": true
+    },
+    {
+      "path": "experiments/revision/reduce_scope_nov4.py",
+      "sha256": "aaf9dcab73514cc609ba208ab2d7450c40102a7b1da12a89b0969a7a90177d4d",
+      "unchanged_from_original": false
+    },
+    {
+      "path": "figures/fig6_revision_cora_code.py",
+      "sha256": "ac38e702b319d73a6346f4af8158fe85b7d3b09cc0bf2d1e498e2fbbedde42d8",
+      "unchanged_from_original": false
+    },
+    {
+      "path": "figures/fig2_convergence_G8_code.py",
+      "sha256": "450b1c8280acdebe12c6e08d4a3e19f63709d5263209763a636bd8eef1229136",
+      "unchanged_from_original": false
+    },
+    {
+      "path": "figures/fig1_curvature_bars_code.py",
+      "sha256": "62407f4b1da6603d014421d5487319e8fab7d323ebdbab8857444cbcd301ebc1",
+      "unchanged_from_original": false
+    },
+    {
+      "path": "figures/fig5_fp32_floor_code.py",
+      "sha256": "5cc5940f99aa31e2cc9520fde8cc785cede7d3ec81c76ba83cbabc077b8b5a9c",
+      "unchanged_from_original": false
+    },
+    {
+      "path": "figures/fig3_kg_trajectory_code.py",
+      "sha256": "167a0aedbf8e95ef779d21de0130ea9b36df0b7def38e21f9d022d15291899f5",
+      "unchanged_from_original": false
+    },
+    {
+      "path": "figures/render_related_work_preview.py",
+      "sha256": "610660017fdd51e1c8f589a4d9c25fa437d3e5b4a3c6212483a436987363aabf",
+      "unchanged_from_original": true
+    },
+    {
+      "path": "figures/fig4_het_br_code.py",
+      "sha256": "43155b38c6a1f81622ec8db9e713818848f1863b1b3f9f70c53a629339a5e5c5",
+      "unchanged_from_original": false
+    },
+    {
+      "path": "paper/scripts/reproduce_figures.py",
+      "sha256": "8d4688e7d13fcbd0c192aee145cedeaa35e34fd510be0fba01955505a94a98c9",
+      "unchanged_from_original": true
+    },
+    {
+      "path": "paper/scripts/redesign_results.py",
+      "sha256": "dc1fd2cd2f1d0c185b99cd3274eec643040d7751bd1e60f85964e5f1dac8bd11",
+      "unchanged_from_original": false
+    },
+    {
+      "path": "paper/scripts/reproduce_positive_tables.py",
+      "sha256": "552ff2ad6bcf8c408c6d43349bba3a5bf888e590eab24641882669e40da8b5a0",
+      "unchanged_from_original": true
+    },
+    {
+      "path": "paper/scripts/plot_revision_diagnostics.py",
+      "sha256": "1afd1283704d4a8bd9a6354a87f951fda03aee6151c563ab7a1aaa475fbff45c",
+      "unchanged_from_original": false
+    },
+    {
+      "path": "paper/scripts/plot_revision_drift.py",
+      "sha256": "92c7805a3b90cddf889ab908351d187c1319b245de6e83789e413b652f90be45",
+      "unchanged_from_original": false
+    }
+  ]
+}

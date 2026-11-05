@@ -1,0 +1,35 @@
+{
+  "status": "complete",
+  "config": {
+    "family": "recommendation",
+    "dataset": "ml1m",
+    "model": "mf",
+    "method": "A5",
+    "epochs": 1000,
+    "seed": 42,
+    "id": "recommendation_ml1m_mf_A5"
+  },
+  "final": {
+    "epoch": 999,
+    "train_loss": 0.2474143059938328,
+    "seconds": 57283.442798137665,
+    "K": [
+      0.20207497477531433,
+      0.23442679643630981,
+      0.21138057112693787,
+      0.17249906063079834
+    ],
+    "grad_norm": 8.30722347018309e-05,
+    "momentum_norm": 3.93525515391957e-05,
+    "exp_argument": 2.001394022954628e-05,
+    "radius_clipped_fraction": 0.0,
+    "manifold_residual": 1.430511474609375e-06,
+    "tangent_residual": 5.820766091346741e-11,
+    "mean_radius": 0.6128092408180237,
+    "val_recall20": 0.06705298013245033,
+    "val_ndcg20": 0.025926892605308286,
+    "test_recall20": 0.055463576158940396,
+    "test_ndcg20": 0.02156020962181065
+  },
+  "epochs_completed": 1000
+}

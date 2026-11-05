@@ -1,0 +1,18 @@
+{
+  "status": "OK",
+  "method": "B3",
+  "tree": "binary",
+  "nodes": 10000,
+  "dim": 10,
+  "epochs": 2000,
+  "final_loss": 0.5538280010223389,
+  "final_distortion": 0.7376994490623474,
+  "final_curvature": 1.0,
+  "final_mean_radius": 2.9656100273132324,
+  "final_max_radius": 4.548870086669922,
+  "device": "cuda:2",
+  "traj_path": "runs/binary_n10000_d10_B3/traj_B3_seed42.csv",
+  "traj_columns": 24,
+  "reproj_every": 50,
+  "seed": 42
+}

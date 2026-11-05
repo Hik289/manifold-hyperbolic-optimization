@@ -1,0 +1,21 @@
+% WWW_REFERENCE_STYLE
+\begin{table*}[t]
+\centering
+\footnotesize\setlength{\tabcolsep}{4.2pt}\renewcommand{\arraystretch}{1.12}
+\caption{Long-horizon hierarchy mechanism tests: final held-out pair distortion after 2000 updates (lower is better). All methods use seed 42 and identical pair splits. Only cases with completed B5, B3, and A5 are included. The best-fixed column requires all five B35 curvature settings and selects using final validation distortion, never test distortion. Missing comparisons remain dashes. These controlled synthetic cases are not additional real-data task families.}
+\label{tab:revision-mechanism}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{lrrrrrr}
+\toprule
+Case & B3 & B5 & A5 & Shared & B4 & Best fixed \\
+\midrule
+abrupt8 & 0.7417 & \cellcolor{oursbg}0.6176 & 0.6176 & 0.6143 & 0.5914 & \textbf{0.1637} \\
+heterogeneous & 0.2510 & \cellcolor{oursbg}0.2470 & 0.2463 & 0.2543 & 0.2415 & \textbf{0.2182} \\
+smooth2 & 0.3328 & \cellcolor{oursbg}0.3295 & 0.3296 & 0.3260 & 0.3202 & \textbf{0.1823} \\
+smooth5 & 0.6225 & \cellcolor{oursbg}0.4347 & 0.4347 & 0.4479 & 0.4262 & \textbf{0.2058} \\
+smooth8 & 0.7411 & \cellcolor{oursbg}0.4813 & 0.4813 & 0.5078 & 0.4719 & \textbf{0.2757} \\
+static & 0.2734 & \cellcolor{oursbg}0.2727 & 0.2726 & 0.2785 & 0.2604 & \textbf{0.2011} \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table*}

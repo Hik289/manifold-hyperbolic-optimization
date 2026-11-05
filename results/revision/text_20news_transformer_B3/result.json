@@ -1,0 +1,61 @@
+{
+  "selected_epoch": 647,
+  "selected_test": {
+    "accuracy": 0.5467339158058167,
+    "macro_f1": 0.5353876349904864
+  },
+  "status": "complete",
+  "config": {
+    "family": "text",
+    "dataset": "20news",
+    "model": "transformer",
+    "method": "B3",
+    "epochs": 1000,
+    "seed": 42,
+    "id": "text_20news_transformer_B3"
+  },
+  "final": {
+    "epoch": 999,
+    "task": 0,
+    "train_loss": 0.08811740219235227,
+    "seconds": 38573.986102581024,
+    "K": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "learning_rate": 0.1,
+    "curvature_learning_rate": 0.001,
+    "peak_memory_mb": 523.199488,
+    "grad_norm": 0.003587211249396205,
+    "momentum_norm": 0.012780126184225082,
+    "exp_argument": 0.0012780126417055726,
+    "radius_clipped_fraction": 1.0,
+    "manifold_residual": 0.001708984375,
+    "tangent_residual": 2.384185791015625e-07,
+    "mean_radius": 4.000364303588867,
+    "val_accuracy": 0.6148409843444824,
+    "val_macro_f1": 0.610733520578731,
+    "test_accuracy": 0.5440785884857178,
+    "test_macro_f1": 0.5366027832218618
+  },
+  "best_validation": 0.6342756152153015,
+  "epochs_completed": 1000
+}

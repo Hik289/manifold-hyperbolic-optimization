@@ -1,0 +1,379 @@
+\subsection{Expected risk, second moments, concentration, and metric entropy}
+\label{app:rigid-generalization}
+We distinguish the signed expected generalization gap, its absolute size, and a high-probability statement. A small signed mean can hide cancellation, so the second-moment argument is needed to control the absolute gap. We also give a separate complexity bound that holds uniformly over the compact hypothesis domain and is independent of the training trajectory.
+\begin{definition}[Population and empirical risks]
+\begin{align}
+ S&=(Z_1,\ldots,Z_n)\sim P^n,&Z&\sim P,\\
+ R(\theta)&=\mathbb E_Z\ell(\theta;Z),&
+ R_S(\theta)&=\frac1n\sum_{i=1}^n\ell(\theta;Z_i),\\
+ S^{(i)}&=(Z_1,\ldots,Z_{i-1},Z_i',Z_{i+1},\ldots,Z_n),&Z_i'&\sim P,\\
+ \mathcal G(S,\omega)&=R(A(S;\omega))-R_S(A(S;\omega)),&\omega&\perp(S,Z,Z_1',\ldots,Z_n').
+\end{align}
+\end{definition}
+
+\begin{theorem}[Generalization from expected stability]
+\label{thm:generalization-new}
+Under Theorem~\ref{thm:rigid-stability},
+\begin{align}\label{eq:stability-sum-new}
+ |\mathbb E_{S,\omega}\mathcal G(S,\omega)|
+ &\le\epsilon_{\rm stab}(T)
+ \le\frac{L_\ell B_s}{Cn}\left(e^{C\sum_{t<T}\eta_t}-1\right),\qquad C>0.
+\end{align}
+For $C=0$, the right-hand side is $L_\ell B_s\sum_t\eta_t/n$.
+\end{theorem}
+\begin{proof}
+By exchangeability of $Z_i,Z_i'$,
+\begin{align}
+ \mathbb E\mathcal G
+ &=\frac1n\sum_i\mathbb E[\ell(A(S);Z_i')-\ell(A(S);Z_i)]\\
+ &=\frac1n\sum_i\mathbb E[\ell(A(S^{(i)});Z_i)-\ell(A(S);Z_i)],\\
+ |\mathbb E\mathcal G|
+ &\le\frac1n\sum_i\mathbb E|\ell(A(S^{(i)});Z_i)-\ell(A(S);Z_i)|\\
+ &\le\frac1n\sum_i\epsilon_{\rm stab}(T)=\epsilon_{\rm stab}(T).
+\end{align}
+\end{proof}
+
+\begin{theorem}[Variance-sensitive second moment by one-coordinate decoupling]
+\label{thm:rigid-gen-second-moment}
+Assume $0\le\ell\le M_\ell$ and
+\begin{align}
+ \sup_{S\sim S'}\sup_z\mathbb E_\omega
+ |\ell(A(S;\omega);z)-\ell(A(S';\omega);z)|\le\epsilon.
+\end{align}
+Let
+\begin{align}
+ v_A&:=\mathbb E_{S,\omega}\operatorname{Var}_{Z\sim P}\ell(A(S;\omega);Z),&
+ \bar R&:=\mathbb E_{S,\omega}R(A(S;\omega)).
+\end{align}
+Then
+\begin{align}\label{eq:sharp-gen-second-moment}
+ \mathbb E\mathcal G^2
+ &\le\frac{v_A}{n}+4M_\ell\epsilon
+ \le\frac{\bar R(M_\ell-\bar R)}n+4M_\ell\epsilon
+ \le\frac{M_\ell^2}{4n}+4M_\ell\epsilon,\\
+ \mathbb E|\mathcal G|
+ &\le\sqrt{v_A/n+4M_\ell\epsilon},\\
+ \Pr\left\{|\mathcal G|>\sqrt{\frac{v_A/n+4M_\ell\epsilon}{\delta}}\right\}&\le\delta.
+\end{align}
+The coefficient $1/4$ in the worst-case IID variance term cannot be reduced.
+\end{theorem}
+\begin{proof}
+Work directly with the population-centered variables, avoiding a ghost-sample Jensen step:
+\begin{align}
+ c_i&:=R(A(S;\omega))-\ell(A(S;\omega);Z_i),&
+ \mathcal G&=n^{-1}\sum_i c_i.
+\end{align}
+Replace only entry $i$ by an independent $Z_i'$ and define, for every $k$,
+\begin{align}
+ c_k^{(i)}&:=R(A(S^{(i)};\omega))-\ell(A(S^{(i)};\omega);Z_k).
+\end{align}
+For $j\ne i$, condition on $S_{-i},Z_i',\omega$. The algorithm output and $c_j^{(i)}$ are then fixed, while $Z_i\sim P$ remains independent. Thus
+\begin{align}
+ \mathbb E[c_i^{(i)}\mid S_{-i},Z_i',\omega]&=0,&
+ \mathbb E[c_i^{(i)}c_j^{(i)}]&=0,\\
+ \mathbb E[(c_i^{(i)})^2]&=v_A,&
+ \mathbb E|c_k-c_k^{(i)}|&\le2\epsilon.
+\end{align}
+The last bound uses stability once for the population loss and once for the evaluation at $Z_k$. Since $|c_k|,|c_k^{(i)}|\le M_\ell$,
+\begin{align}
+ \mathbb E c_i^2
+ &\le\mathbb E(c_i^{(i)})^2+2M_\ell\mathbb E|c_i-c_i^{(i)}|
+ \le v_A+4M_\ell\epsilon,\\
+ \mathbb E[c_ic_j]
+ &=\mathbb E[(c_i-c_i^{(i)})c_j+c_i^{(i)}(c_j-c_j^{(i)})]
+ \le4M_\ell\epsilon\qquad(i\ne j),\\
+ \mathbb E\mathcal G^2
+ &\le n^{-2}\{n(v_A+4M_\ell\epsilon)+n(n-1)4M_\ell\epsilon\}
+ =v_A/n+4M_\ell\epsilon.
+\end{align}
+The scalar Bhatia--Davis bound \citep{bhatia2000variance} gives
+\begin{align}
+ \operatorname{Var}_Z\ell(A;Z)&\le R(A)(M_\ell-R(A)),\\
+ v_A&\le\mathbb E[R(A)(M_\ell-R(A))]
+ \le\bar R(M_\ell-\bar R)\le M_\ell^2/4.
+\end{align}
+Indeed, $0\le Y\le M_\ell$ implies $\mathbb E Y^2\le M_\ell\mathbb E Y$; subtracting $(\mathbb E Y)^2$ proves the bound. Cauchy--Schwarz and Markov's inequality give the remaining conclusions. A sample-independent predictor with loss $M_\ell\operatorname{Bernoulli}(1/2)$ has $\epsilon=0$ and $\mathbb E\mathcal G^2=M_\ell^2/(4n)$, proving sharpness of the IID term.
+\end{proof}
+
+Expected absolute stability suffices for the preceding second-moment bound, including randomness in the training algorithm. The next concentration statement instead assumes a bound for a fixed random seed, uniformly over neighboring samples. Keeping these assumptions distinct prevents the expected coupling argument from being used as an unjustified pathwise guarantee.
+
+\begin{theorem}[Concentration under pathwise uniform stability]
+Assume $A$ is deterministic, or fix a seed for which
+\begin{align}
+ \sup_{S\sim S'}\sup_z|\ell(A(S);z)-\ell(A(S');z)|&\le\epsilon,\\
+ 0\le\ell&\le M_\ell.
+\end{align}
+Then, with probability at least $1-\delta$,
+\begin{align}
+ |\mathcal G(S)|
+ \le\epsilon+(2n\epsilon+M_\ell)
+ \sqrt{\frac{\log(2/\delta)}{2n}}.
+\end{align}
+\end{theorem}
+\begin{proof}
+For $S\sim S'$,
+\begin{align}
+ |R(A(S))-R(A(S'))|&\le\epsilon,\\
+ |R_S(A(S))-R_{S'}(A(S'))|
+ &\le\frac{n-1}{n}\epsilon+\frac{M_\ell}{n},\\
+ |\mathcal G(S)-\mathcal G(S')|&\le2\epsilon+M_\ell/n=:c_n.
+\end{align}
+The bounded-difference martingale inequality gives
+\begin{align}
+ \Pr(|\mathcal G-\mathbb E\mathcal G|\ge t)
+ &\le2\exp\left(-\frac{2t^2}{nc_n^2}\right),\\
+ |\mathbb E\mathcal G|&\le\epsilon,\\
+ t&=c_n\sqrt{n\log(2/\delta)/2}.
+\end{align}
+\end{proof}
+
+\begin{theorem}[Sharper stability concentration via seed averaging]
+\label{thm:sharp-stability-concentration}
+Let $n\ge2$, $0\le\ell\le M_\ell$, and assume uniform expected absolute stability with parameter $\epsilon$. Define
+\begin{align}
+ \bar\ell_T(S;z)&:=\mathbb E_\omega\ell(A_T(S;\omega);z),&
+ \overline{\mathcal G}_T(S)&:=\mathbb E_\omega\mathcal G(S,\omega).
+\end{align}
+There is a universal constant $C_{\rm BKW}$ such that, with probability at least $1-\delta$ over $S$,
+\begin{align}\label{eq:sharp-stability-concentration}
+ |\overline{\mathcal G}_T(S)|
+ &\le C_{\rm BKW}\left[
+ \epsilon\log(2n)\log(2/\delta)
+ +M_\ell\sqrt{\frac{\log(2/\delta)}n}\right].
+\end{align}
+Under pathwise uniform stability, the same bound holds for $\mathcal G(S,\omega)$ at any fixed seed satisfying that hypothesis.
+\end{theorem}
+\begin{proof}
+The seed-averaged loss is deterministic, bounded in $[0,M_\ell]$, and satisfies
+\begin{align}
+ \sup_{S\sim S'}\sup_z
+ |\bar\ell_T(S;z)-\bar\ell_T(S';z)|
+ &\le\sup_{S\sim S'}\sup_z\mathbb E_\omega
+ |\ell(A_T(S;\omega);z)-\ell(A_T(S';\omega);z)|\le\epsilon.
+\end{align}
+Apply \citet[Corollary~8]{bousquet2020sharper} to this uniformly stable loss. Its generalization gap is precisely $\overline{\mathcal G}_T(S)$. The fixed-seed statement applies the same result directly to the pathwise stable loss.
+\end{proof}
+
+The stability penalty here is logarithmic in $n$, replacing the $\sqrt n\epsilon$ term introduced by bounded differences. Seed averaging is essential for using the expected stability parameter: the conclusion controls the mean loss over training randomness, rather than asserting concentration for one randomly selected run. The second-moment theorem above remains the applicable bound for the joint sample-and-seed gap without stronger assumptions.
+
+\begin{proposition}[Bounded hyperbolic classification loss]
+Let a fixed encoder satisfy $q_{\rm in}(z)\in B_{H_1}(o,B)$ and prototypes satisfy
+$q_c\in B_{H_1}(o,B)$, $K_c\in[K_-,K_+]$. For
+\begin{align}
+ s_c(z)&=-K_c^{-1}d_1(q_{\rm in}(z),q_c)^2,&
+ \ell(z,y)&=-s_y(z)+\log\sum_{c=1}^C e^{s_c(z)},
+\end{align}
+\begin{align}
+ -S_B\le s_c\le0,&\qquad S_B:=4B^2/K_-,\\
+ 0\le\ell\le M_\ell,&\qquad M_\ell:=S_B+\log C.
+\end{align}
+In normal coordinates, one valid joint Lipschitz bound is
+\begin{align}
+ L_s&=\sqrt{2(4Bs(B)/K_-)^2+(4B^2/K_-)^2},\\
+ L_\ell&\le2L_s.
+\end{align}
+\end{proposition}
+\begin{proof}
+\begin{align}
+ d_1(q_{\rm in},q_c)&\le2B,\\
+ \ell&\le S_B+\log C,\\
+ \|\nabla_{q_{\rm in}}s_c\|,\|\nabla_{q_c}s_c\|
+ &\le2d_1(q_{\rm in},q_c)/K_-\le4B/K_-,\\
+ |\partial_{u_c}s_c|&=K_c^{-1}d_1(q_{\rm in},q_c)^2\le4B^2/K_-,\\
+ \|D_zX\|&\le s(B),\\
+ \nabla_s\ell&=\operatorname{softmax}(s)-e_y,&
+ \|\nabla_s\ell\|_1&\le2,\\
+ \|\nabla_\theta\ell\|
+ &=\left\|\sum_c(\operatorname{softmax}(s)_c-\mathbf1_{c=y})\nabla_\theta s_c\right\|\le2L_s.
+\end{align}
+The bound also allows the input point to vary; freezing it only decreases the parameter set.
+\end{proof}
+
+\begin{definition}[Compact hypothesis domain]
+Let $P_q=\sum_g n_g$, $D_q=\sum_gn_gd_g$ and
+\begin{align}
+ \Theta&=\left[\prod_gB_{H_1}(o,B)^{n_g}\right]\times U,\\
+ R_u&=\tfrac12\left[\sum_g(u_{g,+}-u_{g,-})^2\right]^{1/2},\\
+ d_\Theta((q,u),(q',u'))^2
+ &=d_{\mathcal Q}(q,q')^2+\|u-u'\|^2.
+\end{align}
+Assume all trainable prediction parameters belong to $\Theta$, and
+$\ell(\theta;z)\in[0,M_\ell]$ is $L_\Theta$-Lipschitz in $d_\Theta$.
+\end{definition}
+
+\begin{lemma}[Product metric entropy]
+For $\varepsilon>0$,
+\begin{align}\label{eq:rigid-covering}
+ \mathcal N(\Theta,d_\Theta,\varepsilon)
+ &\le\left(1+\frac{4B\sqrt{P_q}s(B)}\varepsilon\right)^{D_q}
+ \left(1+\frac{4R_u}\varepsilon\right)^G.
+\end{align}
+\end{lemma}
+\begin{proof}
+The canonical coordinate domain $\mathcal Z$ is convex and contained in a Euclidean ball of radius $B\sqrt{P_q}$ in $\mathbb R^{D_q}$. A maximal $\tau$-separated set in $\mathcal Z$ gives disjoint radius-$\tau/2$ balls, hence
+\begin{align}
+ \mathcal N(\mathcal Z,\|\cdot\|,\tau)
+ &\le\frac{\operatorname{Vol}B_{D_q}(0,B\sqrt{P_q}+\tau/2)}
+ {\operatorname{Vol}B_{D_q}(0,\tau/2)}
+ =\left(1+\frac{2B\sqrt{P_q}}\tau\right)^{D_q},\\
+ d_{\mathcal Q}(X(z),X(z'))&\le s(B)\|z-z'\|,\\
+ \mathcal N(U,\|\cdot\|,\varepsilon/2)
+ &\le(1+4R_u/\varepsilon)^G.
+\end{align}
+Take $\tau=\varepsilon/[2s(B)]$ and the product of the two nets; each joint distance is at most $\sqrt{(\varepsilon/2)^2+(\varepsilon/2)^2}\le\varepsilon$.
+\end{proof}
+
+\begin{theorem}[Uniform generalization from geometry entropy]
+\label{thm:rigid-entropy-generalization}
+For any $\varepsilon>0$, with probability at least $1-\delta$,
+\begin{align}
+ \mathcal H_\varepsilon
+ &:=D_q\log(1+4B\sqrt{P_q}s(B)/\varepsilon)
+ +G\log(1+4R_u/\varepsilon),\\
+ \sup_{\theta\in\Theta}|R(\theta)-R_S(\theta)|
+ &\le2L_\Theta\varepsilon+
+ M_\ell\sqrt{\frac{\log(2/\delta)+\mathcal H_\varepsilon}{2n}}.\label{eq:rigid-entropy-bound}
+\end{align}
+The same event holds for any data-dependent $A(S)\in\Theta$.
+\end{theorem}
+\begin{proof}
+Let $\Theta_\varepsilon$ be a deterministic net with cardinality $N_\varepsilon$.
+For each $\theta_j\in\Theta_\varepsilon$, Hoeffding's inequality gives
+\begin{align}
+ \Pr(|R(\theta_j)-R_S(\theta_j)|>t)&\le2e^{-2nt^2/M_\ell^2},\\
+ \Pr\left(\max_j|R(\theta_j)-R_S(\theta_j)|>t\right)
+ &\le2N_\varepsilon e^{-2nt^2/M_\ell^2}.
+\end{align}
+For $d_\Theta(\theta,\theta_j)\le\varepsilon$,
+\begin{align}
+ |R(\theta)-R(\theta_j)|&\le L_\Theta\varepsilon,\\
+ |R_S(\theta)-R_S(\theta_j)|&\le L_\Theta\varepsilon,\\
+ |R(\theta)-R_S(\theta)|
+ &\le2L_\Theta\varepsilon+|R(\theta_j)-R_S(\theta_j)|.
+\end{align}
+Take $t=M_\ell\sqrt{\log(2N_\varepsilon/\delta)/(2n)}$ and apply Eq.~\eqref{eq:rigid-covering}.
+\end{proof}
+
+\begin{theorem}[Dudley chaining without a single-net resolution penalty]
+\label{thm:sharp-dudley-generalization}
+Let $\mathcal H_\varepsilon$ be the entropy bound above, and set
+\begin{align}
+ D_\Theta&:=2\sqrt{P_qB^2+R_u^2},&
+ d_0&:=\min\{D_\Theta,M_\ell/L_\Theta\},\\
+ I_\Theta(d)&:=\int_0^d\sqrt{\mathcal H_\varepsilon}\,d\varepsilon.
+\end{align}
+For $L_\Theta>0$, with probability at least $1-\delta$,
+\begin{align}\label{eq:sharp-dudley-bound}
+ \sup_{\theta\in\Theta}|R(\theta)-R_S(\theta)|
+ &\le\mathfrak s_n^{\rm chain}(\delta),\\
+ \mathfrak s_n^{\rm chain}(\delta)
+ &:=\inf_{0\le\tau\le d_0/2}\left\{8L_\Theta\tau+
+ \frac{24L_\Theta}{\sqrt n}\int_\tau^{d_0/2}\sqrt{\mathcal H_\varepsilon}\,d\varepsilon\right\}
+ +M_\ell\sqrt{\frac{\log(2/\delta)}{2n}}\\
+ &\le\frac{24L_\Theta}{\sqrt n}I_\Theta(d_0/2)
+ +M_\ell\sqrt{\frac{\log(2/\delta)}{2n}}
+ .
+\end{align}
+For $L_\Theta=0$, omit the integral term.
+A fully explicit upper bound on the integral is
+\begin{align}
+ I_\Theta(d)
+ &\le d\sqrt{D_q}\left(\sqrt{\log(1+A_q/d)}+\frac{\sqrt\pi}{2}\right)\\
+ &\quad+d\sqrt G\left(\sqrt{\log(1+A_u/d)}+\frac{\sqrt\pi}{2}\right),\\
+ A_q&:=4B\sqrt{P_q}s(B),&A_u&:=4R_u.
+\end{align}
+\end{theorem}
+\begin{proof}
+For a fixed sample, let $f_\theta=(\ell(\theta;Z_i))_{i=1}^n$ and
+\begin{align}
+ d_{2,S}(f_\theta,f_{\theta'})^2
+ &:=n^{-1}\sum_i(\ell(\theta;Z_i)-\ell(\theta';Z_i))^2
+ \le L_\Theta^2d_\Theta(\theta,\theta')^2,\\
+ X_\theta&:=n^{-1}\sum_i\sigma_i\ell(\theta;Z_i),\\
+ \mathbb E_\sigma e^{\lambda(X_\theta-X_{\theta'})}
+ &\le\exp\left[\frac{\lambda^2d_{2,S}(f_\theta,f_{\theta'})^2}{2n}\right].
+\end{align}
+Center the class at a fixed $f_{\theta_0}$; this does not change $\mathbb E_\sigma\sup_\theta X_\theta$. Its radius is at most $L_\Theta d_0$. Dudley's entropy integral \citep{dudley1967sizes}, in the Rademacher form of \citet[Theorem~15.2]{telgarsky2021notes}, gives
+\begin{align}
+ \widehat{\mathfrak R}_S
+ &:=\mathbb E_\sigma\sup_\theta X_\theta
+ \le\inf_{0\le\tau\le d_0/2}\left\{4L_\Theta\tau+
+ \frac{12L_\Theta}{\sqrt n}\int_\tau^{d_0/2}\sqrt{\mathcal H_\varepsilon}\,d\varepsilon\right\}.
+\end{align}
+Symmetrization \citep{bartlett2002rademacher} bounds each of
+$\mathbb E\sup_\theta(R-R_S)$ and $\mathbb E\sup_\theta(R_S-R)$ by $2\mathbb E\widehat{\mathfrak R}_S$. Replacing one sample changes either supremum by at most $M_\ell/n$; applying bounded differences to both tails proves Eq.~\eqref{eq:sharp-dudley-bound}.
+Finally, for $0<\varepsilon\le d$,
+\begin{align}
+ \log(1+A/\varepsilon)&\le\log(1+A/d)+\log(d/\varepsilon),\\
+ \int_0^d\sqrt{\log(d/\varepsilon)}\,d\varepsilon
+ &=d\,\Gamma(3/2)=d\sqrt\pi/2.
+\end{align}
+Use $\sqrt{a+b}\le\sqrt a+\sqrt b$ to obtain the explicit expression.
+\end{proof}
+
+For fixed domain constants, chaining removes the extra $\sqrt{\log n}$ introduced by choosing an $n^{-1/2}$-resolution net. The integral is the primary bound; the final closed form is only a convenient relaxation. To retain the strongest certificate at each sample size, define the deterministic envelope
+\begin{align}
+ \mathfrak s_n^{\rm cov}(\varepsilon,\delta)
+ &:=2L_\Theta\varepsilon+
+ M_\ell\sqrt{\frac{\log(2/\delta)+\mathcal H_\varepsilon}{2n}},\\
+ \mathfrak s_n^\sharp(\delta)
+ &:=\min\left\{\inf_{\varepsilon>0}\mathfrak s_n^{\rm cov}(\varepsilon,\delta),
+ \mathfrak s_n^{\rm chain}(\delta)\right\}.\label{eq:sharp-statistical-envelope}
+\end{align}
+The same $1-\delta$ guarantee holds with this envelope: its alternatives are deterministic bounds on the same scalar uniform deviation, so selecting the smaller one requires no additional union bound. No minimax-optimal numerical constant is claimed for the chaining inequality.
+
+The entropy bound charges representation dimension and the $G$ curvature coordinates separately. Thus grouped curvature increases capacity and also incurs an estimation cost. This bound can be used for any data-dependent output in the domain, even when the trajectory-dependent stability bound is large, but it can itself be loose in high dimension. A trainable encoder must contribute its own parameter complexity as follows.
+
+\begin{corollary}[Additional encoder parameters]
+If a trainable encoder belongs to a Euclidean radius-$R_e$ domain in $\mathbb R^{D_e}$ and the loss is jointly Lipschitz in the product parameter metric, an additional valid entropy term is
+\begin{align}
+ D_e\log(1+6R_e/\varepsilon).
+\end{align}
+For this three-factor product, replace the constants $4$ in Eq.~\eqref{eq:rigid-covering} by $6$ and take radius-$\varepsilon/3$ nets.
+\end{corollary}
+\begin{proof}
+\begin{align}
+ \sqrt{3(\varepsilon/3)^2}&\le\varepsilon,&
+ \mathcal N(B_{D_e}(0,R_e),\|\cdot\|,\varepsilon/3)
+ &\le(1+6R_e/\varepsilon)^{D_e}.
+\end{align}
+\end{proof}
+
+\begin{proposition}[Independent validation selection]
+For $M$ candidates independent of $n_v$ validation examples and losses in $[0,M_\ell]$, define
+\begin{align}
+ a_v&=M_\ell\sqrt{\frac{\log(2M/\delta)}{2n_v}},&
+ \widehat j&\in\arg\min_{j\le M}\widehat R_v(\theta_j).
+\end{align}
+With probability at least $1-\delta$,
+\begin{align}
+ \max_j|R(\theta_j)-\widehat R_v(\theta_j)|&\le a_v,\\
+ R(\theta_{\widehat j})&\le\min_jR(\theta_j)+2a_v.
+\end{align}
+\end{proposition}
+\begin{proof}
+\begin{align}
+ \Pr\left(\max_j|R(\theta_j)-\widehat R_v(\theta_j)|>a_v\right)
+ &\le2M e^{-2n_va_v^2/M_\ell^2}=\delta,\\
+ R(\theta_{\widehat j})
+ &\le\widehat R_v(\theta_{\widehat j})+a_v
+ \le\widehat R_v(\theta_{j^*})+a_v
+ \le R(\theta_{j^*})+2a_v.
+\end{align}
+\end{proof}
+
+\begin{proposition}[Distribution shift]
+For $0\le\ell\le M_\ell$ and $\|P-Q\|_{\rm TV}:=\sup_A|P(A)-Q(A)|$,
+\begin{align}
+ |R_Q(\theta)-R_P(\theta)|&\le M_\ell\|P-Q\|_{\rm TV},\\
+ |\mathbb E[R_Q(A(S))-R_S(A(S))]|
+ &\le\epsilon_{\rm stab}+M_\ell\|P-Q\|_{\rm TV},\qquad S\sim P^n.
+\end{align}
+\end{proposition}
+\begin{proof}
+\begin{align}
+ R_Q(\theta)-R_P(\theta)
+ &=\int_0^{M_\ell}[Q\{\ell(\theta;Z)>t\}-P\{\ell(\theta;Z)>t\}]\,dt,\\
+ |R_Q-R_P|&\le\int_0^{M_\ell}\|P-Q\|_{\rm TV}\,dt.
+\end{align}
+\end{proof}

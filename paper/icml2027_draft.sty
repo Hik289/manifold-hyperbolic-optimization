@@ -1,0 +1,9 @@
+% Local target-year wrapper; not an official ICML 2027 style.
+% The upstream ICML 2026 style is retained without modifications.
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{icml2027_draft}[2026/11/02 Local ICML 2027 draft wrapper]
+\RequirePackage{icml2026}
+\makeatletter
+\renewcommand{\Notice@String}{ICML 2027 submission draft. Format based on the ICML 2026 style; official 2027 style pending.}
+\AtBeginDocument{\hypersetup{pdfsubject={ICML 2027 submission draft}}}
+\makeatother

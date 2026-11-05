@@ -1,0 +1,19 @@
+% WWW_REFERENCE_STYLE
+\begin{table*}[t]
+\centering
+\caption{\textbf{Additional positive contrasts with named controls.} Each row uses its original primary endpoint and full training length. The improvement is relative distortion reduction in the first row, absolute MRR difference in the second, and accuracy difference in percentage points in the last two. These units are not pooled. The A5 column preserves the transport comparison. Bold marks the best displayed score within a row; stronger controls outside these selected contrasts are reported in the full appendix. All are single-seed descriptive comparisons.}
+\label{tab:positive-narrow-contrasts}
+\footnotesize\setlength{\tabcolsep}{5pt}\renewcommand{\arraystretch}{1.12}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{lllrrrr}
+\toprule
+Case & Control & Primary endpoint & Control score & B5 & A5 & Improvement \\
+\midrule
+Heterogeneous hierarchy & Selected B35 & Distortion $\downarrow$ & 0.218234 & \cellcolor{oursbg}0.217679 & \textbf{0.217351} & 0.254\% \\
+WN18RR / translation & Shared curvature & MRR $\uparrow$ & 0.102000 & \cellcolor{oursbg}\textbf{0.102295} & \textbf{0.102295} & +0.000295 \\
+Rotated MNIST / MLP & B35 & Mean accuracy (\%) $\uparrow$ & 43.388 & \cellcolor{oursbg}\textbf{43.432} & 43.378 & +0.044 pp \\
+Rotated MNIST / MLP & Shared curvature & Mean accuracy (\%) $\uparrow$ & 43.296 & \cellcolor{oursbg}\textbf{43.432} & 43.378 & +0.136 pp \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table*}

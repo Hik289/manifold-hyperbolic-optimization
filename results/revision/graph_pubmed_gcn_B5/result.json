@@ -1,0 +1,44 @@
+{
+  "selected_epoch": 85,
+  "selected_test": {
+    "accuracy": 0.7450000643730164,
+    "macro_f1": 0.7409790915252682
+  },
+  "status": "complete",
+  "config": {
+    "family": "graph",
+    "dataset": "pubmed",
+    "model": "gcn",
+    "method": "B5",
+    "epochs": 1000,
+    "seed": 42,
+    "id": "graph_pubmed_gcn_B5"
+  },
+  "final": {
+    "epoch": 999,
+    "task": 0,
+    "train_loss": 0.0032290571834892035,
+    "seconds": 72.2654435634613,
+    "K": [
+      0.991041362285614,
+      0.9899017810821533,
+      0.9904468059539795
+    ],
+    "learning_rate": 0.1,
+    "curvature_learning_rate": 0.001,
+    "peak_memory_mb": 126.885888,
+    "grad_norm": 0.0030204213690012693,
+    "momentum_norm": 0.003053884021937847,
+    "exp_argument": 0.00030300565413199365,
+    "radius_clipped_fraction": 0.0,
+    "manifold_residual": 2.7418136596679688e-06,
+    "tangent_residual": 7.450580596923828e-09,
+    "mean_radius": 2.3971197605133057,
+    "val_accuracy": 0.7460000514984131,
+    "val_macro_f1": 0.7483292473001874,
+    "test_accuracy": 0.7590000629425049,
+    "test_macro_f1": 0.7553285370667627
+  },
+  "best_validation": 0.7680000066757202,
+  "epochs_completed": 1000
+}

@@ -1,0 +1,21 @@
+% WWW_REFERENCE_STYLE
+\begin{table}[!htbp]
+\centering
+\caption{\textbf{Available full-length endpoints.} WN18RR transported-translation model, 2000 epochs. All-entity filtered head-and-tail ranking at the final checkpoint. MRR is primary; Hits scores are percentages. 7/8 registered methods complete; all completed rows are shown. 1 method is deferred by the budget amendment. Bold compares only the displayed completed rows, including rounded ties; B5 is shaded. Seed 42, fixed starting configuration, no equal-budget hyperparameter search.}
+\label{tab:revision-kg-audit}
+\footnotesize\setlength{\tabcolsep}{5pt}\renewcommand{\arraystretch}{1.12}
+\begin{tabular}{lrrrr}
+\toprule
+Method & MRR $\uparrow$ & Hits@1 (\%) $\uparrow$ & Hits@3 (\%) $\uparrow$ & Hits@10 (\%) $\uparrow$ \\
+\midrule
+E & \textbf{0.17225} & 0.271 & \textbf{30.568} & \textbf{45.246} \\
+B3 & 0.12598 & \textbf{2.106} & 18.427 & 35.354 \\
+B4 & 0.10232 & 1.133 & 15.077 & 30.632 \\
+\rowcolor{oursbg}
+B5 & 0.10230 & 1.133 & 15.061 & 30.600 \\
+A5 & 0.10230 & 1.133 & 15.061 & 30.600 \\
+B35 & 0.12596 & \textbf{2.106} & 18.427 & 35.354 \\
+Shared & 0.10200 & 1.101 & 14.853 & 30.616 \\
+\bottomrule
+\end{tabular}
+\end{table}

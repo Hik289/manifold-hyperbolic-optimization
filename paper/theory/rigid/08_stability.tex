@@ -1,0 +1,377 @@
+\subsection{Augmented-state Jacobians and algorithmic stability}
+\label{app:rigid-stability}
+For generalization, the relevant question is how replacing one training example changes the entire optimizer state. Position, curvature, and carried momentum influence one another, so a position-only recurrence misses a feedback path. We work in a bounded normal chart, derive the three-state comparison matrix, and only then eliminate momentum with a step-weighted norm.
+\begin{definition}[Normal coordinates]
+For $z\in\mathbb R^d$, $r=\|z\|$, $e=z/r$, define
+\begin{align}
+ X(z)&=\Exp_{o_1}^1(0,z),&T_z&=DX(z),\\
+ s(r)&=\sinh(r)/r,&s(0)&=1,\\
+ \mathsf g(z)&=ee^\top+s(r)^2(I-ee^\top),&\mathsf g(0)&=I.
+\end{align}
+For products, $X,T,\mathsf g$ are block diagonal.
+\end{definition}
+\begin{lemma}[Coordinate metric and derivative bounds]
+For $\|z\|\le B$,
+\begin{align}
+ I&\preceq\mathsf g(z)\preceq s(B)^2I,&
+ \|\mathsf g(z)^{-1}\|&\le1,\\
+ \|z-z'\|&\le d_1(X(z),X(z'))\le s(B)\|z-z'\|,\\
+ \|D\mathsf g(z)[h]\|&\le L_{\mathsf g}(B)\|h\|,\\
+ L_{\mathsf g}(B)&:=\sup_{0<r\le B}
+ \left(2s(r)s'(r)+\frac{2(s(r)^2-1)}r\right)<\infty,\\
+ \|D(\mathsf g^{-1})(z)[h]\|&\le L_{\mathsf g}(B)\|h\|.
+\end{align}
+\end{lemma}
+\begin{proof}
+\begin{align}
+ T_z^*T_z&=\mathsf P_\parallel+s(r)^2\mathsf P_\perp,\\
+ D(ee^\top)[h]&=r^{-1}[(I-ee^\top)he^\top+eh^\top(I-ee^\top)],\\
+ \|D(ee^\top)[h]\|&\le2\|h\|/r,\\
+ D\mathsf g[h]&=2ss'\langle e,h\rangle(I-ee^\top)+(1-s^2)D(ee^\top)[h],\\
+ s(r)&=1+r^2/6+O(r^4),&s'(r)&=r/3+O(r^3),\\
+ D(\mathsf g^{-1})[h]&=-\mathsf g^{-1}D\mathsf g[h]\mathsf g^{-1}.
+\end{align}
+For the distance comparisons, integrate $DX$ along a Euclidean segment and $D\Log_{o_1}$ along the hyperbolic geodesic inside the convex ball.
+\end{proof}
+
+\begin{proposition}[Connection bound in the chart]
+For the coordinate Christoffel bilinear map $\Gamma_z$,
+\begin{align}
+ 2\langle\mathsf g(z)\Gamma_z(v,w),a\rangle
+ &=D\mathsf g(z)[v](w,a)+D\mathsf g(z)[w](v,a)
+ -D\mathsf g(z)[a](v,w),\\
+ \|\Gamma_z(v,w)\|&\le\tfrac32L_{\mathsf g}(B)\|v\|\|w\|.
+\end{align}
+\end{proposition}
+\begin{proof}
+Each term on the first line is bounded by
+$L_{\mathsf g}(B)\|v\|\|w\|\|a\|$ and $\|\mathsf g^{-1}\|\le1$.
+\end{proof}
+
+\begin{assumption}[Per-example coordinate derivatives]
+\label{ass:stability-new}
+Let $f(z,u;\zeta)=\ell(X(z),u;\zeta)+R(z,u)$ on a common compact domain.
+For every example $\zeta$,
+\begin{align}
+ \|\nabla_zf\|&\le G_f,&\|\nabla_uf\|&\le H_f,\\
+ \|\nabla_{zz}^2f\|&\le L_{zz},&\|\nabla_{zu}^2f\|&\le L_{zu},&
+ \|\nabla_{uu}^2f\|&\le L_{uu}.
+\end{align}
+All update segments and compared coordinate segments lie in this domain.
+The loss satisfies
+\begin{align}
+ |\ell(z,u;\zeta)-\ell(z',u';\zeta)|
+ \le L_{\ell,z}\|z-z'\|+L_{\ell,u}\|u-u'\|.
+\end{align}
+\end{assumption}
+
+\begin{lemma}[Coordinate oracle constants]
+Let
+\begin{align}
+ \mathcal G(z,u;\zeta)&=A(u)\mathsf g(z)^{-1}\nabla_zf(z,u;\zeta),\\
+ \mathcal H(z,u;\zeta)&=\nabla_uf(z,u;\zeta),\\
+ G_s&=a_+G_f,&H_s&=H_f,\\
+ L_z&=a_+[L_{zz}+L_{\mathsf g}(B)G_f],&
+ L_u&=a_+(L_{zu}+G_f),\\
+ L_{uz}&=L_{zu}.&&
+\end{align}
+Then
+\begin{align}
+ \|\mathcal G(z,u;\zeta)\|&\le G_s,&\|\mathcal H(z,u;\zeta)\|&\le H_s,\\
+ \|\mathcal G(z,u;\zeta)-\mathcal G(z',u';\zeta)\|
+ &\le L_z\|z-z'\|+L_u\|u-u'\|,\\
+ \|\mathcal H(z,u;\zeta)-\mathcal H(z',u';\zeta)\|
+ &\le L_{uz}\|z-z'\|+L_{uu}\|u-u'\|.
+\end{align}
+\end{lemma}
+\begin{proof}
+\begin{align}
+ D_z\mathcal G[h]
+ &=A\{D\mathsf g^{-1}[h]\nabla_zf+\mathsf g^{-1}\nabla_{zz}^2f\,h\},\\
+ D_u\mathcal G[k]
+ &=DA[k]\mathsf g^{-1}\nabla_zf+A\mathsf g^{-1}\nabla_{zu}^2f\,k,\\
+ \|DA[k]\|&\le a_+\|k\|,\\
+ D_z\mathcal H[h]&=\nabla_{uz}^2f\,h,&
+ D_u\mathcal H[k]&=\nabla_{uu}^2f\,k.
+\end{align}
+Integrate the displayed derivatives along the connecting segments.
+\end{proof}
+
+\begin{definition}[Exact coordinate step maps]
+For $p=T_zw$,
+\begin{align}
+ q^+&=\Exp_{X(z)}^1[-\eta N_\gamma(T_zw)],\\
+ \Phi_q(z,w;\eta)&=\Log_{o_1}^1(q^+),\\
+ \Phi_p(z,w;\eta)&=D\Log_{o_1}^1(q^+)
+ P^1_{X(z)\to q^+}T_zw.
+\end{align}
+At $\eta=0$,
+\begin{align}
+ \Phi_q(z,w;0)&=z,&\Phi_p(z,w;0)&=w,\\
+ D_z\Phi_q(z,w;0)&=I,&D_w\Phi_q(z,w;0)&=0,\\
+ D_z\Phi_p(z,w;0)&=0,&D_w\Phi_p(z,w;0)&=I.
+\end{align}
+\end{definition}
+
+\begin{lemma}[Small-step Jacobian constants]
+\label{lem:rigid-step-jacobian}
+On $\|z\|\le B$, $\|w\|\le W$, $0\le\eta\le\bar\eta$, define finite mixed-derivative bounds
+\begin{align}
+ C_q&\ge\sup\max\{\|\partial_\eta D_z\Phi_q\|,\|\partial_\eta D_w\Phi_q\|\},\\
+ C_p&\ge\sup\max\{\|\partial_\eta D_z\Phi_p\|,\|\partial_\eta D_w\Phi_p\|\}.
+\end{align}
+Then
+\begin{align}
+ \|D_z\Phi_q-I\|&\le C_q\eta,&\|D_w\Phi_q\|&\le C_q\eta,\\
+ \|D_z\Phi_p\|&\le C_p\eta,&\|D_w\Phi_p-I\|&\le C_p\eta,\\
+ \|\Phi_q(z,w)-\Phi_q(z',w')\|
+ &\le(1+C_q\eta)\|z-z'\|+C_q\eta\|w-w'\|,\\
+ \|\Phi_p(z,w)-\Phi_p(z',w')\|
+ &\le C_p\eta\|z-z'\|+(1+C_p\eta)\|w-w'\|.
+\end{align}
+\end{lemma}
+\begin{proof}
+For $\Phi\in\{\Phi_q,\Phi_p\}$,
+\begin{align}
+ D_z\Phi(\eta)-D_z\Phi(0)&=\int_0^\eta\partial_sD_z\Phi(s)\,ds,\\
+ D_w\Phi(\eta)-D_w\Phi(0)&=\int_0^\eta\partial_sD_w\Phi(s)\,ds.
+\end{align}
+The mixed derivatives are bounded on the compact update domain by the explicit smooth Exp, Log and transport formulas and the $C^1$ normalization map. The connecting-segment assumption then gives the finite-increment bounds.
+\end{proof}
+
+\begin{lemma}[Geometric refinement of the velocity coefficient]
+\label{lem:sharp-chart-velocity}
+For pointwise normalization and $\|z\|\le B$, the exact coordinate map satisfies
+\begin{align}
+ \|D_w\Phi_q(z,w;\eta)\|
+ &\le\eta s(B)\Lambda(\eta/\gamma).
+\end{align}
+Accordingly, set
+\begin{align}
+ C_{v,t}&:=\min\{C_q,s(B)\Lambda(\eta_t/\gamma)\}
+ \qquad\text{for pointwise normalization},
+\end{align}
+and $C_{v,t}:=C_q$ otherwise. The finite-increment bound improves to
+\begin{align}
+ \|\Phi_q(z,w)-\Phi_q(z',w')\|
+ &\le(1+C_q\eta_t)\|z-z'\|+\eta_tC_{v,t}\|w-w'\|.
+\end{align}
+\end{lemma}
+\begin{proof}
+By Theorem~\ref{thm:sharp-normalized-exp}, the intrinsic momentum-to-point differential has norm at most $\eta\Lambda(\eta/\gamma)$. In the chain rule for $\Phi_q$, the input chart differential has norm at most $s(B)$ and $D\Log_{o_1}$ has norm at most one. Taking the minimum with the preceding $C_q$ bound proves the claim. Integrate first in $z$ at fixed $w$, then in $w$ at fixed $z'$.
+\end{proof}
+
+\begin{definition}[Coupled neighboring samples]
+Let $S=(\zeta_1,\ldots,\zeta_n)$ and $S'=(\zeta_1',\ldots,\zeta_n')$ satisfy
+\begin{align}
+ \zeta_i&=\zeta_i'\quad(i\ne i_*),&
+ I_t&=\mathbf1\{i_t=i_*\},&\mathbb EI_t&=1/n.
+\end{align}
+The algorithms share initialization and index sequence. In coordinates,
+\begin{align}
+ \bar w_t&=\beta w_t+(1-\beta)\mathcal G(z_t,u_t;\zeta_{i_t}),\\
+ z_{t+1}&=\Phi_q(z_t,\bar w_t;\eta_t),\\
+ w_{t+1}&=\Phi_p(z_t,\bar w_t;\eta_t),\\
+ u_{t+1}&=\Pi_U[u_t-\rho_t\mathcal H(z_t,u_t;\zeta_{i_t})],\\
+ d_t&=\|z_t-z_t'\|,&c_t&=\|u_t-u_t'\|,&v_t&=\|w_t-w_t'\|.
+\end{align}
+\end{definition}
+
+\begin{theorem}[Explicit three-state comparison matrix]
+\label{thm:rigid-coupling-matrix}
+Put $\delta_\beta=1-\beta$, $\Delta_t=(d_t,c_t,v_t)^\top$. Then pathwise
+\begin{align}\label{eq:rigid-matrix-recursion}
+ \Delta_{t+1}&\preceq M_t\Delta_t+b_t^{\rm inj}I_t,\\
+ M_t&=\begin{pmatrix}
+ 1+\eta_t(C_q+C_{v,t}\delta_\beta L_z)&C_{v,t}\eta_t\delta_\beta L_u&C_{v,t}\eta_t\beta\\
+ \rho_tL_{uz}&1+\rho_tL_{uu}&0\\
+ C_p\eta_t+(1+C_p\eta_t)\delta_\beta L_z&
+ (1+C_p\eta_t)\delta_\beta L_u&\beta(1+C_p\eta_t)
+ \end{pmatrix},\\
+ b_t^{\rm inj}
+ &=2\begin{pmatrix}
+ C_{v,t}\eta_t\delta_\beta G_s\\
+ \rho_tH_s\\
+ (1+C_p\eta_t)\delta_\beta G_s
+ \end{pmatrix}.
+\end{align}
+Consequently, for identical initial states,
+\begin{align}
+ \mathbb E\Delta_T
+ \preceq\frac1n\sum_{t<T}\left(\prod_{s=T-1}^{t+1}M_s\right)b_t^{\rm inj}.
+\end{align}
+\end{theorem}
+\begin{proof}
+\begin{align}
+ \|\bar w_t-\bar w_t'\|
+ &\le\beta v_t+\delta_\beta L_zd_t+\delta_\beta L_uc_t
+ +2\delta_\beta G_sI_t,\\
+ d_{t+1}&\le(1+C_q\eta_t)d_t+C_{v,t}\eta_t\|\bar w_t-\bar w_t'\|,\\
+ c_{t+1}&\le c_t+\rho_t(L_{uz}d_t+L_{uu}c_t+2H_sI_t),\\
+ v_{t+1}&\le C_p\eta_td_t+(1+C_p\eta_t)\|\bar w_t-\bar w_t'\|.
+\end{align}
+Substitute the first line into the other three and iterate the nonnegative matrix inequality. Only $\mathbb EI_t=1/n$ is used in the final expectation.
+\end{proof}
+
+The injection vector records the direct effect of sampling the replaced example; the matrix propagates that effect through later updates. Before reducing it to a scalar recurrence, we retain the exact matrix transfer bound. The neighboring-sample coupling follows the stability approach of \citet{hardt2016stability}, with the curvature and memory feedback represented explicitly here.
+
+\begin{theorem}[Collatz--Wielandt certificate for coupled stability]
+\label{thm:sharp-perron-stability}
+For constant steps, let $M=M_t$, $b=b_t^{\rm inj}$ and
+$c_\ell=(L_{\ell,z},L_{\ell,u},0)^\top$. Define
+\begin{align}
+ S_T(M)&:=\sum_{k=0}^{T-1}M^k,&
+ \Phi_T(r)&:=\begin{cases}(r^T-1)/(r-1),&r\ne1,\\T,&r=1.\end{cases}
+\end{align}
+Then
+\begin{align}\label{eq:sharp-matrix-stability}
+ \epsilon_{\rm stab}(T)&\le\frac{c_\ell^\top S_T(M)b}{n}.
+\end{align}
+If $M$ is irreducible, let $w>0$ satisfy $M^\top w=r_*w$, where $r_*:=\operatorname{spr}(M)$. With $L_w:=\max_i(c_{\ell,i}/w_i)$,
+\begin{align}\label{eq:sharp-perron-stability}
+ \epsilon_{\rm stab}(T)
+ &\le\frac{L_ww^\top b}{n}\Phi_T(r_*),\\
+ r_*&=\inf_{v>0}\max_i\frac{(M^\top v)_i}{v_i}
+ =\inf_{v>0}\|M\|_{1,v}.
+\end{align}
+Thus $r_*$ is the smallest scalar growth factor obtainable from a fixed positive weighted $\ell_1$ norm of this comparison system. If $0\le\ell\le M_\ell$, every displayed stability upper bound may additionally be capped at $M_\ell$.
+\end{theorem}
+\begin{proof}
+Theorem~\ref{thm:rigid-coupling-matrix} gives $\mathbb E\Delta_T\preceq S_T(M)b/n$. Since the loss discrepancy is at most $c_\ell^\top\Delta_T$, this proves Eq.~\eqref{eq:sharp-matrix-stability}. Perron--Frobenius and the Collatz--Wielandt formula \citep[Chapter~8]{horn2013matrix} give the positive left eigenvector and the first variational identity. For a nonnegative matrix,
+\begin{align}
+ \|M\|_{1,v}&=\max_i\frac{(M^\top v)_i}{v_i},&
+ c_\ell^\top M^kb&\le L_ww^\top M^kb=L_wr_*^kw^\top b.
+\end{align}
+Summing proves the Perron bound. Every induced norm bounds the spectral radius from below, while $v=w$ attains it. The matrix expression is exact for the linear comparison recurrence; no optimality over nonlinear learning algorithms is asserted.
+\end{proof}
+
+For variable steps we use the following scalar reduction. Although the momentum discrepancy can be order one, its immediate effect on position is multiplied by $\eta_t$. Weighting the memory component by that same step retains a factor $1+C\eta_t$ rather than an order-one expansion at every iteration.
+
+\begin{lemma}[Weighted elimination of momentum]
+\label{lem:stability-eliminate}
+Suppose $\eta_{t+1}\le\eta_t\le\bar\eta$, $\rho_t\le r_\rho\eta_t$,
+$2C_p\bar\eta\le1-\beta$. Fix $\kappa>0$ and define
+\begin{align}
+ \bar\beta&=(1+\beta)/2,&
+ a_m&=1+\frac{C_q\beta}{1-\bar\beta},\\
+ V_z&=C_p\bar\eta+(1+C_p\bar\eta)\delta_\beta L_z,&
+ V_u&=(1+C_p\bar\eta)\delta_\beta L_u,\\
+ C_z&=C_q(1+\delta_\beta L_z)+\kappa r_\rho L_{uz}+a_mV_z,\\
+ C_u&=r_\rho L_{uu}+\kappa^{-1}(C_q\delta_\beta L_u+a_mV_u),\\
+ C&=\max(C_z,C_u),\\
+ B_s&=2\delta_\beta G_s[C_q+a_m(1+C_p\bar\eta)]+2\kappa r_\rho H_s,\\
+ D_t&=d_t+\kappa c_t+a_m\eta_tv_t.
+\end{align}
+Then
+\begin{align}\label{eq:coupled-fixed}
+ \mathbb ED_{t+1}\le(1+C\eta_t)\mathbb ED_t+B_s\eta_t/n.
+\end{align}
+\end{lemma}
+\begin{proof}
+From Theorem~\ref{thm:rigid-coupling-matrix},
+\begin{align}
+ \beta(1+C_p\eta_t)&\le\beta+C_p\bar\eta\le\bar\beta,\\
+ C_q\beta+a_m\bar\beta&\le a_m,\\
+ D_{t+1}
+ &\le(1+C_z\eta_t)d_t+
+ \kappa(1+C_u\eta_t)c_t+a_m\eta_tv_t+B_s\eta_tI_t\\
+ &\le(1+C\eta_t)(d_t+\kappa c_t+a_m\eta_tv_t)+B_s\eta_tI_t.
+\end{align}
+Take expectations and use $\mathbb EI_t=1/n$.
+\end{proof}
+
+\begin{theorem}[Expected uniform algorithmic stability]
+\label{thm:rigid-stability}
+For identical initialization, let $H_T=\sum_{t<T}\eta_t$ and
+$L_\ell=\max(L_{\ell,z},L_{\ell,u}/\kappa)$. Then
+\begin{align}\label{eq:rigid-stability-bound}
+ \epsilon_{\rm stab}(T)
+ &:=\sup_{S\sim S'}\sup_\zeta
+ \mathbb E|\ell(A_T(S);\zeta)-\ell(A_T(S');\zeta)|\\
+ &\le\frac{L_\ell B_s}{n}\sum_{t<T}\eta_t\prod_{s=t+1}^{T-1}(1+C\eta_s)\\
+ &\le\begin{cases}
+ \dfrac{L_\ell B_s}{Cn}(e^{CH_T}-1),&C>0,\\[3pt]
+ \dfrac{L_\ell B_sH_T}{n},&C=0.
+ \end{cases}
+\end{align}
+\end{theorem}
+\begin{proof}
+\begin{align}
+ \mathbb ED_T
+ &\le\frac{B_s}{n}\sum_{t<T}\eta_t\prod_{s>t}(1+C\eta_s),\\
+ |\ell(z_T,u_T;\zeta)-\ell(z_T',u_T';\zeta)|
+ &\le L_{\ell,z}d_T+L_{\ell,u}c_T\le L_\ell D_T,\\
+ C\sum_{t<T}\eta_t\prod_{s>t}(1+C\eta_s)
+ &=\prod_{s<T}(1+C\eta_s)-1\\
+ &\le\exp\left(C\sum_{s<T}\eta_s\right)-1.
+\end{align}
+\end{proof}
+
+\begin{corollary}[Schedules and mini-batch replacement]
+For $\eta_t=c/\sqrt T$,
+\begin{align}
+ \epsilon_{\rm stab}(T)&\le\frac{L_\ell B_s}{Cn}(e^{Cc\sqrt T}-1).
+\end{align}
+For $\eta_t=c/(t+t_0)$, $t_0>0$,
+\begin{align}
+ H_T&\le c/t_0+c\log\bigl((T-1+t_0)/t_0\bigr)\quad(T\ge1),\\
+ \epsilon_{\rm stab}(T)
+ &\le\frac{L_\ell B_s}{Cn}
+ \left[e^{Cc/t_0}\left(\frac{T-1+t_0}{t_0}\right)^{Cc}-1\right].
+\end{align}
+For averaged mini-batches of size $b$ sampled uniformly without replacement,
+\begin{align}
+ \Pr(i_*\in\mathcal B_t)&=b/n,&
+ \|\widehat G_S-\widehat G_{S'}\|&\le(2G_s/b)\mathbf1\{i_*\in\mathcal B_t\},\\
+ \mathbb E[(2G_s/b)\mathbf1\{i_*\in\mathcal B_t\}]&=2G_s/n.
+\end{align}
+\end{corollary}
+
+The exponential upper bound is a worst-case sensitivity estimate and may become uninformative over long training horizons. Mini-batch averaging reduces the size of an individual replacement effect but also increases the probability of including that example, yielding the displayed $1/n$ injection scale. A time-uniform bound follows below only when the full coupled update is contractive; positive curvature-block curvature alone does not establish that property.
+
+\begin{proposition}[Contractive full-state regime]
+If the implemented coupled update satisfies
+\begin{align}
+ \mathbb ED_{t+1}\le(1-\mu\eta_t)\mathbb ED_t+B_s\eta_t/n,
+ \qquad0\le\mu\eta_t\le1,
+\end{align}
+then
+\begin{align}
+ \mathbb ED_T&\le\frac{B_s}{\mu n}
+ \left[1-\prod_{t<T}(1-\mu\eta_t)\right]\le\frac{B_s}{\mu n},\\
+ \epsilon_{\rm stab}(T)&\le\frac{L_\ell B_s}{\mu n}.
+\end{align}
+\end{proposition}
+\begin{proof}
+Subtract $B_s/(\mu n)$ from both sides of the recursion and iterate from $D_0=0$.
+\end{proof}
+
+\begin{proposition}[Optimal curvature weight for the exponential coefficient]
+This two-state calculation is a closed-form instance of Collatz--Wielandt \citep{horn2013matrix}.
+Set
+\begin{align}
+ \alpha_s&=C_q(1+\delta_\beta L_z)+a_mV_z,&
+ \delta_s&=r_\rho L_{uu},\\
+ b_s&=r_\rho L_{uz},&c_s&=C_q\delta_\beta L_u+a_mV_u.
+\end{align}
+For $b_s,c_s>0$,
+\begin{align}
+ C(\kappa)&=\max(\alpha_s+b_s\kappa,\delta_s+c_s/\kappa),\\
+ \kappa_*&=\frac{\delta_s-\alpha_s+
+ \sqrt{(\alpha_s-\delta_s)^2+4b_sc_s}}{2b_s},\\
+ \inf_{\kappa>0}C(\kappa)
+ &=\frac{\alpha_s+\delta_s+
+ \sqrt{(\alpha_s-\delta_s)^2+4b_sc_s}}2\\
+ &=\operatorname{spr}\begin{pmatrix}\alpha_s&c_s\\b_s&\delta_s\end{pmatrix}.
+\end{align}
+\end{proposition}
+\begin{proof}
+\begin{align}
+ \frac d{d\kappa}(\alpha_s+b_s\kappa)&=b_s>0,&
+ \frac d{d\kappa}(\delta_s+c_s/\kappa)&=-c_s/\kappa^2<0,\\
+ \alpha_s+b_s\kappa=\delta_s+c_s/\kappa
+ &\Longleftrightarrow b_s\kappa^2+(\alpha_s-\delta_s)\kappa-c_s=0.
+\end{align}
+The unique positive root is $\kappa_*$. The larger root of
+$(\lambda-\alpha_s)(\lambda-\delta_s)-b_sc_s=0$ equals the displayed value.
+\end{proof}

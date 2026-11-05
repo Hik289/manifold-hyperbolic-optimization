@@ -1,0 +1,155 @@
+\subsection{Geometric perturbations and finite precision}
+An intrinsic isometry can be poorly conditioned when represented in ambient Euclidean coordinates. We keep these notions separate: Jacobi operators control intrinsic displacement, while ambient operator norms and Lorentz cancellation control numerical sensitivity. The descent budget then determines how an implementation error affects the attainable stationarity level.
+\begin{proposition}[One-step intrinsic perturbation]
+For $v\in T_xH_K$, $\bar v\in T_{\bar x}H_K$, with
+$\max(\|v\|,\|\bar v\|)\le R$,
+\begin{align}
+ d_K(\Exp_x^Kv,\Exp_{\bar x}^K\bar v)
+ &\le\cosh(\sqrt KR)d_K(x,\bar x)
+ +s(\sqrt KR)\|P_{x\to\bar x}^Kv-\bar v\|.
+\end{align}
+For $v=-\eta N_{\gamma\sqrt K}(p)$ and $\bar v=-\eta N_{\gamma\sqrt K}(\bar p)$,
+\begin{align}
+ \|P_{x\to\bar x}v-\bar v\|
+ &\le\eta\|P_{x\to\bar x}p-\bar p\|,\\
+ d_K(x^+,\bar x^+)
+ &\le\cosh(\sqrt KR)d_K(x,\bar x)
+ +\eta s(\sqrt KR)\|P_{x\to\bar x}p-\bar p\|.
+\end{align}
+Retaining the normalization--Jacobi cancellation of Theorem~\ref{thm:sharp-normalized-exp} gives the sharper uniform bound
+\begin{align}\label{eq:sharp-intrinsic-perturbation}
+ d_K(x^+,\bar x^+)
+ &\le\cosh(\eta/\gamma)d_K(x,\bar x)
+ +\eta\Lambda(\eta/\gamma)\|P_{x\to\bar x}p-\bar p\|.
+\end{align}
+In particular, the velocity coefficient is exactly bounded by $\eta$ when $\eta/\gamma\le\alpha_c$.
+\end{proposition}
+\begin{proof}
+Insert $\Exp_{\bar x}^K(P_{x\to\bar x}v)$ and use the triangle inequality and the two finite-increment bounds. Since parallel transport is an isometry,
+$P N_\gamma(p)=N_\gamma(Pp)$. For the sharper bound, first vary the base point while transporting the same momentum, and then apply Theorem~\ref{thm:sharp-normalized-exp} at the common base point. The step cap gives $\sqrt KR\le\eta/\gamma$ for the first part.
+\end{proof}
+
+\begin{proposition}[Curvature-coordinate perturbation]
+For $a=e^{(u-u')/2}$, perturbed values $u+\delta u$, $u'+\delta u'$ and $x+\delta x$,
+\begin{align}
+ \bar a&=a\exp[(\delta u-\delta u')/2],\\
+ |\bar a-a|&\le\tfrac a2e^{(|\delta u|+|\delta u'|)/2}
+ (|\delta u|+|\delta u'|),\\
+ \|\bar a(x+\delta x)-ax\|_2
+ &\le\bar a\|\delta x\|_2+|\bar a-a|\|x\|_2.
+\end{align}
+The same formula holds for ambient momentum perturbations.
+\end{proposition}
+\begin{proof}
+\begin{align}
+ \bar a(x+\delta x)-ax&=\bar a\delta x+(\bar a-a)x,\\
+ e^z-1&=z\int_0^1e^{sz}\,ds.
+\end{align}
+\end{proof}
+
+\begin{proposition}[Ambient sensitivity of transport]
+For fixed $x,y\in H_K$,
+\begin{align}
+ P_{x\to y}^K&=I+\frac K{1-K\langle x,y\rangle_L}(x+y)(J_dy)^\top,\\
+ \|P_{x\to y}^K\|_{2\to2}
+ &\le1+\frac{K\|x+y\|_2\|y\|_2}{1-K\langle x,y\rangle_L},\\
+ d_K(x,o_K),d_K(y,o_K)\le R
+ &\Longrightarrow
+ \|P_{x\to y}^K\|_{2\to2}\le1+\cosh(2\sqrt KR).
+\end{align}
+\end{proposition}
+\begin{proof}
+\begin{align}
+ 1-K\langle x,y\rangle_L&\ge2,\\
+ \|x\|_2^2&=x_0^2+\|x_s\|_2^2
+ =K^{-1}[\cosh^2(\sqrt Kr)+\sinh^2(\sqrt Kr)]\\
+ &=K^{-1}\cosh(2\sqrt Kr),\\
+ \|x+y\|_2&\le2K^{-1/2}\sqrt{\cosh(2\sqrt KR)}.
+\end{align}
+\end{proof}
+
+\begin{lemma}[Objective effect of map error]
+If $d_{\mathcal M}(\bar z_{t+1},z_{t+1})\le\epsilon_t$,
+$\|\operatorname{grad}F\|\le G_F$ and $\|\operatorname{Hess}F\|\le L$ along the discrepancy geodesic, then
+\begin{align}\label{eq:objective-roundoff}
+ F(\bar z_{t+1})-F(z_{t+1})
+ &\le G_F\epsilon_t+\tfrac L2\epsilon_t^2=:\varepsilon_t.
+\end{align}
+\end{lemma}
+\begin{proof}
+For $w=\Log_{z_{t+1}}\bar z_{t+1}$,
+\begin{align}
+ \|w\|&\le\epsilon_t,\\
+ F(\Exp_zw)-F(z)&\le\langle\operatorname{grad}F(z),w\rangle+\tfrac L2\|w\|^2.
+\end{align}
+\end{proof}
+
+\begin{corollary}[Error floor in both blocks]
+Let $\mathcal B_T$ be an exact-arithmetic descent budget. Then
+\begin{align}
+ \frac1T\sum_t\mathbb E\|g_t\|^2
+ &\le\frac{2(\mathcal B_T+\sum_t\mathbb E\varepsilon_t)}{aT\eta},\\
+ \frac1T\sum_t\mathbb E\|b_t\|^2
+ &\le\frac{2(\mathcal B_T+\sum_t\mathbb E\varepsilon_t)}{T\rho}.
+\end{align}
+For constant per-step displacement error $\epsilon_t\le\epsilon$,
+\begin{align}
+ \frac1{T\eta}\sum_t\mathbb E\varepsilon_t
+ &\le\frac{G_F\epsilon+L\epsilon^2/2}{\eta},\\
+ \frac1{T\rho}\sum_t\mathbb E\varepsilon_t
+ &\le\frac{G_F\epsilon+L\epsilon^2/2}{\rho}.
+\end{align}
+\end{corollary}
+
+A constant per-step displacement error need not disappear when more steps are taken, and dividing its accumulated objective effect by a smaller learning rate can worsen the bound. Conversely, a small measured manifold residual certifies only approximate feasibility. It cannot certify closeness to the intended trajectory, as the final counterexample shows.
+
+\begin{assumption}[Floating-point model]
+Use the standard relative-error and summation model of \citet{higham2002accuracy}. For basic arithmetic with no overflow or underflow,
+\begin{align}
+ \operatorname{fl}(a\circ b)&=(a\circ b)(1+\delta),&|\delta|&\le\epsilon_{\rm mach},\\
+ \gamma_k&:=\frac{k\epsilon_{\rm mach}}{1-k\epsilon_{\rm mach}},&k\epsilon_{\rm mach}&<1,\\
+ \left|\operatorname{fl}\!\left(\sum_{i=1}^ka_i\right)-\sum_{i=1}^ka_i\right|
+ &\le\gamma_k\sum_{i=1}^k|a_i|.
+\end{align}
+\end{assumption}
+\begin{proposition}[Lorentz constraint measurement]
+For exact $x\in H_K$ and $r=d_K(x,o_K)$,
+\begin{align}
+ \left|\operatorname{fl}\!\left(-x_0^2+\sum_{j=1}^dx_j^2\right)+K^{-1}\right|
+ &\le\gamma_{d+2}\left(x_0^2+\sum_{j=1}^dx_j^2\right)\\
+ &=\gamma_{d+2}K^{-1}\cosh(2\sqrt Kr).
+\end{align}
+For stored $\bar x=x+\delta x$,
+\begin{align}
+ |\bar x^\top J_d\bar x+K^{-1}|
+ &\le2\|x\|_2\|\delta x\|_2+\|\delta x\|_2^2.
+\end{align}
+Thus an $O(\epsilon_{\rm mach})$ relative storage error yields the scale
+\begin{align}
+ O\!\left(\epsilon_{\rm mach}K^{-1}\cosh(2\sqrt Kr)\right).
+\end{align}
+\end{proposition}
+\begin{proof}
+\begin{align}
+ (x+\delta x)^\top J_d(x+\delta x)-x^\top J_dx
+ &=2x^\top J_d\delta x+\delta x^\top J_d\delta x,\\
+ \|J_d\|_{2\to2}&=1,&
+ \|x\|_2^2&=K^{-1}\cosh(2\sqrt Kr).
+\end{align}
+\end{proof}
+
+\begin{proposition}[Residual alone does not control trajectory error]
+For every $D>0$ there exist $x,y\in H_K$ such that
+\begin{align}
+ |x^\top J_dx+K^{-1}|&=|y^\top J_dy+K^{-1}|=0,\\
+ d_K(x,y)&=D.
+\end{align}
+Consequently no finite $C$ can satisfy
+\begin{align}
+ d_K(x,y)\le C\bigl(|x^\top J_dx+K^{-1}|+|y^\top J_dy+K^{-1}|\bigr)
+\end{align}
+for all $x,y\in H_K$.
+\end{proposition}
+\begin{proof}
+Take $y=\Exp_x^K(Dv)$ with $v\in T_xH_K$, $\|v\|=1$.
+\end{proof}

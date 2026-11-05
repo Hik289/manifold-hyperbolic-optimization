@@ -1,0 +1,9 @@
+{
+  "family": "continual",
+  "dataset": "split_cifar100",
+  "model": "mlp",
+  "method": "E",
+  "epochs": 1000,
+  "seed": 42,
+  "id": "continual_split_cifar100_mlp_E"
+}

@@ -1,0 +1,27 @@
+% WWW_REFERENCE_STYLE
+\begin{table*}[t]
+\centering
+\footnotesize\setlength{\tabcolsep}{4.2pt}\renewcommand{\arraystretch}{1.12}
+\caption{Completed graph comparisons on compute environment, seed 42, 1000 epochs. Final test accuracy (\%) is the common endpoint; $\Delta$ is B5 minus B3 in percentage points. Every dataset--encoder pair with both completed runs is shown, including ties and negative differences. E is an architecture control with a Euclidean linear head. Dashes mean a comparator has not finished.}
+\label{tab:revision-breadth}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{llrrrrr}
+\toprule
+Dataset & Encoder & E & B3 & B5 & A5 & $\Delta$ \\
+\midrule
+arxiv & gat & \textbf{68.42} & 62.33 & \cellcolor{oursbg}62.41 & 62.45 & +0.08 \\
+arxiv & gcn & \textbf{67.66} & 61.34 & \cellcolor{oursbg}61.19 & 61.21 & -0.16 \\
+arxiv & sage & \textbf{68.32} & 63.39 & \cellcolor{oursbg}63.67 & 63.50 & +0.28 \\
+citeseer & gat & \textbf{65.80} & 64.70 & \cellcolor{oursbg}64.60 & 64.60 & -0.10 \\
+citeseer & gcn & 63.70 & \textbf{65.60} & \cellcolor{oursbg}\textbf{65.60} & \textbf{65.60} & +0.00 \\
+citeseer & sage & 62.30 & 66.50 & \cellcolor{oursbg}\textbf{66.60} & \textbf{66.60} & +0.10 \\
+cora & gat & 66.60 & \textbf{67.90} & \cellcolor{oursbg}67.70 & 67.70 & -0.20 \\
+cora & gcn & \textbf{77.80} & 77.10 & \cellcolor{oursbg}77.20 & 77.20 & +0.10 \\
+cora & sage & 77.80 & \textbf{78.10} & \cellcolor{oursbg}78.00 & 78.00 & -0.10 \\
+pubmed & gat & 71.80 & \textbf{75.90} & \cellcolor{oursbg}\textbf{75.90} & \textbf{75.90} & +0.00 \\
+pubmed & gcn & \textbf{76.50} & 75.90 & \cellcolor{oursbg}75.90 & 75.90 & +0.00 \\
+pubmed & sage & 74.20 & 75.10 & \cellcolor{oursbg}\textbf{75.20} & \textbf{75.20} & +0.10 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table*}
