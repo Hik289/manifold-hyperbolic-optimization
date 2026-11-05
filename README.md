@@ -1,47 +1,50 @@
 <div align="center">
 
-# HyperbolicMomentum
-### Curvature-Adaptive Manifold Optimization
+<h1>HyperbolicMomentum</h1>
+<p>Curvature-Adaptive Manifold Optimization</p>
 
-[![Checks](https://github.com/Hik289/manifold-hyperbolic-optimization/actions/workflows/checks.yml/badge.svg)](https://github.com/Hik289/manifold-hyperbolic-optimization/actions/workflows/checks.yml)
-![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white)
-![PyTorch](https://img.shields.io/badge/PyTorch-2.5-EE4C2C?logo=pytorch&logoColor=white)
+[![Checks](https://github.com/Hik289/manifold-hyperbolic-optimization/actions/workflows/checks.yml/badge.svg?style=flat-square)](https://github.com/Hik289/manifold-hyperbolic-optimization/actions/workflows/checks.yml)
+![Python](https://img.shields.io/badge/Python-3.11-3776AB?style=flat-square&logo=python&logoColor=white)
+![PyTorch](https://img.shields.io/badge/PyTorch-2.5-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
 
-<img src="assets/intuition.png" alt="HyperbolicMomentum intuition: adapt group curvature, take a normalized geodesic step, and map both the parameter point and its tangent momentum when curvature changes." width="100%" />
+<br />
 
-*Curvature adaptation, controlled geodesic steps, and joint mapping of parameters and momentum.*
+<img src="assets/intuition.png" alt="Method schematic: learn group curvature, take a curvature-normalized geodesic step, and jointly map the parameters and tangent momentum when curvature changes." width="100%" />
+
+<sub>Learnable curvature · Geodesic updates · Momentum transport</sub>
 
 </div>
 
-HyperbolicMomentum optimizes parameters and **learns the geometry they move in**. It combines group-specific curvature, curvature-normalized geodesic steps, and a joint map of parameters and tangent momentum as curvature changes.
+## Overview
 
-This repository includes the implementation, experiment configurations and results, figure reproduction tools, and the full manuscript with convergence and generalization analysis.
+HyperbolicMomentum studies Riemannian optimization with learnable, group-specific curvature. As the geometry changes, the optimizer must update both the parameter point and the tangent space in which its momentum lives. The method combines curvature-normalized geodesic steps with a joint transformation of parameters and momentum across curvature changes.
 
-## At a glance
+This repository contains the optimizers, experimental protocols and results, reproducible figure inputs, and the manuscript with convergence and generalization analysis.
 
-| Component | Included |
+## Method
+
+Each group maintains a point on a Lorentz manifold, its tangent momentum, and a curvature magnitude $K>0$. The update separates motion on the current manifold from adaptation of its geometry.
+
+| Component | Update |
 | :--- | :--- |
-| Geometry | Lorentz exponential/log maps, parallel transport, tangent projection, cross-curvature maps |
-| Optimization | Euclidean and fixed-curvature controls, learned curvature, normalization and transport ablations |
-| Experiments | Synthetic hierarchies, metric drift, node classification, text, vision, KG, recommendation and continual learning |
-| Additional tasks | Taxonomy, held-out link prediction and class-invariant retrieval, with delayed test evaluation |
-| Reproduction | Registered configurations, evaluation protocols and published result records |
-| Paper assets | Editable LaTeX, complete theoretical appendix, tables, loss-plot code and exact plotting inputs |
+| **Geodesic step** | Average tangent gradients into momentum and normalize the step by curvature and momentum magnitude. |
+| **Momentum transport** | Move the parameter with the exponential map and parallel-transport momentum to the new base point. |
+| **Curvature adaptation** | Update curvature on a slower timescale using the total curvature derivative at fixed canonical coordinates, then jointly map the parameter and momentum. |
 
-## Method in one minute
+The normalized step size and the cross-curvature map take the form
 
-For curvature magnitude $K>0$, the Lorentz model satisfies $\langle x,x\rangle_{\mathcal L}=-1/K$. Each step maintains a point **and** a momentum vector in its current tangent space.
+$$
+\eta_{\mathrm{geo}}=\frac{\eta}{1+\gamma\sqrt{K}\,\lVert\widetilde m\rVert_x},
+\qquad
+(x,m)\mapsto(a x,a m),
+\quad a=\sqrt{\frac{K_{\mathrm{old}}}{K_{\mathrm{new}}}}.
+$$
 
-1. **Control the geometric step.** Average tangent gradients into $\widetilde m$, then use $\eta_{\mathrm{geo}}=\eta/(1+\gamma\sqrt K\lVert\widetilde m\rVert)$.
-2. **Move on the current manifold.** Apply the exponential map and parallel-transport momentum to the new base point.
-3. **Adapt curvature slowly.** Take the total curvature derivative at a fixed canonical point, with bounded drift in the implementation.
-4. **Map the joint state.** With $a=\sqrt{K_{\mathrm{old}}/K_{\mathrm{new}}}$, map $x\leftarrow ax$ and $m\leftarrow am$, then restore numerical tangency.
-
-The canonical point $\sqrt Kx$ and momentum $\sqrt Km$ are preserved by this ideal joint scaling. The interpretation applies to architectures with a dedicated manifold per group; the manuscript distinguishes this setting from shared-entity models.
+The joint map preserves the canonical state $(\sqrt{K}x,\sqrt{K}m)$ in exact arithmetic; the implementation restores tangency after mapping. This interpretation applies to architectures with a dedicated manifold per group. Shared-entity models are treated separately in the manuscript.
 
 ## Quick start
 
-Use Python **3.11**. The geometry checks and synthetic smoke test run on CPU; the full benchmark uses CUDA. Run the following commands from the repository root.
+Use Python **3.11**. Geometry checks and the synthetic smoke test run on CPU; benchmark training uses CUDA.
 
 ```bash
 git clone https://github.com/Hik289/manifold-hyperbolic-optimization.git
@@ -49,88 +52,107 @@ cd manifold-hyperbolic-optimization
 python3.11 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements.txt
+```
 
-# Check geometry, total curvature derivatives and the transport ablation.
+Verify the implementation and inspect the bundled results:
+
+```bash
+# Geometry and curvature-derivative checks.
 python experiments/revision/validate_geometry.py
 
-# Run a small synthetic smoke test without downloading data.
+# Synthetic smoke test; no dataset download.
 python scripts/run_experiment.py --smoke --device cpu
 
-# Audit the published final records without training or network access.
+# Audit completed result records without retraining.
 python scripts/summarize_results.py
 ```
 
-The smoke test writes to `artifacts/reproduction/runs/fixture_mechanism_B5/` and is marked `fixture_only`, separate from benchmark results. The launcher reuses completed runs and does not append to incomplete trajectories.
+Smoke-test outputs are saved under `artifacts/reproduction/runs/fixture_mechanism_B5/` and marked `fixture_only`, separate from benchmark results. Run all commands from the repository root.
 
-## Run the experiments
+## Experiments
 
-Install the optional dataset and model dependencies for the full suite:
+Install the benchmark dependencies, inspect the registered settings, and launch a configuration:
 
 ```bash
 python -m pip install -r requirements-full.txt
-
-# Inspect exact registered settings before launching a run.
 python scripts/run_experiment.py --list --family mechanism
-
-# Use the full registered training budget.
 python scripts/run_experiment.py \
   --id mechanism_smooth8_independent_lorentz_3_B5 \
   --device cuda --work-dir artifacts/mechanism
+```
 
-# All retained configurations in one family, executed sequentially.
+Set the dataset directory with `--data-root data` or `MANIFOLD_DATA`. The launcher preserves the manifest's training budgets, seeds, data splits and tuning rules.
+
+| Evaluation setting | Protocol | Implementation |
+| :--- | :--- | :--- |
+| Synthetic hierarchies | Tree structure, size and embedding dimension | [`structured.py`](experiments/revision/structured.py) |
+| Stationary and drifting metrics | Matched initialization searches | [`mechanism.py`](experiments/revision/mechanism.py) |
+| Node classification, text, vision and continual learning | Task-specific endpoints and registered training budgets | [`runner.py`](experiments/revision/runner.py) |
+| Knowledge graphs and recommendation | Filtered ranking and chronological splits | [`structured.py`](experiments/revision/structured.py) |
+| Taxonomy, link prediction and retrieval | Validation-based selection followed by delayed test evaluation | [`new_tasks.py`](experiments/revision/new_tasks.py) |
+
+The [experiment guide](docs/EXPERIMENTS.md) describes datasets, baselines, ablations and evaluation. [`requirements-reproduction.txt`](requirements-reproduction.txt) records the benchmark environment. Original exploratory implementations are retained under `experiments/` with their own protocols.
+
+<details>
+<summary><strong>Batch runs and output handling</strong></summary>
+
+Run all retained configurations in a family sequentially:
+
+```bash
 python scripts/run_experiment.py \
   --all-retained --family mechanism --device cuda
 ```
 
-The launcher preserves the manifest's training budgets, seeds, data splits and tuning rules. Set the dataset directory with `--data-root data` or the `MANIFOLD_DATA` environment variable. Deferred configurations can be run with `--id`; these runs remain separate from the published completion record.
+Completed runs are reused. For an incomplete trajectory, choose a new work directory to avoid mixing runs. Deferred configurations can be launched with `--id`; these runs remain separate from the published completion record.
 
-| Task family | Main implementation | Protocol |
-| :--- | :--- | :--- |
-| Synthetic hierarchies | [`structured.py`](experiments/revision/structured.py) | Tree type × size × dimension grid |
-| Stationary and drifting metrics | [`mechanism.py`](experiments/revision/mechanism.py) | Matched initialization searches under stationary and drifting metrics |
-| Node, text, vision and continual learning | [`runner.py`](experiments/revision/runner.py) | Full registered lengths; task-specific endpoints |
-| Knowledge graphs and recommendation | [`structured.py`](experiments/revision/structured.py) | Filtered ranking and chronological recommendation splits |
-| Taxonomy, link prediction, retrieval | [`new_tasks.py`](experiments/revision/new_tasks.py) | Validation-only search; test released after the complete block |
-| Original exploratory studies | [`experiments/`](experiments) | Separate historical implementations and protocols |
-
-The [experiment guide](docs/EXPERIMENTS.md) covers dataset layouts, baselines, ablations and evaluation. Benchmark software versions are recorded in [`requirements-reproduction.txt`](requirements-reproduction.txt). Historical exploratory scripts use separate protocols from the revised suite.
+</details>
 
 ## Reproduce the paper and figures
 
-Regenerate the published loss figures and comparison tables from bundled data:
+Regenerate the loss figures and comparison tables from bundled inputs:
 
 ```bash
 python paper/scripts/reproduce_figures.py
 python paper/scripts/reproduce_positive_tables.py
 ```
 
-These commands require no training, GPU or network access. The figure script verifies the CSV hashes and exports **PNG and PDF**. Use the [recorded plotting environment](paper/scripts/requirements-figures.txt) to match the published rendering. The conceptual illustration above has a separate [generation specification](assets/intuition_prompt.txt).
+These commands require no training, GPU or network access. The figure script verifies input hashes and exports **PNG and PDF**. Use the [recorded plotting environment](paper/scripts/requirements-figures.txt) to match the published rendering. The conceptual method illustration has a separate [generation specification](assets/intuition_prompt.txt).
 
-To compile the complete paper with TeX Live and `latexmk`:
+<details>
+<summary><strong>Build the manuscript locally or on Overleaf</strong></summary>
+
+With TeX Live and `latexmk` installed:
 
 ```bash
 python paper/scripts/build_paper.py
 ```
 
-For Overleaf, upload the contents of `paper/`, select `main.tex`, and choose **pdfLaTeX**. The year-specific style is a **local ICML 2027 draft wrapper based on ICML 2026**, not an official 2027 release; see [template provenance](paper/TEMPLATE_PROVENANCE.txt).
+For Overleaf, upload the contents of `paper/`, set `main.tex` as the main document, and select **pdfLaTeX**. The manuscript uses a local ICML 2027 draft wrapper derived from ICML 2026; [template provenance](paper/TEMPLATE_PROVENANCE.txt) documents its source and status.
 
-## Repository map
+</details>
+
+## Repository structure
+
+<details>
+<summary><strong>Source, results and manuscript files</strong></summary>
 
 ```text
-assets/                    PNG intuition figure and generation specification
-experiments/               All original experiment and optimizer implementations
-  revision/                Revised suite, geometry, manifests and evaluation
-scripts/                   Portable experiment launcher and result audit
-results/                   Complete final records, deferred records and history
-paper/                     Full manuscript, theory, bibliography and figures
-  figure_data/             Exact CSV inputs with source hashes
-  scripts/                 Figure/table reproduction and local paper build
+assets/                    Conceptual method illustration
+experiments/               Original experiments and optimizers
+  revision/                Geometry, benchmark suite, manifests and evaluation
+scripts/                   Experiment launcher and result audit
+results/                   Completed records, deferred records and history
+paper/                     Manuscript, theory, bibliography and figures
+  figure_data/             Exact plotting inputs with source hashes
+  scripts/                 Figure, table and manuscript reproduction
 figures/                   Original plotting implementations
-docs/                      Detailed reproduction guide and research proposal
-tests/                     Geometry, protocol and end-to-end fixture checks
+docs/                      Experiment guide and research proposal
+tests/                     Geometry, protocol and smoke-test checks
 ```
 
-The repository includes all experiment source files, registered configurations, completed final-result records and inputs for the paper figures. Datasets, checkpoints and training logs are stored locally. See the [release notes](docs/RELEASE.md) for source coverage and portability details.
+All experiment source files, registered configurations, completed final-result records and paper-figure inputs are included. Datasets, checkpoints and training logs are stored locally. The [release notes](docs/RELEASE.md) document source coverage and portability changes.
+
+</details>
 
 ## Citation
 
