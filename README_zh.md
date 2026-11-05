@@ -3,7 +3,7 @@
 <h1>HyperbolicMomentum</h1>
 <p>曲率自适应流形优化</p>
 
-<img src="assets/intuition.png" alt="方法示意：学习分组曲率，执行曲率归一化测地线更新，并在曲率变化时同步映射参数与切向动量。" width="100%" />
+<img src="assets/intuition-readme.png" alt="方法示意：学习分组曲率，执行曲率归一化测地线更新，并在曲率变化时同步映射参数与切向动量。" width="100%" />
 
 <sub>可学习曲率 · 测地线更新 · 动量传输</sub>
 
@@ -38,7 +38,7 @@ $$
 
 ## 快速开始
 
-使用 Python **3.11**。几何检查和小型合成验证可在 CPU 上运行，完整实验使用 CUDA。
+使用 Python **3.11** 和 PyTorch **2.5**。几何检查和小型合成验证可在 CPU 上运行，完整实验使用 CUDA。
 
 ```bash
 git clone https://github.com/Hik289/manifold-hyperbolic-optimization.git
@@ -97,7 +97,7 @@ python paper/scripts/reproduce_figures.py
 python paper/scripts/reproduce_positive_tables.py
 ```
 
-这两项无需训练、GPU 或网络。绘图脚本检查输入哈希并导出 **PNG 和 PDF**；使用[记录的绘图环境](paper/scripts/requirements-figures.txt)可匹配已发布的渲染。方法示意图另附[生成说明](assets/intuition_prompt.txt)。
+这两项无需训练、GPU 或网络。绘图脚本检查输入哈希并导出 **PNG 和 PDF**；使用[记录的绘图环境](paper/scripts/requirements-figures.txt)可匹配已发布的渲染。方法示意图另附[生成说明](assets/intuition_readme_prompt.txt)。
 
 <details>
 <summary><strong>本地编译与 Overleaf</strong></summary>

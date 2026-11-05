@@ -4,12 +4,10 @@
 <p>Curvature-Adaptive Manifold Optimization</p>
 
 [![Checks](https://github.com/Hik289/manifold-hyperbolic-optimization/actions/workflows/checks.yml/badge.svg?style=flat-square)](https://github.com/Hik289/manifold-hyperbolic-optimization/actions/workflows/checks.yml)
-![Python](https://img.shields.io/badge/Python-3.11-3776AB?style=flat-square&logo=python&logoColor=white)
-![PyTorch](https://img.shields.io/badge/PyTorch-2.5-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
 
 <br />
 
-<img src="assets/intuition.png" alt="Method schematic: learn group curvature, take a curvature-normalized geodesic step, and jointly map the parameters and tangent momentum when curvature changes." width="100%" />
+<img src="assets/intuition-readme.png" alt="Method schematic: learn group curvature, take a curvature-normalized geodesic step, and jointly map the parameters and tangent momentum when curvature changes." width="100%" />
 
 <sub>Learnable curvature · Geodesic updates · Momentum transport</sub>
 
@@ -44,7 +42,7 @@ The joint map preserves the canonical state $(\sqrt{K}x,\sqrt{K}m)$ in exact ari
 
 ## Quick start
 
-Use Python **3.11**. Geometry checks and the synthetic smoke test run on CPU; benchmark training uses CUDA.
+Use Python **3.11** and PyTorch **2.5**. Geometry checks and the synthetic smoke test run on CPU; benchmark training uses CUDA.
 
 ```bash
 git clone https://github.com/Hik289/manifold-hyperbolic-optimization.git
@@ -116,7 +114,7 @@ python paper/scripts/reproduce_figures.py
 python paper/scripts/reproduce_positive_tables.py
 ```
 
-These commands require no training, GPU or network access. The figure script verifies input hashes and exports **PNG and PDF**. Use the [recorded plotting environment](paper/scripts/requirements-figures.txt) to match the published rendering. The conceptual method illustration has a separate [generation specification](assets/intuition_prompt.txt).
+These commands require no training, GPU or network access. The figure script verifies input hashes and exports **PNG and PDF**. Use the [recorded plotting environment](paper/scripts/requirements-figures.txt) to match the published rendering. The conceptual method illustration has a separate [generation specification](assets/intuition_readme_prompt.txt).
 
 <details>
 <summary><strong>Build the manuscript locally or on Overleaf</strong></summary>
