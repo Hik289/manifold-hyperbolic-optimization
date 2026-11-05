@@ -5,11 +5,6 @@
 
 **Learn the geometry. Carry the momentum.**
 
-[![Paper](https://img.shields.io/badge/Paper-PDF-243457?style=for-the-badge&logo=readthedocs&logoColor=white)](paper/main.pdf)
-[![Quick start](https://img.shields.io/badge/Quick_Start-5_minutes-15857B?style=for-the-badge&logo=python&logoColor=white)](#quick-start)
-[![Experiments](https://img.shields.io/badge/Experiments-Code-6153A5?style=for-the-badge&logo=pytorch&logoColor=white)](docs/EXPERIMENTS.md)
-[![Results](https://img.shields.io/badge/Results-705_complete-B57C27?style=for-the-badge&logo=googlesheets&logoColor=white)](results/README.md)
-
 [![Checks](https://github.com/Hik289/manifold-hyperbolic-optimization/actions/workflows/checks.yml/badge.svg)](https://github.com/Hik289/manifold-hyperbolic-optimization/actions/workflows/checks.yml)
 ![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white)
 ![PyTorch](https://img.shields.io/badge/PyTorch-2.5-EE4C2C?logo=pytorch&logoColor=white)
