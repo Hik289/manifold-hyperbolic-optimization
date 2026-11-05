@@ -3,8 +3,6 @@
 # HyperbolicMomentum
 ### Curvature-Adaptive Manifold Optimization
 
-**Learn the geometry. Carry the momentum.**
-
 [![Checks](https://github.com/Hik289/manifold-hyperbolic-optimization/actions/workflows/checks.yml/badge.svg)](https://github.com/Hik289/manifold-hyperbolic-optimization/actions/workflows/checks.yml)
 ![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white)
 ![PyTorch](https://img.shields.io/badge/PyTorch-2.5-EE4C2C?logo=pytorch&logoColor=white)
