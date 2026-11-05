@@ -28,7 +28,7 @@ HyperbolicMomentum 研究具有可学习分组曲率的黎曼优化。曲率变�
 归一化步长与跨曲率映射为
 
 $$
-\eta_{\mathrm{geo}}=\frac{\eta}{1+\gamma\sqrt{K}\,\lVert\widetilde m\rVert_x},
+\eta_{\mathrm{geo}}=\frac{\eta}{1+\gamma\sqrt{K}\lVert\widetilde m\rVert_x},
 \qquad
 (x,m)\mapsto(a x,a m),
 \quad a=\sqrt{\frac{K_{\mathrm{old}}}{K_{\mathrm{new}}}}.

@@ -34,7 +34,7 @@ Each group maintains a point on a Lorentz manifold, its tangent momentum, and a 
 The normalized step size and the cross-curvature map take the form
 
 $$
-\eta_{\mathrm{geo}}=\frac{\eta}{1+\gamma\sqrt{K}\,\lVert\widetilde m\rVert_x},
+\eta_{\mathrm{geo}}=\frac{\eta}{1+\gamma\sqrt{K}\lVert\widetilde m\rVert_x},
 \qquad
 (x,m)\mapsto(a x,a m),
 \quad a=\sqrt{\frac{K_{\mathrm{old}}}{K_{\mathrm{new}}}}.
