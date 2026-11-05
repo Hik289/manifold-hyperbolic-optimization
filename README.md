@@ -9,11 +9,13 @@
 
 <img src="assets/intuition.png" alt="HyperbolicMomentum intuition: adapt group curvature, take a normalized geodesic step, and map both the parameter point and its tangent momentum when curvature changes." width="100%" />
 
-*A conceptual illustration for independent Lorentz-manifold groups; it is not an experimental result.*
+*Curvature adaptation, controlled geodesic steps, and joint mapping of parameters and momentum.*
 
 </div>
 
-HyperbolicMomentum studies optimization when **curvature is itself a learned state**. It combines group-specific curvature, curvature-normalized geodesic steps, and a compatible map of both the parameters and their tangent momentum. This repository contains the research implementation, every experimental source file, registered configurations, completed numerical records, and the full manuscript with detailed convergence and generalization analysis.
+HyperbolicMomentum optimizes parameters and **learns the geometry they move in**. It combines group-specific curvature, curvature-normalized geodesic steps, and a joint map of parameters and tangent momentum as curvature changes.
+
+This repository includes the implementation, experiment configurations and results, figure reproduction tools, and the full manuscript with convergence and generalization analysis.
 
 ## At a glance
 
@@ -37,11 +39,9 @@ For curvature magnitude $K>0$, the Lorentz model satisfies $\langle x,x\rangle_{
 
 The canonical point $\sqrt Kx$ and momentum $\sqrt Km$ are preserved by this ideal joint scaling. The interpretation applies to architectures with a dedicated manifold per group; the manuscript distinguishes this setting from shared-entity models.
 
-**Start reading:** [geometry implementation](experiments/revision/geometry.py) · [Lorentz operators](experiments/lorentz.py) · [algorithm and derivations](paper/sections/4_methodology.tex).
-
 ## Quick start
 
-Python **3.11** is recommended. The numerical checks and small synthetic fixture run on CPU; the complete benchmark was run with CUDA. All commands below are executed from the repository root.
+Use Python **3.11**. The geometry checks and synthetic smoke test run on CPU; the full benchmark uses CUDA. Run the following commands from the repository root.
 
 ```bash
 git clone https://github.com/Hik289/manifold-hyperbolic-optimization.git
@@ -53,14 +53,14 @@ python -m pip install -r requirements.txt
 # Check geometry, total curvature derivatives and the transport ablation.
 python experiments/revision/validate_geometry.py
 
-# A small CPU fixture; no dataset download and no benchmark claim.
+# Run a small synthetic smoke test without downloading data.
 python scripts/run_experiment.py --smoke --device cpu
 
 # Audit the published final records without training or network access.
 python scripts/summarize_results.py
 ```
 
-The fixture writes to `artifacts/reproduction/runs/fixture_mechanism_B5/`. It is explicitly marked `fixture_only` and is separate from the registered experiments. Existing complete runs are reused; incomplete trajectories are never silently appended to.
+The smoke test writes to `artifacts/reproduction/runs/fixture_mechanism_B5/` and is marked `fixture_only`, separate from benchmark results. The launcher reuses completed runs and does not append to incomplete trajectories.
 
 ## Run the experiments
 
@@ -82,7 +82,7 @@ python scripts/run_experiment.py \
   --all-retained --family mechanism --device cuda
 ```
 
-The entry point uses the saved manifest without changing epochs, seeds, splits or tuning rules. `--id` can also address an explicitly deferred configuration; such a new run is separate from the published completion record. Use `--data-root data` or the `MANIFOLD_DATA` environment variable to choose a dataset directory. No account-specific paths or services are required.
+The launcher preserves the manifest's training budgets, seeds, data splits and tuning rules. Set the dataset directory with `--data-root data` or the `MANIFOLD_DATA` environment variable. Deferred configurations can be run with `--id`; these runs remain separate from the published completion record.
 
 | Task family | Main implementation | Protocol |
 | :--- | :--- | :--- |
@@ -93,18 +93,18 @@ The entry point uses the saved manifest without changing epochs, seeds, splits o
 | Taxonomy, link prediction, retrieval | [`new_tasks.py`](experiments/revision/new_tasks.py) | Validation-only search; test released after the complete block |
 | Original exploratory studies | [`experiments/`](experiments) | Separate historical implementations and protocols |
 
-See **[Experiment guide](docs/EXPERIMENTS.md)** for dataset layouts, baseline definitions, ablations, queue tools and evaluation commands. The observed benchmark software versions are recorded in [`requirements-reproduction.txt`](requirements-reproduction.txt); the historical exploratory scripts are not interchangeable with the revised protocol.
+The [experiment guide](docs/EXPERIMENTS.md) covers dataset layouts, baselines, ablations and evaluation. Benchmark software versions are recorded in [`requirements-reproduction.txt`](requirements-reproduction.txt). Historical exploratory scripts use separate protocols from the revised suite.
 
 ## Reproduce the paper and figures
 
-No training, GPU or network access is needed to regenerate the published loss figures and comparison tables:
+Regenerate the published loss figures and comparison tables from bundled data:
 
 ```bash
 python paper/scripts/reproduce_figures.py
 python paper/scripts/reproduce_positive_tables.py
 ```
 
-The figure script reads the bundled CSV files, verifies their hashes, and writes both **PNG and PDF**. The release check reproduces the existing figure pixels in the recorded plotting environment. [`paper/scripts/requirements-figures.txt`](paper/scripts/requirements-figures.txt) records that environment; newer plotting libraries may change rendering without changing the underlying values. The new README intuition image is a conceptual illustration, with its generation specification in [`assets/intuition_prompt.txt`](assets/intuition_prompt.txt).
+These commands require no training, GPU or network access. The figure script verifies the CSV hashes and exports **PNG and PDF**. Use the [recorded plotting environment](paper/scripts/requirements-figures.txt) to match the published rendering. The conceptual illustration above has a separate [generation specification](assets/intuition_prompt.txt).
 
 To compile the complete paper with TeX Live and `latexmk`:
 
@@ -130,11 +130,11 @@ docs/                      Detailed reproduction guide and research proposal
 tests/                     Geometry, protocol and end-to-end fixture checks
 ```
 
-Large datasets, model checkpoints, console logs and full per-step training archives are generated locally rather than committed. The repository includes every experiment source file, every registered configuration, all completed final-result records and all data needed for the included paper figures. [Release notes](docs/RELEASE.md) describe the portability changes and source coverage.
+The repository includes all experiment source files, registered configurations, completed final-result records and inputs for the paper figures. Datasets, checkpoints and training logs are stored locally. See the [release notes](docs/RELEASE.md) for source coverage and portability details.
 
 ## Citation
 
-If you use this research code, please cite the repository and the accompanying manuscript:
+If you use HyperbolicMomentum in your research, please cite:
 
 ```bibtex
 @misc{hyperbolicmomentum2026,
@@ -145,5 +145,3 @@ If you use this research code, please cite the repository and the accompanying m
   url          = {https://github.com/Hik289/manifold-hyperbolic-optimization}
 }
 ```
-
-Bundled conference styles retain their upstream notices in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
