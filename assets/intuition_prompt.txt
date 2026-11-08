@@ -1,7 +1,11 @@
-Conceptual illustration generated with the built-in imagegen tool.
-This is an illustrative asset, not a measured experimental figure.
+Original illustration: intuition.png
 
-BASE PROMPT
+This file preserves the prompts used to create the original method diagram.
+The current README uses intuition-readme.png, which removes the original title
+and slogan. See intuition_readme_prompt.txt for that edit.
+Neither image shows measured experiment results.
+
+Original generation prompt (kept unchanged)
 
 Use case: scientific-educational / infographic-diagram.
 Create a polished, high-resolution PNG conceptual hero figure for the academic open-source repository "HyperbolicMomentum". This is an intuition illustration, not a benchmark or a data plot. Wide landscape canvas approximately 2400 by 1100 pixels. White background, exceptional typographic hierarchy, very generous whitespace, sophisticated muted indigo, teal and warm amber palette, fine precise strokes. A top-tier machine learning research website aesthetic: clean, calm, mathematically grounded, publication-quality. Absolutely no neon rainbow, heavy rounded boxes, spreadsheets, matrix grids, big paragraph blocks, distracting decorations or fake results.
@@ -16,7 +20,7 @@ Stage 03 title "Move the point AND its memory". Two hyperboloids side by side, t
 Small labels above surfaces "Before" and "After". Under this drawing typeset exactly "a = sqrt(K_old / K_new)" followed by "x_new = a x" and "m_new = a m" in clean readable mathematical notation, with ordinary subscripts or typeset math. Final short caption "Preserve the canonical state".
 Footer very small "Schematic intuition for independent manifold groups". No conference acceptance badge, no logos, no named institutions, no private information, no API information, no numerical performance claims. Make the artwork beautiful and legible at GitHub README width. Output PNG.
 
-GEOMETRY REFINEMENT
+Geometry correction prompt (kept unchanged)
 
 Edit this scientific infographic. Keep the composition, whitespace, elegant title, exact text, indigo/teal/gold colors, three-stage layout and formulas unchanged. One crucial mathematical correction: EVERY surface currently resembles a one-sheet hourglass hyperboloid, which is WRONG for the Lorentz model in this paper. Replace ALL five surfaces with the UPPER SHEET of a TWO-SHEET hyperboloid, z = sqrt(1/K + x^2 + y^2). Visually each surface is an upward-opening smooth BOWL with a rounded lowest point, like a shallow cup with no stem: CLOSED ROUND BOTTOM, wide OPEN TOP, monotonically increasing width upward. Absolutely no hourglass waist, no downward-flaring lower half, no saddle, no two-sided trumpet shape. The top opening is an ellipse; smoothly curved meridian grid lines converge toward the closed bottom. The lower boundary must be a rounded bowl bottom, NOT another open ellipse.
 The surfaces in stage 3 must be similar bowls scaled uniformly. Keep visible points ON the surfaces and momentum arrows aligned to the tangent plane. Keep the stage 2 orange geodesic hugging the bowl surface between x and y, with tangent teal arrows at both ends. Keep the stage1 branch nodes integrated onto bowl surfaces. Keep all formulas and all labels exactly as they are and make sure none are clipped. Preserve the beautiful clean scientific editorial style, high resolution PNG, white background. This is a conceptual scientific figure, so prioritize correct upper-sheet bowl geometry.

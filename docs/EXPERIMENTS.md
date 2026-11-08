@@ -1,66 +1,81 @@
 # Experiment guide
 
-Run commands from the repository root. The saved manifest is the source of truth for each configuration: `experiments/revision/manifest.json`. It contains 893 configurations; `execution_scope.json` records the exploratory compute-budget amendment that retained 705 and deferred 188. The published result inventory preserves both sets.
+Run every command below from the repository root.
 
-## Environments
+The [configuration list](../experiments/revision/manifest.json) contains the original settings for each experiment. It has 893 configurations. After a compute-budget change, 705 were kept and completed, and 188 were deferred. The [scope record](../experiments/revision/execution_scope.json) lists that decision. Deferred runs are not counted as completed experiments or training failures.
 
-- `requirements.txt`: geometry, synthetic and mechanism experiments, tabular analysis and plotting.
-- `requirements-full.txt`: vision, graph, text and dataset dependencies in addition to the core.
-- `requirements-reproduction.txt`: observed versions from the completed Python 3.11 benchmark environment. The benchmark used PyTorch 2.5.1 with CUDA 12.4.
-- `paper/scripts/requirements-figures.txt`: the Python 3.9 plotting environment used for the bundled figure pixels.
+## Set up the environment
 
-The core geometry and three-step fixture are also checked on CPU. Device-specific floating-point differences should not be confused with a reproduced benchmark result. The original exploratory scripts and the revised benchmark use different protocols, described separately in the paper.
+| File | What it installs or records |
+| :--- | :--- |
+| [`requirements.txt`](../requirements.txt) | Geometry, synthetic experiments, analysis and plotting |
+| [`requirements-full.txt`](../requirements-full.txt) | The core packages plus image, graph, text and dataset support |
+| [`requirements-reproduction.txt`](../requirements-reproduction.txt) | Package versions used for the completed benchmark: Python 3.11, PyTorch 2.5.1 and CUDA 12.4 |
+| [`paper/scripts/requirements-figures.txt`](../paper/scripts/requirements-figures.txt) | Plotting packages used with Python 3.9 to create the included images |
 
-## Baselines in the revised suite
+The geometry checks and the three-update example also run on CPU. These checks confirm that the code runs correctly; they do not reproduce the full benchmark. Results can differ slightly across devices because of floating-point arithmetic.
 
-| Code | Curvature | Tangent momentum | Normalized step | Joint curvature map |
-| :--- | :--- | :---: | :---: | :---: |
-| E | Euclidean | Task-dependent Euclidean optimizer | — | — |
+## Understand the method labels
+
+The revised benchmark uses these labels:
+
+| Code | Curvature | Momentum in the tangent space | Normalized step | What is rescaled when curvature changes |
+| :--- | :--- | :---: | :---: | :--- |
+| E | Euclidean | Uses the task's Euclidean optimizer | — | — |
 | B2 | Fixed | — | — | — |
 | B3 | Fixed | ✓ | — | — |
 | B35 | Fixed | ✓ | ✓ | — |
-| B4 | Learned | — | — | Point update |
-| B5 | Learned | ✓ | ✓ | Point + momentum |
+| B4 | Learned | — | — | Point |
+| B5 | Learned | ✓ | ✓ | Point and momentum |
 | A5 | Learned | ✓ | ✓ | Point only |
-| shared | One shared learned value | ✓ | ✓ | Point + momentum |
+| shared | One learned value for all groups | ✓ | ✓ | Point and momentum |
 
-All manifold variants use the common numerical safeguards implemented in `geometry.py`. A5 retains same-manifold parallel transport and omits the cross-curvature momentum scaling. Some historical scripts use `B1` for the Euclidean control and `B3.5` for the normalized fixed-curvature control. Read each script's `--help` before comparing historical method labels.
+The manifold methods share the numerical safeguards in [`geometry.py`](../experiments/revision/geometry.py). A5 still uses parallel transport when the point moves within a fixed-curvature space. It omits only the momentum rescaling when curvature changes.
 
-## Launch registered configurations
+Earlier scripts may use `B1` for the Euclidean control and `B3.5` for normalized fixed-curvature momentum. The historical knowledge-graph experiments also use a different Adam-based optimizer. Check a script's `--help` and its documented settings before comparing method names across studies.
+
+## Run an experiment
 
 ```bash
+# List configurations, or show only the graph tasks.
 python scripts/run_experiment.py --list
 python scripts/run_experiment.py --list --family graph
+
+# Run one configuration.
 python scripts/run_experiment.py --id graph_cora_gcn_B5 --device cuda
+
+# Run the retained mechanism configurations one after another.
 python scripts/run_experiment.py --all-retained --family mechanism --device cuda
 ```
 
-`--all-retained` launches configurations sequentially and skips the explicitly deferred set. `--id` can run any registered ID, including a deferred configuration, without changing its status in the published snapshot. Outputs go to `artifacts/reproduction/runs/ID/`; choose another `--work-dir` for an independent run. A completed matching run is reused. An incomplete trajectory causes a clear error so that a fresh run cannot accidentally append to it.
+The list marks configurations as `retained` or `deferred`. `--all-retained` skips deferred configurations. `--id` can run either kind without changing the published result records.
 
-The wrapper copies the complete manifest into its work directory, which lets the six-task extension enforce the original 30-configuration test-release condition. It never substitutes a reduced epoch count for a formal run. The separate `--smoke` fixture uses only three updates and is marked `fixture_only`.
+By default, outputs go to `artifacts/reproduction/runs/ID/`. Use `--work-dir` to save an independent run elsewhere. The launcher skips an existing result only if its configuration and full training length match. If it finds an unfinished training log, it asks for a new work directory so a new run cannot append to old logs.
 
-## Data preparation
+The launcher copies the full configuration list into the work directory. The six-task extension uses that list to check that all settings have finished before evaluating test data. Registered experiments always use their full training lengths. Only `--smoke` uses a three-update example, marked `fixture_only`.
 
-Set `--data-root data` or `MANIFOLD_DATA`. Raw datasets are obtained from their providers, not redistributed in this repository.
+## Prepare data
 
-| Data | Expected location / loader |
+Choose a data directory with `--data-root data` or the `MANIFOLD_DATA` environment variable. The paths below assume `data/`. Dataset files are obtained from their providers and are not included in Git.
+
+| Dataset | Location or loader |
 | :--- | :--- |
-| Synthetic trees and metric drift | Generated by `structured.py` / `mechanism.py`; no download |
-| Cora, Citeseer, PubMed | Downloaded by the PyG Planetoid loader under the data root |
-| ogbn-arxiv | Downloaded by OGB under the data root |
-| 20 Newsgroups | scikit-learn cache under the data root |
-| AG News, DBpedia | Dataset cache under `data/hf/` |
-| Reuters | NLTK corpus under `data/nltk/`; all labels are retained |
-| CIFAR-10, CIFAR-100, MNIST | Downloaded by torchvision under the data root |
-| Tiny-ImageNet | `data/tinyimagenet/train/` and `val/`, prepared below |
-| ImageNet-100 | User-provided ImageFolder `train/` and `val/` with exactly 100 classes, or a validated image manifest |
-| WN18RR, FB15k-237, YAGO3-10 | `data/wn18rr/`, `data/fb15k237/`, `data/yago310/`, each with `train.txt`, `valid.txt`, `test.txt` |
-| MovieLens-1M | Downloaded from GroupLens; chronological leave-last-two-out |
-| Amazon Books | Prepared `data/amazon_books.jsonl`; first 20,000 source-order users with retained histories |
-| Yelp2018 | Original processed benchmark under `data/yelp2018/`; original test retained, one training interaction per user held out for validation |
-| Six-task extension | Deterministic caches under `data/new_tasks_v1/` from `extension_data.py` |
+| Synthetic trees and changing distance scales | Generated by `structured.py` or `mechanism.py`; no download |
+| Cora, Citeseer, PubMed | Downloaded under the data directory by PyG's Planetoid loader |
+| ogbn-arxiv | Downloaded under the data directory by OGB |
+| 20 Newsgroups | Cached under the data directory by scikit-learn |
+| AG News, DBpedia | Cached in `data/hf/` |
+| Reuters | NLTK corpus in `data/nltk/`; all labels are kept |
+| CIFAR-10, CIFAR-100, MNIST | Downloaded under the data directory by torchvision |
+| Tiny-ImageNet | `data/tinyimagenet/train/` and `val/`; use the preparation command below |
+| ImageNet-100 | An existing ImageFolder dataset with `train/`, `val/` and exactly 100 classes, or a checked image list |
+| WN18RR, FB15k-237, YAGO3-10 | `data/wn18rr/`, `data/fb15k237/`, `data/yago310/`, each containing `train.txt`, `valid.txt` and `test.txt` |
+| MovieLens-1M | Downloaded from GroupLens; the last two interactions per user, ordered by time, are held out |
+| Amazon Books | `data/amazon_books.jsonl`; the first 20,000 users in source order whose histories pass preprocessing |
+| Yelp2018 | Original processed data in `data/yelp2018/`; the test split is kept and one training interaction per user is held out for validation |
+| Six-task extension | Caches created by `extension_data.py` in `data/new_tasks_v1/` |
 
-Prepare only the datasets you need:
+Prepare the datasets you need:
 
 ```bash
 python experiments/revision/prepare_data.py --root data --datasets tinyimagenet
@@ -68,11 +83,15 @@ python experiments/revision/prepare_data.py --root data --datasets yago310 amazo
 python experiments/revision/prepare_yelp2018.py --root data
 ```
 
-For WN18RR and FB15k-237, the expected format is one tab-separated `head relation tail` triple per line. The standard public splits are available in the [KnowledgeGraphEmbedding data repository](https://github.com/DeepGraphLearning/KnowledgeGraphEmbedding/tree/master/data). Preserve the original split files. ImageNet-100 requires an existing authorized dataset; the code does not substitute a different dataset under that name.
+WN18RR and FB15k-237 use one tab-separated `head relation tail` triple per line. The original splits are available in the [KnowledgeGraphEmbedding data repository](https://github.com/DeepGraphLearning/KnowledgeGraphEmbedding/tree/master/data). Keep those split files unchanged.
 
-## Six-task extension and delayed test evaluation
+ImageNet-100 requires an existing dataset you have permission to use. The code does not replace it with another dataset.
 
-The fixed extension contains two taxonomy tasks, two link-prediction tasks and two retrieval tasks. Each task has five methods and six search settings: **30 complete 1,000-epoch configurations**. Training uses validation only; `new_tasks.finalize_ready` opens the test set after the whole block is complete. A5 is additionally evaluated at the B5-selected setting.
+## Select settings before evaluating test data
+
+The six-task extension contains two taxonomy tasks, two link-prediction tasks and two retrieval tasks. Each task compares five methods across six settings, giving 30 runs of 1,000 epochs each.
+
+During training, configuration selection uses validation data. Once all 30 runs for a task are complete, `new_tasks.finalize_ready` evaluates the selected configurations on test data. It also evaluates A5 at the setting selected for B5, so that comparison uses matching settings.
 
 ```bash
 python scripts/run_experiment.py --all-retained --family taxonomy --device cuda
@@ -80,26 +99,26 @@ python scripts/run_experiment.py --all-retained --family link_prediction --devic
 python scripts/run_experiment.py --all-retained --family retrieval --device cuda
 ```
 
-Selected test matrices are written to `WORK_DIR/runs/_extension_selection/`. The six matrices supplied in `results/revision/_extension_selection/` are the completed published records. A missing model checkpoint cannot be reconstructed from a numerical summary; rerunning the full configuration creates it locally.
+Test summaries are saved in `WORK_DIR/runs/_extension_selection/`. The completed summaries are included in [`results/revision/_extension_selection/`](../results/revision/_extension_selection/). Re-running test evaluation needs model checkpoints; the saved metric summaries cannot replace them. Running the full configurations creates those checkpoints locally.
 
-The paper's display rule requires B5 to exceed E, B3 and B35 by at least 0.5 percentage points on the primary endpoint, with both tasks in a broad family satisfying the condition for a family-level claim. The completed extension does not satisfy that criterion. No test-optimal configuration or later threshold change is used.
+The paper's rule for presenting an advantage requires B5 to exceed E, B3 and B35 by at least 0.5 percentage points on the main metric. Both tasks in a family must pass before claiming an advantage for that family. None of the completed extension families passes this rule. Settings were not chosen on test scores, and the threshold was not changed after evaluation.
 
-## Checks and fixtures
+## Check the implementation and records
 
 ```bash
 python experiments/revision/validate_geometry.py
 python -m unittest discover -s tests -v
 python scripts/summarize_results.py
 
-# Optional full task-path fixtures after installing requirements-full.txt.
+# Optional small task checks; install requirements-full.txt first.
 python experiments/revision/validate_tasks.py
 python experiments/revision/validate_new_tasks.py --root artifacts/extension-fixtures
 python experiments/revision/validate_test_release.py --fixtures artifacts/extension-fixtures
 ```
 
-These check tangent constraints, transport norms, total curvature derivatives, distinct A5 momentum behavior, task-path execution, disjoint splits and delayed test release. They do not create benchmark evidence.
+These checks cover tangent-space constraints, momentum lengths after transport, curvature derivatives, the difference between B5 and A5, task execution, non-overlapping data splits, and the test-evaluation rule. Small test examples check the implementation; their scores are not benchmark results.
 
-## Collect results and reproduce plots
+## Rebuild figures and tables
 
 ```bash
 python paper/scripts/reproduce_figures.py
@@ -107,9 +126,9 @@ python paper/scripts/reproduce_positive_tables.py
 python scripts/summarize_results.py
 ```
 
-The three main-paper loss plots read exact bundled CSV values and verify checksums. The older plotting implementations are retained in `figures/`; scripts that read complete training trajectories require the corresponding locally generated runs. The numerical final-result snapshot does not pretend to contain all per-step logs.
+The three paper loss curves read the included CSV files and verify their hashes before plotting. Earlier plotting scripts are in [`figures/`](../figures/). Some need full training logs, which must be generated locally; the published final-result files do not contain every training step.
 
-For a complete locally generated run directory, the original collector remains available:
+For a complete set of locally generated runs, use the collector:
 
 ```bash
 python experiments/revision/collect.py \
@@ -117,6 +136,12 @@ python experiments/revision/collect.py \
   --runs-dir artifacts/reproduction/runs
 ```
 
-`collect.py --paper ...` also regenerates experiment tables; long-horizon audits require original trajectories. `sync_local.py` accepts explicit source and destination directories, with no server configuration. Advanced queue implementations (`worker.py`, `priority_worker.py`, `supervisor.py`) are included for source completeness; the portable sequential launcher above is the default entry point.
+Add `--paper PATH` to regenerate experiment tables in a paper directory. Analyses that compare progress over training need the full training logs.
 
-`reduce_scope_nov4.py` is the historical, one-time budget-amendment utility. Its public default is inspect-only; replaying it requires `--apply` and its original preconditions. It is not a training command and is never invoked by the quick start.
+## Other utilities
+
+`sync_local.py` copies files between explicitly supplied source and destination directories. It contains no server setup.
+
+`worker.py`, `priority_worker.py` and `supervisor.py` provide the original queue-based runners. They are included with the full source code; the sequential launcher above is the simplest way to run experiments locally.
+
+`reduce_scope_nov4.py` records the one-time reduction in the study's compute budget. By default, it only reports what it would change. Applying that historical change requires `--apply` and the expected starting state. It is not needed to run experiments.

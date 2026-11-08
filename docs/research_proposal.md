@@ -1,16 +1,23 @@
 # HyperbolicMomentum: Curvature-Adaptive Momentum for Hierarchical Neural Optimization
 
-## 0. 项目定位
+> 本文是初始研究计划，保留当时的算法公式、拟研究的理论结论和实验设计，不代表所有计划都已完成。当前实现与评估规则见[实验指南](EXPERIMENTS.md)，完成情况见[结果说明](../results/README.md)。完整理论证明以[论文源码](../paper/main.tex)为准；下文的初步界和条件在后续论文中有补充或修正。
+
+阅读时可以先看第 3 节的更新步骤，再看第 5–10 节的实验设计。第 1–2 节定义几何运算，第 4 节保留初始理论推导。表中的 `TBD` 表示计划中的待填项，不是已测得结果。
+
+几个常用术语：曲率决定空间的弯曲程度与尺度；切空间描述某一点可以移动的方向；平行移动把向量从一个点带到另一个点；两时间尺度表示曲率更新慢于参数更新。
+
+
+## 0. 研究问题
 
 许多学习任务具有层级结构，例如：
 
-- taxonomy reconstruction；
-- tree decoding；
-- hierarchical classification；
-- knowledge graph embedding；
-- mixture-of-experts routing；
-- hierarchical clustering；
-- graph representation learning。
+- 分类层级重建；
+- 树结构解码；
+- 层级分类；
+- 知识图谱嵌入；
+- 混合专家模型中的路由；
+- 层级聚类；
+- 图表示学习。
 
 欧氏空间中的球体体积随半径按多项式增长，而负曲率空间中的体积随半径近似指数增长。因此，双曲空间适合表示树和层级数据。
 
@@ -26,7 +33,7 @@ $$
 \mathbb H_\kappa^d.
 $$
 
-普通 Riemannian stochastic gradient descent（RSGD）使用：
+普通黎曼随机梯度下降（RSGD）使用：
 
 $$
 x_{t+1}
@@ -61,11 +68,11 @@ $$
 
 两个向量位于不同切空间，直接相加没有几何意义。
 
-本项目提出一个单一算法：
+本项目研究以下算法：
 
 > **HyperbolicMomentum：在分组 Lorentz 双曲流形上维护平行移动动量，同时在线更新每组负曲率，并在曲率改变时对参数和动量进行一致的跨曲率映射。**
 
-主算法固定包含三个新机制：
+算法包含三个组成部分：
 
 1. **切空间一致的双曲动量**
    $$
@@ -87,7 +94,7 @@ $$
    \kappa_{\min}.
    $$
 
-3. **跨曲率状态 transport**
+3. **曲率变化时同步映射参数和动量**
    当：
    $$
    \kappa_{g,t+1}\ne\kappa_{g,t},
@@ -112,9 +119,9 @@ $$
 }
 $$
 
-核心科学问题是：
+要回答的问题是：
 
-> **在层级结构的局部增长率随参数组和训练阶段变化时，固定曲率是否限制了优化；分组可学习曲率和一致的跨曲率动量 transport 是否可以同时改善表示失真、优化稳定性和收敛速度？**
+> **不同参数组和训练阶段可能需要不同的几何尺度。学习每组曲率，并在曲率变化时同步调整动量，能否降低表示失真、提高训练稳定性或加快收敛？**
 
 所有正式实验只运行：
 
@@ -134,7 +141,7 @@ $$
 \boxed{\textbf{1000 epochs}}.
 $$
 
-每个 epoch 的任务指标、损失、曲率、半径、动量范数、transport error、边界距离和 wall-clock 全部保存，用于绘制完整轨迹。
+每轮的任务指标、损失、曲率、半径、动量范数、动量传输误差、边界距离和实际运行时间全部保存，用于绘制完整轨迹。
 
 ---
 
@@ -322,7 +329,7 @@ $$
 d_K(x,y).
 $$
 
-## 1.6 Riemannian gradient
+## 1.6 黎曼梯度
 
 给定环境欧氏梯度：
 
@@ -330,7 +337,7 @@ $$
 \nabla_x^{\mathrm E}F,
 $$
 
-先使用 Lorentz metric inverse：
+先使用 Lorentz 度量的逆矩阵：
 
 $$
 J
@@ -338,7 +345,7 @@ J
 \operatorname{diag}(-1,1,\ldots,1).
 $$
 
-环境 Lorentz gradient：
+环境 Lorentz 梯度：
 
 $$
 \nabla_x^{\mathcal L}F
@@ -413,13 +420,13 @@ $$
 每组对应：
 
 - 一个层级分类头；
-- 一个 embedding table；
+- 一个嵌入表；
 - 一个路由器；
 - 一个图表示层；
-- 一个树 decoder 层；
+- 一个树解码层；
 - 一个知识图谱关系族。
 
-乘积流形 metric 为：
+乘积流形度量为：
 
 $$
 g_{\mathcal X}
@@ -440,7 +447,7 @@ $$
 
 ## 2.1 曲率参数化
 
-为保证负曲率，优化 unconstrained scalar：
+为保证负曲率，优化无约束标量：
 
 $$
 c_g\in\mathbb R.
@@ -676,11 +683,11 @@ $$
 
 # 3. 主算法：HyperbolicMomentum
 
-本节只定义一个算法：
+以下给出算法的状态和更新步骤：
 
 > **HyperbolicMomentum：在固定 Lorentz 模型中维护平行移动动量，并使用分组可学习曲率与解析跨曲率映射更新参数。**
 
-主算法不包含多个可选 transport、不混入 Riemannian Adam、不使用不同双曲模型，也不加入额外候选步长规则。
+本方案固定使用 Lorentz 模型、平行移动和下述步长规则，以便各项实验比较同一种更新方法。
 
 ## 3.1 优化状态
 
@@ -731,7 +738,7 @@ $$
 
 每一步只执行以下六个步骤。
 
-### Step 1：计算 Riemannian gradient
+### 步骤 1：计算黎曼梯度
 
 $$
 g_{g,t}
@@ -749,9 +756,9 @@ T_{x_{g,t}}
 \mathbb H_{-K_{g,t}}^{d_g}.
 $$
 
-### Step 2：更新同点切空间动量
+### 步骤 2：在当前点的切空间更新动量
 
-上一时刻动量已经在当前点切空间中完成 transport，因此：
+上一时刻的动量已移动到当前点的切空间，因此：
 
 $$
 \widetilde m_{g,t}
@@ -761,7 +768,7 @@ $$
 (1-\beta)g_{g,t}.
 $$
 
-### Step 3：使用曲率归一化步长
+### 步骤 3：使用曲率归一化步长
 
 定义：
 
@@ -796,7 +803,7 @@ $$
 \|.
 $$
 
-### Step 4：沿指数映射更新参数并平行移动动量
+### 步骤 4：沿指数映射更新参数并平行移动动量
 
 $$
 x_{g,t+1/2}
@@ -819,7 +826,7 @@ m_{g,t+1/2}
 ).
 $$
 
-### Step 5：更新曲率
+### 步骤 5：更新曲率
 
 $$
 c_{g,t+1}
@@ -856,7 +863,7 @@ $$
 \delta_K.
 $$
 
-### Step 6：跨曲率映射参数和动量
+### 步骤 6：跨曲率映射参数和动量
 
 参数点：
 
@@ -1027,17 +1034,17 @@ for t = 0, ..., T - 1:
 
 主算法固定使用：
 
-- Lorentz model；
+- Lorentz 模型；
 - 精确指数映射；
 - 精确平行移动；
 - 每组独立负曲率；
 - softplus 曲率参数化；
-- log-curvature clipping；
+- 对数曲率变化截断；
 - 参数与动量同步跨曲率映射；
 - FP32 几何运算；
-- 无 Riemannian Adam；
-- 无多种 transport 候选；
-- 无 Poincaré ball 作为主实现。
+- 不使用黎曼 Adam；
+- 固定使用同一种动量传输规则；
+- 主实现使用 Lorentz 模型。
 
 ## 3.6 复杂度
 
@@ -1060,14 +1067,14 @@ $$
 
 # 4. 深入理论
 
-本节不再把理论拆成很多彼此独立的小结论，而是围绕负曲率流形上的四个核心对象建立完整链条：
+本节按四个问题组织初始推导：
 
-1. **Jacobi field 与指数映射畸变**；
-2. **Hessian comparison 与曲率自适应步长**；
+1. **Jacobi 场与指数映射畸变**；
+2. **Hessian 比较与曲率自适应步长**；
 3. **可学习曲率下的两时间尺度动力学与非凸收敛**；
-4. **曲率驱动的稳定性与 generalization**。
+4. **曲率驱动的稳定性与泛化**。
 
-最终结果把：
+计划分析以下关系：
 
 $$
 \text{sectional curvature}
@@ -1083,11 +1090,11 @@ $$
 \text{generalization}
 $$
 
-连接成一个端到端理论。
+说明这些几何性质如何影响训练和泛化。
 
 ---
 
-## 4.1 几何预备：负曲率、Jacobi field 与测地线发散
+## 4.1 几何预备：负曲率、Jacobi 场与测地线发散
 
 考虑常负曲率：
 
@@ -1111,7 +1118,7 @@ $$
 \|\dot\gamma(t)\|=1.
 $$
 
-沿 $\gamma$ 的 Jacobi field：
+沿 $\gamma$ 的 Jacobi 场：
 
 $$
 J(t)
@@ -1141,7 +1148,7 @@ R(J,\dot\gamma)\dot\gamma
 -KJ.
 $$
 
-因此 Jacobi equation 变为：
+因此 Jacobi 方程变为：
 
 $$
 \boxed{
@@ -1184,11 +1191,11 @@ $$
 
 增长，而不是欧氏空间中的线性增长。
 
-该增长率是整个算法理论的核心：它一方面解释双曲空间能够容纳树状结构，另一方面也说明大曲率和大步长会放大优化轨迹的敏感性。
+这个增长率说明了双曲空间适合表示树状结构的原因，也解释了为什么较大的曲率和步长可能放大训练扰动。
 
 ---
 
-## 4.2 主定理一：曲率控制的指数映射畸变与最优步长
+## 4.2 指数映射如何放大扰动，以及步长的作用
 
 定义：
 
@@ -1233,7 +1240,7 @@ $$
 \perp v.
 $$
 
-由 Jacobi field 公式可得：
+由 Jacobi 场公式可得：
 
 $$
 D\operatorname{Exp}_x^K(v)[\xi]
@@ -1263,7 +1270,7 @@ $$
 }.
 $$
 
-### Theorem 1：曲率—步长—条件数统一定理
+### 定理 1：曲率、步长与指数映射条件数
 
 设 HyperbolicMomentum 在某一步使用：
 
@@ -1420,9 +1427,9 @@ $$
 
 无关。
 
-这说明曲率归一化步长不是启发式缩放，而是对指数映射最坏条件数的统一控制。
+因此，可以用步长参数给出指数映射条件数的上界。
 
-### Corollary 1.1：随机梯度噪声传播
+### 推论 1.1：随机梯度噪声传播
 
 若切空间噪声为：
 
@@ -1451,7 +1458,7 @@ $$
 
 ---
 
-## 4.3 Hessian comparison 与目标 landscape
+## 4.3 Hessian 比较与目标函数的形状
 
 设：
 
@@ -1467,7 +1474,7 @@ $$
 r=d_K(x,y).
 $$
 
-在常负曲率空间中，Hessian comparison 给出：
+在常负曲率空间中，Hessian 比较给出：
 
 $$
 \operatorname{Hess}f_y
@@ -1526,7 +1533,7 @@ $$
 
 因此负曲率不会破坏平方距离目标的凸性，但会使远距离横向方向变得更陡。
 
-### Theorem 2：曲率驱动的 landscape 统一定理
+### 定理 2：曲率与目标函数的二阶性质
 
 考虑目标：
 
@@ -1547,7 +1554,7 @@ $$
 R
 $$
 
-是 geodesically $\mu_R$-strongly convex 且 $L_R$-smooth 的正则项。
+是沿测地线 $\mu_R$-强凸且 $L_R$-光滑的正则项。
 
 假设所有样本满足：
 
@@ -1555,11 +1562,11 @@ $$
 d_K(x,y)\le R_{\max}
 $$
 
-于某 geodesic ball 内。
+在某个测地球内。
 
 则：
 
-### (i) Geodesic strong convexity
+### (i) 沿测地线的强凸性
 
 $$
 \boxed{
@@ -1581,9 +1588,9 @@ $$
 1+\mu_R
 $$
 
-geodesically strongly convex。
+沿测地线强凸。
 
-### (ii) Smoothness
+### (ii) 光滑性
 
 $$
 \boxed{
@@ -1598,7 +1605,7 @@ L_R
 }
 $$
 
-所以 smoothness 常数可取：
+所以光滑性常数可取：
 
 $$
 L_K(R_{\max})
@@ -1626,7 +1633,7 @@ L_R
 }
 $$
 
-这说明曲率既带来表示容量，也可能增大远距离横向 stiffness。
+这说明曲率既带来表示容量，也可能增大远距离横向陡峭程度。
 
 ### (iv) 曲率学习的空间最优点
 
@@ -1695,7 +1702,7 @@ $$
 
 则该最优点唯一。
 
-### Corollary 2.1：分组曲率严格优于单曲率的条件
+### 推论 2.1：分组曲率严格优于单曲率的条件
 
 若组 $g$ 的：
 
@@ -1723,11 +1730,11 @@ $$
 
 只要至少两个组的最优曲率不同。
 
-因此分组曲率的优势不是“参数更多”，而是不同层级增长率对应不同几何最优点。
+在上述假设下，各组分别选择曲率可以降低目标值，因为它们对应的最优曲率不同。
 
 ---
 
-## 4.4 主定理三：可学习曲率下的两时间尺度收敛
+## 4.4 参数和曲率以不同速度更新时的收敛分析
 
 令联合状态：
 
@@ -1885,9 +1892,9 @@ $$
 \frac{\rho_t}{\eta_t}\rightarrow0.
 $$
 
-### Theorem 3：联合非凸收敛主定理
+### 定理 3：参数与曲率的联合收敛
 
-定义联合 stationarity measure：
+定义联合驻点残差（衡量梯度离零的距离）：
 
 $$
 \mathcal G_t
@@ -2081,9 +2088,9 @@ $$
 \partial_u\mathcal J=0
 $$
 
-的联合 stationary point。
+的联合驻点。
 
-### Corollary 3.1：geodesic PL 下的 tracking contraction
+### 推论 3.1：测地线 PL 条件下的跟踪误差收缩
 
 若对每个固定 $u$：
 
@@ -2099,7 +2106,7 @@ $$
 ],
 $$
 
-且 reduced curvature objective：
+且对参数取最小值后的曲率目标：
 
 $$
 \overline{\mathcal J}(u)
@@ -2163,11 +2170,11 @@ $$
 \mathcal T_t
 $$
 
-是曲率漂移和 transport error。
+是曲率漂移和动量传输误差。
 
 ---
 
-## 4.5 主定理四：曲率驱动的 error amplification
+## 4.5 曲率如何影响误差放大
 
 考虑一次同曲率更新：
 
@@ -2195,7 +2202,7 @@ $$
 e_{\mathrm{num}}.
 $$
 
-### Theorem 4：一步误差传播定理
+### 定理 4：一步误差传播定理
 
 在：
 
@@ -2288,7 +2295,7 @@ $$
 
 从而误差放大得到统一上界。
 
-### Corollary 4.1：跨曲率 transport 的一阶一致性
+### 推论 4.1：跨曲率动量传输的一阶一致性
 
 跨曲率映射：
 
@@ -2341,11 +2348,11 @@ O
 \right).
 $$
 
-因此曲率更新必须比参数更新更慢。
+本提案据此采用比参数更新更慢的曲率更新；具体条件需结合收敛分析。
 
 ---
 
-## 4.6 主定理五：曲率、稳定性与 generalization
+## 4.6 曲率、稳定性与泛化
 
 令训练集：
 
@@ -2410,7 +2417,7 @@ $$
 
 这说明梯度 Lipschitz 常数本身由曲率和半径共同控制。
 
-### Theorem 5：联合 uniform stability 主定理
+### 定理 5：联合状态的一致稳定性
 
 存在常数：
 
@@ -2514,7 +2521,7 @@ $$
 
 ### 解释
 
-该定理给出曲率对 generalization 的两条相反作用：
+该定理给出曲率对泛化的两条相反作用：
 
 1. **表示收益**  
    合适的负曲率降低层级表示失真和训练偏差。
@@ -2542,7 +2549,7 @@ $$
 
 之间的平衡。
 
-### Corollary 5.1：曲率正则的稳定性作用
+### 推论 5.1：曲率正则的稳定性作用
 
 若：
 
@@ -2601,9 +2608,9 @@ $$
 
 ---
 
-## 4.7 最终统一大定理
+## 4.7 汇总拟研究的误差界
 
-### Theorem 6：Curvature-Adaptive Hyperbolic Momentum 总定理
+### 定理 6：收敛、误差传播与泛化的汇总形式
 
 设：
 
@@ -2619,7 +2626,7 @@ $$
    $$
    d_{K_{g,t}}(x_{g,t},o)\le R_{\max};
    $$
-4. 目标满足 Riemannian smoothness；
+4. 目标满足黎曼光滑性；
 5. 随机梯度与曲率梯度无偏且方差有界；
 6. 曲率采用慢时间尺度：
    $$
@@ -2633,11 +2640,11 @@ $$
    \le
    \delta;
    $$
-8. 平行移动、指数映射和跨曲率 transport 误差有界。
+8. 平行移动、指数映射和跨曲率动量传输误差有界。
 
 则同时有：
 
-### Optimization
+### 优化收敛
 
 $$
 \boxed{
@@ -2698,7 +2705,7 @@ e_{m,t}^2+e_{\mathrm{geom},t}^2
 }
 $$
 
-### Landscape conditioning
+### 目标函数的条件数
 
 $$
 \boxed{
@@ -2718,7 +2725,7 @@ L_R
 }
 $$
 
-### Error amplification
+### 误差放大
 
 $$
 \boxed{
@@ -2732,7 +2739,7 @@ $$
 }
 $$
 
-### Generalization
+### 泛化
 
 $$
 \boxed{
@@ -2792,7 +2799,7 @@ O(T^{-1/2}).
 }
 $$
 
-该定理明确说明 HyperbolicMomentum 的收益和风险都由同一个几何量控制：
+本节关注以下两个几何量：
 
 $$
 \boxed{
@@ -2805,21 +2812,21 @@ $$
 前者控制：
 
 - 双曲容量；
-- Hessian smoothness；
-- generalization stability。
+- Hessian 光滑性；
+- 泛化稳定性。
 
 后者控制：
 
 - 指数映射畸变；
 - 噪声放大；
-- transport error；
+- 动量传输误差；
 - 单步优化稳定性。
 
 ---
 
 # 5. 实验总协议
 
-## 5.1 Seed
+## 5.1 随机种子
 
 所有实验只运行：
 
@@ -2842,7 +2849,7 @@ $$
 - 所有超参数配置；
 - 所有长训练。
 
-不报告 mean、standard deviation 或 confidence interval。
+不报告跨随机种子的均值、标准差或置信区间。
 
 ## 5.2 长训练
 
@@ -2854,49 +2861,49 @@ $$
 
 固定：
 
-- synthetic hierarchy：2000 epochs；
-- 视觉分类：1000 epochs；
-- 图学习：1000 epochs；
-- 知识图谱：2000 epochs；
-- 文本分类：1000 epochs；
-- 推荐系统：1000 epochs；
-- 小型语言表示任务：1000 epochs；
-- 持续学习：1000 epochs。
+- 合成层级结构：2000 轮；
+- 视觉分类：1000 轮；
+- 图学习：1000 轮；
+- 知识图谱：2000 轮；
+- 文本分类：1000 轮；
+- 推荐系统：1000 轮；
+- 小型语言表示任务：1000 轮；
+- 持续学习：1000 轮。
 
-不允许 early stopping 提前结束。
+不使用提前停止；每项实验完成规定的训练轮数。
 
 ## 5.3 全量结果保留
 
-每个 epoch 保存：
+每轮保存：
 
-1. train loss；
-2. validation metric；
-3. test metric；
-4. learning rate；
+1. 训练损失；
+2. 验证集指标；
+3. 测试集指标（这是初始计划；六任务扩展改为选参完成后才测试）；
+4. 学习率；
 5. 每组曲率；
 6. 曲率梯度；
-7. log-curvature step；
-8. geodesic radius；
-9. maximum radius；
-10. Riemannian gradient norm；
-11. momentum norm；
-12. transported momentum norm；
-13. tangent residual；
-14. manifold constraint residual；
-15. parallel transport norm error；
-16. Exp map argument；
-17. curvature-adjusted learning rate；
-18. clipping events；
-19. wall-clock；
-20. peak memory。
+7. 对数曲率变化量；
+8. 测地半径；
+9. 最大半径；
+10. 黎曼梯度范数；
+11. 动量范数；
+12. 传输后的动量范数；
+13. 切空间约束残差；
+14. 流形约束残差；
+15. 平行移动的范数误差；
+16. 指数映射的输入大小；
+17. 曲率调整后的学习率；
+18. 截断次数；
+19. 实际运行时间；
+20. 峰值内存。
 
-永久 checkpoint：
+在以下轮数保存模型检查点：
 
 $$
 0,1,2,5,10,20,50,100,200,500,1000
 $$
 
-以及之后每 100 epochs。
+以及之后每 100 轮。
 
 所有结果都保留用于画完整曲线。
 
@@ -2904,25 +2911,25 @@ $$
 
 # 6. 多任务实验
 
-## 6.1 Synthetic hierarchy
+## 6.1 合成层级结构
 
 ### 设置
 
 | 项目 | 设置 |
 |---|---|
-| Seed | 42 |
-| Epochs | 2000 |
-| Trees | binary, 4-ary, 8-ary, variable branching |
-| Nodes | 1K, 5K, 10K |
-| Dimensions | 2, 5, 10, 20 |
-| Methods | Euclidean SGD, RSGD, fixed-curvature momentum, HyperbolicMomentum |
+| 随机种子 | 42 |
+| 轮数 | 2000 |
+| 树形 | 二叉、四叉、八叉、可变分支 |
+| 节点数 | 1K, 5K, 10K |
+| 维度 | 2, 5, 10, 20 |
+| 方法 | 欧氏 SGD, RSGD, 固定曲率动量, HyperbolicMomentum |
 
 ### 结果表
 
-| Tree | Nodes | Dim. | Method | Final distortion | MAP | Mean rank | Final loss | Learned $K$ | Epoch to target | sec/epoch |
+| 树形 | 节点数 | 维度 | 方法 | 最终失真 | MAP | 平均排名 | 最终损失 | 学到的 $K$ | 达到目标的轮数 | 秒/轮 |
 |---|---:|---:|---|---:|---:|---:|---:|---:|---:|---:|
-| Binary | 10K | 10 | RSGD | TBD | TBD | TBD | TBD | Fixed | TBD | TBD |
-| Binary | 10K | 10 | HyperbolicMomentum | TBD | TBD | TBD | TBD | TBD | TBD | TBD |
+| 二叉树 | 10K | 10 | RSGD | TBD | TBD | TBD | TBD | 固定 | TBD | TBD |
+| 二叉树 | 10K | 10 | HyperbolicMomentum | TBD | TBD | TBD | TBD | TBD | TBD | TBD |
 
 ## 6.2 视觉分类
 
@@ -2930,18 +2937,18 @@ $$
 
 | 项目 | 设置 |
 |---|---|
-| Seed | 42 |
-| Epochs | 1000 |
-| Datasets | CIFAR-10, CIFAR-100, Tiny-ImageNet, ImageNet-100 |
-| Models | ResNet-18, ResNet-50, ViT-S/16 |
-| Hyperbolic component | classifier head or prototype layer |
-| Methods | SGD-M, RSGD, fixed-curvature momentum, HyperbolicMomentum |
+| 随机种子 | 42 |
+| 轮数 | 1000 |
+| 数据集 | CIFAR-10, CIFAR-100, Tiny-ImageNet, ImageNet-100 |
+| 模型 | ResNet-18, ResNet-50, ViT-S/16 |
+| 双曲模块 | 分类头或原型层 |
+| 方法 | SGD-M, RSGD, 固定曲率动量, HyperbolicMomentum |
 
 ### 结果表
 
-| Dataset | Model | Method | Final top-1 | Best top-1 | Hierarchical F1 | Final train loss | Learned $K$ | Epoch to 90% best | sec/epoch |
+| 数据集 | 模型 | 方法 | 最终 top-1 | 最佳 top-1 | 层级 F1 | 最终训练损失 | 学到的 $K$ | 达到最佳值 90% 的轮数 | 秒/轮 |
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|
-| CIFAR-100 | ResNet-18 | RSGD | TBD | TBD | TBD | TBD | Fixed | TBD | TBD |
+| CIFAR-100 | ResNet-18 | RSGD | TBD | TBD | TBD | TBD | 固定 | TBD | TBD |
 | CIFAR-100 | ResNet-18 | HyperbolicMomentum | TBD | TBD | TBD | TBD | TBD | TBD | TBD |
 
 ## 6.3 图学习
@@ -2950,36 +2957,36 @@ $$
 
 | 项目 | 设置 |
 |---|---|
-| Seed | 42 |
-| Epochs | 1000 |
-| Datasets | Cora, Citeseer, PubMed, ogbn-arxiv |
-| Models | GCN, GAT, GraphSAGE |
-| Methods | AdamW, RSGD, fixed-curvature momentum, HyperbolicMomentum |
+| 随机种子 | 42 |
+| 轮数 | 1000 |
+| 数据集 | Cora, Citeseer, PubMed, ogbn-arxiv |
+| 模型 | GCN, GAT, GraphSAGE |
+| 方法 | AdamW, RSGD, 固定曲率动量, HyperbolicMomentum |
 
 ### 结果表
 
-| Dataset | Model | Method | Final val | Final test | Best val | Epoch to best | Learned $K$ | Mean radius | Peak GB |
+| 数据集 | 模型 | 方法 | 最终验证指标 | 最终测试指标 | 最佳验证指标 | 达到最佳值的轮数 | 学到的 $K$ | 平均半径 | 峰值内存（GB） |
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|
-| ogbn-arxiv | GraphSAGE | RSGD | TBD | TBD | TBD | TBD | Fixed | TBD | TBD |
+| ogbn-arxiv | GraphSAGE | RSGD | TBD | TBD | TBD | TBD | 固定 | TBD | TBD |
 | ogbn-arxiv | GraphSAGE | HyperbolicMomentum | TBD | TBD | TBD | TBD | TBD | TBD | TBD |
 
-## 6.4 Knowledge graph embedding
+## 6.4 知识图谱嵌入
 
 ### 设置
 
 | 项目 | 设置 |
 |---|---|
-| Seed | 42 |
-| Epochs | 2000 |
-| Datasets | WN18RR, FB15k-237, YAGO3-10 |
-| Models | Lorentz distance, hyperbolic translational |
-| Methods | RSGD, fixed-curvature momentum, HyperbolicMomentum |
+| 随机种子 | 42 |
+| 轮数 | 2000 |
+| 数据集 | WN18RR, FB15k-237, YAGO3-10 |
+| 模型 | Lorentz 距离模型、双曲平移模型 |
+| 方法 | RSGD, 固定曲率动量, HyperbolicMomentum |
 
 ### 结果表
 
-| Dataset | Model | Method | MRR | Hits@1 | Hits@3 | Hits@10 | Learned $K$ | Epoch to best |
+| 数据集 | 模型 | 方法 | MRR | Hits@1 | Hits@3 | Hits@10 | 学到的 $K$ | 达到最佳值的轮数 |
 |---|---|---|---:|---:|---:|---:|---:|---:|
-| WN18RR | Lorentz | RSGD | TBD | TBD | TBD | TBD | Fixed | TBD |
+| WN18RR | Lorentz | RSGD | TBD | TBD | TBD | TBD | 固定 | TBD |
 | WN18RR | Lorentz | HyperbolicMomentum | TBD | TBD | TBD | TBD | TBD | TBD |
 
 ## 6.5 文本分类
@@ -2988,19 +2995,19 @@ $$
 
 | 项目 | 设置 |
 |---|---|
-| Seed | 42 |
-| Epochs | 1000 |
-| Datasets | AG News, DBpedia, 20 Newsgroups, Reuters-21578 |
-| Models | MLP, small Transformer encoder |
-| Hyperbolic component | final representation and classifier |
-| Methods | AdamW, RSGD, fixed-curvature momentum, HyperbolicMomentum |
+| 随机种子 | 42 |
+| 轮数 | 1000 |
+| 数据集 | AG News, DBpedia, 20 Newsgroups, Reuters-21578 |
+| 模型 | MLP, 小型 Transformer 编码器 |
+| 双曲模块 | 最终表示和分类器 |
+| 方法 | AdamW, RSGD, 固定曲率动量, HyperbolicMomentum |
 
 ### 结果表
 
-| Dataset | Model | Method | Final acc. | Macro-F1 | Best val | Final loss | Learned $K$ | Epoch to best |
+| 数据集 | 模型 | 方法 | 最终准确率 | Macro-F1 | 最佳验证指标 | 最终损失 | 学到的 $K$ | 达到最佳值的轮数 |
 |---|---|---|---:|---:|---:|---:|---:|---:|
-| AG News | Small Transformer | RSGD | TBD | TBD | TBD | TBD | Fixed | TBD |
-| AG News | Small Transformer | HyperbolicMomentum | TBD | TBD | TBD | TBD | TBD | TBD |
+| AG News | 小型 Transformer | RSGD | TBD | TBD | TBD | TBD | 固定 | TBD |
+| AG News | 小型 Transformer | HyperbolicMomentum | TBD | TBD | TBD | TBD | TBD | TBD |
 
 ## 6.6 推荐系统
 
@@ -3008,17 +3015,17 @@ $$
 
 | 项目 | 设置 |
 |---|---|
-| Seed | 42 |
-| Epochs | 1000 |
-| Datasets | MovieLens-1M, Amazon Books subset, Yelp subset |
-| Models | matrix factorization, graph recommender |
-| Methods | AdamW, RSGD, fixed-curvature momentum, HyperbolicMomentum |
+| 随机种子 | 42 |
+| 轮数 | 1000 |
+| 数据集 | MovieLens-1M, Amazon Books 子集, Yelp 子集 |
+| 模型 | 矩阵分解、图推荐模型 |
+| 方法 | AdamW, RSGD, 固定曲率动量, HyperbolicMomentum |
 
 ### 结果表
 
-| Dataset | Model | Method | Recall@20 | NDCG@20 | Final loss | Learned $K$ | Epoch to target | Peak GB |
+| 数据集 | 模型 | 方法 | Recall@20 | NDCG@20 | 最终损失 | 学到的 $K$ | 达到目标的轮数 | 峰值内存（GB） |
 |---|---|---|---:|---:|---:|---:|---:|---:|
-| MovieLens-1M | MF | RSGD | TBD | TBD | TBD | Fixed | TBD | TBD |
+| MovieLens-1M | MF | RSGD | TBD | TBD | TBD | 固定 | TBD | TBD |
 | MovieLens-1M | MF | HyperbolicMomentum | TBD | TBD | TBD | TBD | TBD | TBD |
 
 ## 6.7 持续学习
@@ -3027,45 +3034,45 @@ $$
 
 | 项目 | 设置 |
 |---|---|
-| Seed | 42 |
-| Epochs | 1000 |
-| Datasets | Split CIFAR-100, Rotated MNIST |
-| Models | MLP, ResNet-18 |
-| Methods | AdamW, RSGD, fixed-curvature momentum, HyperbolicMomentum |
+| 随机种子 | 42 |
+| 轮数 | 1000 |
+| 数据集 | Split CIFAR-100, Rotated MNIST |
+| 模型 | MLP, ResNet-18 |
+| 方法 | AdamW, RSGD, 固定曲率动量, HyperbolicMomentum |
 
 ### 结果表
 
-| Dataset | Method | Final avg acc. | Forgetting | Recovery epochs | Learned $K$ drift | Mean radius | Final loss |
+| 数据集 | 方法 | 最终平均准确率 | 遗忘程度 | 恢复所需轮数 | 学到的 $K$变化量 | 平均半径 | 最终损失 |
 |---|---|---:|---:|---:|---:|---:|---:|
-| Split CIFAR-100 | RSGD | TBD | TBD | TBD | Fixed | TBD | TBD |
+| Split CIFAR-100 | RSGD | TBD | TBD | TBD | 固定 | TBD | TBD |
 | Split CIFAR-100 | HyperbolicMomentum | TBD | TBD | TBD | TBD | TBD | TBD |
 
 ## 6.8 任务筛选规则
 
-主文只保留表现好的任务，但完整筛选矩阵必须保存。
+主文可以集中展示正面比较，但需要说明展示范围，并保留所有任务的完整对照结果。
 
-进入主文需要至少满足：
+初始计划列出以下展示条件；实际采用的比较和选参规则见实验指南及论文：
 
 1. 最终指标更好；
 2. 达到目标更快；
-3. 1000 epochs 后优势仍存在；
-4. learned curvature 与数据层级结构相关；
-5. fixed-curvature baseline 无法复现；
+3. 1000 轮后优势仍存在；
+4. 学到的曲率与数据层级结构相关；
+5. 固定曲率基线无法复现；
 6. 曲率校正步长减少不稳定；
-7. transport error 较低；
-8. wall-clock 开销可接受。
+7. 动量传输误差较低；
+8. 实际运行时间开销可接受。
 
 ---
 
 # 7. 基线
 
-| ID | Method | Momentum | Curvature | 跨曲率状态 |
+| ID | 方法 | 动量 | 曲率 | 跨曲率状态 |
 |---|---|---|---|---|
-| B1 | Euclidean optimizer | Euclidean | None | None |
-| B2 | RSGD | None | Fixed | None |
-| B3 | Riemannian momentum | Parallel transport | Fixed | None |
-| B4 | Learnable-curvature RSGD | None | Learned | Point only |
-| B5 | HyperbolicMomentum | Parallel transport | Group learned | Point and momentum |
+| B1 | 欧氏优化器 | 欧氏 | 无 | 无 |
+| B2 | RSGD | 无 | 固定 | 无 |
+| B3 | 黎曼动量 | 平行移动 | 固定 | 无 |
+| B4 | 可学习曲率的 RSGD | 无 | 学到的 | 只映射参数点 |
+| B5 | HyperbolicMomentum | 平行移动 | 各组独立学习 | 参数点和动量 |
 
 ---
 
@@ -3073,31 +3080,31 @@ $$
 
 ## 8.1 空间最优性
 
-| Task group | Branching proxy | Predicted $K^\star$ | Learned $K$ | Fixed-$K$ distortion | Learned-$K$ distortion |
+| 任务组 | 分支率近似指标 | 预测的 $K^\star$ | 学到的 $K$ | 固定的 $K$ distortion | 可学习的 $K$ distortion |
 |---|---:|---:|---:|---:|---:|
-| Group 1 | TBD | TBD | TBD | TBD | TBD |
+| 组 1 | TBD | TBD | TBD | TBD | TBD |
 
-## 8.2 Landscape
+## 8.2 目标函数的二阶性质
 
-| Task | $K$ | Radius | Hessian min eig. | Hessian max eig. | Smoothness proxy | Saddle escape epoch |
+| 任务 | $K$ | 半径 | Hessian 最小特征值 | Hessian 最大特征值 | 光滑性的近似指标 | 离开鞍点的轮数 |
 |---|---:|---:|---:|---:|---:|---:|
-| Synthetic hierarchy | TBD | TBD | TBD | TBD | TBD | TBD |
+| 合成层级结构 | TBD | TBD | TBD | TBD | TBD | TBD |
 
-## 8.3 Convergence
+## 8.3 收敛
 
-| Task | Method | Final grad norm | Min grad norm | Loss AUC | Final loss | Momentum error proxy |
+| 任务 | 方法 | 最终梯度范数 | 最小梯度范数 | 损失曲线面积 | 最终损失 | 动量误差的近似指标 |
 |---|---|---:|---:|---:|---:|---:|
 | CIFAR-100 | HyperbolicMomentum | TBD | TBD | TBD | TBD | TBD |
 
-## 8.4 Error bounds
+## 8.4 误差界
 
-| Task | Epoch | PT error | Exp error | Tangent residual | Radius error | Bound proxy |
+| 任务 | 轮数 | 平行移动误差 | 指数映射误差 | 切空间约束残差 | 半径误差 | 误差界的近似指标 |
 |---|---:|---:|---:|---:|---:|---:|
 | WN18RR | 100 | TBD | TBD | TBD | TBD | TBD |
 
-## 8.5 Generalization
+## 8.5 泛化
 
-| Dataset | Method | Train metric | Test metric | Gap | Stability proxy | Smoothness proxy | Curvature spread |
+| 数据集 | 方法 | 训练指标 | 测试指标 | 差距 | 稳定性的近似指标 | 光滑性的近似指标 | 曲率分散程度 |
 |---|---|---:|---:|---:|---:|---:|---:|
 | CIFAR-100 | RSGD | TBD | TBD | TBD | TBD | TBD | 0 |
 | CIFAR-100 | HyperbolicMomentum | TBD | TBD | TBD | TBD | TBD | TBD |
@@ -3108,26 +3115,26 @@ $$
 
 | ID | 消融 | 目的 |
 |---|---|---|
-| A1 | 无 momentum | 检验双曲动量 |
+| A1 | 无动量 | 检验双曲动量 |
 | A2 | 固定曲率 | 检验曲率学习 |
 | A3 | 单一全局曲率 | 检验分组曲率 |
-| A4 | 无曲率校正步长 | 检验 Exp 非线性控制 |
+| A4 | 无曲率校正步长 | 检验指数映射的非线性控制 |
 | A5 | 曲率变化时只映射点 | 检验动量一致性 |
 | A6 | 不做切空间投影 | 检验数值切向性 |
 | A7 | 同速更新 $x$ 和 $K$ | 检验两时间尺度 |
-| A8 | 无 log-curvature clipping | 检验曲率稳定性 |
-| A9 | 每 10 epochs 更新曲率 | 检验频率 |
-| A10 | 每 100 epochs 更新曲率 | 检验频率 |
+| A8 | 无对数曲率变化截断 | 检验曲率稳定性 |
+| A9 | 每 10 轮更新曲率 | 检验频率 |
+| A10 | 每 100 轮更新曲率 | 检验频率 |
 | A11 | 单组曲率 | 检验多组结构 |
 | A12 | 不同初始曲率 | 检验初始化敏感性 |
 
-所有消融只运行 seed 42，且至少 1000 epochs。
+所有消融只运行随机种子 42，且至少 1000 轮。
 
 ### 消融表
 
-| Ablation | Final metric | Final loss | Loss AUC | Learned $K$ | PT error | Radius error | sec/epoch |
+| 消融 | 最终指标 | 最终损失 | 损失曲线面积 | 学到的 $K$ | 平行移动误差 | 半径误差 | 秒/轮 |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| Full HyperbolicMomentum | TBD | TBD | TBD | TBD | TBD | TBD | TBD |
+| 完整 HyperbolicMomentum | TBD | TBD | TBD | TBD | TBD | TBD | TBD |
 | A1 | TBD | TBD | TBD | TBD | TBD | TBD | TBD |
 | A2 | TBD | TBD | TBD | TBD | TBD | TBD | TBD |
 
@@ -3137,14 +3144,14 @@ $$
 
 | 参数 | 搜索范围 |
 |---|---|
-| Base learning rate | $\{10^{-5},3\cdot10^{-5},10^{-4},3\cdot10^{-4},10^{-3},3\cdot10^{-3},10^{-2}\}$ |
-| Momentum $\beta$ | $\{0,0.8,0.9,0.95,0.99\}$ |
-| Curvature learning rate | $\{10^{-6},3\cdot10^{-6},10^{-5},3\cdot10^{-5},10^{-4}\}$ |
-| Initial $K$ | $\{0.01,0.1,0.5,1,2,5\}$ |
-| Curvature regularization | $\{0,10^{-5},10^{-4},10^{-3},10^{-2}\}$ |
-| Curvature correction $\gamma$ | $\{0,0.1,0.3,1,3\}$ |
-| Log-curvature clip | $\{10^{-4},10^{-3},10^{-2},5\cdot10^{-2}\}$ |
-| Number of groups | $\{1,2,4,8\}$ |
+| 基础学习率 | $\{10^{-5},3\cdot10^{-5},10^{-4},3\cdot10^{-4},10^{-3},3\cdot10^{-3},10^{-2}\}$ |
+| 动量 $\beta$ | $\{0,0.8,0.9,0.95,0.99\}$ |
+| 曲率学习率 | $\{10^{-6},3\cdot10^{-6},10^{-5},3\cdot10^{-5},10^{-4}\}$ |
+| 初始 $K$ | $\{0.01,0.1,0.5,1,2,5\}$ |
+| 曲率正则系数 | $\{0,10^{-5},10^{-4},10^{-3},10^{-2}\}$ |
+| 曲率校正系数 $\gamma$ | $\{0,0.1,0.3,1,3\}$ |
+| 对数曲率截断阈值 | $\{10^{-4},10^{-3},10^{-2},5\cdot10^{-2}\}$ |
+| 分组数量 | $\{1,2,4,8\}$ |
 
 固定：
 
@@ -3152,13 +3159,13 @@ $$
 \texttt{seed}=42.
 $$
 
-每个方法使用相同调参 run 数。
+每个方法分配相同数量的调参运行。
 
 ---
 
 # 11. 数值测试
 
-## 11.1 Manifold constraint
+## 11.1 流形约束
 
 $$
 \left|
@@ -3170,7 +3177,7 @@ $$
 10^{-6}.
 $$
 
-## 11.2 Tangent constraint
+## 11.2 切空间约束
 
 $$
 |
@@ -3180,7 +3187,7 @@ $$
 10^{-6}.
 $$
 
-## 11.3 Exp–Log inverse
+## 11.3 指数映射与对数映射互逆
 
 $$
 d_K
@@ -3192,7 +3199,7 @@ y
 10^{-6}.
 $$
 
-## 11.4 Parallel transport isometry
+## 11.4 平行移动保持范数
 
 $$
 \left|
@@ -3206,7 +3213,7 @@ $$
 10^{-6}.
 $$
 
-## 11.5 Cross-curvature constraint
+## 11.5 曲率变化后的流形约束
 
 $$
 \left|
@@ -3221,7 +3228,7 @@ $$
 10^{-6}.
 $$
 
-## 11.6 Cross-curvature tangency
+## 11.6 曲率变化后的切向性
 
 $$
 \left|
@@ -3234,7 +3241,7 @@ $$
 10^{-6}.
 $$
 
-## 11.7 Distance scaling
+## 11.7 距离缩放
 
 $$
 \left|
@@ -3249,7 +3256,7 @@ d_K(x,y)
 10^{-6}.
 $$
 
-## 11.8 Identity curvature map
+## 11.8 曲率不变时的恒等映射
 
 当：
 
@@ -3259,13 +3266,13 @@ $$
 
 跨曲率映射退化为恒等。
 
-## 11.9 Finite difference
+## 11.9 有限差分检查
 
-Riemannian directional derivative 与 geodesic finite difference 一致。
+黎曼方向导数与沿测地线的有限差分一致。
 
-## 11.10 Mixed precision
+## 11.10 混合精度
 
-Lorentz inner product、Exp、Log、parallel transport 和曲率映射至少使用 FP32。
+Lorentz 内积、指数映射、对数映射、平行移动和曲率映射至少使用 FP32。
 
 ---
 
@@ -3273,43 +3280,43 @@ Lorentz inner product、Exp、Log、parallel transport 和曲率映射至少使�
 
 ## 12.1 成功标准
 
-1. 至少两个任务族优于固定曲率 Riemannian momentum；
-2. 至少一个 2000-epoch 任务保持优势；
-3. 1000 epochs 后优势不消失；
-4. learned curvature 与数据层级结构相关；
+1. 至少两个任务族优于固定曲率黎曼动量；
+2. 至少一个任务训练 2000 轮后仍有优势；
+3. 1000 轮后优势不消失；
+4. 学到的曲率与数据层级结构相关；
 5. 曲率校正步长减少不稳定；
 6. 跨曲率动量映射优于只映射参数点；
-7. PT error 接近数值误差；
+7. 平行移动误差接近数值误差；
 8. 至少两个任务达到目标更快；
-9. generalization proxy 与测试 gap 趋势一致；
-10. wall-clock 开销可接受。
+9. 泛化近似指标与训练、测试差距的变化趋势一致；
+10. 实际运行时间开销可接受。
 
 ## 12.2 失败标准
 
-1. learned curvature 全部收敛到同一值；
+1. 学到的曲率全部收敛到同一值；
 2. 固定曲率完全复现结果；
-3. momentum 不优于 RSGD；
+3. 动量不优于 RSGD；
 4. 跨曲率映射无作用；
-5. 曲率频繁触发 clipping；
+5. 曲率频繁触发截断；
 6. 参数半径持续爆炸；
-7. 1000 epochs 后优势消失；
+7. 1000 轮后优势消失；
 8. 多数常见任务无改善；
-9. 结果只在 synthetic hierarchy 上成立；
-10. 单 seed 对超参数极度敏感。
+9. 结果只在合成层级结构上成立；
+10. 单一随机种子对超参数极度敏感。
 
 ---
 
-# 13. 推荐论文叙述
+# 13. 初始论文提纲
 
-## Observation
+## 研究动机
 
-层级任务的局部分支率、深度和表示尺度不同，因此单一固定负曲率可能无法同时适配所有参数组。与此同时，双曲 momentum 必须跨不同点的切空间移动。
+层级任务的局部分支率、深度和表示尺度不同，因此单一固定负曲率可能无法同时适配所有参数组。与此同时，双曲动量必须跨不同点的切空间移动。
 
-## Limitation
+## 需要解决的问题
 
-固定曲率 Riemannian momentum 只处理同一流形内的切空间变化。曲率可学习时，参数点、切空间和动量状态都会改变，直接更新曲率会破坏状态一致性。
+固定曲率黎曼动量只处理同一流形内的切空间变化。曲率可学习时，参数点、切空间和动量状态都会改变，直接更新曲率会破坏状态一致性。
 
-## Method
+## 方法
 
 HyperbolicMomentum 在 Lorentz 模型中维护精确平行移动动量，为不同参数组学习负曲率，并通过解析缩放同时映射参数点和动量。曲率校正步长使用：
 
@@ -3319,22 +3326,22 @@ $$
 
 控制指数映射非线性。
 
-## Theory
+## 理论分析
 
 - 给出层级分支率与最优曲率匹配；
 - 证明异质层级下分组曲率不劣于单一全局曲率；
-- 分析曲率对 Hessian、smoothness 和 strict-saddle 的影响；
-- 给出固定曲率、动量和两时间尺度联合 convergence；
-- 给出平行移动、Exp map、曲率更新和半径 error bounds；
-- 给出 stability-based generalization bound；
-- 给出端到端 stationarity 总公式。
+- 分析曲率对 Hessian、光滑性和严格鞍点的影响；
+- 给出固定曲率、动量和两时间尺度联合收敛；
+- 给出平行移动、指数映射、曲率更新和半径误差界；
+- 给出基于稳定性的泛化界；
+- 给出联合驻点残差公式。
 
-## Experiments
+## 实验计划
 
-所有实验只运行 seed 42。所有正式训练至少 1000 epochs。任务覆盖 synthetic hierarchy、视觉、图学习、知识图谱、文本分类、推荐系统和持续学习。每个 epoch 的完整结果永久保存。
+所有实验只运行随机种子 42。所有正式训练至少 1000 轮。任务覆盖合成层级结构、视觉、图学习、知识图谱、文本分类、推荐系统和持续学习。每轮的完整结果永久保存。
 
 ---
 
-# 14. 推荐标题
+# 14. 初始标题
 
 > **HyperbolicMomentum: Curvature-Adaptive Momentum for Hierarchical Neural Optimization**

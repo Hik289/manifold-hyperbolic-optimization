@@ -1,5 +1,17 @@
-Target: ICML 2027 draft.
-Official 2027 author instructions, call-for-papers and style ZIP returned HTTP 404 when checked 2026-11-02.
-Unmodified upstream base: https://media.icml.cc/Conferences/ICML2026/Styles/icml2026.zip
-SHA256: 8b29290f5828e176debb57ea9cc00252502973d55ea561a2f18a7f0a326bfc6c
-The local icml2027_draft.sty wrapper changes only the draft notice and PDF metadata. It is not an official ICML 2027 template. Replace it with the official release when available. Main text is two-column; detailed proofs and experimental audit use the one-column appendix supported by the upstream example.
+Template notes
+
+This project uses a local ICML 2027 submission draft based on the ICML 2026 style.
+It is not an official ICML 2027 template.
+
+The original style archive is unchanged:
+https://media.icml.cc/Conferences/ICML2026/Styles/icml2026.zip
+SHA-256: 8b29290f5828e176debb57ea9cc00252502973d55ea561a2f18a7f0a326bfc6c
+
+On 2026-11-02, the checked ICML 2027 author-instruction, call-for-papers and
+style-archive URLs returned HTTP 404. This records that check, not a current
+claim about availability.
+
+The local icml2027_draft.sty file changes only the draft notice and PDF metadata.
+Replace it when an official template is available. The main text uses two
+columns; the proofs and full experimental comparisons use a one-column appendix,
+following the layout supported by the original example.

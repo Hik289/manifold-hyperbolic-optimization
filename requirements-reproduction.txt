@@ -1,5 +1,5 @@
-# Observed completed-benchmark environment (Python 3.11).
-# Choose the matching PyTorch wheel for your accelerator separately if necessary.
+# Package versions used for the completed benchmark (Python 3.11).
+# If needed, install the matching PyTorch build for your GPU separately.
 torch==2.5.1
 torchvision==0.20.1
 numpy==2.0.2

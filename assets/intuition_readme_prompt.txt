@@ -1,9 +1,10 @@
-README illustration: intuition-readme.png
-Created with the built-in imagegen tool by editing intuition.png.
-This is a conceptual method diagram, not an experimental figure.
-The original image and its generation specification remain available as inputs.
+Current README illustration: intuition-readme.png
 
-FINAL EDIT PROMPT
+The current image was made by removing the title and slogan from intuition.png.
+It explains the method and does not show measured experiment results.
+The original image and its prompts are kept alongside it for reference.
+
+Edit prompt used for the current image (kept unchanged)
 
 Use case: precise-object-edit.
 Asset type: scientific method illustration for an academic GitHub README.

@@ -1,4 +1,4 @@
-# Core geometry, synthetic/mechanism experiments, analysis and figure reproduction.
+# Packages for geometry, synthetic experiments, analysis and plotting.
 torch>=2.3,<2.6
 numpy>=1.23,<3
 scipy>=1.10,<2

@@ -1,9 +1,9 @@
 # Third-party materials
 
-Original project code is distributed under the MIT License in `LICENSE`. Bundled third-party materials retain their upstream terms.
+Original project code uses the MIT License in [LICENSE](LICENSE). Third-party files keep their original license terms.
 
-The paper directory bundles the ICML 2026 LaTeX style and bibliography style, together with the supporting algorithm and page-header styles. Their original copyright and distribution notices remain inside the files. The upstream style archive and checksum are recorded in `paper/TEMPLATE_PROVENANCE.txt`.
+The paper includes the ICML 2026 LaTeX and bibliography styles, plus supporting algorithm and page-header styles. Their copyright and distribution notices remain in the files. The [template notes](paper/TEMPLATE_PROVENANCE.txt) give the download URL and archive hash.
 
-The local target-year wrapper is a draft convenience file. It is not an official ICML 2027 template or a statement of conference acceptance.
+The local ICML 2027 file labels a submission draft. It is not an official 2027 template and does not indicate conference acceptance.
 
-Datasets are acquired from their original providers by the experiment scripts. Dataset files and pretrained weights are not redistributed in this source release. External package dependencies remain governed by their own upstream terms.
+Experiment scripts obtain datasets from their providers. Dataset files and pretrained weights are not included in this repository. External packages keep their own licenses.
